@@ -1,0 +1,98 @@
+= 
+:allow-uri-read: 
+
+
+[cols="1a,1a"]
+|===
+| 경로 및 파일 이름 | 설명 
+
+
+| ./vsphere/README  a| 
+StorageGRID 다운로드 파일에 포함된 모든 파일을 설명하는 텍스트 파일입니다.
+
+
+
+| ./vsphere/NLF000000.txt  a| 
+제품에 대한 지원 권한을 제공하지 않는 무료 라이센스입니다.
+
+
+
+| ./vsphere/ NetApp-SG-버전-SHA.vmdk  a| 
+그리드 노드 가상 머신을 생성하기 위한 템플릿으로 사용되는 가상 머신 디스크 파일입니다.
+
+
+
+| ./vsphere/vsphere-primary-admin.ovf ./vsphere/vsphere-primary-admin.mf  a| 
+Open Virtualization Format 템플릿 파일(`.ovf` ) 및 매니페스트 파일(`.mf` ) 기본 관리 노드를 배포하기 위한 것입니다.
+
+
+
+| ./vsphere/vsphere-비-기본-관리자.ovf ./vsphere/vsphere-비-기본-관리자.mf  a| 
+템플릿 파일(`.ovf` ) 및 매니페스트 파일(`.mf` ) 기본이 아닌 관리 노드를 배포하기 위한 것입니다.
+
+
+
+| ./vsphere/vsphere-gateway.ovf ./vsphere/vsphere-gateway.mf  a| 
+템플릿 파일(`.ovf` ) 및 매니페스트 파일(`.mf` ) 게이트웨이 노드를 배포하기 위한 것입니다.
+
+
+
+| ./vsphere/vsphere-storage.ovf ./vsphere/vsphere-storage.mf  a| 
+템플릿 파일(`.ovf` ) 및 매니페스트 파일(`.mf` ) 가상 머신 기반 스토리지 노드를 배포하기 위한 것입니다.
+
+
+
+| 배포 스크립팅 도구 | 설명 
+
+
+| ./vsphere/deploy-vsphere-ovftool.sh  a| 
+가상 그리드 노드의 배포를 자동화하는 데 사용되는 Bash 셸 스크립트입니다.
+
+
+
+| ./vsphere/deploy-vsphere-ovftool-sample.ini  a| 
+다음과 함께 사용할 수 있는 구성 파일 예 `deploy-vsphere-ovftool.sh` 스크립트.
+
+
+
+| ./vsphere/configure-storagegrid.py  a| 
+StorageGRID 시스템 구성을 자동화하는 데 사용되는 Python 스크립트입니다.
+
+
+
+| ./vsphere/configure-sga.py  a| 
+StorageGRID 어플라이언스의 구성을 자동화하는 데 사용되는 Python 스크립트입니다.
+
+
+
+| ./vsphere/storagegrid-ssoauth.py  a| 
+SSO(Single Sign-On)가 활성화된 경우 Grid Management API에 로그인하는 데 사용할 수 있는 Python 스크립트 예시입니다.  이 스크립트는 Ping Federate 통합에도 사용할 수 있습니다.
+
+
+
+| ./vsphere/configure-storagegrid.sample.json  a| 
+다음과 함께 사용할 수 있는 구성 파일 예 `configure-storagegrid.py` 스크립트.
+
+
+
+| ./vsphere/configure-storagegrid.blank.json  a| 
+사용할 빈 구성 파일 `configure-storagegrid.py` 스크립트.
+
+
+
+| ./vsphere/storagegrid-ssoauth-azure.py  a| 
+Active Directory 또는 Ping Federate를 사용하여 SSO(Single Sign-On)가 활성화된 경우 Grid Management API에 로그인하는 데 사용할 수 있는 Python 스크립트 예시입니다.
+
+
+
+| ./vsphere/storagegrid-ssoauth-azure.js  a| 
+동반자가 호출하는 도우미 스크립트 `storagegrid-ssoauth-azure.py` Azure와 SSO 상호 작용을 수행하는 Python 스크립트입니다.
+
+
+
+| ./vsphere/extras/api-schemas  a| 
+StorageGRID 에 대한 API 스키마.
+
+*참고*: 업그레이드를 수행하기 전에 이러한 스키마를 사용하여 업그레이드 호환성 테스트를 위한 비프로덕션 StorageGRID 환경이 없는 경우 StorageGRID 관리 API를 사용하기 위해 작성한 모든 코드가 새 StorageGRID 릴리스와 호환되는지 확인할 수 있습니다.
+
+|===

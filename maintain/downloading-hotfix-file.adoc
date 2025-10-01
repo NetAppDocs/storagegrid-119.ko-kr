@@ -1,0 +1,48 @@
+---
+permalink: maintain/downloading-hotfix-file.html 
+sidebar: sidebar 
+keywords: storagegrid, hotfix, download 
+summary: 핫픽스를 적용하려면 먼저 핫픽스 파일을 다운로드해야 합니다. 
+---
+= 핫픽스 파일 다운로드
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+핫픽스를 적용하려면 먼저 핫픽스 파일을 다운로드해야 합니다.
+
+.단계
+. 로 가다 https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["NetApp 다운로드: StorageGRID"^] .
+. 다운로드할 수 있는 핫픽스 목록을 보려면 *사용 가능한 소프트웨어* 아래의 아래쪽 화살표를 선택하세요.
++
+
+NOTE: 핫픽스 파일 버전의 형식은 다음과 같습니다: 11.4__.x.y__.
+
+. 업데이트에 포함된 변경 사항을 검토하세요.
++
+
+NOTE: 만약 당신이 방금link:configuring-replacement-primary-admin-node.html["기본 관리 노드를 복구했습니다."] 핫픽스를 적용해야 하는 경우 다른 그리드 노드에 설치된 것과 동일한 핫픽스 버전을 선택하세요.
+
++
+.. 다운로드하려는 핫픽스 버전을 선택하고 *이동*을 선택합니다.
+.. NetApp 계정의 사용자 이름과 비밀번호를 사용하여 Sign in .
+.. 최종 사용자 라이선스 계약을 읽고 동의하세요.
++
+선택한 버전의 다운로드 페이지가 나타납니다.
+
+.. 핫픽스 다운로드 `readme.txt` 핫픽스에 포함된 변경 사항 요약을 보려면 파일을 클릭하세요.
+
+
+. 핫픽스의 다운로드 버튼을 선택하고 파일을 저장합니다.
++
+
+NOTE: 이 파일의 이름을 변경하지 마세요.
+
++
+
+NOTE: macOS 장치를 사용하는 경우 핫픽스 파일이 자동으로 저장될 수 있습니다. `.txt` 파일.  그렇다면 파일 이름을 변경해야 합니다. `.txt` 확대.
+
+. 다운로드 위치를 선택하고 *저장*을 선택하세요.
+

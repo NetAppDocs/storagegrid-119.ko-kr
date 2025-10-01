@@ -1,0 +1,127 @@
+---
+permalink: maintain/stopping-services-and-shutting-down-grid-nodes.html 
+sidebar: sidebar 
+keywords: recover, stop services, shut down nodes, node shutdown 
+summary: StorageGRID 시스템의 전원을 끄려면 먼저 각 그리드 노드에서 실행 중인 모든 서비스를 중지한 다음 모든 VMware 가상 머신, 컨테이너 엔진 및 StorageGRID 어플라이언스를 종료해야 합니다. 
+---
+= 서비스를 중지하고 그리드 노드를 종료합니다.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 시스템의 전원을 끄려면 먼저 각 그리드 노드에서 실행 중인 모든 서비스를 중지한 다음 모든 VMware 가상 머신, 컨테이너 엔진 및 StorageGRID 어플라이언스를 종료해야 합니다.
+
+.이 작업에 관하여
+먼저 관리 노드와 게이트웨이 노드의 서비스를 중지한 다음, 스토리지 노드의 서비스를 중지합니다.
+
+이 접근 방식을 사용하면 기본 관리 노드를 사용하여 다른 그리드 노드의 상태를 가능한 한 오랫동안 모니터링할 수 있습니다.
+
+
+NOTE: 단일 호스트에 두 개 이상의 그리드 노드가 포함된 경우 해당 호스트의 모든 노드를 중지할 때까지 호스트를 종료하지 마세요.  호스트에 기본 관리 노드가 포함되어 있는 경우 해당 호스트를 마지막으로 종료합니다.
+
+
+NOTE: 필요한 경우 다음을 수행할 수 있습니다.link:linux-migrating-grid-node-to-new-host.html["한 Linux 호스트에서 다른 호스트로 노드 마이그레이션"] 그리드의 기능이나 가용성에 영향을 주지 않고 호스트 유지 관리를 수행합니다.
+
+.단계
+. 모든 클라이언트 애플리케이션이 그리드에 액세스하는 것을 중지합니다.
+. [[log_in_to_gn]]각 게이트웨이 노드에 로그인하세요:
++
+.. 다음 명령을 입력하세요: `ssh admin@_grid_node_IP_`
+.. 나열된 비밀번호를 입력하세요 `Passwords.txt` 파일.
+.. 다음 명령을 입력하여 루트로 전환하세요. `su -`
+.. 나열된 비밀번호를 입력하세요 `Passwords.txt` 파일.
++
+루트로 로그인하면 프롬프트가 다음과 같이 변경됩니다. `$` 에게 `#` .
+
+
+
+. [[stop_all_services]]노드에서 실행 중인 모든 서비스를 중지합니다. `service servermanager stop`
++
+서비스를 종료하는 데 최대 15분이 걸릴 수 있으며, 종료 과정을 모니터링하려면 시스템에 원격으로 로그인해야 할 수도 있습니다.
+
+
+
+. 이전 두 단계를 반복하여 모든 스토리지 노드와 기본이 아닌 관리 노드에서 서비스를 중지합니다.
++
+이러한 노드의 서비스는 어떤 순서로든 중지할 수 있습니다.
+
++
+
+NOTE: 당신이 발행하는 경우 `service servermanager stop` 어플라이언스 스토리지 노드에서 서비스를 중지하는 명령을 사용하려면 어플라이언스의 전원을 껐다가 다시 켜서 노드를 다시 시작해야 합니다.
+
+. 기본 관리 노드의 경우 다음 단계를 반복합니다.<<log_in_to_gn,노드에 로그인>> 그리고<<stop_all_services,노드의 모든 서비스 중지>> .
+. Linux 호스트에서 실행되는 노드의 경우:
++
+.. 호스트 운영체제에 로그인합니다.
+.. 노드를 중지합니다. `storagegrid node stop`
+.. 호스트 운영체제를 종료합니다.
+
+
+. VMware 가상 머신에서 실행 중인 노드와 어플라이언스 스토리지 노드의 경우 shutdown 명령을 실행합니다. `shutdown -h now`
++
+결과에 관계없이 이 단계를 수행하십시오. `service servermanager stop` 명령.
+
++
+어플라이언스의 경우, 이 명령은 컴퓨트 컨트롤러를 종료하지만 어플라이언스의 전원은 계속 켜져 있습니다.  다음 단계를 완료해야 합니다.
+
+. 어플라이언스 노드가 있는 경우:
++
+** 서비스 기기 또는 SGF6112 기기의 경우
++
+... 기기의 전원을 끕니다.
+... 파란색 전원 LED가 꺼질 때까지 기다리세요.
+
+
+** SG6160 기기의 경우
++
+... SG6100-CN 저장 컨트롤러의 전원을 끕니다.
+... SG6100-CN 스토리지 컨트롤러의 파란색 전원 LED가 꺼질 때까지 기다리세요.
+
+
+** SG6000 어플라이언스의 경우
++
+... 스토리지 컨트롤러 뒷면의 녹색 캐시 활성 LED가 꺼질 때까지 기다리세요.
++
+캐시된 데이터를 드라이브에 써야 할 때 이 LED가 켜집니다.  전원을 끄기 전에 이 LED가 꺼질 때까지 기다려야 합니다.
+
+... 기기의 전원을 끄고 파란색 전원 LED가 꺼질 때까지 기다리세요.
+
+
+** SG5800 기기의 경우
++
+... 스토리지 컨트롤러 뒷면의 녹색 캐시 활성 LED가 꺼질 때까지 기다리세요.
++
+캐시된 데이터를 드라이브에 써야 할 때 이 LED가 켜집니다.  전원을 끄기 전에 이 LED가 꺼질 때까지 기다려야 합니다.
+
+... SANtricity System Manager 홈페이지에서 *진행 중인 작업 보기*를 선택합니다.
+... 다음 단계로 넘어가기 전에 모든 작업이 완료되었는지 확인하세요.
+... 컨트롤러 선반의 두 전원 스위치를 모두 끄고 컨트롤러 선반의 모든 LED가 꺼질 때까지 기다립니다.
+
+
+** SG5700 어플라이언스의 경우
++
+... 스토리지 컨트롤러 뒷면의 녹색 캐시 활성 LED가 꺼질 때까지 기다리세요.
++
+캐시된 데이터를 드라이브에 써야 할 때 이 LED가 켜집니다.  전원을 끄기 전에 이 LED가 꺼질 때까지 기다려야 합니다.
+
+... 기기의 전원을 끄고 모든 LED와 7세그먼트 디스플레이 활동이 멈출 때까지 기다리세요.
+
+
+
+
+. 필요한 경우 명령 셸에서 로그아웃합니다. `exit`
++
+StorageGRID 그리드는 현재 종료되었습니다.
+
+
+
+.관련 정보
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/index.html["SGF6112 및 SG6160 스토리지 어플라이언스"^]
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/index.html["SG6000 스토리지 어플라이언스"^]
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg5800/index.html["SG5800 스토리지 어플라이언스"^]
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg5700/index.html["SG5700 스토리지 어플라이언스"^]
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg110-1100/index.html["SG110 및 SG1100 서비스 기기"^]
+* link:https://docs.netapp.com/us-en/storagegrid-appliances/sg100-1000/index.html["SG100 및 SG1000 서비스 기기"^]
+

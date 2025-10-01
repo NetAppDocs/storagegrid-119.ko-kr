@@ -1,0 +1,36 @@
+---
+permalink: fabricpool/best-practices-for-high-availability-groups.html 
+sidebar: sidebar 
+keywords: fabricPool, high availability group, HA group, active-active, active-backup, cloud tier, best practices 
+summary: 'StorageGRID FabricPool 클라우드 계층으로 연결하기 전에 StorageGRID 고가용성(HA) 그룹에 대해 알아보고 FabricPool 과 함께 HA 그룹을 사용하는 모범 사례를 검토하세요.' 
+---
+= 고가용성(HA) 그룹을 위한 모범 사례
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID FabricPool 클라우드 계층으로 연결하기 전에 StorageGRID 고가용성(HA) 그룹에 대해 알아보고 FabricPool 과 함께 HA 그룹을 사용하는 모범 사례를 검토하세요.
+
+
+
+== HA 그룹이란 무엇인가요?
+
+고가용성(HA) 그룹은 여러 StorageGRID 게이트웨이 노드, 관리 노드 또는 둘 다의 인터페이스 모음입니다.  HA 그룹은 클라이언트 데이터 연결을 사용 가능한 상태로 유지하는 데 도움이 됩니다.  HA 그룹의 활성 인터페이스에 장애가 발생하면 백업 인터페이스가 FabricPool 작업에 거의 영향을 미치지 않고 작업 부하를 관리할 수 있습니다.
+
+각 HA 그룹은 연관된 노드의 공유 서비스에 대한 고가용성 액세스를 제공합니다.  예를 들어, 게이트웨이 노드에만 있는 인터페이스나 관리 노드와 게이트웨이 노드 모두에 있는 인터페이스로 구성된 HA 그룹은 공유 로드 밸런서 서비스에 대한 고가용성 액세스를 제공합니다.
+
+고가용성 그룹에 대해 자세히 알아보려면 다음을 참조하세요.link:../admin/managing-high-availability-groups.html["고가용성(HA) 그룹 관리"] .
+
+
+
+== HA 그룹 사용
+
+FabricPool 에 대한 StorageGRID HA 그룹을 만드는 모범 사례는 작업 부하에 따라 달라집니다.
+
+* 기본 워크로드 데이터와 함께 FabricPool 사용하려는 경우 데이터 검색 중단을 방지하기 위해 최소 두 개의 부하 분산 노드가 포함된 HA 그룹을 만들어야 합니다.
+* FabricPool 스냅샷 전용 볼륨 계층화 정책이나 기본이 아닌 로컬 성능 계층(예: 재해 복구 위치 또는 NetApp SnapMirror® 대상)을 사용하려는 경우 노드가 하나만 있는 HA 그룹을 구성할 수 있습니다.
+
+
+이 지침에서는 Active-Backup HA를 위한 HA 그룹을 설정하는 방법을 설명합니다(한 노드는 활성이고 다른 노드는 백업입니다).  하지만 DNS 라운드 로빈이나 액티브-액티브 HA를 사용하는 것을 선호할 수도 있습니다.  이러한 다른 HA 구성의 이점을 알아보려면 다음을 참조하세요.link:../admin/configuration-options-for-ha-groups.html["HA 그룹에 대한 구성 옵션"] .

@@ -1,0 +1,182 @@
+---
+permalink: s3/get-bucket-metadata-notification-configuration-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, GET bucket metadata notification configuration 
+summary: GET 버킷 메타데이터 알림 구성 요청을 사용하면 개별 버킷에 대한 검색 통합을 구성하는 데 사용되는 구성 XML을 검색할 수 있습니다. 
+---
+= GET 버킷 메타데이터 알림 구성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+GET 버킷 메타데이터 알림 구성 요청을 사용하면 개별 버킷에 대한 검색 통합을 구성하는 데 사용되는 구성 XML을 검색할 수 있습니다.
+
+이 작업을 완료하려면 s3:GetBucketMetadataNotification 권한이 있거나 계정 루트여야 합니다.
+
+
+
+== 요청 예시
+
+이 요청은 이름이 지정된 버킷에 대한 메타데이터 알림 구성을 검색합니다. `bucket` .
+
+[listing, subs="specialcharacters,quotes"]
+----
+GET /bucket?x-ntap-sg-metadata-notification HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+
+
+== 응답
+
+응답 본문에는 버킷에 대한 메타데이터 알림 구성이 포함되어 있습니다.  메타데이터 알림 구성을 통해 검색 통합을 위해 버킷을 구성하는 방법을 결정할 수 있습니다.  즉, 어떤 객체가 인덱싱되는지, 그리고 해당 객체 메타데이터가 어떤 엔드포인트로 전송되는지 확인할 수 있습니다.
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>rule-status</Status>
+        <Prefix>key-prefix</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:_region:account-ID_:domain/_mydomain/myindex/mytype_</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Rule-2</ID>
+         ...
+    </Rule>
+     ...
+</MetadataNotificationConfiguration>
+----
+각 메타데이터 알림 구성에는 하나 이상의 규칙이 포함됩니다.  각 규칙은 적용되는 객체와 StorageGRID 객체 메타데이터를 보내야 하는 대상을 지정합니다.  대상은 StorageGRID 엔드포인트의 URN을 사용하여 지정해야 합니다.
+
+[cols="1a,2a,1a"]
+|===
+| 이름 | 설명 | 필수의 
+
+
+ a| 
+메타데이터 알림 구성
+ a| 
+메타데이터 알림의 객체와 대상을 지정하는 데 사용되는 규칙에 대한 컨테이너 태그입니다.
+
+하나 이상의 규칙 요소를 포함합니다.
+ a| 
+예
+
+
+
+ a| 
+규칙
+ a| 
+지정된 인덱스에 메타데이터를 추가해야 하는 객체를 식별하는 규칙에 대한 컨테이너 태그입니다.
+
+접두사가 겹치는 규칙은 거부됩니다.
+
+MetadataNotificationConfiguration 요소에 포함됩니다.
+ a| 
+예
+
+
+
+ a| 
+ID
+ a| 
+규칙에 대한 고유 식별자입니다.
+
+규칙 요소에 포함됩니다.
+ a| 
+아니요
+
+
+
+ a| 
+상태
+ a| 
+상태는 '활성화' 또는 '비활성화'가 될 수 있습니다.  비활성화된 규칙에 대해서는 아무런 조치도 취해지지 않습니다.
+
+규칙 요소에 포함됩니다.
+ a| 
+예
+
+
+
+ a| 
+접두사
+ a| 
+접두사와 일치하는 개체는 규칙의 영향을 받으며, 해당 메타데이터는 지정된 대상으로 전송됩니다.
+
+모든 객체를 일치시키려면 빈 접두사를 지정하세요.
+
+규칙 요소에 포함됩니다.
+ a| 
+예
+
+
+
+ a| 
+목적지
+ a| 
+규칙의 대상을 위한 컨테이너 태그입니다.
+
+규칙 요소에 포함됩니다.
+ a| 
+예
+
+
+
+ a| 
+항아리
+ a| 
+개체 메타데이터가 전송되는 대상의 URN입니다.  다음 속성을 포함하는 StorageGRID 엔드포인트의 URN이어야 합니다.
+
+* `es`세 번째 요소여야 합니다.
+* URN은 메타데이터가 저장된 인덱스 및 유형으로 끝나야 합니다. `domain-name/myindex/mytype` .
+
+
+엔드포인트는 테넌트 관리자 또는 테넌트 관리 API를 사용하여 구성됩니다.  이들은 다음과 같은 형태를 취합니다.
+
+* `arn:aws:es:_region:account-ID_:domain/mydomain/myindex/mytype`
+* `urn:mysite:es:::mydomain/myindex/mytype`
+
+
+구성 XML을 제출하기 전에 엔드포인트를 구성해야 하며, 그렇지 않으면 구성이 404 오류로 실패합니다.
+
+Destination 요소에 Urn이 포함됩니다.
+ a| 
+예
+
+|===
+
+
+== 응답 예시
+
+다음 사이에 포함된 XML `<MetadataNotificationConfiguration></MetadataNotificationConfiguration>` 태그는 버킷에 대한 검색 통합 엔드포인트와의 통합이 어떻게 구성되는지 보여줍니다.  이 예에서 개체 메타데이터는 Elasticsearch 인덱스로 전송됩니다. `current` 그리고 이름이 지정된 유형 `2017` AWS 도메인에 호스팅됨 `records` .
+
+[listing]
+----
+HTTP/1.1 200 OK
+Date: Thu, 20 Jul 2017 18:24:05 GMT
+Connection: KEEP-ALIVE
+Server: StorageGRID/11.0.0
+x-amz-request-id: 3832973499
+Content-Length: 264
+Content-Type: application/xml
+
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>Enabled</Status>
+        <Prefix>2017</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-east-1:3333333:domain/records/current/2017</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+.관련 정보
+link:../tenant/index.html["세입자 계정 사용"]

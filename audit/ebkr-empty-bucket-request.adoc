@@ -1,0 +1,55 @@
+---
+permalink: audit/ebkr-empty-bucket-request.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, EBKR, Empty Bucket Request 
+summary: '이 메시지는 사용자가 빈 버킷을 켜거나 끄라는 요청(즉, 버킷 객체를 삭제하거나 객체 삭제를 중지하라는 요청)을 보냈음을 나타냅니다.' 
+---
+= EBKR: 버킷 비우기 요청
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 메시지는 사용자가 빈 버킷을 켜거나 끄라는 요청(즉, 버킷 객체를 삭제하거나 객체 삭제를 중지하라는 요청)을 보냈음을 나타냅니다.
+
+[cols="1a,1a,4a"]
+|===
+| 암호 | 필드 | 설명 
+
+
+ a| 
+빌드
+ a| 
+버킷 UUID
+ a| 
+버킷 ID.
+
+
+
+ a| 
+EBJS
+ a| 
+빈 버킷 JSON 구성
+ a| 
+현재 빈 버킷 구성을 나타내는 JSON이 포함되어 있습니다.
+
+
+
+ a| 
+S3AI
+ a| 
+S3 테넌트 계정 ID
+ a| 
+요청을 보낸 사용자의 테넌트 계정 ID입니다.  비어 있는 값은 익명 액세스를 나타냅니다.
+
+
+
+ a| 
+S3BK
+ a| 
+S3 버킷
+ a| 
+S3 버킷 이름.
+
+|===

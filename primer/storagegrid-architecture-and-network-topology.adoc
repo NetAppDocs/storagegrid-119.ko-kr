@@ -1,0 +1,64 @@
+---
+permalink: primer/storagegrid-architecture-and-network-topology.html 
+sidebar: sidebar 
+keywords: architecture, deployment, topology, site, node redundancy, services, nodes 
+summary: StorageGRID 시스템은 하나 이상의 데이터 센터 사이트에 있는 여러 유형의 그리드 노드로 구성됩니다. 
+---
+= StorageGRID 아키텍처 및 네트워크 토폴로지
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 시스템은 하나 이상의 데이터 센터 사이트에 있는 여러 유형의 그리드 노드로 구성됩니다.
+
+를 참조하십시오link:nodes-and-services.html["그리드 노드 유형에 대한 설명"] .
+
+StorageGRID 네트워크 토폴로지, 요구 사항 및 그리드 통신에 대한 추가 정보는 다음을 참조하세요.link:../network/index.html["네트워킹 가이드라인"] .
+
+
+
+== 배포 토폴로지
+
+StorageGRID 시스템은 단일 데이터 센터 사이트나 여러 데이터 센터 사이트에 배포할 수 있습니다.
+
+
+
+=== 단일 사이트
+
+단일 사이트에 배포하는 경우 StorageGRID 시스템의 인프라와 운영이 중앙 집중화됩니다.
+
+image::../media/data_center_site_single.png[단일 데이터 센터 사이트]
+
+
+
+=== 여러 사이트
+
+여러 사이트가 있는 배포에서는 각 사이트에 다양한 유형과 수의 StorageGRID 리소스를 설치할 수 있습니다.  예를 들어, 한 데이터 센터에는 다른 데이터 센터보다 더 많은 저장 공간이 필요할 수 있습니다.
+
+서로 다른 현장은 지진 단층선이나 홍수범람원과 같이 서로 다른 실패 영역에 걸쳐 지리적으로 다른 위치에 있는 경우가 많습니다. 다른 사이트에 데이터를 자동으로 배포하여 데이터 공유 및 재해 복구를 실현합니다.
+
+image::../media/data_center_sites_multiple.png[여러 데이터 센터 사이트]
+
+단일 데이터 센터 내에 여러 개의 논리적 사이트가 존재하여 분산 복제 및 삭제 코딩을 사용하여 가용성과 복원력을 높일 수도 있습니다.
+
+
+
+=== 그리드 노드 중복성
+
+단일 사이트 또는 다중 사이트 배포에서는 중복성을 위해 두 개 이상의 관리 노드 또는 게이트웨이 노드를 선택적으로 포함할 수 있습니다.  예를 들어, 단일 사이트나 여러 사이트에 두 개 이상의 관리 노드를 설치할 수 있습니다.  하지만 각 StorageGRID 시스템은 기본 관리 노드를 하나만 가질 수 있습니다.
+
+
+
+== 시스템 아키텍처
+
+이 다이어그램은 StorageGRID 시스템 내에서 그리드 노드가 어떻게 배열되는지 보여줍니다.
+
+image::../media/grid_nodes_and_components.png[주변 텍스트로 설명된 다이어그램]
+
+S3 클라이언트는 StorageGRID 에 객체를 저장하고 검색합니다.  다른 클라이언트는 이메일 알림을 보내고, StorageGRID 관리 인터페이스에 액세스하고, 선택적으로 감사 공유에 액세스하는 데 사용됩니다.
+
+S3 클라이언트는 게이트웨이 노드나 관리 노드에 연결하여 스토리지 노드에 대한 부하 분산 인터페이스를 사용할 수 있습니다.  또는 S3 클라이언트는 HTTPS를 사용하여 스토리지 노드에 직접 연결할 수 있습니다.
+
+객체는 소프트웨어 또는 하드웨어 기반 스토리지 노드의 StorageGRID 에 저장되거나, 외부 S3 버킷이나 Azure Blob 스토리지 컨테이너로 구성된 클라우드 스토리지 풀에 저장될 수 있습니다.

@@ -1,0 +1,51 @@
+---
+permalink: harden/hardening-guidelines-for-software-upgrades.html 
+sidebar: sidebar 
+keywords: Hardening guidelines, upgrades 
+summary: 공격으로부터 방어하려면 StorageGRID 시스템과 관련 서비스를 최신 상태로 유지해야 합니다. 
+---
+= 소프트웨어 업그레이드를 위한 강화된 가이드라인
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+공격으로부터 방어하려면 StorageGRID 시스템과 관련 서비스를 최신 상태로 유지해야 합니다.
+
+
+
+== StorageGRID 소프트웨어 업그레이드
+
+가능하다면 StorageGRID 소프트웨어를 최신 주요 릴리스 또는 이전 주요 릴리스로 업그레이드하는 것이 좋습니다.  StorageGRID 최신 상태로 유지하면 알려진 취약점이 활성화되는 시간을 줄이고 전반적인 공격 표면 영역을 줄이는 데 도움이 됩니다.  또한, StorageGRID 의 최신 릴리스에는 이전 릴리스에 포함되지 않은 보안 강화 기능이 포함되어 있는 경우가 많습니다.
+
+를 참조하십시오 https://imt.netapp.com/matrix/#welcome["NetApp 상호 운용성 매트릭스 도구"^] (IMT) 어떤 버전의 StorageGRID 소프트웨어를 사용해야 하는지 확인하세요.  핫픽스가 필요한 경우 NetApp 최신 릴리스에 대한 업데이트를 만드는 것을 우선시합니다.  일부 패치는 이전 릴리스와 호환되지 않을 수 있습니다.
+
+* 최신 StorageGRID 릴리스 및 핫픽스를 다운로드하려면 다음으로 이동하세요. https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["NetApp 다운로드: StorageGRID"^] .
+* StorageGRID 소프트웨어를 업그레이드하려면 다음을 참조하세요.link:../upgrade/performing-upgrade.html["업그레이드 지침"] .
+* 핫픽스를 적용하려면 다음을 참조하세요.link:../maintain/storagegrid-hotfix-procedure.html["StorageGRID 핫픽스 절차"] .
+
+
+
+
+== 외부 서비스 업그레이드
+
+외부 서비스에는 StorageGRID 간접적으로 영향을 미치는 취약점이 있을 수 있습니다. StorageGRID 의존하는 서비스가 최신 상태로 유지되는지 확인해야 합니다. 이러한 서비스에는 LDAP, KMS(또는 KMIP 서버), DNS, NTP가 포함됩니다.
+
+지원되는 버전 목록은 다음을 참조하세요. https://imt.netapp.com/matrix/#welcome["NetApp 상호 운용성 매트릭스 도구"^] .
+
+
+
+== 하이퍼바이저 업그레이드
+
+StorageGRID 노드가 VMware 또는 다른 하이퍼바이저에서 실행되는 경우 하이퍼바이저 소프트웨어와 펌웨어가 최신 상태인지 확인해야 합니다.
+
+지원되는 버전 목록은 다음을 참조하세요. https://imt.netapp.com/matrix/#welcome["NetApp 상호 운용성 매트릭스 도구"^] .
+
+
+
+== *Linux 노드로의 업그레이드*
+
+StorageGRID 노드가 Linux 호스트 플랫폼을 사용하는 경우 호스트 OS에 보안 업데이트와 커널 업데이트가 적용되었는지 확인해야 합니다.  또한, 취약한 하드웨어에 대한 펌웨어 업데이트가 제공되면 반드시 적용해야 합니다.
+
+지원되는 버전 목록은 다음을 참조하세요. https://imt.netapp.com/matrix/#welcome["NetApp 상호 운용성 매트릭스 도구"^] .

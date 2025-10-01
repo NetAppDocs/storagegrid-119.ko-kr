@@ -1,0 +1,416 @@
+---
+permalink: monitor/storagegrid-software-logs.html 
+sidebar: sidebar 
+keywords: logs 
+summary: StorageGRID 로그를 사용하여 문제를 해결할 수 있습니다. 
+---
+= StorageGRID 소프트웨어 로그
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 로그를 사용하여 문제를 해결할 수 있습니다.
+
+
+NOTE: 로그를 외부 syslog 서버로 보내거나 감사 정보의 대상을 변경하려는 경우 `bycast.log` 그리고 `nms.log` , 보다link:../monitor/configure-audit-messages.html#["감사 메시지 및 로그 대상 구성"] .
+
+
+
+== 일반 StorageGRID 로그
+
+[cols="3a,3a,2a"]
+|===
+| 파일 이름 | 노트 | 에서 발견됨 
+
+
+| /var/local/log/bycast.log  a| 
+기본 StorageGRID 문제 해결 파일입니다. *지원* > *도구* > *그리드 토폴로지*를 선택하세요.  그런 다음 *_사이트_* > *_노드_* > *SSM* > *이벤트*를 선택합니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/bycast-err.log  a| 
+하위 집합을 포함합니다 `bycast.log` (심각도가 ERROR 및 CRITICAL인 메시지). 중요 메시지도 시스템에 표시됩니다. *지원* > *도구* > *그리드 토폴로지*를 선택하세요.  그런 다음 *_사이트_* > *_노드_* > *SSM* > *이벤트*를 선택합니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/core/  a| 
+프로그램이 비정상적으로 종료될 경우 생성된 코어 덤프 파일을 포함합니다.  가능한 원인으로는 어설션 실패, 위반 또는 스레드 시간 초과가 있습니다.
+
+*참고*: 파일 ``/var/local/core/kexec_cmd` 일반적으로 어플라이언스 노드에 존재하며 오류를 나타내지 않습니다.
+ a| 
+모든 노드
+
+|===
+
+
+== 암호 관련 로그
+
+[cols="3a,3a,2a"]
+|===
+| 파일 이름 | 노트 | 에서 발견됨 
+
+
+| /var/local/log/ssh-config-generation.log  a| 
+SSH 구성 생성 및 SSH 서비스 다시 로드와 관련된 로그가 포함되어 있습니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/nginx/config-generation.log  a| 
+nginx 구성 생성 및 nginx 서비스 다시 로드와 관련된 로그가 포함되어 있습니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/nginx-gw/config-generation.log  a| 
+nginx-gw 구성 생성(및 nginx-gw 서비스 다시 로드)과 관련된 로그가 포함되어 있습니다.
+ a| 
+관리자 및 게이트웨이 노드
+
+
+
+| /var/local/log/업데이트-암호-구성.log  a| 
+TLS 및 SSH 정책 구성과 관련된 로그가 포함되어 있습니다.
+ a| 
+모든 노드
+
+|===
+
+
+== 그리드 페더레이션 로그
+
+[cols="3a,3a,2a"]
+|===
+| 파일 이름 | 노트 | 에서 발견됨 
+
+
+| /var/local/log/update_grid_federation_config.log  a| 
+그리드 페더레이션 연결을 위한 nginx 및 nginx-gw 구성 생성과 관련된 로그가 포함되어 있습니다.
+ a| 
+모든 노드
+
+|===
+
+
+== NMS 로그
+
+[cols="3a,3a,2a"]
+|===
+| 파일 이름 | 노트 | 에서 발견됨 
+
+
+| /var/local/log/nms.log  a| 
+* 그리드 관리자와 테넌트 관리자로부터 알림을 수집합니다.
+* NMS 서비스 운영과 관련된 이벤트를 캡처합니다.  예를 들어, 이메일 알림 및 구성 변경이 있습니다.
+* 시스템에서 변경된 구성으로 인해 발생한 XML 번들 업데이트가 포함되어 있습니다.
+* 하루에 한 번씩 수행되는 속성 다운샘플링과 관련된 오류 메시지가 포함되어 있습니다.
+* 예를 들어, 페이지 생성 오류 및 HTTP 상태 500 오류와 같은 Java 웹 서버 오류 메시지가 포함되어 있습니다.
+
+ a| 
+관리 노드
+
+
+
+| /var/local/log/nms.errlog  a| 
+MySQL 데이터베이스 업그레이드와 관련된 오류 메시지가 포함되어 있습니다.
+
+해당 서비스의 표준 오류(stderr) 스트림을 포함합니다.  서비스당 로그 파일은 1개입니다.  이러한 파일은 서비스에 문제가 없는 한 일반적으로 비어 있습니다.
+ a| 
+관리 노드
+
+
+
+| /var/local/log/nms.requestlog  a| 
+Management API에서 내부 StorageGRID 서비스로 나가는 연결에 대한 정보를 포함합니다.
+ a| 
+관리 노드
+
+|===
+
+
+== 서버 관리자 로그
+
+[cols="3a,3a,2a"]
+|===
+| 파일 이름 | 노트 | 에서 발견됨 
+
+
+| /var/local/log/servermanager.log  a| 
+서버에서 실행되는 서버 관리자 애플리케이션의 로그 파일입니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/GridstatBackend.errlog  a| 
+서버 관리자 GUI 백엔드 애플리케이션에 대한 로그 파일입니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/gridstat.errlog  a| 
+서버 관리자 GUI에 대한 로그 파일입니다.
+ a| 
+모든 노드
+
+|===
+
+
+== StorageGRID 서비스 로그
+
+[cols="3a,3a,2a"]
+|===
+| 파일 이름 | 노트 | 에서 발견됨 
+
+
+| /var/local/log/acct.errlog  a| 
+ a| 
+ADC 서비스를 실행하는 스토리지 노드
+
+
+
+| /var/local/log/adc.errlog  a| 
+해당 서비스의 표준 오류(stderr) 스트림을 포함합니다.  서비스당 로그 파일은 1개입니다.  이러한 파일은 서비스에 문제가 없는 한 일반적으로 비어 있습니다.
+ a| 
+ADC 서비스를 실행하는 스토리지 노드
+
+
+
+| /var/local/log/ams.errlog  a| 
+ a| 
+관리 노드
+
+
+
+| /var/local/log/cassandra/system.log  a| 
+새로운 스토리지 노드를 추가할 때 문제가 발생하거나, nodetool 복구 작업이 중단되는 경우 사용할 수 있는 메타데이터 저장소(Cassandra 데이터베이스)에 대한 정보입니다.
+ a| 
+저장 노드
+
+
+
+| /var/local/log/cassandra-reaper.log  a| 
+Cassandra 데이터베이스의 데이터를 복구하는 Cassandra Reaper 서비스에 대한 정보입니다.
+ a| 
+저장 노드
+
+
+
+| /var/local/log/cassandra-reaper.errlog  a| 
+Cassandra Reaper 서비스에 대한 오류 정보입니다.
+ a| 
+저장 노드
+
+
+
+| /var/local/log/chunk.errlog  a| 
+ a| 
+저장 노드
+
+
+
+| /var/local/log/cmn.errlog  a| 
+ a| 
+관리 노드
+
+
+
+| /var/local/log/cms.errlog  a| 
+이 로그 파일은 이전 버전의 StorageGRID 에서 업그레이드된 시스템에 존재할 수 있습니다.  여기에는 레거시 정보가 포함되어 있습니다.
+ a| 
+저장 노드
+
+
+
+| /var/local/log/dds.errlog  a| 
+ a| 
+저장 노드
+
+
+
+| /var/local/log/dmv.errlog  a| 
+ a| 
+저장 노드
+
+
+
+| /var/local/log/dynip*  a| 
+그리드의 동적 IP 변경 사항을 모니터링하고 로컬 구성을 업데이트하는 dynip 서비스와 관련된 로그가 포함되어 있습니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/grafana.log  a| 
+Grid Manager에서 메트릭 시각화에 사용되는 Grafana 서비스와 관련된 로그입니다.
+ a| 
+관리 노드
+
+
+
+| /var/local/log/hagroups.log  a| 
+고가용성 그룹과 관련된 로그입니다.
+ a| 
+관리 노드 및 게이트웨이 노드
+
+
+
+| /var/local/log/hagroups_events.log  a| 
+BACKUP에서 MASTER 또는 FAULT로의 전환과 같은 상태 변경을 추적합니다.
+ a| 
+관리 노드 및 게이트웨이 노드
+
+
+
+| /var/local/log/idnt.errlog  a| 
+ a| 
+ADC 서비스를 실행하는 스토리지 노드
+
+
+
+| /var/local/log/jaeger.log  a| 
+추적 수집에 사용되는 Jaeger 서비스와 관련된 로그입니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/kstn.errlog  a| 
+ a| 
+ADC 서비스를 실행하는 스토리지 노드
+
+
+
+| /var/local/log/lambda*  a| 
+S3 Select 서비스에 대한 로그가 포함되어 있습니다.
+ a| 
+관리자 및 게이트웨이 노드
+
+이 로그는 특정 관리자 및 게이트웨이 노드에만 저장됩니다. 를 참조하십시오link:../admin/manage-s3-select-for-tenant-accounts.html["S3 관리 및 게이트웨이 노드에 대한 요구 사항 및 제한 사항 선택"] .
+
+
+
+| /var/local/log/ldr.errlog  a| 
+ a| 
+저장 노드
+
+
+
+| /var/local/log/miscd/*.log  a| 
+다른 노드의 서비스를 쿼리하고 관리하고 다른 노드에서 실행 중인 서비스의 상태를 쿼리하는 등 노드의 환경 구성을 관리하기 위한 인터페이스를 제공하는 MISCd 서비스(정보 서비스 제어 데몬)에 대한 로그가 포함되어 있습니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/nginx/*.log  a| 
+HTTPS API를 통해 다른 노드의 서비스와 통신할 수 있도록 다양한 그리드 서비스(예: Prometheus 및 Dynip)에 대한 인증 및 보안 통신 메커니즘 역할을 하는 nginx 서비스에 대한 로그가 포함되어 있습니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/nginx-gw/*.log  a| 
+오류 로그와 관리 노드의 제한된 관리 포트에 대한 로그를 포함하여 nginx-gw 서비스와 관련된 일반 로그가 포함되어 있습니다.
+ a| 
+관리 노드 및 게이트웨이 노드
+
+
+
+| /var/local/log/nginx-gw/cgr-access.log.gz  a| 
+크로스 그리드 복제 트래픽과 관련된 액세스 로그를 포함합니다.
+ a| 
+그리드 연합 구성을 기반으로 하는 관리 노드, 게이트웨이 노드 또는 둘 다.  크로스 그리드 복제를 위한 대상 그리드에서만 발견됩니다.
+
+
+
+| /var/local/log/nginx-gw/엔드포인트-액세스.log.gz  a| 
+클라이언트에서 스토리지 노드로 S3 트래픽의 부하를 분산하는 Load Balancer 서비스에 대한 액세스 로그가 포함되어 있습니다.
+ a| 
+관리 노드 및 게이트웨이 노드
+
+
+
+| /var/local/log/persistence*  a| 
+재부팅 후에도 유지되어야 하는 루트 디스크의 파일을 관리하는 Persistence 서비스에 대한 로그가 포함되어 있습니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/프로메테우스.log  a| 
+모든 노드에 대해 노드 내보내기 서비스 로그와 ade-exporter 메트릭 서비스 로그가 포함되어 있습니다.
+
+관리 노드의 경우 Prometheus 및 Alert Manager 서비스에 대한 로그도 포함되어 있습니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/raft.log  a| 
+Raft 프로토콜에 대한 RSM 서비스에서 사용되는 라이브러리의 출력을 포함합니다.
+ a| 
+RSM 서비스가 있는 스토리지 노드
+
+
+
+| /var/local/log/rms.errlog  a| 
+S3 플랫폼 서비스에 사용되는 RSM(Replicated State Machine Service) 서비스에 대한 로그를 포함합니다.
+ a| 
+RSM 서비스가 있는 스토리지 노드
+
+
+
+| /var/local/log/ssm.errlog  a| 
+ a| 
+모든 노드
+
+
+
+| /var/local/log/s3vs-domains.log 업데이트  a| 
+S3 가상 호스팅 도메인 이름 구성에 대한 업데이트 처리와 관련된 로그가 포함되어 있습니다. S3 클라이언트 애플리케이션 구현에 대한 지침을 참조하세요.
+ a| 
+관리자 및 게이트웨이 노드
+
+
+
+| /var/local/log/update-snmp-firewall.*  a| 
+SNMP에 대해 관리되는 방화벽 포트와 관련된 로그를 포함합니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/update-sysl.log  a| 
+시스템 syslog 구성에 대한 변경 사항과 관련된 로그가 포함되어 있습니다.
+ a| 
+모든 노드
+
+
+
+| /var/local/log/업데이트-트래픽-클래스.log  a| 
+트래픽 분류기 구성의 변경과 관련된 로그가 포함되어 있습니다.
+ a| 
+관리자 및 게이트웨이 노드
+
+
+
+| /var/local/log/update-utcn.log  a| 
+이 노드의 신뢰할 수 없는 클라이언트 네트워크 모드와 관련된 로그가 포함되어 있습니다.
+ a| 
+모든 노드
+
+|===
+.관련 정보
+* link:about-bycast-log.html["bycast.log에 대하여"]
+* link:../s3/index.html["S3 REST API 사용"]
+

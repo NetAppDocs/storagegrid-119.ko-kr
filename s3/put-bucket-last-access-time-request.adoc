@@ -1,0 +1,50 @@
+---
+permalink: s3/put-bucket-last-access-time-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, put bucket last access time request 
+summary: GET 버킷 마지막 액세스 시간 요청을 사용하면 개별 버킷에 대해 마지막 액세스 시간 업데이트가 활성화되었는지 비활성화되었는지 확인할 수 있습니다. 
+---
+= PUT 버킷 마지막 액세스 시간
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+PUT 버킷 마지막 액세스 시간 요청을 사용하면 개별 버킷에 대한 마지막 액세스 시간 업데이트를 활성화하거나 비활성화할 수 있습니다.  마지막 액세스 시간 업데이트를 비활성화하면 성능이 향상되며, 이는 버전 10.3.0 이상으로 생성된 모든 버킷의 기본 설정입니다.
+
+이 작업을 완료하려면 버킷에 대한 s3:PutBucketLastAccessTime 권한이 있거나 계정 루트여야 합니다.
+
+
+NOTE: StorageGRID 버전 10.3부터 모든 새 버킷에 대한 마지막 액세스 시간 업데이트가 기본적으로 비활성화됩니다.  이전 버전의 StorageGRID 사용하여 만든 버킷이 있고 새로운 기본 동작을 따르려면 이전 버킷 각각에 대한 마지막 액세스 시간 업데이트를 명시적으로 비활성화해야 합니다.  테넌트 관리자의 버킷 세부 정보 페이지나 PUT 버킷 마지막 액세스 시간 요청을 사용하여 마지막 액세스 시간 업데이트를 활성화하거나 비활성화할 수 있습니다. 보다 link:../tenant/enabling-or-disabling-last-access-time-updates.html["마지막 액세스 시간 업데이트 활성화 또는 비활성화"] .
+
+버킷에 대한 마지막 액세스 시간 업데이트가 비활성화된 경우 버킷의 작업에 다음 동작이 적용됩니다.
+
+* GetObject, GetObjectAcl, GetObjectTagging 및 HeadObject 요청은 마지막 액세스 시간을 업데이트하지 않습니다.  해당 개체는 정보 수명 주기 관리(ILM) 평가를 위한 대기열에 추가되지 않습니다.
+* 메타데이터만 업데이트하는 CopyObject 및 PutObjectTagging 요청은 마지막 액세스 시간도 업데이트합니다.  해당 객체는 ILM 평가를 위한 대기열에 추가됩니다.
+* 소스 버킷의 마지막 액세스 시간에 대한 업데이트가 비활성화된 경우 CopyObject 요청은 소스 버킷의 마지막 액세스 시간을 업데이트하지 않습니다.  복사된 개체는 소스 버킷의 ILM 평가를 위한 대기열에 추가되지 않습니다.  그러나 대상에 대한 CopyObject 요청은 항상 마지막 액세스 시간을 업데이트합니다.  객체의 복사본은 ILM 평가를 위한 대기열에 추가됩니다.
+* CompleteMultipartUpload 요청은 마지막 액세스 시간을 업데이트합니다.  완료된 객체는 ILM 평가를 위해 대기열에 추가됩니다.
+
+
+
+
+== 요청 예시
+
+이 예제에서는 버킷의 마지막 액세스 시간을 활성화합니다.
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /bucket?x-ntap-sg-lastaccesstime=enabled HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+이 예제에서는 버킷의 마지막 액세스 시간을 비활성화합니다.
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /bucket?x-ntap-sg-lastaccesstime=disabled HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----

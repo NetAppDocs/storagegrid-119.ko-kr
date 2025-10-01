@@ -1,0 +1,29 @@
+---
+permalink: maintain/installing-services-appliance-platform-change-only.html 
+sidebar: sidebar 
+keywords: storagegrid, recover services appliance, recover appliance, recovering appliance, recovering services appliance, install services appliance, installing services appliance, services appliance 
+summary: 'VMware 또는 Linux 호스트에서 호스팅된 실패한 그리드 노드를 복구하고 교체 노드에 서비스 어플라이언스를 사용하는 경우, 먼저 실패한 노드와 동일한 노드 이름(시스템 이름)을 사용하여 새 어플라이언스 하드웨어를 설치해야 합니다.' 
+---
+= 서비스 어플라이언스 설치(플랫폼 변경만 해당)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+VMware 또는 Linux 호스트에서 호스팅된 실패한 그리드 노드를 복구하고 교체 노드에 서비스 어플라이언스를 사용하는 경우, 먼저 실패한 노드와 동일한 노드 이름(시스템 이름)을 사용하여 새 어플라이언스 하드웨어를 설치해야 합니다.
+
+.시작하기 전에
+실패한 노드에 대한 정보는 다음과 같습니다.
+
+* *노드 이름*: 실패한 노드와 동일한 노드 이름을 사용하여 서비스 어플라이언스를 설치해야 합니다.  노드 이름은 호스트 이름(시스템 이름)입니다.
+* *IP 주소*: 실패한 노드와 동일한 IP 주소를 서비스 어플라이언스에 할당할 수 있습니다. 이는 권장 옵션이며, 각 네트워크에서 사용되지 않는 새 IP 주소를 선택할 수도 있습니다.
+
+
+.이 작업에 관하여
+VMware 또는 Linux에 호스팅된 실패한 노드를 복구하고 서비스 어플라이언스에 호스팅된 노드로 교체하는 경우에만 이 절차를 수행합니다.
+
+.단계
+. 새로운 서비스 어플라이언스를 설치하기 위한 지침을 따르세요. 보다 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["하드웨어 설치를 위한 빠른 시작"^] .
+. 노드 이름을 입력하라는 메시지가 표시되면 실패한 노드의 노드 이름을 사용하세요.
+

@@ -1,0 +1,315 @@
+---
+permalink: s3/put-bucket-metadata-notification-configuration-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, PUT bucket metadata notification configuration request 
+summary: PUT 버킷 메타데이터 알림 구성 요청을 사용하면 개별 버킷에 대한 검색 통합 서비스를 활성화할 수 있습니다.  요청 본문에 제공하는 메타데이터 알림 구성 XML은 대상 검색 인덱스로 전송되는 메타데이터의 객체를 지정합니다. 
+---
+= PUT 버킷 메타데이터 알림 구성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+PUT 버킷 메타데이터 알림 구성 요청을 사용하면 개별 버킷에 대한 검색 통합 서비스를 활성화할 수 있습니다.  요청 본문에 제공하는 메타데이터 알림 구성 XML은 대상 검색 인덱스로 전송되는 메타데이터의 객체를 지정합니다.
+
+이 작업을 완료하려면 버킷에 대한 s3:PutBucketMetadataNotification 권한이 있거나 계정 루트여야 합니다.
+
+
+
+== 요구
+
+요청에는 요청 본문에 메타데이터 알림 구성이 포함되어야 합니다.  각 메타데이터 알림 구성에는 하나 이상의 규칙이 포함됩니다.  각 규칙은 적용되는 객체와 StorageGRID 객체 메타데이터를 보내야 하는 대상을 지정합니다.
+
+객체는 객체 이름의 접두사로 필터링될 수 있습니다.  예를 들어, 접두사가 있는 객체에 대한 메타데이터를 보낼 수 있습니다. `/images` 하나의 목적지로, 그리고 접두사가 붙은 객체 `/videos` 다른 사람에게.
+
+접두사가 겹치는 구성은 유효하지 않으며 제출 시 거부됩니다.  예를 들어, 접두사가 있는 객체에 대한 하나의 규칙을 포함하는 구성 `test` 그리고 접두사가 있는 객체에 대한 두 번째 규칙 `test2` 허용되지 않습니다.
+
+대상은 StorageGRID 엔드포인트의 URN을 사용하여 지정해야 합니다.  메타데이터 알림 구성이 제출될 때 엔드포인트가 존재해야 하며 그렇지 않으면 요청이 실패합니다. `400 Bad Request` . 오류 메시지는 다음과 같습니다. `Unable to save the metadata notification (search) policy. The specified endpoint URN does not exist: _URN_.`
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>rule-status</Status>
+        <Prefix>key-prefix</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:region:account-ID:domain/mydomain/myindex/mytype</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Rule-2</ID>
+         ...
+    </Rule>
+     ...
+</MetadataNotificationConfiguration>
+----
+이 표에서는 메타데이터 알림 구성 XML의 요소를 설명합니다.
+
+[cols="1a,2a,1a"]
+|===
+| 이름 | 설명 | 필수의 
+
+
+ a| 
+메타데이터 알림 구성
+ a| 
+메타데이터 알림의 객체와 대상을 지정하는 데 사용되는 규칙에 대한 컨테이너 태그입니다.
+
+하나 이상의 규칙 요소를 포함합니다.
+ a| 
+예
+
+
+
+ a| 
+규칙
+ a| 
+지정된 인덱스에 메타데이터를 추가해야 하는 객체를 식별하는 규칙에 대한 컨테이너 태그입니다.
+
+접두사가 겹치는 규칙은 거부됩니다.
+
+MetadataNotificationConfiguration 요소에 포함됩니다.
+ a| 
+예
+
+
+
+ a| 
+ID
+ a| 
+규칙에 대한 고유 식별자입니다.
+
+규칙 요소에 포함됩니다.
+ a| 
+아니요
+
+
+
+ a| 
+상태
+ a| 
+상태는 '활성화' 또는 '비활성화'가 될 수 있습니다.  비활성화된 규칙에 대해서는 아무런 조치도 취해지지 않습니다.
+
+규칙 요소에 포함됩니다.
+ a| 
+예
+
+
+
+ a| 
+접두사
+ a| 
+접두사와 일치하는 개체는 규칙의 영향을 받으며, 해당 메타데이터는 지정된 대상으로 전송됩니다.
+
+모든 객체를 일치시키려면 빈 접두사를 지정하세요.
+
+규칙 요소에 포함됩니다.
+ a| 
+예
+
+
+
+ a| 
+목적지
+ a| 
+규칙의 대상을 위한 컨테이너 태그입니다.
+
+규칙 요소에 포함됩니다.
+ a| 
+예
+
+
+
+ a| 
+항아리
+ a| 
+개체 메타데이터가 전송되는 대상의 URN입니다.  다음 속성을 포함하는 StorageGRID 엔드포인트의 URN이어야 합니다.
+
+* `es`세 번째 요소여야 합니다.
+* URN은 메타데이터가 저장된 인덱스 및 유형으로 끝나야 합니다. `domain-name/myindex/mytype` .
+
+
+엔드포인트는 테넌트 관리자 또는 테넌트 관리 API를 사용하여 구성됩니다.  이들은 다음과 같은 형태를 취합니다.
+
+* `arn:aws:es:region:account-ID:domain/mydomain/myindex/mytype`
+* `urn:mysite:es:::mydomain/myindex/mytype`
+
+
+구성 XML을 제출하기 전에 엔드포인트를 구성해야 하며, 그렇지 않으면 구성이 404 오류로 실패합니다.
+
+Destination 요소에 Urn이 포함됩니다.
+ a| 
+예
+
+|===
+
+
+== 요청 예시
+
+이 예에서는 버킷에 대한 검색 통합을 활성화하는 방법을 보여줍니다.  이 예에서는 모든 개체의 개체 메타데이터가 동일한 대상으로 전송됩니다.
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /test1?x-ntap-sg-metadata-notification HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>Enabled</Status>
+        <Prefix></Prefix>
+        <Destination>
+           <Urn>urn:sgws:es:::sgws-notifications/test1/all</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+이 예에서는 접두사와 일치하는 개체에 대한 개체 메타데이터 `/images` 접두사와 일치하는 객체에 대한 객체 메타데이터는 하나의 목적지로 전송됩니다. `/videos` 두 번째 목적지로 전송됩니다.
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /graphics?x-ntap-sg-metadata-notification HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Images-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/images</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-east-1:3333333:domain/es-domain/graphics/imagetype</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Videos-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/videos</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-west-1:22222222:domain/es-domain/graphics/videotype</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+
+
+== 검색 통합 서비스에서 생성된 JSON
+
+버킷에 대한 검색 통합 서비스를 활성화하면 객체 메타데이터나 태그가 추가, 업데이트 또는 삭제될 때마다 JSON 문서가 생성되어 대상 엔드포인트로 전송됩니다.
+
+이 예제는 키가 있는 객체가 생성될 수 있는 JSON의 예를 보여줍니다. `SGWS/Tagging.txt` 라는 이름의 버킷에 생성됩니다. `test` .  그만큼 `test` 버킷의 버전이 지정되지 않았으므로 `versionId` 태그가 비어 있습니다.
+
+[listing]
+----
+{
+  "bucket": "test",
+  "key": "SGWS/Tagging.txt",
+  "versionId": "",
+  "accountId": "86928401983529626822",
+  "size": 38,
+  "md5": "3d6c7634a85436eee06d43415012855",
+  "region":"us-east-1",
+  "metadata": {
+    "age": "25"
+  },
+  "tags": {
+    "color": "yellow"
+  }
+}
+----
+
+
+== 메타데이터 알림에 포함된 개체 메타데이터
+
+이 표는 검색 통합이 활성화된 경우 대상 엔드포인트로 전송되는 JSON 문서에 포함되는 모든 필드를 나열합니다.
+
+문서 이름에는 버킷 이름, 개체 이름, 버전 ID(있는 경우)가 포함됩니다.
+
+[cols="1a,1a,1a"]
+|===
+| 유형 | 품목 이름 | 설명 
+
+
+ a| 
+버킷 및 객체 정보
+ a| 
+버킷
+ a| 
+버킷의 이름
+
+
+
+ a| 
+버킷 및 객체 정보
+ a| 
+열쇠
+ a| 
+객체 키 이름
+
+
+
+ a| 
+버킷 및 객체 정보
+ a| 
+버전 ID
+ a| 
+버전이 지정된 버킷의 객체에 대한 객체 버전
+
+
+
+ a| 
+버킷 및 객체 정보
+ a| 
+지역
+ a| 
+예를 들어 버킷 지역 `us-east-1`
+
+
+
+ a| 
+시스템 메타데이터
+ a| 
+크기
+ a| 
+HTTP 클라이언트에 표시되는 개체 크기(바이트)
+
+
+
+ a| 
+시스템 메타데이터
+ a| 
+md5
+ a| 
+객체 해시
+
+
+
+ a| 
+사용자 메타데이터
+ a| 
+메타데이터
+`_key:value_`
+ a| 
+키-값 쌍으로 객체에 대한 모든 사용자 메타데이터
+
+
+
+ a| 
+태그
+ a| 
+태그
+`_key:value_`
+ a| 
+키-값 쌍으로 객체에 대해 정의된 모든 객체 태그
+
+|===
+
+NOTE: 태그와 사용자 메타데이터의 경우 StorageGRID 날짜와 숫자를 문자열이나 S3 이벤트 알림으로 Elasticsearch에 전달합니다.  이러한 문자열을 날짜나 숫자로 해석하도록 Elasticsearch를 구성하려면 Elasticsearch의 동적 필드 매핑 및 날짜 형식 매핑 지침을 따르세요.  검색 통합 서비스를 구성하기 전에 인덱스에서 동적 필드 매핑을 활성화해야 합니다.  문서가 색인된 후에는 색인에서 문서의 필드 유형을 편집할 수 없습니다.
+
+.관련 정보
+link:../tenant/index.html["세입자 계정 사용"]

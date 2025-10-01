@@ -1,0 +1,167 @@
+---
+permalink: maintain/linux-migrating-grid-node-to-new-host.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, linux, migrate node, migrating node, new host for node 
+summary: 그리드의 기능이나 가용성에 영향을 주지 않고 호스트 유지 관리를 수행하기 위해 하나 이상의 StorageGRID 노드를 한 Linux 호스트에서 다른 Linux 호스트로 마이그레이션할 수 있습니다. 
+---
+= Linux: 그리드 노드를 새 호스트로 마이그레이션
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+그리드의 기능이나 가용성에 영향을 주지 않고 호스트 유지 관리를 수행하기 위해 하나 이상의 StorageGRID 노드를 한 Linux 호스트(소스 호스트)에서 다른 Linux 호스트(대상 호스트)로 마이그레이션할 수 있습니다.
+
+예를 들어, OS 패치 및 재부팅을 수행하기 위해 노드를 마이그레이션할 수 있습니다.
+
+.시작하기 전에
+* StorageGRID 배포에 마이그레이션 지원을 포함하도록 계획했습니다.
++
+** link:../rhel/node-container-migration-requirements.html["Red Hat Enterprise Linux에 대한 노드 컨테이너 마이그레이션 요구 사항"]
+** link:../ubuntu/node-container-migration-requirements.html["Ubuntu 또는 Debian에 대한 노드 컨테이너 마이그레이션 요구 사항"]
+
+
+* 대상 호스트는 이미 StorageGRID 사용을 위해 준비되었습니다.
+* 공유 스토리지는 모든 노드별 스토리지 볼륨에 사용됩니다.
+* 네트워크 인터페이스는 호스트 전체에서 일관된 이름을 갖습니다.
+
+
+[NOTE]
+====
+실제 운영 환경에서는 하나의 호스트에 두 개 이상의 스토리지 노드를 실행하지 마세요.  각 스토리지 노드에 전용 호스트를 사용하면 격리된 장애 도메인이 제공됩니다.
+
+관리 노드나 게이트웨이 노드와 같은 다른 유형의 노드는 동일한 호스트에 배포될 수 있습니다.  하지만 동일한 유형의 노드가 여러 개 있는 경우(예: 게이트웨이 노드 두 개) 모든 인스턴스를 동일한 호스트에 설치하지 마세요.
+
+====
+
+
+== 소스 호스트에서 노드 내보내기
+
+첫 번째 단계로, 그리드 노드를 종료하고 소스 Linux 호스트에서 내보냅니다.
+
+_소스 호스트_에서 다음 명령을 실행합니다.
+
+.단계
+. 소스 호스트에서 현재 실행 중인 모든 노드의 상태를 가져옵니다.
++
+`sudo storagegrid node status all`
+
++
+출력 예:
+
++
+[listing]
+----
+Name Config-State Run-State
+DC1-ADM1 Configured Running
+DC1-ARC1 Configured Running
+DC1-GW1 Configured Running
+DC1-S1 Configured Running
+DC1-S2 Configured Running
+DC1-S3 Configured Running
+----
+. 마이그레이션하려는 노드의 이름을 식별하고, 실행 상태가 실행 중이면 중지합니다.
++
+`sudo storagegrid node stop DC1-S3`
+
++
+출력 예:
+
++
+[listing]
+----
+Stopping node DC1-S3
+Waiting up to 630 seconds for node shutdown
+----
+. 소스 호스트에서 노드를 내보냅니다.
++
+`sudo storagegrid node export DC1-S3`
+
++
+출력 예:
+
++
+[listing]
+----
+Finished exporting node DC1-S3 to /dev/mapper/sgws-dc1-s3-var-local.
+Use 'storagegrid node import /dev/mapper/sgws-dc1-s3-var-local' if you
+want to import it again.
+----
+. 메모하세요 `import` 출력에 제안된 명령입니다.
++
+다음 단계에서는 대상 호스트에서 이 명령을 실행합니다.
+
+
+
+
+
+== 대상 호스트에 노드 가져오기
+
+소스 호스트에서 노드를 내보낸 후 대상 호스트에서 노드를 가져와서 검증합니다.  검증은 노드가 소스 호스트와 동일한 블록 스토리지 및 네트워크 인터페이스 장치에 액세스할 수 있는지 확인합니다.
+
+_대상 호스트_에서 다음 명령을 실행합니다.
+
+.단계
+. 대상 호스트에 노드를 가져옵니다.
++
+`sudo storagegrid node import /dev/mapper/sgws-dc1-s3-var-local`
+
++
+출력 예:
+
++
+[listing]
+----
+Finished importing node DC1-S3 from /dev/mapper/sgws-dc1-s3-var-local.
+You should run 'storagegrid node validate DC1-S3'
+----
+. 새 호스트에서 노드 구성을 검증합니다.
++
+`sudo storagegrid node validate DC1-S3`
+
++
+출력 예:
+
++
+[listing]
+----
+Confirming existence of node DC1-S3... PASSED
+Checking configuration file /etc/storagegrid/nodes/DC1-S3.conf for node DC1-S3... PASSED
+Checking for duplication of unique values... PASSED
+----
+. 검증 오류가 발생하면 마이그레이션된 노드를 시작하기 전에 해당 오류를 해결하세요.
++
+문제 해결 정보는 Linux 운영 체제에 대한 StorageGRID 설치 지침을 참조하세요.
+
++
+** link:../rhel/index.html["Red Hat Enterprise Linux에 StorageGRID 설치"]
+** link:../ubuntu/index.html["Ubuntu 또는 Debian에 StorageGRID 설치"]
+
+
+
+
+
+
+== 마이그레이션된 노드 시작
+
+마이그레이션된 노드를 검증한 후 _대상 호스트_에서 명령을 실행하여 노드를 시작합니다.
+
+.단계
+. 새로운 호스트에서 노드를 시작합니다.
++
+`sudo storagegrid node start DC1-S3`
+
+. 그리드 관리자에 Sign in 노드 상태가 녹색이고 알림이 없는지 확인합니다.
++
+
+CAUTION: 노드 상태가 녹색인지 확인하면 마이그레이션된 노드가 완전히 다시 시작되어 그리드에 다시 합류했음을 확인할 수 있습니다.  상태가 녹색이 아닌 경우 추가 노드를 마이그레이션하지 마세요. 그래야 두 개 이상의 노드가 서비스에서 제외되는 일이 없습니다.
+
+. Grid Manager에 액세스할 수 없는 경우 10분 동안 기다린 후 다음 명령을 실행하세요.
++
+`sudo storagegrid node status _node-name`
+
++
+마이그레이션된 노드의 실행 상태가 실행 중인지 확인합니다.
+
+

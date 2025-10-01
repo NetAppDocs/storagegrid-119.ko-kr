@@ -1,0 +1,23 @@
+---
+permalink: maintain/recovering-from-admin-node-failures.html 
+sidebar: sidebar 
+keywords: recover, admin node failure, workflow 
+summary: 관리 노드의 복구 프로세스는 해당 관리 노드가 기본 관리 노드인지 아니면 기본이 아닌 관리 노드인지에 따라 달라집니다. 
+---
+= 기본 또는 비기본 관리 노드 복구
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+관리 노드의 복구 프로세스는 해당 관리 노드가 기본 관리 노드인지 아니면 기본이 아닌 관리 노드인지에 따라 달라집니다.
+
+기본 또는 비기본 관리 노드를 복구하는 상위 수준 단계는 동일하지만 단계의 세부 사항은 다릅니다.
+
+복구하는 관리 노드에 대한 올바른 복구 절차를 항상 따르세요.  절차는 큰 그림에서 보면 비슷해 보이지만 세부적인 내용은 다릅니다.
+
+.선택
+* link:recovering-from-primary-admin-node-failures.html["기본 관리 노드 오류에서 복구"]
+* link:recovering-from-non-primary-admin-node-failures.html["기본이 아닌 관리 노드 오류에서 복구"]
+

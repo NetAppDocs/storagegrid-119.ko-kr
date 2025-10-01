@@ -1,0 +1,79 @@
+---
+permalink: ilm/using-multiple-storage-pools-for-cross-site-replication.html 
+sidebar: sidebar 
+keywords: site-loss protection, cross-site replication, storage pools 
+summary: StorageGRID 배포에 두 개 이상의 사이트가 포함된 경우 적절하게 구성된 스토리지 풀과 함께 복제 및 삭제 코딩을 사용하여 사이트 손실 보호를 활성화할 수 있습니다. 
+---
+= 사이트 손실 보호 활성화
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 배포에 두 개 이상의 사이트가 포함된 경우 적절하게 구성된 스토리지 풀과 함께 복제 및 삭제 코딩을 사용하여 사이트 손실 보호를 활성화할 수 있습니다.
+
+복제 및 삭제 코딩에는 서로 다른 스토리지 풀 구성이 필요합니다.
+
+* 사이트 손실 보호를 위해 복제를 사용하려면 StorageGRID 설치 중에 자동으로 생성되는 사이트별 스토리지 풀을 사용하세요.  그런 다음 ILM 규칙을 만듭니다.link:create-ilm-rule-define-placements.html["배치 지침"] 각 개체의 사본이 각 사이트에 하나씩 배치되도록 여러 개의 스토리지 풀을 지정합니다.
+* 사이트 손실 보호를 위해 삭제 코딩을 사용하려면link:guidelines-for-creating-storage-pools.html#guidelines-for-storage-pools-used-for-erasure-coded-copies["여러 사이트로 구성된 스토리지 풀을 만듭니다."] .  그런 다음 여러 사이트와 사용 가능한 삭제 코딩 스키마로 구성된 하나의 스토리지 풀을 사용하는 ILM 규칙을 만듭니다.
+
+
+
+CAUTION: 사이트 손실 보호를 위해 StorageGRID 배포를 구성할 때 다음 효과도 고려해야 합니다.link:data-protection-options-for-ingest.html["수집 옵션"] 그리고link:../s3/consistency-controls.html["일관성"] .
+
+
+
+== 복제 예제
+
+기본적으로 StorageGRID 설치하는 동안 각 사이트에 대해 하나의 스토리지 풀이 생성됩니다.  하나의 사이트로만 구성된 스토리지 풀을 사용하면 사이트 손실 보호를 위해 복제를 사용하는 ILM 규칙을 구성할 수 있습니다. 이 예에서는:
+
+* 저장 풀 1에는 사이트 1이 포함되어 있습니다.
+* 저장 풀 2에는 사이트 2가 포함되어 있습니다.
+* ILM 규칙에는 두 가지 배치가 포함되어 있습니다.
++
+** 사이트 1에 1개의 사본을 복제하여 객체를 저장합니다.
+** 사이트 2에 1개의 사본을 복제하여 객체를 저장합니다.
+
+
+
+
+ILM 규칙 배치:
+
+image::../media/ilm_replication_at_2_sites.png[2개 사이트에서 각각 1개씩 복제]
+
+image::../media/ilm_replication_make_2_copies_2_pools_2_sites.png[2개 사이트 각각에 1개씩 사본을 만듭니다. 사이트별 스토리지 풀]
+
+한 사이트가 분실되더라도 다른 사이트에서 해당 객체의 사본을 이용할 수 있습니다.
+
+
+
+== 삭제 코딩 예제
+
+스토리지 풀당 두 개 이상의 사이트로 구성된 스토리지 풀을 사용하면 사이트 손실 보호를 위해 삭제 코딩을 사용하는 ILM 규칙을 구성할 수 있습니다. 이 예에서는:
+
+* 저장 풀 1에는 사이트 1~3이 포함되어 있습니다.
+* ILM 규칙에는 하나의 배치가 포함됩니다. 3개의 사이트가 포함된 스토리지 풀 1에서 4+2 EC 방식을 사용하여 삭제 코딩을 통해 객체를 저장합니다.
+
+
+ILM 규칙 배치:
+
+image::../media/ilm_erasure_coding_site_loss_protection_4+2.png[EC 1 스토리지 풀 9 스토리지 노드 3 사이트]
+
+이 예에서는:
+
+* ILM 규칙은 4+2 삭제 코딩 방식을 사용합니다.
+* 각 객체는 4개의 동일한 데이터 조각으로 나뉘고, 두 개의 패리티 조각은 객체 데이터에서 계산됩니다.
+* 6개의 조각 각각은 3개의 데이터 센터 사이트에 걸쳐 서로 다른 노드에 저장되어 노드 장애나 사이트 손실에 대비해 데이터를 보호합니다.
+
+
+
+NOTE: 두 개의 사이트를 제외한 여러 개의 사이트를 포함하는 스토리지 풀에서는 삭제 코딩이 허용됩니다.
+
+4+2 삭제 코딩 방식을 사용하는 ILM 규칙:
+
+image::../media/ec_three_sites_4_plus_2_site_loss_example_template.png[3개 사이트에 걸쳐 4+2 EC 방식을 사용하여 삭제 코딩으로 객체를 저장합니다.]
+
+한 사이트가 손실된 경우에도 데이터를 복구할 수 있습니다.
+
+image::../media/ec_three_sites_4_plus_2_site_loss_example.png[삭제 코딩 4+2 EC 계획 1 사이트 손실]

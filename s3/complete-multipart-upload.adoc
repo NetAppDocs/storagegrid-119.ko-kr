@@ -1,0 +1,87 @@
+---
+permalink: s3/complete-multipart-upload.html 
+sidebar: sidebar 
+keywords: multipart upload, object, object size 
+summary: CompleteMultipartUpload 작업은 이전에 업로드된 부분을 조립하여 객체의 멀티파트 업로드를 완료합니다. 
+---
+= CompleteMultipartUpload
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+CompleteMultipartUpload 작업은 이전에 업로드된 부분을 조립하여 객체의 멀티파트 업로드를 완료합니다.
+
+
+NOTE: StorageGRID 오름차순으로 연속되지 않은 값을 지원합니다. `partNumber` CompleteMultipartUpload를 사용한 요청 매개변수.  매개변수는 어떤 값으로든 시작할 수 있습니다.
+
+
+
+== 갈등을 해결하다
+
+두 클라이언트가 같은 키에 쓰는 등 충돌하는 클라이언트 요청은 "최신 승리" 기준으로 해결됩니다.  "최신 승리" 평가의 타이밍은 S3 클라이언트가 작업을 시작하는 시점이 아니라 StorageGRID 시스템이 주어진 요청을 완료하는 시점을 기준으로 합니다.
+
+
+
+== 지원되는 요청 헤더
+
+다음 요청 헤더가 지원됩니다.
+
+* `x-amz-checksum-sha256`
+* `x-amz-storage-class`
++
+그만큼 `x-amz-storage-class` 헤더는 일치하는 ILM 규칙이 지정하는 경우 StorageGRID 생성하는 개체 복사본 수에 영향을 미칩니다.link:../ilm/data-protection-options-for-ingest.html["이중 커밋 또는 균형 잡힌 수집 옵션"] .
+
+* `STANDARD`
++
+(기본값) ILM 규칙이 이중 커밋 옵션을 사용하거나 균형 옵션이 임시 복사본 생성으로 전환되는 경우 이중 커밋 수집 작업을 지정합니다.
+
+* `REDUCED_REDUNDANCY`
++
+ILM 규칙이 이중 커밋 옵션을 사용하거나 균형 옵션이 임시 복사본 생성으로 대체되는 경우 단일 커밋 수집 작업을 지정합니다.
+
++
+
+NOTE: S3 객체 잠금이 활성화된 버킷에 객체를 수집하는 경우 `REDUCED_REDUNDANCY` 옵션은 무시됩니다.  레거시 호환 버킷에 객체를 수집하는 경우 `REDUCED_REDUNDANCY` 옵션이 오류를 반환합니다.  StorageGRID 규정 준수 요구 사항이 충족되는지 확인하기 위해 항상 이중 커밋 수집을 수행합니다.
+
+
+
+
+CAUTION: 15일 이내에 여러 부분으로 구성된 업로드가 완료되지 않으면 해당 작업은 비활성으로 표시되고 관련된 모든 데이터는 시스템에서 삭제됩니다.
+
+
+NOTE: 그만큼 `ETag` 반환된 값은 데이터의 MD5 합계가 아니지만 Amazon S3 API 구현을 따릅니다. `ETag` 다중 부분 객체에 대한 값입니다.
+
+
+
+== 지원되지 않는 요청 헤더
+
+다음 요청 헤더는 지원되지 않습니다.
+
+* `x-amz-sdk-checksum-algorithm`
+* `x-amz-trailer`
+
+
+
+
+== 버전 관리
+
+이 작업으로 다중 파트 업로드가 완료됩니다.  버킷에 버전 관리가 활성화된 경우 다중 파트 업로드가 완료된 후 개체 버전이 생성됩니다.
+
+버킷에 버전 관리가 활성화된 경우 고유한 `versionId` 저장되는 객체의 버전에 따라 자동 생성됩니다.  이것 `versionId` 또한 다음을 사용하여 응답으로 반환됩니다. `x-amz-version-id` 응답 헤더.
+
+버전 관리가 중단되면 개체 버전은 null로 저장됩니다. `versionId` 그리고 이미 null 버전이 존재하면 덮어쓰여집니다.
+
+
+NOTE: 버킷에 버전 관리가 활성화된 경우, 동일한 개체 키에 대해 동시에 여러 개의 멀티파트 업로드가 완료된 경우에도 멀티파트 업로드를 완료하면 항상 새 버전이 생성됩니다.  버킷에 버전 관리가 활성화되어 있지 않으면 멀티파트 업로드를 시작한 다음 동일한 개체 키에서 다른 멀티파트 업로드를 시작하고 먼저 완료할 수 있습니다.  버전이 지정되지 않은 버킷에서는 마지막으로 완료된 멀티파트 업로드가 우선합니다.
+
+
+
+== 복제, 알림 또는 메타데이터 알림 실패
+
+멀티파트 업로드가 발생하는 버킷이 플랫폼 서비스용으로 구성된 경우, 연관된 복제 또는 알림 작업이 실패하더라도 멀티파트 업로드는 성공합니다.
+
+테넌트는 개체의 메타데이터나 태그를 업데이트하여 실패한 복제나 알림을 트리거할 수 있습니다.  세입자는 원치 않는 변경을 방지하기 위해 기존 값을 다시 제출할 수 있습니다.
+
+link:../admin/troubleshooting-platform-services.html["플랫폼 서비스 문제 해결"] .

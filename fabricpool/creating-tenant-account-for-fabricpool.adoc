@@ -1,0 +1,106 @@
+---
+permalink: fabricpool/creating-tenant-account-for-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricPool, tenant, SSO 
+summary: FabricPool 사용하려면 Grid Manager에서 테넌트 계정을 만들어야 합니다. 
+---
+= FabricPool 에 대한 테넌트 계정을 만듭니다.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FabricPool 사용하려면 Grid Manager에서 테넌트 계정을 만들어야 합니다.
+
+테넌트 계정을 사용하면 클라이언트 애플리케이션이 StorageGRID 에 객체를 저장하고 검색할 수 있습니다.  각 테넌트 계정에는 고유한 계정 ID, 승인된 그룹 및 사용자, 버킷, 개체가 있습니다.
+
+이 작업에 대한 자세한 내용은 다음을 참조하세요.link:../admin/creating-tenant-account.html["테넌트 계정 생성"] .  FabricPool 설정 마법사를 사용하여 이 작업을 완료하려면 다음으로 이동하세요.link:use-fabricpool-setup-wizard-steps.html["FabricPool 설정 마법사에 액세스하여 완료합니다."] .
+
+.시작하기 전에
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:../admin/admin-group-permissions.html["특정 액세스 권한"] .
+
+
+.단계
+. *임차인*을 선택하세요.
+. *만들기*를 선택하세요.
+. 세부 정보 입력 단계에서는 다음 정보를 입력하세요.
++
+[cols="1a,3a"]
+|===
+| 필드 | 설명 
+
+
+ a| 
+이름
+ a| 
+테넌트 계정의 이름입니다.  세입자 이름은 고유할 필요가 없습니다.  테넌트 계정이 생성되면 고유한 숫자 계정 ID를 받습니다.
+
+
+
+ a| 
+설명(선택 사항)
+ a| 
+세입자를 식별하는 데 도움이 되는 설명입니다.
+
+
+
+ a| 
+클라이언트 유형
+ a| 
+FabricPool 의 경우 *S3*이어야 합니다.
+
+
+
+ a| 
+저장 용량 할당량(선택 사항)
+ a| 
+FabricPool 의 경우 이 필드를 비워 두세요.
+
+|===
+. 권한 선택 단계:
++
+.. *플랫폼 서비스 허용*을 선택하지 마세요.
++
+FabricPool 테넌트는 일반적으로 CloudMirror 복제와 같은 플랫폼 서비스를 사용할 필요가 없습니다.
+
+.. 선택적으로 *자체 ID 소스 사용*을 선택합니다.
+.. *S3 선택 허용*을 선택하지 마세요.
++
+FabricPool 테넌트는 일반적으로 S3 Select를 사용할 필요가 없습니다.
+
+.. 선택적으로 테넌트가 그리드 연합 연결 사용을 허용하려면 *그리드 연합 연결 사용*을 선택하십시오.link:../admin/grid-federation-overview.html["그리드 페더레이션 연결"] 계정 복제 및 크로스 그리드 복제를 위해.  그런 다음 사용할 그리드 연합 연결을 선택합니다.
+
+
+. 루트 액세스 정의 단계에서 StorageGRID 시스템에서 사용하는지 여부에 따라 테넌트 계정에 대한 초기 루트 액세스 권한이 있는 사용자를 지정합니다.link:../admin/using-identity-federation.html["ID 연합"] ,link:../admin/configuring-sso.html["단일 로그인(SSO)"] , 또는 둘 다.
++
+[cols="1a,2a"]
+|===
+| 옵션 | 이것을 하세요 
+
+
+ a| 
+ID 페더레이션이 활성화되지 않은 경우
+ a| 
+로컬 루트 사용자로 테넌트에 로그인할 때 사용할 비밀번호를 지정합니다.
+
+
+
+ a| 
+ID 페더레이션이 활성화된 경우
+ a| 
+.. 테넌트에 대한 루트 액세스 권한을 부여할 기존 페더레이션 그룹을 선택합니다.
+.. 선택적으로 로컬 루트 사용자로 테넌트에 로그인할 때 사용할 비밀번호를 지정합니다.
+
+
+
+
+ a| 
+ID 페더레이션과 SSO(Single Sign-On)가 모두 활성화된 경우
+ a| 
+테넌트에 대한 루트 액세스 권한을 부여할 기존 페더레이션 그룹을 선택합니다.  로컬 사용자는 로그인할 수 없습니다.
+
+|===
+. *테넌트 생성*을 선택하세요.
+

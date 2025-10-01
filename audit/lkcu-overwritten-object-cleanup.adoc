@@ -1,0 +1,73 @@
+---
+permalink: audit/lkcu-overwritten-object-cleanup.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, LKCU, Overwritten Object Cleanup 
+summary: 이 메시지는 StorageGRID 저장 공간을 확보하기 위해 이전에 정리가 필요했던 덮어쓴 객체를 제거할 때 생성됩니다.  S3 클라이언트가 이미 객체가 포함된 경로에 객체를 쓰면 객체가 덮어쓰여집니다.  제거 프로세스는 자동으로 백그라운드에서 진행됩니다. 
+---
+= LKCU: 덮어쓴 개체 정리
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 메시지는 StorageGRID 저장 공간을 확보하기 위해 이전에 정리가 필요했던 덮어쓴 객체를 제거할 때 생성됩니다.  S3 클라이언트가 이미 객체가 포함된 경로에 객체를 쓰면 객체가 덮어쓰여집니다.  제거 프로세스는 자동으로 백그라운드에서 진행됩니다.
+
+[cols="1a,1a,4a"]
+|===
+| 암호 | 필드 | 설명 
+
+
+ a| 
+CSIZ
+ a| 
+콘텐츠 크기
+ a| 
+객체의 크기(바이트)입니다.
+
+
+
+ a| 
+장기요양보험
+ a| 
+정리 유형
+ a| 
+_내부적으로만 사용하세요._
+
+
+
+ a| 
+루이드
+ a| 
+제거된 개체 UUID
+ a| 
+제거된 객체의 식별자입니다.
+
+
+
+ a| 
+길
+ a| 
+S3 버킷/키
+ a| 
+S3 버킷 이름과 S3 키 이름.
+
+
+
+ a| 
+SEGC
+ a| 
+컨테이너 UUID
+ a| 
+분할된 객체의 컨테이너의 UUID입니다.  이 값은 객체가 분할된 경우에만 사용할 수 있습니다.
+
+
+
+ a| 
+UUID
+ a| 
+범용 고유 식별자
+ a| 
+아직 존재하는 객체의 식별자입니다.  이 값은 객체가 삭제되지 않은 경우에만 사용할 수 있습니다.
+
+|===

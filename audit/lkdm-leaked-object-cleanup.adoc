@@ -1,0 +1,96 @@
+---
+permalink: audit/lkdm-leaked-object-cleanup.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, LKDM, Leaked Object Cleanup 
+summary:  
+---
+= LKDM: 유출된 객체 정리
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 메시지는 누출된 청크가 정리되거나 삭제되었을 때 생성됩니다.  청크는 복제된 객체 또는 삭제 인코딩된 객체의 일부일 수 있습니다.
+
+[cols="1a,1a,4a"]
+|===
+| 암호 | 필드 | 설명 
+
+
+ a| 
+클록
+ a| 
+청크 위치
+ a| 
+삭제된 유출된 청크의 파일 경로입니다.
+
+
+
+ a| 
+CTYP
+ a| 
+청크 유형
+ a| 
+청크 유형:
+
+`ec: Erasure-coded object chunk`
+
+`repl: Replicated object chunk`
+
+
+
+ a| 
+장기요양보험
+ a| 
+누출 유형
+ a| 
+감지할 수 있는 누출 유형은 5가지입니다.
+
+`object_leaked: Object doesn’t exist in the grid`
+
+`location_leaked: Object exists in the grid, but found location doesn’t belong to object`
+
+`mup_seg_leaked: Multipart upload was stopped or not completed, and the segment/part was left out`
+
+`segment_leaked: Parent UUID/CBID (associated container object) is valid but doesn't contain this segment`
+
+`no_parent: Container object is deleted, but object segment was left out and not deleted`
+
+
+
+ a| 
+CTIM
+ a| 
+청크 생성 시간
+ a| 
+유출된 청크가 생성된 시간입니다.
+
+
+
+ a| 
+UUID
+ a| 
+범용 고유 식별자
+ a| 
+청크가 속한 객체의 식별자입니다.
+
+
+
+ a| 
+CBID
+ a| 
+콘텐츠 블록 식별자
+ a| 
+유출된 청크가 속한 객체의 CBID입니다.
+
+
+
+ a| 
+CSIZ
+ a| 
+콘텐츠 크기
+ a| 
+청크의 크기(바이트)입니다.
+
+|===

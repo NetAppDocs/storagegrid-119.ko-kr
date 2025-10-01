@@ -1,0 +1,61 @@
+---
+permalink: admin/kms-configuring-storagegrid-as-client.html 
+sidebar: sidebar 
+keywords: configure kms, key management server 
+summary: KMS를 StorageGRID 에 추가하려면 먼저 각 외부 키 관리 서버 또는 KMS 클러스터에 대한 클라이언트로 StorageGRID 구성해야 합니다. 
+---
+= KMS에서 StorageGRID 클라이언트로 구성합니다.
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+KMS를 StorageGRID 에 추가하려면 먼저 각 외부 키 관리 서버 또는 KMS 클러스터에 대한 클라이언트로 StorageGRID 구성해야 합니다.
+
+
+NOTE: 이 지침은 Thales CipherTrust Manager와 Hashicorp Vault에 적용됩니다.  지원되는 제품 및 버전 목록을 보려면 다음을 사용하세요. https://imt.netapp.com/matrix/#welcome["NetApp 상호 운용성 매트릭스 도구(IMT)"^] .
+
+.단계
+. KMS 소프트웨어에서 사용하려는 각 KMS 또는 KMS 클러스터에 대한 StorageGRID 클라이언트를 만듭니다.
++
+각 KMS는 단일 사이트 또는 사이트 그룹의 StorageGRID 어플라이언스 노드에 대한 단일 암호화 키를 관리합니다.
+
+. [[create-key-with-kms-product]]다음 두 가지 방법 중 하나를 사용하여 키를 만듭니다.
++
+** KMS 제품의 키 관리 페이지를 사용하세요.  각 KMS 또는 KMS 클러스터에 대해 AES 암호화 키를 만듭니다.
++
+암호화 키는 2,048비트 이상이어야 하며 내보낼 수 있어야 합니다.
+
+** StorageGRID 키를 생성하세요.  테스트하고 저장하면 메시지가 표시됩니다.link:kms-adding.html#sg-create-key["클라이언트 인증서 업로드"] .
+
+
+. 각 KMS 또는 KMS 클러스터에 대해 다음 정보를 기록하세요.
++
+StorageGRID 에 KMS를 추가할 때 다음 정보가 필요합니다.
+
++
+** 각 서버의 호스트 이름 또는 IP 주소.
+** KMS에서 사용하는 KMIP 포트입니다.
+** KMS의 암호화 키에 대한 키 별칭입니다.
+
+
+. 각 KMS 또는 KMS 클러스터에 대해 인증 기관(CA)에서 서명한 서버 인증서나 PEM으로 인코딩된 각 CA 인증서 파일을 포함하는 인증서 번들을 인증서 체인 순서대로 연결합니다.
++
+서버 인증서를 통해 외부 KMS가 StorageGRID 에 자신을 인증할 수 있습니다.
+
++
+** 인증서는 PEM(Privacy Enhanced Mail) Base-64 인코딩된 X.509 형식을 사용해야 합니다.
+** 각 서버 인증서의 SAN(주체 대체 이름) 필드에는 StorageGRID 연결할 정규화된 도메인 이름(FQDN) 또는 IP 주소가 포함되어야 합니다.
++
+
+NOTE: StorageGRID 에서 KMS를 구성할 때 *호스트 이름* 필드에 동일한 FQDN 또는 IP 주소를 입력해야 합니다.
+
+** 서버 인증서는 일반적으로 포트 5696을 사용하는 KMS의 KMIP 인터페이스에서 사용하는 인증서와 일치해야 합니다.
+
+
+. 외부 KMS에서 StorageGRID 에 발급한 공개 클라이언트 인증서와 클라이언트 인증서의 개인 키를 얻습니다.
++
+클라이언트 인증서를 통해 StorageGRID KMS에 자신을 인증할 수 있습니다.
+
+

@@ -1,0 +1,191 @@
+---
+permalink: s3/operations-on-objects.html 
+sidebar: sidebar 
+keywords: bucket, buckets, operations on buckets 
+summary: 이 섹션에서는 StorageGRID 시스템이 객체에 대한 S3 REST API 작업을 구현하는 방법을 설명합니다. 
+---
+= 객체에 대한 작업
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 섹션에서는 StorageGRID 시스템이 객체에 대한 S3 REST API 작업을 구현하는 방법을 설명합니다.
+
+다음 조건은 모든 객체 작업에 적용됩니다.
+
+* StorageGRIDlink:consistency-controls.html["일관성 값"] 다음을 제외한 모든 객체 작업은 지원됩니다.
++
+** GetObjectAcl
+** `OPTIONS /`
+** PutObjectLegalHold
+** PutObjectRetention
+** SelectObjectContent
+
+
+* 두 클라이언트가 같은 키에 쓰는 등 충돌하는 클라이언트 요청은 "최신 승리" 기준으로 해결됩니다.  "최신 승리" 평가의 타이밍은 S3 클라이언트가 작업을 시작하는 시점이 아니라 StorageGRID 시스템이 주어진 요청을 완료하는 시점을 기준으로 합니다.
+* StorageGRID 버킷의 모든 객체는 버킷 소유자가 소유하며, 여기에는 익명 사용자나 다른 계정이 만든 객체도 포함됩니다.
+* Swift를 통해 StorageGRID 시스템에 수집된 데이터 객체는 S3를 통해 액세스할 수 없습니다.
+
+
+다음 표에서는 StorageGRID S3 REST API 객체 작업을 구현하는 방법을 설명합니다.
+
+[cols="1a,2a"]
+|===
+| 작업 | 구현 
+
+
+ a| 
+개체 삭제
+ a| 
+다중 인증 요소(MFA) 및 응답 헤더 `x-amz-mfa` 지원되지 않습니다.
+
+DeleteObject 요청을 처리할 때 StorageGRID 저장된 모든 위치에서 해당 개체의 모든 사본을 즉시 제거하려고 시도합니다.  성공하면 StorageGRID 클라이언트에게 즉시 응답을 반환합니다.  30초 이내에 모든 사본을 제거할 수 없는 경우(예: 위치를 일시적으로 사용할 수 없는 경우), StorageGRID 제거할 사본을 대기열에 넣은 다음 클라이언트에게 제거가 성공했음을 알립니다.
+
+버전 관리:: 특정 버전을 제거하려면 요청자가 버킷 소유자여야 하며 다음을 사용해야 합니다. `versionId` 하위 리소스.  이 하위 리소스를 사용하면 해당 버전이 영구적으로 삭제됩니다.  만약 `versionId` 삭제 마커에 해당하며 응답 헤더입니다. `x-amz-delete-marker` 반환 설정됨 `true` .
++
+--
+* 객체가 삭제되지 않은 경우 `versionId` 버전 관리가 활성화된 버킷의 하위 리소스의 경우 삭제 마커가 생성됩니다.  그만큼 `versionId` 삭제 마커는 다음을 사용하여 반환됩니다. `x-amz-version-id` 응답 헤더 및 `x-amz-delete-marker` 응답 헤더가 반환됩니다. `true` .
+* 객체가 삭제되지 않은 경우 `versionId` 버전 관리가 중단된 버킷의 하위 리소스가 있는 경우 이미 존재하는 'null' 버전이나 'null' 삭제 마커가 영구적으로 삭제되고 새로운 'null' 삭제 마커가 생성됩니다.  그만큼 `x-amz-delete-marker` 응답 헤더가 반환됩니다. `true` .
++
+*참고*: 특정한 경우에는 하나의 객체에 대해 여러 개의 삭제 마커가 존재할 수 있습니다.
+
+
+
+--
+
+
+보다link:../s3/use-s3-api-for-s3-object-lock.html["S3 REST API를 사용하여 S3 객체 잠금을 구성합니다."] GOVERNANCE 모드에서 개체 버전을 삭제하는 방법을 알아보세요.
+
+
+
+ a| 
+개체 삭제
+
+(이전에는 여러 개체 삭제라고 불림)
+ a| 
+다중 인증 요소(MFA) 및 응답 헤더 `x-amz-mfa` 지원되지 않습니다.
+
+동일한 요청 메시지에서 여러 객체를 삭제할 수 있습니다.
+
+보다link:../s3/use-s3-api-for-s3-object-lock.html["S3 REST API를 사용하여 S3 객체 잠금을 구성합니다."] GOVERNANCE 모드에서 개체 버전을 삭제하는 방법을 알아보세요.
+
+
+
+ a| 
+DeleteObjectTagging
+ a| 
+사용합니다 `tagging` 객체에서 모든 태그를 제거하는 하위 리소스입니다.
+
+버전 관리:: 만약 `versionId` 요청에 쿼리 매개변수가 지정되지 않으면 해당 작업은 버전이 지정된 버킷에 있는 개체의 최신 버전에서 모든 태그를 삭제합니다.  개체의 현재 버전이 삭제 마커인 경우 "MethodNotAllowed" 상태가 반환됩니다. `x-amz-delete-marker` 응답 헤더가 다음으로 설정됨 `true` .
+
+
+
+
+ a| 
+객체 가져오기
+ a| 
+link:get-object.html["객체 가져오기"]
+
+
+
+ a| 
+GetObjectAcl
+ a| 
+계정에 필요한 액세스 자격 증명이 제공되면 해당 작업은 긍정적인 응답과 개체 소유자의 ID, 표시 이름, 권한을 반환하여 소유자가 개체에 대한 전체 액세스 권한을 가지고 있음을 나타냅니다.
+
+
+
+ a| 
+GetObjectLegalHold
+ a| 
+link:../s3/use-s3-api-for-s3-object-lock.html["S3 REST API를 사용하여 S3 객체 잠금을 구성합니다."]
+
+
+
+ a| 
+객체 보존 가져오기
+ a| 
+link:../s3/use-s3-api-for-s3-object-lock.html["S3 REST API를 사용하여 S3 객체 잠금을 구성합니다."]
+
+
+
+ a| 
+GetObjectTagging
+ a| 
+사용합니다 `tagging` 객체의 모든 태그를 반환하는 하위 리소스입니다.
+
+버전 관리:: 만약 `versionId` 요청에 쿼리 매개변수가 지정되지 않으면 해당 작업은 버전이 지정된 버킷에 있는 개체의 최신 버전에서 모든 태그를 반환합니다.  개체의 현재 버전이 삭제 마커인 경우 "MethodNotAllowed" 상태가 반환됩니다. `x-amz-delete-marker` 응답 헤더가 다음으로 설정됨 `true` .
+
+
+
+
+ a| 
+헤드오브젝트
+ a| 
+link:head-object.html["헤드오브젝트"]
+
+
+
+ a| 
+복원 개체
+ a| 
+link:post-object-restore.html["복원 개체"]
+
+
+
+ a| 
+PutObject
+ a| 
+link:put-object.html["PutObject"]
+
+
+
+ a| 
+복사객체
+
+(이전 명칭은 PUT 객체 - 복사)
+ a| 
+link:put-object-copy.html["복사객체"]
+
+
+
+ a| 
+PutObjectLegalHold
+ a| 
+link:../s3/use-s3-api-for-s3-object-lock.html["S3 REST API를 사용하여 S3 객체 잠금을 구성합니다."]
+
+
+
+ a| 
+PutObjectRetention
+ a| 
+link:../s3/use-s3-api-for-s3-object-lock.html["S3 REST API를 사용하여 S3 객체 잠금을 구성합니다."]
+
+
+
+ a| 
+PutObjectTagging
+ a| 
+사용합니다 `tagging` 기존 객체에 태그 세트를 추가하는 하위 리소스입니다.
+
+객체 태그 제한:: 새로운 객체를 업로드할 때 태그를 추가할 수도 있고, 기존 객체에 태그를 추가할 수도 있습니다.  StorageGRID 와 Amazon S3는 모두 각 객체에 대해 최대 10개의 태그를 지원합니다.  객체와 연관된 태그에는 고유한 태그 키가 있어야 합니다.  태그 키는 최대 128자의 유니코드 문자까지 가능하고, 태그 값은 최대 256자의 유니코드 문자까지 가능합니다.  키와 값은 대소문자를 구분합니다.
+태그 업데이트 및 수집 동작:: PutObjectTagging을 사용하여 객체의 태그를 업데이트하는 경우 StorageGRID 객체를 다시 수집하지 않습니다.  이는 일치하는 ILM 규칙에 지정된 Ingest Behavior 옵션이 사용되지 않음을 의미합니다.  업데이트로 인해 발생하는 개체 배치 변경 사항은 ILM이 일반적인 백그라운드 ILM 프로세스에 의해 다시 평가될 때 적용됩니다.
++
+--
+즉, ILM 규칙이 수집 동작에 대해 Strict 옵션을 사용하는 경우 필요한 개체 배치를 할 수 없는 경우(예: 새로 필요한 위치를 사용할 수 없는 경우) 아무런 조치도 취하지 않습니다.  업데이트된 객체는 필요한 배치가 가능해질 때까지 현재 배치를 유지합니다.
+
+--
+갈등 해결:: 두 클라이언트가 같은 키에 쓰는 등 충돌하는 클라이언트 요청은 "최신 승리" 기준으로 해결됩니다.  "최신 승리" 평가의 타이밍은 S3 클라이언트가 작업을 시작하는 시점이 아니라 StorageGRID 시스템이 주어진 요청을 완료하는 시점을 기준으로 합니다.
+버전 관리:: 만약 `versionId` 요청에 쿼리 매개변수가 지정되지 않으면 작업이 버전 관리된 버킷에 있는 개체의 최신 버전에 태그를 추가합니다.  개체의 현재 버전이 삭제 마커인 경우 "MethodNotAllowed" 상태가 반환됩니다. `x-amz-delete-marker` 응답 헤더가 다음으로 설정됨 `true` .
+
+
+
+
+ a| 
+SelectObjectContent
+ a| 
+link:select-object-content.html["SelectObjectContent"]
+
+|===

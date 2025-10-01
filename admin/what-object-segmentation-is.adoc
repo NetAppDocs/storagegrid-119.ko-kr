@@ -1,0 +1,26 @@
+---
+permalink: admin/what-object-segmentation-is.html 
+sidebar: sidebar 
+keywords: object segmentation, multipart upload 
+summary: 객체 분할은 대용량 객체의 저장 공간과 리소스 사용을 최적화하기 위해 객체를 더 작은 고정 크기의 객체 컬렉션으로 분할하는 프로세스입니다.  S3 다중 파트 업로드는 각 파트를 나타내는 객체로 분할된 객체를 생성합니다. 
+---
+= 객체 분할이란 무엇인가요?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+객체 분할은 대용량 객체의 저장 공간과 리소스 사용을 최적화하기 위해 객체를 더 작은 고정 크기의 객체 컬렉션으로 분할하는 프로세스입니다.  S3 다중 파트 업로드는 각 파트를 나타내는 객체로 분할된 객체를 생성합니다.
+
+객체가 StorageGRID 시스템에 수집되면 LDR 서비스는 객체를 세그먼트로 분할하고 모든 세그먼트의 헤더 정보를 콘텐츠로 나열하는 세그먼트 컨테이너를 만듭니다.
+
+image::../media/object_segmentation_diagram.gif[객체 분할 워크플로]
+
+세그먼트 컨테이너를 검색하면 LDR 서비스는 세그먼트에서 원본 객체를 조립하여 클라이언트에 객체를 반환합니다.
+
+컨테이너와 세그먼트는 반드시 동일한 스토리지 노드에 저장되지 않습니다.  컨테이너와 세그먼트는 ILM 규칙에 지정된 스토리지 풀 내의 모든 스토리지 노드에 저장될 수 있습니다.
+
+각 세그먼트는 StorageGRID 시스템에서 독립적으로 처리되며 관리되는 개체 및 저장된 개체와 같은 속성의 수에 기여합니다.  예를 들어, StorageGRID 시스템에 저장된 객체가 두 개의 세그먼트로 분할되면 수집이 완료된 후 관리되는 객체의 값은 다음과 같이 3만큼 증가합니다.
+
+`segment container + segment 1 + segment 2 = three stored objects`

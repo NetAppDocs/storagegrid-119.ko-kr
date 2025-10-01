@@ -1,0 +1,26 @@
+---
+permalink: vmware/post-installation-guidelines.html 
+sidebar: sidebar 
+keywords: after installation guidelines vmware 
+summary: 그리드 노드 배포 및 구성을 완료한 후에는 DHCP 주소 지정 및 네트워크 구성 변경에 대한 다음 지침을 따르세요. 
+---
+= 설치 후 지침
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+그리드 노드 배포 및 구성을 완료한 후에는 DHCP 주소 지정 및 네트워크 구성 변경에 대한 다음 지침을 따르세요.
+
+* DHCP를 사용하여 IP 주소를 할당한 경우, 사용 중인 네트워크의 각 IP 주소에 대해 DHCP 예약을 구성합니다.
++
+DHCP는 배포 단계에서만 설정할 수 있습니다.  구성하는 동안에는 DHCP를 설정할 수 없습니다.
+
++
+
+NOTE: DHCP로 인해 그리드 네트워크 구성이 변경되면 노드가 재부팅되는데, DHCP 변경으로 인해 여러 노드에 동시에 영향을 미치는 경우 중단이 발생할 수 있습니다.
+
+* 그리드 노드의 IP 주소, 서브넷 마스크, 기본 게이트웨이를 변경하려면 IP 변경 절차를 사용해야 합니다. 보다 link:../maintain/configuring-ip-addresses.html["IP 주소 구성"] .
+* 라우팅 및 게이트웨이 변경을 포함한 네트워킹 구성을 변경하면 기본 관리 노드 및 기타 그리드 노드에 대한 클라이언트 연결이 끊어질 수 있습니다.  적용된 네트워크 변경 사항에 따라 이러한 연결을 다시 설정해야 할 수도 있습니다.
+

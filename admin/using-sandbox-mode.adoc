@@ -1,0 +1,387 @@
+---
+permalink: admin/using-sandbox-mode.html 
+sidebar: sidebar 
+keywords: use sandbox mode for sso, how to test single sign-on 
+summary: '모든 StorageGRID 사용자에 대해 SSO(단일 로그인)를 활성화하기 전에 샌드박스 모드를 사용하여 SSO를 구성하고 테스트할 수 있습니다.  SSO가 활성화된 후에는 구성을 변경하거나 다시 테스트해야 할 때마다 샌드박스 모드로 돌아갈 수 있습니다.' 
+---
+= 샌드박스 모드 사용
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+모든 StorageGRID 사용자에 대해 SSO(단일 로그인)를 활성화하기 전에 샌드박스 모드를 사용하여 SSO를 구성하고 테스트할 수 있습니다.  SSO가 활성화된 후에는 구성을 변경하거나 다시 테스트해야 할 때마다 샌드박스 모드로 돌아갈 수 있습니다.
+
+.시작하기 전에
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:admin-group-permissions.html["루트 액세스 권한"] .
+* StorageGRID 시스템에 대한 ID 페더레이션을 구성했습니다.
+* ID 페더레이션 *LDAP 서비스 유형*의 경우, 사용하려는 SSO ID 공급자에 따라 Active Directory 또는 Azure를 선택했습니다.
++
+[cols="1a,1a"]
+|===
+| 구성된 LDAP 서비스 유형 | SSO ID 공급자에 대한 옵션 
+
+
+ a| 
+액티브 디렉토리
+ a| 
+** 액티브 디렉토리
+** 하늘빛
+** 핑페더레이트
+
+
+
+
+ a| 
+하늘빛
+ a| 
+하늘빛
+
+|===
+
+
+.이 작업에 관하여
+SSO가 활성화되어 있고 사용자가 관리 노드에 로그인을 시도하면 StorageGRID SSO ID 공급자에게 인증 요청을 보냅니다.  그러면 SSO ID 공급자는 인증 요청이 성공했는지 여부를 나타내는 인증 응답을 StorageGRID 로 다시 보냅니다.  요청이 성공한 경우:
+
+* Active Directory 또는 PingFederate의 응답에는 사용자의 UUID(Universally Unique Identifier)가 포함됩니다.
+* Azure의 응답에는 UPN(사용자 계정 이름)이 포함됩니다.
+
+
+StorageGRID (서비스 공급자)와 SSO ID 공급자가 사용자 인증 요청에 대해 안전하게 통신할 수 있도록 하려면 StorageGRID 에서 특정 설정을 구성해야 합니다.  다음으로, SSO ID 공급자의 소프트웨어를 사용하여 각 관리 노드에 대한 신뢰 당사자 신뢰(AD FS), 엔터프라이즈 애플리케이션(Azure) 또는 서비스 공급자(PingFederate)를 만들어야 합니다.  마지막으로 StorageGRID 로 돌아가서 SSO를 활성화해야 합니다.
+
+샌드박스 모드를 사용하면 이러한 왕복 구성을 쉽게 수행하고 SSO를 활성화하기 전에 모든 설정을 테스트할 수 있습니다. 샌드박스 모드를 사용하는 경우 사용자는 SSO를 사용하여 로그인할 수 없습니다.
+
+
+
+== 샌드박스 모드에 접속하세요
+
+.단계
+. *구성* > *액세스 제어* > *단일 로그인*을 선택합니다.
++
+*비활성화* 옵션이 선택된 Single Sign-on 페이지가 나타납니다.
+
++
+image::../media/sso_status_disabled.png[SSO 상태가 비활성화된 Single Sign-on 페이지]
+
++
+
+NOTE: SSO 상태 옵션이 나타나지 않으면 ID 공급자를 페더레이션 ID 소스로 구성했는지 확인하세요. 보다 link:requirements-for-sso.html["Single Sign-On에 대한 요구 사항 및 고려 사항"] .
+
+. *샌드박스 모드*를 선택하세요.
++
+ID 공급자 섹션이 나타납니다.
+
+
+
+
+
+== ID 공급자 세부 정보를 입력하세요
+
+.단계
+. 드롭다운 목록에서 *SSO 유형*을 선택합니다.
+. 선택한 SSO 유형에 따라 ID 공급자 섹션의 필드를 완성합니다.
++
+[role="tabbed-block"]
+====
+.액티브 디렉토리
+--
+.. ID 공급자에 대한 *페더레이션 서비스 이름*을 Active Directory 페더레이션 서비스(AD FS)에 표시된 대로 정확하게 입력합니다.
++
+
+NOTE: 페더레이션 서비스 이름을 찾으려면 Windows Server 관리자로 이동하세요.  *도구* > *AD FS 관리*를 선택합니다.  작업 메뉴에서 *페더레이션 서비스 속성 편집*을 선택합니다.  두 번째 필드에는 연방 서비스 이름이 표시됩니다.
+
+.. StorageGRID 요청에 대한 응답으로 ID 공급자가 SSO 구성 정보를 보낼 때 연결을 보호하는 데 사용할 TLS 인증서를 지정합니다.
++
+*** *운영 체제 CA 인증서 사용*: 운영 체제에 설치된 기본 CA 인증서를 사용하여 연결을 보호합니다.
+*** *사용자 지정 CA 인증서 사용*: 사용자 지정 CA 인증서를 사용하여 연결을 보호합니다.
++
+이 설정을 선택하면 사용자 지정 인증서의 텍스트를 복사하여 *CA 인증서* 텍스트 상자에 붙여넣습니다.
+
+*** *TLS를 사용하지 마세요*: TLS 인증서를 사용하여 연결을 보호하지 마세요.
++
+
+CAUTION: CA 인증서를 변경하는 경우 즉시link:../maintain/starting-or-restarting-service.html["관리 노드에서 mgmt-api 서비스를 다시 시작합니다."] 그리고 Grid Manager에 SSO가 성공적으로 이루어졌는지 테스트합니다.
+
+
+
+.. 신뢰 당사자 섹션에서 StorageGRID 에 대한 *신뢰 당사자 식별자*를 지정합니다. 이 값은 AD FS에서 각 신뢰 당사자 신뢰에 사용하는 이름을 제어합니다.
++
+*** 예를 들어, 그리드에 관리 노드가 하나만 있고 앞으로 더 이상 관리 노드를 추가할 계획이 없는 경우 다음을 입력합니다. `SG` 또는 `StorageGRID` .
+*** 그리드에 두 개 이상의 관리 노드가 포함된 경우 다음 문자열을 포함합니다. `[HOSTNAME]` 식별자에서. 예를 들어,  `SG-[HOSTNAME]` . 이렇게 하면 노드의 호스트 이름을 기반으로 시스템의 각 관리 노드에 대한 신뢰 당사자 식별자를 보여주는 표가 생성됩니다.
++
+image::../media/sso_status_sandbox_mode_active_directory.png[단일 로그인,Sandbox mode enabled,Relying party identifiers shown for several Admin Nodes]
+
++
+
+NOTE: StorageGRID 시스템의 각 관리 노드에 대해 신뢰 당사자 트러스트를 만들어야 합니다.  각 관리 노드에 대해 신뢰 당사자 트러스트를 구축하면 사용자가 모든 관리 노드에 안전하게 로그인하고 로그아웃할 수 있습니다.
+
+
+
+.. *저장*을 선택하세요.
++
+*저장* 버튼에 녹색 확인 표시가 몇 초 동안 나타납니다.
+
++
+image::../media/save_button_green_checkmark.gif[녹색 체크 표시가 있는 저장 버튼]
+
+
+
+--
+.하늘빛
+--
+.. StorageGRID 요청에 대한 응답으로 ID 공급자가 SSO 구성 정보를 보낼 때 연결을 보호하는 데 사용할 TLS 인증서를 지정합니다.
++
+*** *운영 체제 CA 인증서 사용*: 운영 체제에 설치된 기본 CA 인증서를 사용하여 연결을 보호합니다.
+*** *사용자 지정 CA 인증서 사용*: 사용자 지정 CA 인증서를 사용하여 연결을 보호합니다.
++
+이 설정을 선택하면 사용자 지정 인증서의 텍스트를 복사하여 *CA 인증서* 텍스트 상자에 붙여넣습니다.
+
+*** *TLS를 사용하지 마세요*: TLS 인증서를 사용하여 연결을 보호하지 마세요.
++
+
+CAUTION: CA 인증서를 변경하는 경우 즉시link:../maintain/starting-or-restarting-service.html["관리 노드에서 mgmt-api 서비스를 다시 시작합니다."] 그리고 Grid Manager에 SSO가 성공적으로 이루어졌는지 테스트합니다.
+
+
+
+.. 엔터프라이즈 애플리케이션 섹션에서 StorageGRID 에 대한 *엔터프라이즈 애플리케이션 이름*을 지정합니다. 이 값은 Azure AD의 각 엔터프라이즈 애플리케이션에 사용하는 이름을 제어합니다.
++
+*** 예를 들어, 그리드에 관리 노드가 하나만 있고 앞으로 더 이상 관리 노드를 추가할 계획이 없는 경우 다음을 입력합니다. `SG` 또는 `StorageGRID` .
+*** 그리드에 두 개 이상의 관리 노드가 포함된 경우 다음 문자열을 포함합니다. `[HOSTNAME]` 식별자에서. 예를 들어,  `SG-[HOSTNAME]` . 이렇게 하면 노드의 호스트 이름을 기반으로 시스템의 각 관리 노드에 대한 엔터프라이즈 애플리케이션 이름을 보여주는 표가 생성됩니다.
++
+image::../media/sso_status_sandbox_mode_azure.png[단일 로그인,Sandbox mode enabled,Relying party identifiers shown for several Admin Nodes]
+
++
+
+NOTE: StorageGRID 시스템의 각 관리 노드에 대해 엔터프라이즈 애플리케이션을 만들어야 합니다.  각 관리 노드에 엔터프라이즈 애플리케이션을 사용하면 사용자가 모든 관리 노드에 안전하게 로그인하고 로그아웃할 수 있습니다.
+
+
+
+.. 다음 단계를 따르세요link:../admin/creating-enterprise-application-azure.html["Azure AD에서 엔터프라이즈 애플리케이션 만들기"] 표에 나열된 각 관리 노드에 대한 엔터프라이즈 애플리케이션을 생성합니다.
+.. Azure AD에서 각 엔터프라이즈 애플리케이션의 페더레이션 메타데이터 URL을 복사합니다. 그런 다음 이 URL을 StorageGRID 의 해당 *페더레이션 메타데이터 URL* 필드에 붙여넣습니다.
+.. 모든 관리 노드에 대한 페더레이션 메타데이터 URL을 복사하여 붙여넣은 후 *저장*을 선택합니다.
++
+*저장* 버튼에 녹색 확인 표시가 몇 초 동안 나타납니다.
+
++
+image::../media/save_button_green_checkmark.gif[녹색 체크 표시가 있는 저장 버튼]
+
+
+
+--
+.핑페더레이트
+--
+.. StorageGRID 요청에 대한 응답으로 ID 공급자가 SSO 구성 정보를 보낼 때 연결을 보호하는 데 사용할 TLS 인증서를 지정합니다.
++
+*** *운영 체제 CA 인증서 사용*: 운영 체제에 설치된 기본 CA 인증서를 사용하여 연결을 보호합니다.
+*** *사용자 지정 CA 인증서 사용*: 사용자 지정 CA 인증서를 사용하여 연결을 보호합니다.
++
+이 설정을 선택하면 사용자 지정 인증서의 텍스트를 복사하여 *CA 인증서* 텍스트 상자에 붙여넣습니다.
+
+*** *TLS를 사용하지 마세요*: TLS 인증서를 사용하여 연결을 보호하지 마세요.
++
+
+CAUTION: CA 인증서를 변경하는 경우 즉시link:../maintain/starting-or-restarting-service.html["관리 노드에서 mgmt-api 서비스를 다시 시작합니다."] 그리고 Grid Manager에 SSO가 성공적으로 이루어졌는지 테스트합니다.
+
+
+
+.. 서비스 공급자(SP ) 섹션에서 StorageGRID 에 대한 * SP 연결 ID*를 지정합니다.  이 값은 PingFederate에서 각 SP 연결에 사용하는 이름을 제어합니다.
++
+*** 예를 들어, 그리드에 관리 노드가 하나만 있고 앞으로 더 이상 관리 노드를 추가할 계획이 없는 경우 다음을 입력합니다. `SG` 또는 `StorageGRID` .
+*** 그리드에 두 개 이상의 관리 노드가 포함된 경우 다음 문자열을 포함합니다. `[HOSTNAME]` 식별자에서. 예를 들어,  `SG-[HOSTNAME]` . 이렇게 하면 노드의 호스트 이름을 기반으로 시스템의 각 관리 노드에 대한 SP 연결 ID를 보여주는 표가 생성됩니다.
++
+image::../media/sso_status_sandbox_mode_ping_federated.png[단일 로그인,Sandbox mode enabled,Relying party identifiers shown for several Admin Nodes]
+
++
+
+NOTE: StorageGRID 시스템의 각 관리 노드에 대해 SP 연결을 만들어야 합니다.  각 관리 노드에 SP 연결이 있으면 사용자가 모든 관리 노드에 안전하게 로그인하고 로그아웃할 수 있습니다.
+
+
+
+.. *페더레이션 메타데이터 URL* 필드에 각 관리 노드의 페더레이션 메타데이터 URL을 지정합니다.
++
+다음 형식을 사용하세요.
+
++
+[listing]
+----
+https://<Federation Service Name>:<port>/pf/federation_metadata.ping?PartnerSpId=<SP Connection ID>
+----
+.. *저장*을 선택하세요.
++
+*저장* 버튼에 녹색 확인 표시가 몇 초 동안 나타납니다.
+
++
+image::../media/save_button_green_checkmark.gif[녹색 체크 표시가 있는 저장 버튼]
+
+
+
+--
+====
+
+
+
+
+== 신뢰 당사자 트러스트, 엔터프라이즈 애플리케이션 또는 SP 연결 구성
+
+구성이 저장되면 샌드박스 모드 확인 알림이 나타납니다.  이 알림에서는 샌드박스 모드가 활성화되었음을 확인하고 개요 지침을 제공합니다.
+
+StorageGRID 필요한 만큼 샌드박스 모드를 유지할 수 있습니다. 하지만 Single Sign-on 페이지에서 *샌드박스 모드*를 선택하면 모든 StorageGRID 사용자에 대해 SSO가 비활성화됩니다.  로컬 사용자만 로그인할 수 있습니다.
+
+다음 단계에 따라 신뢰 당사자 트러스트(Active Directory)를 구성하고, 엔터프라이즈 애플리케이션(Azure)을 완료하거나 SP 연결(PingFederate)을 구성하세요.
+
+[role="tabbed-block"]
+====
+.액티브 디렉토리
+--
+.단계
+. Active Directory Federation Services(AD FS)로 이동합니다.
+. StorageGRID Single Sign-on 페이지의 표에 표시된 각 신뢰 당사자 식별자를 사용하여 StorageGRID 에 대한 하나 이상의 신뢰 당사자 트러스트를 만듭니다.
++
+표에 표시된 각 관리 노드에 대해 하나의 트러스트를 만들어야 합니다.
+
++
+지침은 여기를 참조하세요.link:../admin/creating-relying-party-trusts-in-ad-fs.html["AD FS에서 신뢰 당사자 트러스트 만들기"] .
+
+
+
+--
+.하늘빛
+--
+.단계
+. 현재 로그인한 관리 노드의 Single Sign-On 페이지에서 SAML 메타데이터를 다운로드하고 저장하는 버튼을 선택합니다.
+. 그런 다음 그리드의 다른 관리 노드에 대해 다음 단계를 반복합니다.
++
+.. 노드에 Sign in .
+.. *구성* > *액세스 제어* > *단일 로그인*을 선택합니다.
+.. 해당 노드의 SAML 메타데이터를 다운로드하여 저장합니다.
+
+
+. Azure Portal로 이동합니다.
+. 다음 단계를 따르세요link:../admin/creating-enterprise-application-azure.html["Azure AD에서 엔터프라이즈 애플리케이션 만들기"] 각 관리 노드의 SAML 메타데이터 파일을 해당 Azure 엔터프라이즈 애플리케이션에 업로드합니다.
+
+
+--
+.핑페더레이트
+--
+.단계
+. 현재 로그인한 관리 노드의 Single Sign-On 페이지에서 SAML 메타데이터를 다운로드하고 저장하는 버튼을 선택합니다.
+. 그런 다음 그리드의 다른 관리 노드에 대해 다음 단계를 반복합니다.
++
+.. 노드에 Sign in .
+.. *구성* > *액세스 제어* > *단일 로그인*을 선택합니다.
+.. 해당 노드의 SAML 메타데이터를 다운로드하여 저장합니다.
+
+
+. PingFederate로 이동하세요.
+. link:../admin/creating-sp-connection-ping.html["StorageGRID 에 대한 하나 이상의 서비스 공급자( SP ) 연결을 만듭니다."] . 각 관리 노드의 SP 연결 ID( StorageGRID Single Sign-on 페이지의 표에 표시됨)와 해당 관리 노드에 대해 다운로드한 SAML 메타데이터를 사용합니다.
++
+표에 표시된 각 관리 노드에 대해 하나의 SP 연결을 만들어야 합니다.
+
+
+
+--
+====
+
+
+== SSO 연결 테스트
+
+StorageGRID 시스템 전체에 대해 단일 로그인 사용을 강제로 적용하기 전에 각 관리 노드에 대해 단일 로그인 및 단일 로그아웃이 올바르게 구성되었는지 확인해야 합니다.
+
+[role="tabbed-block"]
+====
+.액티브 디렉토리
+--
+.단계
+. StorageGRID Single Sign-on 페이지에서 샌드박스 모드 메시지의 링크를 찾으세요.
++
+URL은 *페더레이션 서비스 이름* 필드에 입력한 값에서 파생됩니다.
+
++
+image::../media/sso_sandbox_mode_url.gif[ID 공급자 로그인 페이지의 URL]
+
+. 링크를 선택하거나 URL을 복사하여 브라우저에 붙여넣어 ID 공급자의 로그인 페이지에 액세스하세요.
+. StorageGRID 에 SSO를 사용하여 로그인할 수 있는지 확인하려면 * 다음 사이트 중 하나에 Sign in *을 선택하고, 기본 관리 노드에 대한 신뢰 당사자 식별자를 선택한 다음 * Sign in*을 선택합니다.
++
+image::../media/sso_sandbox_mode_testing.gif[SSO 샌드박스 모드에서 신뢰 당사자 신뢰 테스트]
+
+. 연합 사용자 이름과 비밀번호를 입력하세요.
++
+** SSO 로그인 및 로그아웃 작업이 성공하면 성공 메시지가 나타납니다.
++
+image::../media/sso_sandbox_mode_sign_in_success.gif[SSO 인증 및 로그아웃 테스트 성공 메시지]
+
+** SSO 작업이 실패하면 오류 메시지가 나타납니다.  문제를 해결하고 브라우저 쿠키를 지운 후 다시 시도하세요.
+
+
+. 그리드의 각 관리 노드에 대한 SSO 연결을 확인하려면 이 단계를 반복합니다.
+
+
+--
+.하늘빛
+--
+.단계
+. Azure Portal에서 Single Sign-On 페이지로 이동합니다.
+. *이 애플리케이션 테스트*를 선택하세요.
+. 페더레이션 사용자의 자격 증명을 입력하세요.
++
+** SSO 로그인 및 로그아웃 작업이 성공하면 성공 메시지가 나타납니다.
++
+image::../media/sso_sandbox_mode_sign_in_success.gif[SSO 인증 및 로그아웃 테스트 성공 메시지]
+
+** SSO 작업이 실패하면 오류 메시지가 나타납니다.  문제를 해결하고 브라우저 쿠키를 지운 후 다시 시도하세요.
+
+
+. 그리드의 각 관리 노드에 대한 SSO 연결을 확인하려면 이 단계를 반복합니다.
+
+
+--
+.핑페더레이트
+--
+.단계
+. StorageGRID Single Sign-on 페이지에서 Sandbox 모드 메시지의 첫 번째 링크를 선택합니다.
++
+한 번에 하나의 링크를 선택하여 테스트하세요.
+
++
+image::../media/sso_sandbox_mode_enabled_ping.png[단일 로그인]
+
+. 페더레이션 사용자의 자격 증명을 입력하세요.
++
+** SSO 로그인 및 로그아웃 작업이 성공하면 성공 메시지가 나타납니다.
++
+image::../media/sso_sandbox_mode_sign_in_success.gif[SSO 인증 및 로그아웃 테스트 성공 메시지]
+
+** SSO 작업이 실패하면 오류 메시지가 나타납니다.  문제를 해결하고 브라우저 쿠키를 지운 후 다시 시도하세요.
+
+
+. 그리드의 각 관리 노드에 대한 SSO 연결을 확인하려면 다음 링크를 선택하세요.
++
+페이지 만료 메시지가 표시되면 브라우저에서 *뒤로* 버튼을 선택하고 자격 증명을 다시 제출하세요.
+
+
+
+--
+====
+
+
+== 단일 로그인 활성화
+
+각 관리 노드에 SSO를 사용하여 로그인할 수 있음을 확인한 후 전체 StorageGRID 시스템에 대해 SSO를 활성화할 수 있습니다.
+
+
+TIP: SSO가 활성화된 경우 모든 사용자는 SSO를 사용하여 Grid Manager, Tenant Manager, Grid Management API 및 Tenant Management API에 액세스해야 합니다.  로컬 사용자는 더 이상 StorageGRID 에 액세스할 수 없습니다.
+
+.단계
+. *구성* > *액세스 제어* > *단일 로그인*을 선택합니다.
+. SSO 상태를 *활성화*로 변경합니다.
+. *저장*을 선택하세요.
+. 경고 메시지를 검토하고 *확인*을 선택하세요.
++
+이제 Single Sign-On이 활성화되었습니다.
+
+
+
+
+TIP: Azure Portal을 사용하고 Azure에 액세스하는 데 사용하는 것과 동일한 컴퓨터에서 StorageGRID 에 액세스하는 경우 Azure Portal 사용자가 권한이 있는 StorageGRID 사용자( StorageGRID 로 가져온 페더레이션 그룹의 사용자)인지 확인하거나 StorageGRID 에 로그인을 시도하기 전에 Azure Portal에서 로그아웃하세요.

@@ -1,0 +1,128 @@
+---
+permalink: ilm/considerations-for-cloud-storage-pools.html 
+sidebar: sidebar 
+keywords: what is a cloud storage pool, considerations for a cloud storage pool 
+summary: Cloud Storage Pool을 사용하여 StorageGRID 시스템 외부로 객체를 이동하려는 경우 Cloud Storage Pool을 구성하고 사용하기 위한 고려 사항을 검토해야 합니다. 
+---
+= 클라우드 스토리지 풀에 대한 고려 사항
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Cloud Storage Pool을 사용하여 StorageGRID 시스템 외부로 객체를 이동하려는 경우 Cloud Storage Pool을 구성하고 사용하기 위한 고려 사항을 검토해야 합니다.
+
+
+
+== 일반적인 고려 사항
+
+* 일반적으로 Amazon S3 Glacier나 Azure Blob 스토리지와 같은 클라우드 보관 스토리지는 객체 데이터를 저장하는 데 비용이 저렴합니다.  하지만 클라우드 보관 스토리지에서 데이터를 검색하는 데 드는 비용은 상대적으로 높습니다.  전반적인 비용을 가장 낮추려면 클라우드 스토리지 풀의 객체에 언제, 얼마나 자주 액세스할지 고려해야 합니다.  클라우드 스토리지 풀은 자주 액세스하지 않을 것으로 예상되는 콘텐츠에만 사용하는 것이 좋습니다.
+* Cloud Storage Pool 대상에서 객체를 검색하는 데 지연 시간이 추가되므로 FabricPool 과 함께 Cloud Storage Pool을 사용하는 것은 지원되지 않습니다.
+* S3 객체 잠금이 활성화된 객체는 Cloud Storage 풀에 배치할 수 없습니다.
+* Cloud Storage Pool의 대상 S3 버킷에 S3 개체 잠금이 활성화된 경우 버킷 복제(PutBucketReplication)를 구성하려는 시도는 AccessDenied 오류와 함께 실패합니다.
+* 다음 플랫폼, 인증 및 프로토콜 조합과 S3 개체 잠금은 Cloud Storage 풀에서 지원되지 않습니다.
++
+** *플랫폼*: Google Cloud Platform 및 Azure
+** *인증 유형*: IAM Roles Anywhere 및 익명 액세스
+** *프로토콜*: HTTP
+
+
+
+
+
+
+== 클라우드 스토리지 풀에 사용되는 포트에 대한 고려 사항
+
+ILM 규칙이 지정된 클라우드 스토리지 풀에서 객체를 이동할 수 있도록 하려면 시스템의 스토리지 노드가 포함된 네트워크를 구성해야 합니다.  다음 포트가 Cloud Storage Pool과 통신할 수 있는지 확인해야 합니다.
+
+기본적으로 Cloud Storage 풀은 다음 포트를 사용합니다.
+
+* *80*: http로 시작하는 엔드포인트 URI의 경우
+* *443*: https로 시작하는 엔드포인트 URI의 경우
+
+
+클라우드 스토리지 풀을 생성하거나 편집할 때 다른 포트를 지정할 수 있습니다.
+
+투명하지 않은 프록시 서버를 사용하는 경우에도 다음을 수행해야 합니다.link:../admin/configuring-storage-proxy-settings.html["스토리지 프록시 구성"] 메시지를 인터넷 상의 엔드포인트와 같은 외부 엔드포인트로 보낼 수 있도록 허용합니다.
+
+
+
+== 비용에 대한 고려 사항
+
+클라우드 스토리지 풀을 사용하여 클라우드의 스토리지에 액세스하려면 클라우드에 대한 네트워크 연결이 필요합니다.  Cloud Storage Pool을 사용하여 StorageGRID 와 클라우드 간에 이동할 것으로 예상되는 데이터 양에 따라 클라우드에 액세스하고 적절하게 프로비저닝하는 데 사용할 네트워크 인프라 비용을 고려해야 합니다.
+
+StorageGRID 외부 Cloud Storage Pool 엔드포인트에 연결하면 연결을 모니터링하고 필요한 작업을 수행할 수 있는지 확인하기 위해 다양한 요청을 보냅니다.  이러한 요청에는 일부 추가 비용이 발생하지만, 클라우드 스토리지 풀을 모니터링하는 비용은 S3나 Azure에 객체를 저장하는 전체 비용의 일부에 불과합니다.
+
+외부 Cloud Storage Pool 엔드포인트에서 StorageGRID 로 객체를 다시 이동해야 하는 경우 더 많은 비용이 발생할 수 있습니다.  다음 두 가지 경우 모두 객체가 StorageGRID 로 다시 이동될 수 있습니다.
+
+* 해당 객체의 유일한 사본은 Cloud Storage Pool에 있으며 대신 StorageGRID 에 객체를 저장하기로 결정했습니다.  이 경우 ILM 규칙과 정책을 재구성합니다.  ILM 평가가 발생하면 StorageGRID 클라우드 스토리지 풀에서 객체를 검색하기 위해 여러 요청을 발행합니다.  그런 다음 StorageGRID 지정된 수의 복제본 또는 삭제 코드가 적용된 사본을 로컬로 생성합니다.  객체가 StorageGRID 로 다시 이동되면 Cloud Storage 풀의 복사본이 삭제됩니다.
+* 스토리지 노드 오류로 인해 객체가 손실됩니다.  객체의 유일한 남은 사본이 Cloud Storage Pool에 있는 경우 StorageGRID 객체를 일시적으로 복원하고 복구된 Storage Node에 새 사본을 만듭니다.
+
+
+
+NOTE: 객체가 Cloud Storage Pool에서 StorageGRID 로 다시 이동되면 StorageGRID 각 객체에 대해 Cloud Storage Pool 엔드포인트에 여러 요청을 발행합니다.  많은 수의 물건을 옮기기 전에 기술 지원팀에 연락하여 예상 시간과 관련 비용을 알아보세요.
+
+
+
+== S3: Cloud Storage Pool 버킷에 필요한 권한
+
+Cloud Storage Pool에 사용되는 외부 S3 버킷에 대한 정책은 StorageGRID 에 버킷으로 객체를 이동하고, 객체 상태를 가져오고, 필요할 때 Glacier 스토리지에서 객체를 복원하는 등의 작업을 수행할 수 있는 권한을 부여해야 합니다.  이상적으로 StorageGRID 버킷에 대한 전체 제어 액세스 권한을 가져야 합니다.(`s3:*` ); 그러나 이것이 불가능한 경우 버킷 정책은 StorageGRID 에 다음과 같은 S3 권한을 부여해야 합니다.
+
+* `s3:AbortMultipartUpload`
+* `s3:DeleteObject`
+* `s3:GetObject`
+* `s3:ListBucket`
+* `s3:ListBucketMultipartUploads`
+* `s3:ListMultipartUploadParts`
+* `s3:PutObject`
+* `s3:RestoreObject`
+
+
+
+
+== S3: 외부 버킷의 수명 주기에 대한 고려 사항
+
+Cloud Storage Pool에 지정된 StorageGRID 와 외부 S3 버킷 간의 객체 이동은 ILM 규칙과 StorageGRID 의 활성 ILM 정책에 의해 제어됩니다.  이와 대조적으로, Cloud Storage Pool에 지정된 외부 S3 버킷에서 Amazon S3 Glacier 또는 S3 Glacier Deep Archive(또는 Glacier 스토리지 클래스를 구현하는 스토리지 솔루션)로 객체를 전환하는 작업은 해당 버킷의 수명 주기 구성에 의해 제어됩니다.
+
+Cloud Storage Pool에서 객체를 전환하려면 외부 S3 버킷에 적절한 수명 주기 구성을 생성해야 하며, Glacier 스토리지 클래스를 구현하고 S3 RestoreObject API를 지원하는 스토리지 솔루션을 사용해야 합니다.
+
+예를 들어, StorageGRID 에서 Cloud Storage Pool로 이동된 모든 객체를 즉시 Amazon S3 Glacier 스토리지로 전환하려는 경우를 가정해 보겠습니다.  다음과 같이 단일 작업(*전환*)을 지정하는 외부 S3 버킷에 수명 주기 구성을 만듭니다.
+
+[listing]
+----
+<LifecycleConfiguration>
+  <Rule>
+    <ID>Transition Rule</ID>
+    <Filter>
+       <Prefix></Prefix>
+    </Filter>
+    <Status>Enabled</Status>
+    <Transition>
+      <Days>0</Days>
+      <StorageClass>GLACIER</StorageClass>
+    </Transition>
+  </Rule>
+</LifecycleConfiguration>
+----
+이 규칙은 모든 버킷 객체를 생성된 날(즉, StorageGRID 에서 Cloud Storage Pool로 이동된 날)에 Amazon S3 Glacier로 전환합니다.
+
+
+CAUTION: 외부 버킷의 수명 주기를 구성할 때는 *만료* 작업을 사용하여 객체 만료 시점을 정의하지 마세요.  만료 작업은 외부 저장소 시스템이 만료된 객체를 삭제하도록 합니다.  나중에 StorageGRID 에서 만료된 개체에 액세스하려고 하면 삭제된 개체를 찾을 수 없습니다.
+
+Cloud Storage Pool의 객체를 Amazon S3 Glacier가 아닌 S3 Glacier Deep Archive로 전환하려면 다음을 지정하세요. `<StorageClass>DEEP_ARCHIVE</StorageClass>` 버킷 라이프사이클에서.  하지만 다음을 사용할 수 없다는 점을 알아두십시오. `Expedited` S3 Glacier Deep Archive에서 객체를 복원하는 계층입니다.
+
+
+
+== Azure: 액세스 계층에 대한 고려 사항
+
+Azure 스토리지 계정을 구성할 때 기본 액세스 계층을 핫 또는 쿨로 설정할 수 있습니다.  Cloud Storage 풀과 함께 사용할 스토리지 계정을 만들 때는 기본 계층으로 Hot 계층을 사용해야 합니다.  StorageGRID 객체를 Cloud Storage Pool로 옮길 때 즉시 계층을 Archive로 설정하지만, 기본 설정을 Hot으로 사용하면 30일 최소 기간이 지나기 전에 Cool 계층에서 제거된 객체에 대해 조기 삭제 수수료가 청구되지 않습니다.
+
+
+
+== Azure: 수명 주기 관리가 지원되지 않습니다.
+
+Cloud Storage Pool과 함께 사용되는 컨테이너에 대해 Azure Blob 저장소 수명 주기 관리를 사용하지 마세요.  라이프사이클 작업이 Cloud Storage Pool 작업을 방해할 수 있습니다.
+
+.관련 정보
+link:creating-cloud-storage-pool.html["클라우드 스토리지 풀 만들기"]

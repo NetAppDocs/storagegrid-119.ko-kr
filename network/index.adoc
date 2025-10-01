@@ -1,0 +1,62 @@
+---
+permalink: network/index.html 
+sidebar: sidebar 
+keywords: storagegrid, network, networking, ethernet, subnet, routing 
+summary: 이 가이드라인을 사용하여 StorageGRID 아키텍처와 네트워킹 토폴로지에 대해 알아보고 네트워크 구성 및 프로비저닝에 대한 요구 사항을 알아보세요. 
+---
+= 네트워킹 가이드라인
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 가이드라인을 사용하여 StorageGRID 아키텍처와 네트워킹 토폴로지에 대해 알아보고 네트워크 구성 및 프로비저닝에 대한 요구 사항을 알아보세요.
+
+
+
+== 이 지침에 관하여
+
+이 가이드라인은 StorageGRID 노드를 배포하고 구성하기 전에 StorageGRID 네트워킹 인프라를 만드는 데 사용할 수 있는 정보를 제공합니다.  이러한 가이드라인을 사용하면 그리드의 모든 노드 간, 그리드와 외부 클라이언트 및 서비스 간에 통신이 이루어지도록 보장하는 데 도움이 됩니다.
+
+외부 클라이언트와 외부 서비스는 다음과 같은 기능을 수행하기 위해 StorageGRID 네트워크에 연결해야 합니다.
+
+* 객체 데이터 저장 및 검색
+* 이메일 알림 받기
+* StorageGRID 관리 인터페이스(Grid Manager 및 Tenant Manager)에 액세스합니다.
+* 감사 공유에 액세스(선택 사항)
+* 다음과 같은 서비스를 제공합니다.
++
+** 네트워크 시간 프로토콜(NTP)
+** 도메인 이름 시스템(DNS)
+** 키 관리 서버(KMS)
+
+
+
+
+StorageGRID 네트워킹은 이러한 기능 및 기타 기능에 대한 트래픽을 처리하도록 적절하게 구성되어야 합니다.
+
+
+
+== 시작하기 전에
+
+StorageGRID 시스템의 네트워킹을 구성하려면 이더넷 스위칭, TCP/IP 네트워킹, 서브넷, 네트워크 라우팅 및 방화벽에 대한 높은 수준의 경험이 필요합니다.
+
+네트워킹을 구성하기 전에 다음에 설명된 대로 StorageGRID 아키텍처에 익숙해지십시오.link:../primer/index.html["StorageGRID 에 대해 알아보세요"] .
+
+사용할 StorageGRID 네트워크와 해당 네트워크를 구성하는 방법을 결정한 후 적절한 지침에 따라 StorageGRID 노드를 설치하고 구성할 수 있습니다.
+
+.어플라이언스 노드 설치
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["가전제품 하드웨어 설치"^]
+
+
+.소프트웨어 기반 노드 설치
+* link:../rhel/index.html["Red Hat Enterprise Linux에 StorageGRID 설치"]
+* link:../ubuntu/index.html["Ubuntu 또는 Debian에 StorageGRID 설치"]
+* link:../vmware/index.html["VMware에 StorageGRID 설치"]
+
+
+.StorageGRID 소프트웨어 구성 및 관리
+* link:../admin/index.html["StorageGRID 관리"]
+* link:../release-notes/index.html["릴리스 노트"]
+

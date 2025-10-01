@@ -1,0 +1,42 @@
+---
+section: troubleshoot
+title: StorageGRID 시스템 문제 해결
+entries:
+- title: 문제 해결 지침
+  pdf-filename: StorageGRID 시스템 문제 해결
+  url: "/troubleshoot/index.html"
+- title: 객체 및 저장소 문제 해결
+  entries:
+  - title: 객체 데이터 위치 확인
+    url: "/troubleshoot/confirming-object-data-locations.html"
+  - title: 개체 저장소 오류
+    url: "/troubleshoot/object-store-storage-volume-failures.html"
+  - title: 객체 무결성 확인
+    url: "/troubleshoot/verifying-object-integrity.html"
+  - title: S3 PUT 객체 크기가 너무 크다는 경고 문제 해결
+    url: "/troubleshoot/troubleshoot-s3-put-object-size-too-large-alert.html"
+  - title: 손실되거나 누락된 객체 데이터 문제 해결
+    entries:
+    - title: 객체를 검색하는 방법
+      pdf-filename: 손실되거나 누락된 객체 데이터 문제 해결
+      url: "/troubleshoot/troubleshooting-lost-and-missing-object-data.html"
+    - title: 분실물을 조사하세요
+      url: "/troubleshoot/investigating-lost-objects.html"
+    - title: 분실 가능성이 있는 물건을 검색하고 복구하세요
+      url: "/troubleshoot/searching-for-and-restoring-potentially-lost-objects.html"
+    - title: 분실 및 누락된 개체 수 재설정
+      url: "/troubleshoot/resetting-lost-and-missing-object-counts.html"
+  - title: 낮은 개체 데이터 저장 경고 문제 해결
+    url: "/troubleshoot/troubleshooting-low-object-data-storage-alert.html"
+  - title: 낮은 읽기 전용 워터마크 재정의 경고 문제 해결
+    url: "/troubleshoot/troubleshoot-low-watermark-alert.html"
+- title: 메타데이터 문제 해결
+  url: "/troubleshoot/troubleshooting-metadata-issues.html"
+- title: 인증서 오류 문제 해결
+  url: "/troubleshoot/troubleshooting-certificate-errors.html"
+- title: 관리 노드 및 사용자 인터페이스 문제 해결
+  url: "/troubleshoot/troubleshooting-admin-node-and-user-interface-issues.html"
+- title: 네트워크, 하드웨어 및 플랫폼 문제 해결
+  url: "/troubleshoot/troubleshooting-network-hardware-and-platform-issues.html"
+- title: 외부 syslog 서버 문제 해결
+  url: "/troubleshoot/troubleshooting-syslog-server.html"

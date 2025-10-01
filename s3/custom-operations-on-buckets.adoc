@@ -1,0 +1,98 @@
+---
+permalink: s3/custom-operations-on-buckets.html 
+sidebar: sidebar 
+keywords: operations, buckets, custom, storagegrid bucket operations 
+summary: StorageGRID 시스템은 S3 REST API에 추가되는 사용자 정의 작업을 지원합니다. 
+---
+= StorageGRID 사용자 정의 작업
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 시스템은 S3 REST API에 추가되는 사용자 정의 작업을 지원합니다.
+
+다음 표에는 StorageGRID 에서 지원하는 사용자 정의 작업이 나열되어 있습니다.
+
+[cols="1a,2a"]
+|===
+| 작업 | 설명 
+
+
+ a| 
+link:get-bucket-consistency-request.html["버킷 일관성 가져오기"]
+ a| 
+특정 버킷에 적용되는 일관성을 반환합니다.
+
+
+
+ a| 
+link:put-bucket-consistency-request.html["PUT 버킷 일관성"]
+ a| 
+특정 버킷에 적용되는 일관성을 설정합니다.
+
+
+
+ a| 
+link:get-bucket-last-access-time-request.html["GET 버킷 마지막 액세스 시간"]
+ a| 
+특정 버킷에 대해 마지막 액세스 시간 업데이트가 활성화되었는지 비활성화되었는지 여부를 반환합니다.
+
+
+
+ a| 
+link:put-bucket-last-access-time-request.html["PUT 버킷 마지막 액세스 시간"]
+ a| 
+특정 버킷에 대한 마지막 액세스 시간 업데이트를 활성화하거나 비활성화할 수 있습니다.
+
+
+
+ a| 
+link:delete-bucket-metadata-notification-configuration-request.html["버킷 메타데이터 알림 구성 삭제"]
+ a| 
+특정 버킷과 관련된 메타데이터 알림 구성 XML을 삭제합니다.
+
+
+
+ a| 
+link:get-bucket-metadata-notification-configuration-request.html["GET 버킷 메타데이터 알림 구성"]
+ a| 
+특정 버킷과 관련된 메타데이터 알림 구성 XML을 반환합니다.
+
+
+
+ a| 
+link:put-bucket-metadata-notification-configuration-request.html["PUT 버킷 메타데이터 알림 구성"]
+ a| 
+버킷에 대한 메타데이터 알림 서비스를 구성합니다.
+
+
+
+ a| 
+link:get-storage-usage-request.html["GET 스토리지 사용량"]
+ a| 
+계정에서 사용 중인 총 저장 공간과 해당 계정과 연결된 각 버킷의 저장 공간을 알려줍니다.
+
+
+
+ a| 
+link:deprecated-put-bucket-request-modifications-for-compliance.html["더 이상 사용되지 않음: 규정 준수 설정이 포함된 CreateBucket"]
+ a| 
+더 이상 사용되지 않으며 지원되지 않음: 규정 준수가 활성화된 상태에서는 새 버킷을 더 이상 만들 수 없습니다.
+
+
+
+ a| 
+link:deprecated-get-bucket-compliance-request.html["더 이상 사용되지 않음: GET 버킷 규정 준수"]
+ a| 
+더 이상 사용되지 않지만 지원됨: 기존 레거시 규정 준수 버킷에 현재 적용되는 규정 준수 설정을 반환합니다.
+
+
+
+ a| 
+link:deprecated-put-bucket-compliance-request.html["더 이상 사용되지 않음: PUT 버킷 규정 준수"]
+ a| 
+더 이상 지원되지 않지만 지원됨: 기존 레거시 규정 준수 버킷의 규정 준수 설정을 수정할 수 있습니다.
+
+|===

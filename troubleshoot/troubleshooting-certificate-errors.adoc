@@ -1,0 +1,55 @@
+---
+permalink: troubleshoot/troubleshooting-certificate-errors.html 
+sidebar: sidebar 
+keywords: how to troubleshoot certificate errors 
+summary: 웹 브라우저, S3 클라이언트 또는 외부 모니터링 도구를 사용하여 StorageGRID 에 연결하려고 할 때 보안이나 인증서 문제가 발생하면 인증서를 확인해야 합니다. 
+---
+= 인증서 오류 문제 해결
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+웹 브라우저, S3 클라이언트 또는 외부 모니터링 도구를 사용하여 StorageGRID 에 연결하려고 할 때 보안이나 인증서 문제가 발생하면 인증서를 확인해야 합니다.
+
+.이 작업에 관하여
+인증서 오류로 인해 Grid Manager, Grid Management API, Tenant Manager 또는 Tenant Management API를 사용하여 StorageGRID 에 연결하려고 할 때 문제가 발생할 수 있습니다.  S3 클라이언트나 외부 모니터링 도구에 연결하려고 할 때도 인증서 오류가 발생할 수 있습니다.
+
+IP 주소 대신 도메인 이름을 사용하여 Grid Manager 또는 Tenant Manager에 액세스하는 경우 다음 중 하나가 발생하면 우회 옵션 없이 브라우저에 인증서 오류가 표시됩니다.
+
+* 사용자 정의 관리 인터페이스 인증서가 만료되었습니다.
+* 사용자 정의 관리 인터페이스 인증서에서 기본 서버 인증서로 되돌립니다.
+
+
+다음 예에서는 사용자 지정 관리 인터페이스 인증서가 만료되었을 때 발생하는 인증서 오류를 보여줍니다.
+
+image::../media/certificate_error.png[인증서 오류 예]
+
+서버 인증서 오류로 인해 작업이 중단되지 않도록 하기 위해 서버 인증서가 만료되기 직전에 *관리 인터페이스에 대한 서버 인증서 만료* 알림이 트리거됩니다.
+
+외부 Prometheus 통합을 위해 클라이언트 인증서를 사용하는 경우 StorageGRID 관리 인터페이스 인증서 또는 클라이언트 인증서로 인해 인증서 오류가 발생할 수 있습니다.  *인증서 페이지에서 구성된 클라이언트 인증서 만료* 알림은 클라이언트 인증서가 만료되려고 할 때 트리거됩니다.
+
+.단계
+만료된 인증서에 대한 알림을 받은 경우 인증서 세부 정보에 액세스하세요. *구성* > *보안* > *인증서*를 선택한 다음link:../admin/using-storagegrid-security-certificates.html#access-security-certificates["적절한 인증서 탭을 선택하세요"] .
+
+. 인증서의 유효기간을 확인하세요.  + 일부 웹 브라우저와 S3 클라이언트는 유효 기간이 398일을 초과하는 인증서를 허용하지 않습니다.
+. 인증서가 만료되었거나 곧 만료될 예정인 경우 새 인증서를 업로드하거나 생성하세요.
++
+** 서버 인증서의 경우 다음 단계를 참조하세요.link:../admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#add-a-custom-management-interface-certificate["Grid Manager 및 Tenant Manager에 대한 사용자 정의 서버 인증서 구성"] .
+** 클라이언트 인증서의 경우 다음 단계를 참조하세요.link:../admin/configuring-administrator-client-certificates.html["클라이언트 인증서 구성"] .
+
+
+. 서버 인증서 오류가 발생하는 경우 다음 옵션 중 하나 또는 둘 다를 시도해 보세요.
++
+** 인증서의 SAN(주체 대체 이름)이 채워져 있는지 확인하고, SAN이 연결하려는 노드의 IP 주소 또는 호스트 이름과 일치하는지 확인하세요.
+** 도메인 이름을 사용하여 StorageGRID 에 연결하려는 경우:
++
+... 연결 오류를 우회하고 Grid Manager에 액세스하려면 도메인 이름 대신 관리 노드의 IP 주소를 입력하세요.
+... 그리드 관리자에서 *구성* > *보안* > *인증서*를 선택한 다음link:../admin/using-storagegrid-security-certificates.html#access-security-certificates["적절한 인증서 탭을 선택하세요"] 새로운 사용자 정의 인증서를 설치하거나 기본 인증서를 계속 사용합니다.
+... StorageGRID 관리 지침에서 다음 단계를 참조하세요.link:../admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#add-a-custom-management-interface-certificate["Grid Manager 및 Tenant Manager에 대한 사용자 정의 서버 인증서 구성"] .
+
+
+
+
+

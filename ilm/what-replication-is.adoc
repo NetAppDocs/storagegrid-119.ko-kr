@@ -1,0 +1,31 @@
+---
+permalink: ilm/what-replication-is.html 
+sidebar: sidebar 
+keywords: replication, object copies 
+summary: 복제는 StorageGRID 개체 데이터를 저장하는 데 사용하는 두 가지 방법 중 하나입니다.  개체가 복제를 사용하는 ILM 규칙과 일치하면 시스템은 개체 데이터의 정확한 사본을 만들고 해당 사본을 스토리지 노드에 저장합니다. 
+---
+= 복제란 무엇인가?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+복제는 StorageGRID 가 객체 데이터를 저장하는 데 사용하는 두 가지 방법 중 하나입니다(다른 방법은 삭제 코딩입니다).  개체가 복제를 사용하는 ILM 규칙과 일치하면 시스템은 개체 데이터의 정확한 사본을 만들고 해당 사본을 스토리지 노드에 저장합니다.
+
+복제된 복사본을 생성하기 위해 ILM 규칙을 구성할 때, 생성할 복사본의 수, 복사본을 배치할 위치, 각 위치에 복사본을 보관할 기간을 지정합니다.
+
+다음 예에서 ILM 규칙은 각 개체의 복제된 사본 두 개를 세 개의 스토리지 노드가 포함된 스토리지 풀에 배치하도록 지정합니다.
+
+image::../media/ilm_replication_make_2_copies.png[2개 사본 만들기 규칙]
+
+StorageGRID 이 규칙에 따라 객체를 일치시키면 객체의 사본 두 개를 생성하여 각 사본을 스토리지 풀의 다른 스토리지 노드에 배치합니다.  두 개의 사본은 사용 가능한 세 개의 스토리지 노드 중 두 개에 배치될 수 있습니다.  이 경우 규칙은 객체 복사본을 스토리지 노드 2와 3에 배치했습니다.  두 개의 사본이 있으므로 스토리지 풀의 노드 중 하나에 장애가 발생하더라도 객체를 검색할 수 있습니다.
+
+
+NOTE: StorageGRID 주어진 스토리지 노드에 개체의 복제된 사본을 하나만 저장할 수 있습니다.  그리드에 3개의 스토리지 노드가 포함되어 있고 4개 사본 ILM 규칙을 만드는 경우 각 스토리지 노드에 대해 1개씩 총 3개의 사본만 만들어집니다.  *ILM 배치 불가* 경고는 ILM 규칙을 완전히 적용할 수 없음을 나타내기 위해 발생합니다.
+
+.관련 정보
+* link:what-erasure-coding-is.html["삭제 코딩이란 무엇입니까?"]
+* link:what-storage-pool-is.html["스토리지 풀이란 무엇입니까?"]
+* link:using-multiple-storage-pools-for-cross-site-replication.html["복제 및 삭제 코딩을 사용하여 사이트 손실 보호 활성화"]
+

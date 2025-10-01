@@ -1,0 +1,99 @@
+---
+permalink: admin/guidelines-for-storagegrid-networks.html 
+sidebar: sidebar 
+keywords: admin network, client network, grid network, access interface, trunk interface 
+summary: StorageGRID 그리드 노드당 최대 3개의 네트워크 인터페이스를 지원하므로 보안 및 액세스 요구 사항에 맞게 각 그리드 노드의 네트워킹을 구성할 수 있습니다. 
+---
+= StorageGRID 네트워크 지침
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Grid Manager를 사용하여 StorageGRID 네트워크와 연결을 구성하고 관리할 수 있습니다.
+
+보다link:configuring-client-connections.html["S3 클라이언트 연결 구성"] S3 클라이언트를 연결하는 방법을 알아보세요.
+
+
+
+== 기본 StorageGRID 네트워크
+
+기본적으로 StorageGRID 그리드 노드당 3개의 네트워크 인터페이스를 지원하므로 보안 및 액세스 요구 사항에 맞게 각 그리드 노드의 네트워킹을 구성할 수 있습니다.
+
+네트워크 토폴로지에 대한 자세한 내용은 다음을 참조하세요.link:../network/index.html["네트워킹 가이드라인"] .
+
+
+
+=== 그리드 네트워크
+
+필수의.  Grid Network는 모든 내부 StorageGRID 트래픽에 사용됩니다.  이는 모든 사이트와 서브넷에 걸쳐 그리드의 모든 노드 간에 연결을 제공합니다.
+
+
+
+=== 관리자 네트워크
+
+선택 과목.  관리 네트워크는 일반적으로 시스템 관리 및 유지관리에 사용됩니다.  클라이언트 프로토콜 접근에도 사용될 수 있습니다.  관리 네트워크는 일반적으로 개인 네트워크이므로 사이트 간에 라우팅할 필요가 없습니다.
+
+
+
+=== 클라이언트 네트워크
+
+선택 과목.  클라이언트 네트워크는 일반적으로 S3 클라이언트 애플리케이션에 대한 액세스를 제공하는 데 사용되는 개방형 네트워크이므로 그리드 네트워크를 격리하고 보호할 수 있습니다.  클라이언트 네트워크는 로컬 게이트웨이를 통해 접근 가능한 모든 서브넷과 통신할 수 있습니다.
+
+
+
+== 가이드라인
+
+* 각 StorageGRID 노드에는 할당된 각 네트워크에 대한 전용 네트워크 인터페이스, IP 주소, 서브넷 마스크 및 게이트웨이가 필요합니다.
+* 그리드 노드는 네트워크에서 두 개 이상의 인터페이스를 가질 수 없습니다.
+* 네트워크당, 그리드 노드당 하나의 게이트웨이가 지원되며, 노드와 동일한 서브넷에 있어야 합니다.  필요한 경우 게이트웨이에서 더 복잡한 라우팅을 구현할 수 있습니다.
+* 각 노드에서 각 네트워크는 특정 네트워크 인터페이스에 매핑됩니다.
++
+[cols="1a,1a"]
+|===
+| 회로망 | 인터페이스 이름 
+
+
+ a| 
+그리드
+ a| 
+eth0
+
+
+
+ a| 
+관리자(선택 사항)
+ a| 
+eth1
+
+
+
+ a| 
+클라이언트(선택 사항)
+ a| 
+eth2
+
+|===
+* 노드가 StorageGRID 어플라이언스에 연결된 경우 각 네트워크에 대해 특정 포트가 사용됩니다.  자세한 내용은 해당 기기의 설치 지침을 참조하세요.
+* 기본 경로는 노드별로 자동으로 생성됩니다.  eth2가 활성화된 경우 0.0.0.0/0은 eth2의 클라이언트 네트워크를 사용합니다.  eth2가 활성화되어 있지 않으면 0.0.0.0/0은 eth0의 Grid Network를 사용합니다.
+* 그리드 노드가 그리드에 가입할 때까지 클라이언트 네트워크는 작동하지 않습니다.
+* 그리드가 완전히 설치되기 전에 설치 사용자 인터페이스에 액세스할 수 있도록 그리드 노드 배포 중에 관리 네트워크를 구성할 수 있습니다.
+
+
+
+
+== 선택적 인터페이스
+
+선택적으로 노드에 추가 인터페이스를 추가할 수 있습니다.  예를 들어, 관리자 또는 게이트웨이 노드에 트렁크 인터페이스를 추가하여 다음을 사용할 수 있습니다.link:../admin/configure-vlan-interfaces.html["VLAN 인터페이스"] 서로 다른 애플리케이션이나 테넌트에 속하는 트래픽을 분리합니다.  또는 사용할 액세스 인터페이스를 추가할 수도 있습니다.link:../admin/configure-high-availability-group.html["고가용성(HA) 그룹"] .
+
+트렁크 또는 액세스 인터페이스를 추가하려면 다음을 참조하세요.
+
+* *VMware(노드 설치 후)*:link:../maintain/vmware-adding-trunk-or-access-interfaces-to-node.html["VMware: 노드에 트렁크 또는 액세스 인터페이스 추가"]
++
+** *Red Hat Enterprise Linux(노드 설치 전)*:link:../rhel/creating-node-configuration-files.html["노드 구성 파일 생성"]
+** *Ubuntu 또는 Debian(노드 설치 전)*:link:../ubuntu/creating-node-configuration-files.html["노드 구성 파일 생성"]
+** *RHEL, Ubuntu 또는 Debian(노드 설치 후)*:link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Linux: 노드에 트렁크 또는 액세스 인터페이스 추가"]
+
+
+

@@ -1,0 +1,137 @@
+---
+permalink: troubleshoot/troubleshoot-s3-put-object-size-too-large-alert.html 
+sidebar: sidebar 
+keywords: how to troubleshoot S3 PUT Object size too large alert, S3 PutObject size 
+summary: S3 PUT 객체 크기가 너무 큼 경고는 테넌트가 S3 크기 제한인 5GiB를 초과하는 비다중 파트 PutObject 작업을 시도하는 경우 발생합니다. 
+---
+= S3 PUT 객체 크기가 너무 크다는 경고 문제 해결
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+S3 PUT 객체 크기가 너무 큼 경고는 테넌트가 S3 크기 제한인 5GiB를 초과하는 비다중 파트 PutObject 작업을 시도하는 경우 발생합니다.
+
+.시작하기 전에
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:../admin/admin-group-permissions.html["특정 액세스 권한"] .
+
+
+5GiB보다 큰 객체를 사용하는 테넌트를 파악하여 해당 테넌트에 알릴 수 있습니다.
+
+.단계
+. *구성* > *모니터링* > *감사 및 시스템 로그 서버*로 이동합니다.
+. 클라이언트 쓰기가 정상인 경우 감사 로그에 액세스하세요.
++
+.. 입력하다 `ssh admin@_primary_Admin_Node_IP_`
+.. 나열된 비밀번호를 입력하세요 `Passwords.txt` 파일.
+.. 다음 명령을 입력하여 루트로 전환하세요. `su -`
+.. 나열된 비밀번호를 입력하세요 `Passwords.txt` 파일.
++
+루트로 로그인하면 프롬프트가 다음과 같이 변경됩니다. `$` 에게 `#` .
+
+.. 감사 로그가 있는 디렉토리로 변경합니다.
++
+--
+감사 로그 디렉토리와 적용 가능한 노드는 감사 대상 설정에 따라 달라집니다.
+
+[cols="1a,2a"]
+|===
+| 옵션 | 목적지 
+
+
+ a| 
+로컬 노드(기본값)
+ a| 
+`/var/local/log/localaudit.log`
+
+
+
+ a| 
+관리 노드/로컬 노드
+ a| 
+*** 관리 노드(기본 및 비기본): `/var/local/audit/export/audit.log`
+*** 모든 노드: `/var/local/log/localaudit.log` 이 모드에서는 파일이 일반적으로 비어 있거나 없습니다.
+
+
+
+
+ a| 
+외부 시스템 로그 서버
+ a| 
+`/var/local/log/localaudit.log`
+
+|===
+감사 대상 설정에 따라 다음을 입력합니다. `cd /var/local/log` 또는 `/var/local/audit/export/`
+
+자세한 내용은 다음을 참조하세요.link:../monitor/configure-audit-messages.html#select-audit-information-destinations["감사 정보 대상 선택"] .
+
+--
+.. 5GiB보다 큰 객체를 사용하는 테넌트를 식별합니다.
++
+... 입력하다 `zgrep SPUT * | egrep "CSIZ\(UI64\):([5-9]|[1-9][0-9]+)[0-9]{9}"`
+... 결과의 각 감사 메시지에 대해 다음을 살펴보세요. `S3AI` 테넌트 계정 ID를 결정하는 필드입니다.  메시지의 다른 필드를 사용하여 클라이언트, 버킷 및 개체에서 사용된 IP 주소를 확인합니다.
++
+[cols="1a,2a"]
+|===
+| 암호 | 설명 
+
+
+| SAIP  a| 
+소스 IP
+
+
+
+| S3AI  a| 
+세입자 ID
+
+
+
+| S3BK  a| 
+버킷
+
+
+
+| S3KY  a| 
+물체
+
+
+
+| CSIZ  a| 
+크기(바이트)
+
+|===
++
+*감사 로그 결과 예시*
+
++
+[listing]
+----
+audit.log:2023-01-05T18:47:05.525999 [AUDT:[RSLT(FC32):SUCS][CNID(UI64):1672943621106262][TIME(UI64):804317333][SAIP(IPAD):"10.96.99.127"][S3AI(CSTR):"93390849266154004343"][SACC(CSTR):"bhavna"][S3AK(CSTR):"06OX85M40Q90Y280B7YT"][SUSR(CSTR):"urn:sgws:identity::93390849266154004343:root"][SBAI(CSTR):"93390849266154004343"][SBAC(CSTR):"bhavna"][S3BK(CSTR):"test"][S3KY(CSTR):"large-object"][CBID(UI64):0x077EA25F3B36C69A][UUID(CSTR):"A80219A2-CD1E-466F-9094-B9C0FDE2FFA3"][CSIZ(UI64):6040000000][MTME(UI64):1672943621338958][AVER(UI32):10][ATIM(UI64):1672944425525999][ATYP(FC32):SPUT][ANID(UI32):12220829][AMID(FC32):S3RQ][ATID(UI64):4333283179807659119]]
+----
+
+
+
+
+. 클라이언트 쓰기가 정상적이지 않은 경우 알림에서 테넌트 ID를 사용하여 테넌트를 식별합니다.
++
+.. *지원* > *도구* > *로그*로 이동하세요. 알림에서 스토리지 노드에 대한 애플리케이션 로그를 수집합니다. 알림 전과 후 15분을 지정하세요.
+.. 파일을 추출하고 다음으로 이동하세요. `bycast.log` :
++
+`/GID<grid_id>_<time_stamp>/<site_node>/<time_stamp>/grid/bycast.log`
+
+.. 로그 검색 `method=PUT` 그리고 클라이언트를 식별합니다. `clientIP` 필드.
++
+*bycast.log 예시*
+
++
+[listing]
+----
+Jan  5 18:33:41 BHAVNAJ-DC1-S1-2-65 ADE: |12220829 1870864574 S3RQ %CEA 2023-01-05T18:33:41.208790| NOTICE   1404 af23cb66b7e3efa5 S3RQ: EVENT_PROCESS_CREATE - connection=1672943621106262 method=PUT name=</test/4MiB-0> auth=<V4> clientIP=<10.96.99.127>
+----
+
+
+. 테넌트에게 최대 PutObject 크기가 5GiB이며 5GiB보다 큰 개체에는 멀티파트 업로드를 사용하라고 알립니다.
+. 애플리케이션이 변경된 경우 1주일 동안 알림을 무시하세요.
+

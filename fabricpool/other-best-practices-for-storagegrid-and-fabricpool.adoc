@@ -1,0 +1,51 @@
+---
+permalink: fabricpool/other-best-practices-for-storagegrid-and-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricPool, best practices, audit log, encryption, compressions, tiering, ontap, consistency 
+summary: FabricPool 과 함께 사용할 StorageGRID 시스템을 구성할 때 다른 StorageGRID 옵션을 변경해야 할 수도 있습니다.  글로벌 설정을 변경하기 전에 해당 변경 사항이 다른 S3 애플리케이션에 어떤 영향을 미칠지 고려하세요. 
+---
+= StorageGRID 및 FabricPool 에 대한 기타 모범 사례
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FabricPool 과 함께 사용할 StorageGRID 시스템을 구성할 때 다른 StorageGRID 옵션을 변경해야 할 수도 있습니다.  글로벌 설정을 변경하기 전에 해당 변경 사항이 다른 S3 애플리케이션에 어떤 영향을 미칠지 고려하세요.
+
+
+
+== 감사 메시지 및 로그 대상
+
+FabricPool 작업 부하에는 종종 높은 비율의 읽기 작업이 포함되며, 이로 인해 많은 양의 감사 메시지가 생성될 수 있습니다.
+
+* FabricPool 이나 다른 S3 애플리케이션에 대한 클라이언트 읽기 작업 기록이 필요하지 않은 경우 선택적으로 *구성* > *모니터링* > *감사 및 시스템 로그 서버*로 이동합니다. 감사 로그에 기록되는 감사 메시지 수를 줄이려면 *클라이언트 읽기* 설정을 *오류*로 변경하세요. 보다link:../monitor/configure-audit-messages.html["감사 메시지 및 로그 대상 구성"] 자세한 내용은.
+* 대규모 그리드가 있거나 여러 유형의 S3 애플리케이션을 사용하거나 모든 감사 데이터를 보관하려는 경우 외부 시스템 로그 서버를 구성하고 감사 정보를 원격으로 저장하세요.  외부 서버를 사용하면 감사 데이터의 완전성을 떨어뜨리지 않고도 감사 메시지 로깅의 성능 영향을 최소화할 수 있습니다. 보다link:../monitor/considerations-for-external-syslog-server.html["외부 syslog 서버에 대한 고려 사항"] 자세한 내용은.
+
+
+
+
+== 객체 암호화
+
+StorageGRID 구성할 때 선택적으로 다음을 활성화할 수 있습니다.link:../admin/changing-network-options-object-encryption.html["저장된 객체 암호화를 위한 글로벌 옵션"] 다른 StorageGRID 클라이언트에 데이터 암호화가 필요한 경우.  FabricPool 에서 StorageGRID 로 계층화된 데이터는 이미 암호화되어 있으므로 StorageGRID 설정을 활성화할 필요가 없습니다.  클라이언트 측 암호화 키는 ONTAP 이 소유합니다.
+
+
+
+== 객체 압축
+
+StorageGRID 구성할 때 다음을 활성화하지 마십시오.link:../admin/configuring-stored-object-compression.html["저장된 객체를 압축하는 글로벌 옵션"] .  FabricPool 에서 StorageGRID 로 계층화된 데이터는 이미 압축되어 있습니다.  StorageGRID 옵션을 사용해도 객체의 크기는 더 이상 줄어들지 않습니다.
+
+
+
+== 버킷 일관성
+
+FabricPool 버킷의 경우 권장되는 버킷 일관성은 새 버킷의 기본 일관성인 *Read-after-new-write*입니다.  *Available* 또는 *Strong-site*를 사용하도록 FabricPool 버킷을 편집하지 마세요.
+
+
+
+== FabricPool 계층화
+
+StorageGRID 노드가 NetApp ONTAP 시스템에서 할당된 스토리지를 사용하는 경우 볼륨에 FabricPool 계층화 정책이 활성화되어 있지 않은지 확인하세요.  예를 들어, StorageGRID 노드가 VMware 호스트에서 실행되는 경우 StorageGRID 노드의 데이터 저장소를 지원하는 볼륨에 FabricPool 계층화 정책이 활성화되어 있지 않은지 확인합니다.  StorageGRID 노드와 함께 사용되는 볼륨에 대해 FabricPool 계층화를 비활성화하면 문제 해결 및 스토리지 작업이 간소화됩니다.
+
+
+CAUTION: StorageGRID 와 관련된 데이터를 StorageGRID 자체로 다시 계층화하는 데 FabricPool 사용하지 마세요.  StorageGRID 데이터를 StorageGRID 로 다시 계층화하면 문제 해결과 운영상의 복잡성이 증가합니다.

@@ -1,0 +1,54 @@
+---
+permalink: harden/hardening-guidelines-for-storagegrid-networks.html 
+sidebar: sidebar 
+keywords: hardening guidelines, networks, networking, security 
+summary: StorageGRID 시스템은 그리드 노드당 최대 3개의 네트워크 인터페이스를 지원하므로 보안 및 액세스 요구 사항에 맞게 각 그리드 노드의 네트워킹을 구성할 수 있습니다. 
+---
+= StorageGRID 네트워크 강화 가이드라인
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 시스템은 그리드 노드당 최대 3개의 네트워크 인터페이스를 지원하므로 보안 및 액세스 요구 사항에 맞게 각 그리드 노드의 네트워킹을 구성할 수 있습니다.
+
+StorageGRID 네트워크에 대한 자세한 내용은 다음을 참조하세요.link:../network/storagegrid-network-types.html["StorageGRID 네트워크 유형"] .
+
+
+
+== 그리드 네트워크 지침
+
+모든 내부 StorageGRID 트래픽에 대해 그리드 네트워크를 구성해야 합니다.  모든 그리드 노드는 그리드 네트워크에 있으며, 다른 모든 노드와 통신할 수 있어야 합니다.
+
+그리드 네트워크를 구성할 때 다음 지침을 따르세요.
+
+* 개방형 인터넷 등의 신뢰할 수 없는 클라이언트로부터 네트워크가 보호되는지 확인하세요.
+* 가능하다면 그리드 네트워크를 내부 트래픽에만 사용하세요.  관리 네트워크와 클라이언트 네트워크에는 모두 외부 트래픽이 내부 서비스에 접근하지 못하도록 차단하는 추가적인 방화벽 제한이 있습니다.  외부 클라이언트 트래픽에 그리드 네트워크를 사용하는 것은 지원되지만, 이렇게 사용하면 보호 계층이 줄어듭니다.
+* StorageGRID 배포가 여러 데이터 센터에 걸쳐 있는 경우 Grid Network에서 VPN(가상 사설망) 또는 이와 동등한 기능을 사용하여 내부 트래픽에 대한 추가 보호를 제공하세요.
+* 일부 유지 관리 절차에는 기본 관리 노드와 다른 모든 그리드 노드 간에 포트 22를 통한 보안 셸(SSH) 액세스가 필요합니다.  신뢰할 수 있는 클라이언트로만 SSH 액세스를 제한하려면 외부 방화벽을 사용하세요.
+
+
+
+
+== 관리자 네트워크 지침
+
+관리 네트워크는 일반적으로 관리 작업(Grid Manager 또는 SSH를 사용하는 신뢰할 수 있는 직원)과 LDAP, DNS, NTP, KMS(또는 KMIP 서버)와 같은 다른 신뢰할 수 있는 서비스와의 통신에 사용됩니다.  하지만 StorageGRID 내부적으로 이러한 사용을 강제하지 않습니다.
+
+관리자 네트워크를 사용하는 경우 다음 지침을 따르세요.
+
+* 관리 네트워크의 모든 내부 트래픽 포트를 차단합니다. 를 참조하십시오link:../network/internal-grid-node-communications.html["내부 포트 목록"] .
+* 신뢰할 수 없는 클라이언트가 관리 네트워크에 액세스할 수 있는 경우 외부 방화벽을 사용하여 관리 네트워크에서 StorageGRID 에 대한 액세스를 차단하세요.
+
+
+
+
+== 클라이언트 네트워크 지침
+
+클라이언트 네트워크는 일반적으로 테넌트와 CloudMirror 복제 서비스나 다른 플랫폼 서비스와 같은 외부 서비스와의 통신에 사용됩니다.  하지만 StorageGRID 내부적으로 이러한 사용을 강제하지 않습니다.
+
+클라이언트 네트워크를 사용하는 경우 다음 지침을 따르세요.
+
+* 클라이언트 네트워크의 모든 내부 트래픽 포트를 차단합니다. 를 참조하십시오link:../network/internal-grid-node-communications.html["내부 포트 목록"] .
+* 명시적으로 구성된 엔드포인트에서만 인바운드 클라이언트 트래픽을 허용합니다.  에 대한 정보를 확인하세요link:../admin/manage-firewall-controls.html["방화벽 제어 관리"] .
+

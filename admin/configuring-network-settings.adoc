@@ -1,0 +1,26 @@
+---
+permalink: admin/configuring-network-settings.html 
+sidebar: sidebar 
+keywords: network settings, vlan interface, traffic classification 
+summary: Grid Manager에서 다양한 네트워크 설정을 구성하여 StorageGRID 시스템의 작동을 세부적으로 조정할 수 있습니다. 
+---
+= 네트워크 설정 구성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Grid Manager에서 다양한 네트워크 설정을 구성하여 StorageGRID 시스템의 작동을 세부적으로 조정할 수 있습니다.
+
+
+
+== VLAN 인터페이스 구성
+
+당신은 할 수 있습니다link:configure-vlan-interfaces.html["가상 LAN(VLAN) 인터페이스 생성"] 보안, 유연성, 성능을 위해 트래픽을 분리하고 분할합니다.  각 VLAN 인터페이스는 관리 노드와 게이트웨이 노드의 하나 이상의 상위 인터페이스와 연결됩니다.  HA 그룹과 로드 밸런서 엔드포인트에서 VLAN 인터페이스를 사용하여 애플리케이션이나 테넌트별로 클라이언트 또는 관리자 트래픽을 분리할 수 있습니다.
+
+
+
+== 트래픽 분류 정책
+
+사용할 수 있습니다link:managing-traffic-classification-policies.html["트래픽 분류 정책"] 특정 버킷, 테넌트, 클라이언트 서브넷 또는 로드 밸런서 엔드포인트와 관련된 트래픽을 포함하여 다양한 유형의 네트워크 트래픽을 식별하고 처리합니다. 이러한 정책은 교통 제한 및 모니터링에 도움이 될 수 있습니다.

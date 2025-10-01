@@ -1,0 +1,21 @@
+---
+permalink: expand/verifying-storage-node-is-active.html 
+sidebar: sidebar 
+keywords: expand, expansion, add storage nodes, verify node is active 
+summary: 새로운 스토리지 노드를 추가하는 확장 작업이 완료되면 StorageGRID 시스템은 자동으로 새로운 스토리지 노드를 사용하기 시작합니다.  StorageGRID 시스템을 사용하여 새 스토리지 노드가 활성화되었는지 확인해야 합니다. 
+---
+= 스토리지 노드가 활성화되어 있는지 확인하세요
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+새로운 스토리지 노드를 추가하는 확장 작업이 완료되면 StorageGRID 시스템은 자동으로 새로운 스토리지 노드를 사용하기 시작합니다.  StorageGRID 시스템을 사용하여 새 스토리지 노드가 활성화되었는지 확인해야 합니다.
+
+.단계
+. 다음을 사용하여 Grid Manager에 Sign in.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+. *노드* > *_확장 스토리지 노드_* > *스토리지*를 선택합니다.
+. *사용된 저장 공간 - 개체 데이터* 그래프 위에 커서를 놓으면 *사용됨* 값을 볼 수 있습니다. *사용됨*은 개체 데이터에 사용된 총 사용 가능 공간의 양입니다.
+. 그래프에서 커서를 오른쪽으로 이동하면 *중고* 값이 증가하는지 확인하세요.
+

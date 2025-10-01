@@ -1,0 +1,33 @@
+---
+permalink: maintain/checking-systems-condition-before-applying-hotfix.html 
+sidebar: sidebar 
+keywords: storagegrid, hotfix 
+summary: 시스템이 핫픽스를 수용할 준비가 되었는지 확인해야 합니다. 
+---
+= 핫픽스를 적용하기 전에 시스템 상태를 확인하세요
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+시스템이 핫픽스를 수용할 준비가 되었는지 확인해야 합니다.
+
+. 다음을 사용하여 Grid Manager에 Sign in.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+. 가능하다면 시스템이 정상적으로 실행되고 있는지, 모든 그리드 노드가 그리드에 연결되어 있는지 확인하세요.
++
+연결된 노드에는 녹색 확인 표시가 있습니다.image:../media/icon_alert_green_checkmark.png["아이콘 경고 녹색 확인 표시"] 노드 페이지에서.
+
+. 가능하다면 현재 경고를 확인하고 해결하세요.
+. 업그레이드, 복구, 확장 또는 해체 절차와 같은 다른 유지 관리 절차가 진행 중이지 않은지 확인하세요.
++
+핫픽스를 적용하기 전에 활성 유지 관리 절차가 완료될 때까지 기다려야 합니다.
+
++
+다른 유지 관리 절차가 실행 중일 때는 StorageGRID 핫픽스를 적용할 수 없습니다.  예를 들어, 해체, 확장 또는 복구 절차가 실행되는 동안에는 핫픽스를 적용할 수 없습니다.
+
++
+
+NOTE: 노드 또는 사이트link:pausing-and-resuming-decommission-process-for-storage-nodes.html["해체 절차가 일시 중지되었습니다"] , 핫픽스를 안전하게 적용할 수 있습니다.  또한 StorageGRID 업그레이드 절차의 마지막 단계에서 핫픽스를 적용할 수도 있습니다. 지침을 참조하세요link:../upgrade/index.html["StorageGRID 소프트웨어 업그레이드"] .
+
+

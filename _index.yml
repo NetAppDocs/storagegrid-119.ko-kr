@@ -1,0 +1,99 @@
+---
+indexpage:
+  title: StorageGRID 11.9 소프트웨어 설명서
+  summary: NetApp StorageGRID 퍼블릭, 프라이빗, 하이브리드 멀티클라우드 환경에서 광범위한 사용 사례를 지원하는 소프트웨어
+    정의 객체 스토리지 제품군입니다.  StorageGRID Amazon S3 API에 대한 기본 지원을 제공하고 장기간에 걸쳐 구조화되지 않은
+    데이터를 비용 효율적으로 저장, 보안, 보호 및 보존하기 위한 자동화된 수명 주기 관리와 같은 업계 최고의 혁신을 제공합니다.
+  keywords: storagegrid documentation
+  lead: NetApp StorageGRID 퍼블릭, 프라이빗, 하이브리드 멀티클라우드 환경에서 광범위한 사용 사례를 지원하는 소프트웨어 정의
+    객체 스토리지 제품군입니다.  StorageGRID Amazon S3 API에 대한 기본 지원을 제공하고 장기간에 걸쳐 구조화되지 않은 데이터를
+    비용 효율적으로 저장, 보안, 보호 및 보존하기 위한 자동화된 수명 주기 관리와 같은 업계 최고의 혁신을 제공합니다.
+  tiles:
+  - title: 시작하기
+    links:
+    - title: 릴리스 노트
+      url: "/release-notes/index.html"
+    - title: 새로운 소식
+      url: "/upgrade/whats-new.html"
+    - title: StorageGRID 에 대해 알아보세요
+      url: "/primer/index.html"
+    - title: 네트워킹 가이드라인
+      url: "/network/index.html"
+    - title: StorageGRID 빠른 시작
+      url: "/primer/quick-start.html"
+  - title: 설치, 업그레이드 및 핫픽스
+    links:
+    - title: StorageGRID 어플라이언스 설치
+      url: https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html
+    - title: Red Hat Enterprise Linux에 StorageGRID 설치
+      url: "/rhel/index.html"
+    - title: Ubuntu 또는 Debian에 StorageGRID 설치
+      url: "/ubuntu/index.html"
+    - title: VMware에 StorageGRID 설치
+      url: "/vmware/index.html"
+    - title: 새로운 StorageGRID 버전으로 업그레이드
+      url: "/upgrade/index.html"
+    - title: 핫픽스 적용
+      url: "/maintain/storagegrid-hotfix-procedure.html"
+  - title: 그리드 구성
+    links:
+    - title: StorageGRID 관리
+      url: "/admin/index.html"
+    - title: ILM을 사용하여 객체 관리
+      url: "/ilm/index.html"
+    - title: 시스템 강화
+      url: "/harden/index.html"
+    - title: FabricPool 에 대한 StorageGRID 구성
+      url: "/fabricpool/index.html"
+  - title: 객체 관리
+    links:
+    - title: 세입자 계정 사용
+      url: "/tenant/index.html"
+    - title: S3 REST API 사용
+      url: "/s3/index.html"
+    - title: Swift REST API 사용(수명 종료)
+      url: "/swift/index.html"
+  - title: 모니터링 및 문제 해결
+    links:
+    - title: 그리드를 모니터링하세요
+      url: "/monitor/index.html"
+    - title: 그리드 문제 해결
+      url: "/troubleshoot/index.html"
+    - title: 감사 로그 검토
+      url: "/audit/index.html"
+  - title: 그리드를 확장하고 유지하세요
+    links:
+    - title: 볼륨, 노드 및 사이트 추가
+      url: "/expand/index.html"
+    - title: 그리드를 유지하세요
+      url: "/maintain/index.html"
+    - title: 노드 복구 또는 교체
+      url: "/maintain/warnings-and-considerations-for-grid-node-recovery.html"
+    - title: StorageGRID 어플라이언스 유지 관리
+      url: https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/index.html
+  - title: 추가 지침
+    links:
+    - title: StorageGRID 활성화
+      url: https://docs.netapp.com/us-en/storagegrid-enable/index.html
+    - title: StorageGRID 비디오 라이브러리
+      url: https://www.youtube.com/playlist?list=PLdXI3bZJEw7nh2wGRA65iulXhtXwLiqrY
+    - title: NetApp 학습 서비스
+      url: https://www.netapp.com/support-and-training/netapp-university/
+    - title: BlueXP 사용한 StorageGRID 관리
+      url: https://docs.netapp.com/us-en/bluexp-storagegrid/index.html
+  - title: 더 많은 리소스
+    links:
+    - title: StorageGRID 지원 페이지
+      url: https://mysupport.netapp.com/site/products/all/details/5d9f1107e01d9c0001ee50f6/guideme-tab
+    - title: NetApp 상호 운용성 매트릭스 도구(IMT)
+      url: https://imt.netapp.com/matrix/#welcome
+    - title: StorageGRID 지식 기반
+      url: https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID
+    - title: NetApp 블로그
+      url: https://netapp.com/blog/
+    - title: NetApp 커뮤니티
+      url: https://community.netapp.com/
+  - title: 레거시 버전
+    links:
+    - title: StorageGRID 11.4 설명서
+      url: https://mysupport.netapp.com/documentation/docweb/index.html?productID=63374

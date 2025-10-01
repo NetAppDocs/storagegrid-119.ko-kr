@@ -1,0 +1,38 @@
+---
+permalink: monitor/viewing-storage-tab.html 
+sidebar: sidebar 
+keywords: storage tab 
+summary: 저장소 탭은 저장소 가용성과 기타 저장소 측정 항목을 요약합니다. 
+---
+= 저장소 탭 보기
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+저장소 탭은 저장소 가용성과 기타 저장소 측정 항목을 요약합니다.
+
+저장소 탭은 모든 노드, 각 사이트 및 전체 그리드에 대해 표시됩니다.
+
+
+
+== 사용된 저장 공간 그래프
+
+스토리지 노드, 각 사이트 및 전체 그리드의 경우 스토리지 탭에는 시간 경과에 따라 개체 데이터와 개체 메타데이터가 얼마나 많은 스토리지를 사용했는지 보여주는 그래프가 포함되어 있습니다.
+
+
+NOTE: 업그레이드 중이거나 연결이 끊긴 상태 등 노드가 그리드에 연결되지 않은 경우 특정 메트릭을 사용할 수 없거나 사이트 및 그리드 합계에서 제외될 수 있습니다.  노드가 그리드에 다시 연결된 후 값이 안정화될 때까지 몇 분간 기다리세요.
+
+image::../media/nodes_storage_node_storage_tab.png[노드 > 스토리지 노드 > 스토리지 탭]
+
+
+
+== 디스크 장치, 볼륨 및 개체 저장소 테이블
+
+모든 노드의 저장소 탭에는 노드의 디스크 장치와 볼륨에 대한 세부 정보가 포함되어 있습니다.  스토리지 노드의 경우, 개체 저장소 테이블은 각 스토리지 볼륨에 대한 정보를 제공합니다.
+
+image::../media/nodes_page_storage_tables.png[노드 페이지 스토리지 테이블]
+
+.관련 정보
+link:monitoring-storage-capacity.html["저장 용량 모니터링"]

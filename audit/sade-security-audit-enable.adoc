@@ -1,0 +1,47 @@
+---
+permalink: audit/sade-security-audit-enable.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SADE, Security Audit Enable 
+summary: '이 메시지는 원래 서비스 \(노드 ID\)가 감사 메시지 로깅을 복원했음을 나타냅니다. 감사 메시지가 다시 수집되어 전달됩니다.' 
+---
+= SADE: 보안 감사 활성화
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 메시지는 원래 서비스(노드 ID)가 감사 메시지 로깅을 복원했음을 나타냅니다. 감사 메시지가 다시 수집되어 전달됩니다.
+
+[cols="1a,1a,4a"]
+|===
+| 암호 | 필드 | 설명 
+
+
+ a| 
+AETM
+ a| 
+방법 활성화
+ a| 
+감사를 활성화하는 데 사용되는 방법입니다.
+
+
+
+ a| 
+아은
+ a| 
+사용자 이름
+ a| 
+감사 로깅을 활성화하기 위한 명령을 실행한 사용자 이름입니다.
+
+
+
+ a| 
+RSLT
+ a| 
+결과
+ a| 
+이 필드의 값은 NONE입니다.  RSLT는 필수 메시지 필드이지만 이 메시지와는 관련이 없습니다.  이 메시지가 필터링되지 않도록 SUCS 대신 NONE이 사용됩니다.
+
+|===
+이 메시지는 이전에 로깅이 비활성화되었지만(SADD) 지금은 복원되었음을 의미합니다.  이 기능은 일반적으로 시스템 성능을 개선하기 위해 대량 수집 중에만 사용됩니다.  대량 활동이 끝나면 감사가 복원되고 감사를 비활성화하는 기능은 영구적으로 차단됩니다.

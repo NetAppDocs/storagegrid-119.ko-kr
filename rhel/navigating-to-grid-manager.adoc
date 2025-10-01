@@ -1,0 +1,51 @@
+---
+permalink: rhel/navigating-to-grid-manager.html 
+sidebar: sidebar 
+keywords: how to navigate to grid manager 
+summary: Grid Manager를 사용하면 StorageGRID 시스템을 구성하는 데 필요한 모든 정보를 정의할 수 있습니다. 
+---
+= 그리드 관리자로 이동
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Grid Manager를 사용하면 StorageGRID 시스템을 구성하는 데 필요한 모든 정보를 정의할 수 있습니다.
+
+.시작하기 전에
+기본 관리 노드가 배포되어야 하며 초기 시작 시퀀스가 완료되어야 합니다.
+
+.단계
+. 웹 브라우저를 열고 다음으로 이동하세요.
++
+`https://_primary_admin_node_ip_`
+
++
+또는 포트 8443에서 Grid Manager에 액세스할 수 있습니다.
+
++
+`https://_primary_admin_node_ip_:8443`
+
++
+네트워크 구성에 맞게 그리드 네트워크 또는 관리 네트워크의 기본 관리 노드 IP에 대한 IP 주소를 사용할 수 있습니다.
+
+. 필요에 따라 임시 설치 프로그램 비밀번호를 관리하세요.
++
+** 이러한 방법 중 하나를 사용하여 이미 비밀번호가 설정된 경우 비밀번호를 입력하여 계속 진행하세요.
++
+*** 사용자는 이전에 설치 프로그램에 액세스하는 동안 비밀번호를 설정했습니다.
+*** 비밀번호는 노드 구성 파일에서 자동으로 가져왔습니다. `/etc/storagegrid/nodes/_<node_name>_.conf`
+
+
+** 비밀번호가 설정되지 않은 경우, 선택적으로 비밀번호를 설정하여 StorageGRID 설치 프로그램을 보호하세요.
+
+
+. * StorageGRID 시스템 설치*를 선택합니다.
++
+StorageGRID 시스템을 구성하는 데 사용되는 페이지가 나타납니다.
+
++
+image::../media/gmi_installer_first_screen.gif[StorageGRID 설치 프로그램 첫 화면]
+
+

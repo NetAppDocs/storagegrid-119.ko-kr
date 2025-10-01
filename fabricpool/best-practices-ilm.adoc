@@ -1,0 +1,47 @@
+---
+permalink: fabricpool/best-practices-ilm.html 
+sidebar: sidebar 
+keywords: FabricPool, best practices, ILM, information lifecycle management, ILM rule, ILM policy, erasure-coding, replication 
+summary: 'FabricPool 사용하여 데이터를 StorageGRID 에 계층화하는 경우 FabricPool 데이터와 함께 StorageGRID 정보 수명 주기 관리(ILM)를 사용하기 위한 요구 사항을 이해해야 합니다.' 
+---
+= FabricPool 데이터와 함께 ILM을 사용하기 위한 모범 사례
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FabricPool 사용하여 데이터를 StorageGRID 에 계층화하는 경우 FabricPool 데이터와 함께 StorageGRID 정보 수명 주기 관리(ILM)를 사용하기 위한 요구 사항을 이해해야 합니다.
+
+
+CAUTION: FabricPool StorageGRID ILM 규칙이나 정책에 대한 지식이 없습니다.  StorageGRID ILM 정책이 잘못 구성된 경우 데이터 손실이 발생할 수 있습니다.  자세한 내용은 다음을 참조하세요.link:../ilm/what-ilm-rule-is.html["ILM 규칙을 사용하여 객체를 관리합니다."] 그리고link:../ilm/creating-ilm-policy.html["ILM 정책 생성"] .
+
+
+
+== FabricPool 과 함께 ILM을 사용하기 위한 지침
+
+FabricPool 설정 마법사를 사용하면 마법사가 사용자가 만든 각 S3 버킷에 대해 자동으로 새 ILM 규칙을 만들고 해당 규칙을 비활성 정책에 추가합니다.  정책을 활성화하라는 메시지가 표시됩니다.  자동으로 생성된 규칙은 권장되는 모범 사례를 따릅니다. 즉, 단일 사이트에서 2+1 삭제 코딩을 사용합니다.
+
+FabricPool 설정 마법사를 사용하는 대신 StorageGRID 수동으로 구성하는 경우 다음 지침을 검토하여 ILM 규칙과 ILM 정책이 FabricPool 데이터와 비즈니스 요구 사항에 적합한지 확인하세요.  이러한 지침을 충족하려면 새로운 규칙을 만들고 활성 ILM 정책을 업데이트해야 할 수도 있습니다.
+
+* 복제 및 삭제 코딩 규칙을 원하는 대로 조합하여 사용하여 클라우드 계층 데이터를 보호할 수 있습니다.
++
+비용 효율적인 데이터 보호를 위해 사이트 내에서 2+1 삭제 코딩을 사용하는 것이 가장 좋은 방법입니다.  삭제 코딩은 복제보다 CPU를 더 많이 사용하지만 저장 용량은 훨씬 적습니다.  4+1 및 6+1 방식은 2+1 방식보다 용량을 적게 사용합니다.  그러나 그리드 확장 중에 스토리지 노드를 추가해야 하는 경우 4+1 및 6+1 방식은 유연성이 떨어집니다. 자세한 내용은 다음을 참조하십시오. link:../expand/adding-storage-capacity-for-erasure-coded-objects.html["삭제된 객체에 대한 저장 용량 추가"] .
+
+* FabricPool 데이터에 적용되는 각 규칙은 삭제 코딩을 사용하거나 최소 두 개의 복제된 사본을 만들어야 합니다.
++
+
+CAUTION: 특정 기간 동안 복제된 사본을 하나만 생성하는 ILM 규칙은 데이터가 영구적으로 손실될 위험에 처하게 합니다.  개체의 복제된 사본이 하나만 있는 경우 스토리지 노드에 장애가 발생하거나 심각한 오류가 발생하면 해당 개체는 손실됩니다.  업그레이드 등의 유지 관리 절차가 진행되는 동안에는 해당 객체에 대한 액세스 권한을 일시적으로 잃게 됩니다.
+
+* 필요한 경우link:remove-fabricpool-data.html["StorageGRID 에서 FabricPool 데이터 제거"] ONTAP 사용하여 FabricPool 볼륨에 대한 모든 데이터를 검색하고 성능 계층으로 승격합니다.
++
+
+CAUTION: 데이터 손실을 방지하려면 FabricPool 클라우드 계층 데이터를 만료하거나 삭제하는 ILM 규칙을 사용하지 마세요.  FabricPool 객체가 StorageGRID ILM에 의해 삭제되지 않도록 각 ILM 규칙의 보존 기간을 *영구*로 설정합니다.
+
+* FabricPool 클라우드 계층 데이터를 버킷에서 다른 위치로 이동하는 규칙을 만들지 마세요.  Cloud Storage Pool을 사용하여 FabricPool 데이터를 다른 개체 저장소로 이동할 수 없습니다.
++
+
+NOTE: Cloud Storage Pool 대상에서 객체를 검색하는 데 지연 시간이 추가되므로 FabricPool 과 함께 Cloud Storage Pool을 사용하는 것은 지원되지 않습니다.
+
+* ONTAP 9.8부터 계층화된 데이터를 분류하고 정렬하여 관리를 용이하게 하는 데 도움이 되는 개체 태그를 선택적으로 만들 수 있습니다.  예를 들어, StorageGRID 에 연결된 FabricPool 볼륨에만 태그를 설정할 수 있습니다.  그런 다음 StorageGRID 에서 ILM 규칙을 만들 때 개체 태그 고급 필터를 사용하여 이 데이터를 선택하고 배치할 수 있습니다.
+

@@ -1,0 +1,114 @@
+---
+section: s3
+title: S3 REST API 사용
+entries:
+- title: 지원되는 버전 및 업데이트
+  pdf-filename: StorageGRID 와 함께 S3 사용
+  url: "/s3/index.html"
+- title: 빠른 참조
+  url: "/s3/quick-reference-support-for-aws-apis.html"
+- title: S3 REST API 연결 테스트
+  url: "/s3/configuring-tenant-accounts-and-connections.html"
+- title: StorageGRID S3 REST API를 구현하는 방법
+  entries:
+  - title: 충돌하는 클라이언트 요청
+    url: "/s3/conflicting-client-requests.html"
+  - title: 일관성 값
+    url: "/s3/consistency-controls.html"
+  - title: 객체 버전 관리
+    url: "/s3/object-versioning.html"
+  - title: S3 REST API를 사용하여 S3 객체 잠금을 구성합니다.
+    url: "/s3/use-s3-api-for-s3-object-lock.html"
+  - title: S3 수명 주기 구성 만들기
+    url: "/s3/create-s3-lifecycle-configuration.html"
+  - title: S3 REST API 구현을 위한 권장 사항
+    url: "/s3/recommendations-for-implementing-s3-rest-api.html"
+- title: Amazon S3 REST API 지원
+  entries:
+  - title: 구현 세부 사항
+    url: "/s3/s3-rest-api-supported-operations-and-limitations.html"
+  - title: 요청 인증
+    url: "/s3/authenticating-requests.html"
+  - title: 서비스 운영
+    url: "/s3/operations-on-the-service.html"
+  - title: 버킷 작업
+    url: "/s3/operations-on-buckets.html"
+  - title: 객체에 대한 작업
+    entries:
+    - title: S3 객체 작업
+      url: "/s3/operations-on-objects.html"
+    - title: S3 Select 사용
+      url: "/s3/use-s3-select.html"
+    - title: 서버 측 암호화를 사용하세요
+      url: "/s3/using-server-side-encryption.html"
+    - title: 복사객체
+      url: "/s3/put-object-copy.html"
+    - title: 객체 가져오기
+      url: "/s3/get-object.html"
+    - title: 헤드오브젝트
+      url: "/s3/head-object.html"
+    - title: PutObject
+      url: "/s3/put-object.html"
+    - title: 복원 개체
+      url: "/s3/post-object-restore.html"
+    - title: SelectObjectContent
+      url: "/s3/select-object-content.html"
+  - title: 멀티파트 업로드 작업
+    entries:
+    - title: 멀티파트 업로드
+      pdf-filename: 멀티파트 업로드 작업
+      url: "/s3/operations-for-multipart-uploads.html"
+    - title: CompleteMultipartUpload
+      url: "/s3/complete-multipart-upload.html"
+    - title: CreateMultipartUpload
+      url: "/s3/initiate-multipart-upload.html"
+    - title: ListMultipartUploads
+      url: "/s3/list-multipart-uploads.html"
+    - title: 업로드파트
+      url: "/s3/upload-part.html"
+    - title: 업로드파트복사
+      url: "/s3/upload-part-copy.html"
+  - title: 오류 응답
+    url: "/s3/error-responses.html"
+- title: StorageGRID 사용자 정의 작업
+  entries:
+  - title: 사용자 정의 작업 목록
+    pdf-filename: StorageGRID 사용자 정의 작업
+    url: "/s3/custom-operations-on-buckets.html"
+  - title: 버킷 일관성 가져오기
+    url: "/s3/get-bucket-consistency-request.html"
+  - title: PUT 버킷 일관성
+    url: "/s3/put-bucket-consistency-request.html"
+  - title: GET 버킷 마지막 액세스 시간
+    url: "/s3/get-bucket-last-access-time-request.html"
+  - title: PUT 버킷 마지막 액세스 시간
+    url: "/s3/put-bucket-last-access-time-request.html"
+  - title: 버킷 메타데이터 알림 구성 삭제
+    url: "/s3/delete-bucket-metadata-notification-configuration-request.html"
+  - title: GET 버킷 메타데이터 알림 구성
+    url: "/s3/get-bucket-metadata-notification-configuration-request.html"
+  - title: PUT 버킷 메타데이터 알림 구성
+    url: "/s3/put-bucket-metadata-notification-configuration-request.html"
+  - title: GET 스토리지 사용량
+    url: "/s3/get-storage-usage-request.html"
+  - title: 레거시 규정 준수를 위한 더 이상 사용되지 않는 버킷 요청
+    entries:
+    - title: 더 이상 사용되지 않는 기능 및 요청
+      pdf-filename: 레거시 규정 준수를 위한 더 이상 사용되지 않는 버킷 요청
+      url: "/s3/deprecated-bucket-requests-for-legacy-compliance.html"
+    - title: 더 이상 사용되지 않음 - 규정 준수를 위한 CreateBucket 요청 수정
+      url: "/s3/deprecated-put-bucket-request-modifications-for-compliance.html"
+    - title: 더 이상 사용되지 않음 - GET 버킷 규정 준수 요청
+      url: "/s3/deprecated-get-bucket-compliance-request.html"
+    - title: 더 이상 사용되지 않음 - PUT 버킷 규정 준수 요청
+      url: "/s3/deprecated-put-bucket-compliance-request.html"
+- title: 버킷 및 그룹 액세스 정책
+  entries:
+  - title: 버킷 및 그룹 액세스 정책 사용
+    url: "/s3/bucket-and-group-access-policies.html"
+  - title: 버킷 정책 예시
+    url: "/s3/example-bucket-policies.html"
+  - title: 그룹 정책 예시
+    url: "/s3/example-group-policies.html"
+- title: 감사 로그에서 추적된 S3 작업
+  url: "/s3/s3-operations-tracked-in-audit-logs.html"

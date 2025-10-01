@@ -1,0 +1,43 @@
+---
+permalink: ubuntu/understanding-apparmor-profile-installation.html 
+sidebar: sidebar 
+keywords: how to install AppArmor profile 
+summary: 자체 배포된 Ubuntu 환경에서 AppArmor 필수 액세스 제어 시스템을 사용하는 경우, 기본 시스템에 설치한 패키지와 연결된 AppArmor 프로필이 StorageGRID 로 설치된 해당 패키지에 의해 차단될 수 있습니다. 
+---
+= AppArmor 프로필 설치 이해
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+자체 배포된 Ubuntu 환경에서 AppArmor 필수 액세스 제어 시스템을 사용하는 경우, 기본 시스템에 설치한 패키지와 연결된 AppArmor 프로필이 StorageGRID 로 설치된 해당 패키지에 의해 차단될 수 있습니다.
+
+기본적으로 AppArmor 프로필은 기본 운영 체제에 설치하는 패키지에 대해 설치됩니다.  StorageGRID 시스템 컨테이너에서 이러한 패키지를 실행하면 AppArmor 프로필이 차단됩니다.  DHCP, MySQL, NTP 및 tcdump 기본 패키지는 AppArmor와 충돌하며, 다른 기본 패키지도 충돌할 수 있습니다.
+
+AppArmor 프로필을 처리하는 데는 두 가지 선택이 있습니다.
+
+* StorageGRID 시스템 컨테이너의 패키지와 겹치는 기본 시스템에 설치된 패키지에 대한 개별 프로필을 비활성화합니다.  개별 프로필을 비활성화하면 AppArmor가 활성화되었음을 나타내는 항목이 StorageGRID 로그 파일에 나타납니다.
++
+다음 명령을 사용하세요:
+
++
+[listing]
+----
+sudo ln -s /etc/apparmor.d/<profile.name> /etc/apparmor.d/disable/
+sudo apparmor_parser -R /etc/apparmor.d/<profile.name>
+----
++
+*예:*
+
++
+[listing]
+----
+sudo ln -s /etc/apparmor.d/bin.ping /etc/apparmor.d/disable/
+sudo apparmor_parser -R /etc/apparmor.d/bin.ping
+----
+* AppArmor를 완전히 비활성화합니다.  Ubuntu 9.10 이상의 경우 Ubuntu 온라인 커뮤니티의 지침을 따르세요. https://help.ubuntu.com/community/AppArmor#Disable_AppArmor_framework["AppArmor 비활성화"^] .  최신 Ubuntu 버전에서는 AppArmor를 완전히 비활성화하는 것이 불가능할 수 있습니다.
++
+AppArmor를 비활성화한 후에는 AppArmor가 활성화되었음을 나타내는 항목이 StorageGRID 로그 파일에 나타나지 않습니다.
+
+

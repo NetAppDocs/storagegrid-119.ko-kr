@@ -1,0 +1,135 @@
+---
+permalink: admin/manage-tls-ssh-policy.html 
+sidebar: sidebar 
+keywords: TLS and SSH policy, secure connection, FIPS, Common Criteria 
+summary: TLS 및 SSH 정책은 클라이언트 애플리케이션과의 보안 TLS 연결과 내부 StorageGRID 서비스에 대한 보안 SSH 연결을 설정하는 데 사용되는 프로토콜과 암호를 결정합니다. 
+---
+= TLS 및 SSH 정책 관리
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+TLS 및 SSH 정책은 클라이언트 애플리케이션과의 보안 TLS 연결과 내부 StorageGRID 서비스에 대한 보안 SSH 연결을 설정하는 데 사용되는 프로토콜과 암호를 결정합니다.
+
+보안 정책은 TLS와 SSH가 전송 중인 데이터를 암호화하는 방식을 제어합니다. 일반적으로 시스템이 Common Criteria를 준수해야 하거나 다른 암호를 사용해야 하는 경우가 아니면 최신 호환성(기본값) 정책을 사용합니다.
+
+
+NOTE: 일부 StorageGRID 서비스는 이러한 정책의 암호를 사용하도록 업데이트되지 않았습니다.
+
+.시작하기 전에
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:admin-group-permissions.html["루트 액세스 권한"] .
+
+
+
+
+== 보안 정책을 선택하세요
+
+.단계
+. *구성* > *보안* > *보안 설정*을 선택합니다.
++
+*TLS 및 SSH 정책* 탭에는 사용 가능한 정책이 표시됩니다.  현재 활성화된 정책은 정책 타일에 녹색 확인 표시로 표시됩니다.
+
++
+image::../media/securitysettings_tls_ssh_policies_current.png[TLS 및 SSH 정책]
+
+. 타일을 검토하여 사용 가능한 정책에 대해 알아보세요.
++
+[cols="1a,2a"]
+|===
+| 정책 | 설명 
+
+
+ a| 
+최신 호환성(기본값)
+ a| 
+강력한 암호화가 필요하고 특별한 요구 사항이 없는 경우 기본 정책을 사용하세요. 이 정책은 대부분의 TLS 및 SSH 클라이언트와 호환됩니다.
+
+
+
+ a| 
+레거시 호환성
+ a| 
+이전 클라이언트에 대한 추가 호환성 옵션이 필요한 경우 이 정책을 사용하세요. 이 정책의 추가 옵션으로 인해 최신 호환성 정책보다 보안성이 떨어질 수 있습니다.
+
+
+
+ a| 
+공통 기준
+ a| 
+Common Criteria 인증이 필요한 경우 이 정책을 사용하세요.
+
+
+
+ a| 
+FIPS 엄격함
+ a| 
+Common Criteria 인증이 필요하고 로드 밸런서 엔드포인트, 테넌트 관리자 및 Grid Manager에 대한 외부 클라이언트 연결에 NetApp Cryptographic Security Module 3.0.8을 사용해야 하는 경우 이 정책을 사용하세요. 이 정책을 사용하면 성능이 저하될 수 있습니다.
+
+*참고*: 이 정책을 선택한 후에는 모든 노드가link:../maintain/rolling-reboot-procedure.html["롤링 방식으로 재부팅됨"] NetApp 암호화 보안 모듈을 활성화합니다. 재부팅을 시작하고 모니터링하려면 *유지 관리* > *롤링 재부팅*을 사용하세요.
+
+
+
+ a| 
+관습
+ a| 
+사용자 정의 암호를 적용해야 하는 경우 사용자 정의 정책을 만듭니다.
+
+|===
+. 각 정책의 암호, 프로토콜, 알고리즘에 대한 자세한 내용을 보려면 *자세히 보기*를 선택하세요.
+. 현재 정책을 변경하려면 *정책 사용*을 선택하세요.
++
+정책 타일의 *현재 정책* 옆에 녹색 확인 표시가 나타납니다.
+
+
+
+
+
+== 사용자 정의 보안 정책 만들기
+
+사용자 정의 암호를 적용해야 하는 경우 사용자 정의 정책을 만들 수 있습니다.
+
+.단계
+. 만들려는 사용자 지정 정책과 가장 유사한 정책 타일에서 *세부 정보 보기*를 선택합니다.
+. *클립보드에 복사*를 선택한 다음 *취소*를 선택합니다.
++
+image::../media/securitysettings-custom-security-policy-copy.png[기존 정책을 복사하여 사용자 지정 정책을 만듭니다.]
+
+. *사용자 지정 정책* 타일에서 *구성 및 사용*을 선택합니다.
+. 복사한 JSON을 붙여넣고 필요한 변경을 합니다.
+. *정책 사용*을 선택하세요.
++
+사용자 지정 정책 타일의 *현재 정책* 옆에 녹색 확인 표시가 나타납니다.
+
+. 선택적으로 *구성 편집*을 선택하여 새 사용자 지정 정책을 추가로 변경할 수 있습니다.
+
+
+
+
+== 일시적으로 기본 보안 정책으로 되돌리기
+
+사용자 지정 보안 정책을 구성한 경우 구성된 TLS 정책이 Grid Manager와 호환되지 않으면 Grid Manager에 로그인하지 못할 수 있습니다.link:global-certificate-types.html["구성된 서버 인증서"] .
+
+일시적으로 기본 보안 정책으로 돌아갈 수 있습니다.
+
+.단계
+. 관리자 노드에 로그인하세요:
++
+.. 다음 명령을 입력하세요: `ssh admin@_Admin_Node_IP_`
+.. 나열된 비밀번호를 입력하세요 `Passwords.txt` 파일.
+.. 다음 명령을 입력하여 루트로 전환하세요. `su -`
+.. 나열된 비밀번호를 입력하세요 `Passwords.txt` 파일.
++
+루트로 로그인하면 프롬프트가 다음과 같이 변경됩니다. `$` 에게 `#` .
+
+
+
+. 다음 명령을 실행하세요.
++
+`restore-default-cipher-configurations`
+
+. 웹 브라우저에서 동일한 관리 노드의 Grid Manager에 액세스합니다.
+. 다음 단계를 따르세요<<select-a-security-policy,보안 정책을 선택하세요>> 정책을 다시 구성하세요.
+

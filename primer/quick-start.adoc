@@ -1,0 +1,125 @@
+---
+permalink: primer/quick-start.html 
+sidebar: sidebar 
+keywords: storagegrid quick start, tasks 
+summary: StorageGRID 시스템을 구성하고 사용하려면 다음의 고급 단계를 따르세요. 
+---
+= StorageGRID 빠른 시작
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 시스템을 구성하고 사용하려면 다음의 고급 단계를 따르세요.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["하나"]학습, 계획 및 데이터 수집
+[role="quick-margin-para"]
+NetApp 계정 담당자와 협력하여 옵션을 이해하고 새로운 StorageGRID 시스템을 계획하세요.  다음과 같은 유형의 질문을 고려해 보세요.
+
+[role="quick-margin-list"]
+* 초기와 시간이 지남에 따라 얼마나 많은 객체 데이터를 저장할 것으로 예상하십니까?
+* 몇 개의 사이트가 필요합니까?
+* 각 사이트에는 몇 개의 어떤 유형의 노드가 필요합니까?
+* 어떤 StorageGRID 네트워크를 사용하시겠습니까?
+* 누가 귀하의 그리드를 사용하여 물건을 저장할까요?  어떤 애플리케이션을 사용하게 되나요?
+* 특별한 보안이나 보관 요구 사항이 있나요?
+* 법적 또는 규제적 요구 사항을 준수해야 합니까?
+
+
+[role="quick-margin-para"]
+선택적으로 NetApp Professional Services 컨설턴트와 협력하여 NetApp ConfigBuilder 도구에 액세스하여 새 시스템을 설치하고 배포할 때 사용할 구성 통합 문서를 작성하세요.  이 도구를 사용하면 모든 StorageGRID 어플라이언스의 구성을 자동화하는 데에도 도움이 됩니다. 보다 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/automating-appliance-installation-and-configuration.html["기기 설치 및 구성 자동화"^] .
+
+[role="quick-margin-para"]
+검토link:index.html["StorageGRID 에 대해 알아보세요"] 그리고link:../network/index.html["네트워킹 가이드라인"] .
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["둘"]노드 설치
+[role="quick-margin-para"]
+StorageGRID 시스템은 개별 하드웨어 기반 노드와 소프트웨어 기반 노드로 구성됩니다.  먼저 각 어플라이언스 노드에 대한 하드웨어를 설치하고 각 Linux 또는 VMware 호스트를 구성합니다.
+
+[role="quick-margin-para"]
+설치를 완료하려면 각 어플라이언스나 소프트웨어 호스트에 StorageGRID 소프트웨어를 설치하고 노드를 그리드에 연결합니다.  이 단계에서는 사이트 및 노드 이름, 서브넷 세부 정보, NTP 및 DNS 서버의 IP 주소를 제공합니다.
+
+[role="quick-margin-para"]
+방법을 알아보세요:
+
+[role="quick-margin-list"]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["가전제품 하드웨어 설치"^]
+* link:../rhel/index.html["Red Hat Enterprise Linux에 StorageGRID 설치"]
+* link:../ubuntu/index.html["Ubuntu 또는 Debian에 StorageGRID 설치"]
+* link:../vmware/index.html["VMware에 StorageGRID 설치"]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["삼"]Sign in 시스템 상태를 확인하세요
+[role="quick-margin-para"]
+기본 관리 노드를 설치하면 바로 Grid Manager에 로그인할 수 있습니다. 여기에서 새 시스템의 전반적인 상태를 검토하고, AutoSupport 와 알림 이메일을 활성화하고, S3 엔드포인트 도메인 이름을 설정할 수 있습니다.
+
+[role="quick-margin-para"]
+방법을 알아보세요:
+
+[role="quick-margin-list"]
+* link:../admin/signing-in-to-grid-manager.html["그리드 관리자에 Sign in"]
+* link:../monitor/monitoring-system-health.html["시스템 상태 모니터링"]
+* link:../admin/configure-autosupport-grid-manager.html["AutoSupport 구성"]
+* link:../monitor/email-alert-notifications.html["알림에 대한 이메일 알림 설정"]
+* link:../admin/configuring-s3-api-endpoint-domain-names.html["S3 엔드포인트 도메인 이름 구성"]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["네"]구성 및 관리
+[role="quick-margin-para"]
+새로운 StorageGRID 시스템에 대해 수행해야 하는 구성 작업은 그리드를 사용하는 방법에 따라 달라집니다.  최소한 시스템 액세스를 설정하고, FabricPool 및 S3 마법사를 사용하고, 다양한 저장소 및 보안 설정을 관리합니다.
+
+[role="quick-margin-para"]
+방법을 알아보세요:
+
+[role="quick-margin-list"]
+* link:../admin/controlling-storagegrid-access.html["StorageGRID 액세스 제어"]
+* link:../admin/use-s3-setup-wizard.html["S3 설정 마법사 사용"]
+* link:../fabricpool/use-fabricpool-setup-wizard.html["FabricPool 설정 마법사 사용"]
+* link:../admin/manage-security.html["보안 관리"]
+* link:../harden/index.html["시스템 강화"]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["다섯"]ILM 설정
+[role="quick-margin-para"]
+StorageGRID 시스템에서 모든 개체의 배치와 기간을 제어하려면 하나 이상의 ILM 규칙으로 구성된 정보 수명 주기 관리(ILM) 정책을 구성해야 합니다.  ILM 규칙은 StorageGRID 개체 데이터의 사본을 만들고 배포하는 방법과 시간이 지남에 따라 해당 사본을 관리하는 방법을 지시합니다.
+
+[role="quick-margin-para"]
+방법을 알아보세요:link:../ilm/index.html["ILM을 사용하여 객체 관리"]
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["육"]StorageGRID 사용
+[role="quick-margin-para"]
+초기 구성이 완료되면 StorageGRID 테넌트 계정은 S3 클라이언트 애플리케이션을 사용하여 객체를 수집, 검색 및 삭제할 수 있습니다.
+
+[role="quick-margin-para"]
+방법을 알아보세요:
+
+[role="quick-margin-list"]
+* link:../tenant/index.html["세입자 계정 사용"]
+* link:../s3/index.html["S3 REST API를 사용하세요"]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["일곱"]모니터링 및 문제 해결
+[role="quick-margin-para"]
+시스템이 정상적으로 작동하는 동안에는 정기적으로 시스템 활동을 모니터링하고 문제를 해결하고 경고가 발생하면 해결해야 합니다.  외부 syslog 서버를 구성하고, SNMP 모니터링을 사용하거나 추가 데이터를 수집할 수도 있습니다.
+
+[role="quick-margin-para"]
+방법을 알아보세요:
+
+[role="quick-margin-list"]
+* link:../monitor/index.html["StorageGRID 모니터링"]
+* link:../troubleshoot/index.html["StorageGRID 문제 해결"]
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-8.png["여덟"]확장, 유지 및 복구
+[role="quick-margin-para"]
+노드나 사이트를 추가하여 시스템의 용량이나 기능을 확장할 수 있습니다.  또한, 장애로부터 복구하거나 StorageGRID 시스템을 최신 상태로 유지하고 효율적으로 작동시키기 위해 다양한 유지 관리 절차를 수행할 수 있습니다.
+
+[role="quick-margin-para"]
+방법을 알아보세요:
+
+[role="quick-margin-list"]
+* link:../landing-expand/index.html["그리드 확장"]
+* link:../landing-maintain/index.html["그리드를 유지하세요"]
+* link:../maintain/warnings-and-considerations-for-grid-node-recovery.html["노드 복구"]
+

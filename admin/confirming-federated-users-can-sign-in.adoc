@@ -1,0 +1,68 @@
+---
+permalink: admin/confirming-federated-users-can-sign-in.html 
+sidebar: sidebar 
+keywords: sso configuration 
+summary: 'Single Sign-On(SSO)을 활성화하기 전에 최소한 한 명의 페더레이션 사용자가 Grid Manager와 기존 테넌트 계정의 Tenant Manager에 로그인할 수 있는지 확인해야 합니다.' 
+---
+= 페더레이션 사용자가 로그인할 수 있는지 확인하세요
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SSO(Single Sign-On)를 활성화하기 전에 최소한 한 명의 페더레이션 사용자가 Grid Manager와 기존 테넌트 계정의 Tenant Manager에 로그인할 수 있는지 확인해야 합니다.
+
+.시작하기 전에
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:admin-group-permissions.html["특정 액세스 권한"] .
+* 이미 ID 페더레이션을 구성했습니다.
+
+
+.단계
+. 기존 테넌트 계정이 있는 경우 테넌트 중 어느 것도 자체 ID 소스를 사용하지 않는지 확인합니다.
++
+
+TIP: SSO를 활성화하면 테넌트 관리자에서 구성된 ID 소스가 그리드 관리자에서 구성된 ID 소스로 재정의됩니다.  테넌트의 ID 소스에 속한 사용자는 Grid Manager ID 소스에 계정이 없으면 더 이상 로그인할 수 없습니다.
+
++
+.. 각 테넌트 계정별로 테넌트 관리자에 Sign in .
+.. *액세스 관리* > *ID 연합*을 선택합니다.
+.. *ID 페더레이션 사용* 체크박스가 선택되어 있지 않은지 확인하세요.
+.. 그렇다면 이 테넌트 계정에 사용 중인 모든 페더레이션 그룹이 더 이상 필요하지 않은지 확인하고, 확인란의 선택을 취소한 후 *저장*을 선택합니다.
+
+
+. 페더레이션 사용자가 Grid Manager에 액세스할 수 있는지 확인하세요.
++
+.. 그리드 관리자에서 *구성* > *액세스 제어* > *관리자 그룹*을 선택합니다.
+.. 최소한 하나의 페더레이션 그룹이 Active Directory ID 소스에서 가져왔고 루트 액세스 권한이 할당되었는지 확인하세요.
+.. 로그아웃합니다.
+.. 페더레이션 그룹의 사용자로 Grid Manager에 다시 로그인할 수 있는지 확인하세요.
+
+
+. 기존 테넌트 계정이 있는 경우 루트 액세스 권한이 있는 페더레이션 사용자가 로그인할 수 있는지 확인하세요.
++
+.. 그리드 관리자에서 *테넌트*를 선택합니다.
+.. 테넌트 계정을 선택하고 *작업* > *편집*을 선택합니다.
+.. 세부 정보 입력 탭에서 *계속*을 선택합니다.
+.. *자체 ID 소스 사용* 체크박스가 선택된 경우, 체크박스 선택을 해제하고 *저장*을 선택합니다.
++
+image::../media/sso_uses_own_identity_source_for_tenant.png[테넌트 계정 편집 > 자체 ID 소스 사용 확인란이 선택되지 않음]
+
++
+세입자 페이지가 나타납니다.
+
+.. 테넌트 계정을 선택하고 * Sign in*을 선택한 후 로컬 루트 사용자로 테넌트 계정에 로그인합니다.
+.. 테넌트 관리자에서 *액세스 관리* > *그룹*을 선택합니다.
+.. Grid Manager의 페더레이션 그룹 중 하나 이상에 이 테넌트에 대한 루트 액세스 권한이 할당되었는지 확인하세요.
+.. 로그아웃합니다.
+.. 페더레이션 그룹의 사용자로 테넌트에 다시 로그인할 수 있는지 확인하세요.
+
+
+
+
+.관련 정보
+* link:requirements-for-sso.html["Single Sign-On에 대한 요구 사항 및 고려 사항"]
+* link:managing-admin-groups.html["관리자 그룹 관리"]
+* link:../tenant/index.html["세입자 계정 사용"]
+

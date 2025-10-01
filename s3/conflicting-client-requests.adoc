@@ -1,0 +1,16 @@
+---
+permalink: s3/conflicting-client-requests.html 
+sidebar: sidebar 
+keywords: conflicting client requests 
+summary: '두 클라이언트가 같은 키에 쓰는 등 충돌하는 클라이언트 요청은 "최신 승리" 기준으로 해결됩니다.' 
+---
+= 충돌하는 클라이언트 요청
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+두 클라이언트가 같은 키에 쓰는 등 충돌하는 클라이언트 요청은 "최신 승리" 기준으로 해결됩니다.
+
+"최신 승리" 평가의 타이밍은 S3 클라이언트가 작업을 시작하는 시점이 아니라 StorageGRID 시스템이 주어진 요청을 완료하는 시점을 기준으로 합니다.

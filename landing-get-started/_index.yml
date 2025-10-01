@@ -1,0 +1,36 @@
+---
+indexpage:
+  title: StorageGRID 시스템 시작하기
+  summary: StorageGRID 시스템을 설치하고 사용하기 전에 StorageGRID 에 대해 알아보는 시간을 가져보세요.
+  keywords: learn about StorageGRID, introduction to StorageGRID, get started with
+    StorageGRID
+  lead: StorageGRID 시스템을 설치하고 사용하기 전에 StorageGRID 에 대해 알아보는 시간을 가져보세요.
+  tiles:
+  - title: 배우고 탐험하세요
+    links:
+    - title: StorageGRID 란 무엇인가요?
+      url: "../primer/index.html"
+    - title: 아키텍처 및 네트워크 토폴로지
+      url: "../primer/storagegrid-architecture-and-network-topology.html"
+    - title: StorageGRID 어떻게 데이터를 관리하나요?
+      url: "../primer/how-storagegrid-manages-data.html"
+    - title: 그리드 관리자 탐색
+      url: "../primer/exploring-grid-manager.html"
+    - title: 테넌트 관리자 탐색
+      url: "../primer/exploring-tenant-manager.html"
+  - title: 네트워킹 가이드라인
+    links:
+    - title: 네트워크 유형
+      url: "../network/storagegrid-network-types.html"
+    - title: 네트워크 요구 사항
+      url: "../network/networking-requirements-and-guidelines.html"
+    - title: 내부 그리드 노드 통신
+      url: "../network/internal-grid-node-communications.html"
+    - title: 외부 커뮤니케이션
+      url: "../network/external-communications.html"
+  - title: 시작하기
+    links:
+    - title: StorageGRID 빠른 시작
+      url: "../primer/quick-start.html"
+    - title: 웹 브라우저 요구 사항
+      url: "../admin/web-browser-requirements.html"

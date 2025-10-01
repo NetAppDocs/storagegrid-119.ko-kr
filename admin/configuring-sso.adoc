@@ -1,0 +1,139 @@
+---
+permalink: admin/configuring-sso.html 
+sidebar: sidebar 
+keywords: configure single sign on, sso, SAML 
+summary: 'Single Sign-On(SSO)이 활성화된 경우 사용자는 조직에서 구현한 SSO 로그인 프로세스를 통해 자격 증명이 인증된 경우에만 Grid Manager, Tenant Manager, Grid Management API 또는 Tenant Management API에 액세스할 수 있습니다. 로컬 사용자는 StorageGRID 에 로그인할 수 없습니다.' 
+---
+= 단일 로그인 구성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+SSO(Single Sign-On)가 활성화된 경우 사용자는 조직에서 구현한 SSO 로그인 프로세스를 통해 자격 증명이 인증된 경우에만 Grid Manager, Tenant Manager, Grid Management API 또는 Tenant Management API에 액세스할 수 있습니다. 로컬 사용자는 StorageGRID 에 로그인할 수 없습니다.
+
+
+
+== Single Sign-On 작동 방식
+
+StorageGRID 시스템은 SAML 2.0(Security Assertion Markup Language 2.0) 표준을 사용하여 SSO(Single Sign-On)를 지원합니다.
+
+SSO(Single Sign-On)를 활성화하기 전에 SSO가 활성화된 경우 StorageGRID 로그인 및 로그아웃 프로세스에 어떤 영향이 미치는지 검토하세요.
+
+
+
+=== SSO가 활성화되면 Sign in
+
+SSO가 활성화되어 있고 StorageGRID 에 로그인하면 자격 증명을 확인하기 위해 조직의 SSO 페이지로 리디렉션됩니다.
+
+.단계
+. 웹 브라우저에 StorageGRID 관리 노드의 정규화된 도메인 이름이나 IP 주소를 입력합니다.
++
+StorageGRID Sign in 페이지가 나타납니다.
+
++
+** 이 브라우저에서 처음으로 URL에 액세스하는 경우 계정 ID를 입력하라는 메시지가 표시됩니다.
++
+image::../media/sso_sign_in_first_time.png[SSO를 활성화하여 첫 번째 액세스로 Sign in]
+
+** 이전에 Grid Manager 또는 Tenant Manager에 액세스한 적이 있는 경우 최근 계정을 선택하거나 계정 ID를 입력하라는 메시지가 표시됩니다.
++
+image::../media/sign_in_sso.png[SSO가 활성화된 경우 StorageGRID 로그인 페이지]
+
+
+
++
+
+NOTE: 테넌트 계정의 전체 URL(즉, 정규화된 도메인 이름 또는 IP 주소 뒤에 오는 이름)을 입력하면 StorageGRID Sign in 페이지가 표시되지 않습니다. `/?accountId=_20-digit-account-id_` ).  대신 조직의 SSO 로그인 페이지로 즉시 리디렉션되어 다음을 수행할 수 있습니다.<<signin_sso,SSO 자격 증명으로 로그인하세요>> .
+
+. Grid Manager 또는 Tenant Manager에 액세스할지 여부를 표시합니다.
++
+** 그리드 관리자에 액세스하려면 *계정 ID* 필드를 비워두거나, 계정 ID로 *0*을 입력하거나, 최근 계정 목록에 *그리드 관리자*가 나타나면 이를 선택하세요.
+** 테넌트 관리자에 액세스하려면 20자리 테넌트 계정 ID를 입력하거나 최근 계정 목록에 테넌트가 나타나면 이름으로 테넌트를 선택하세요.
+
+
+. * Sign in*을 선택하세요
++
+StorageGRID 귀하 조직의 SSO 로그인 페이지로 리디렉션합니다. 예를 들어:
+
++
+image::../media/sso_organization_page.gif[SSO를 위한 조직 로그인 페이지 예시]
+
+. [[signin_sso]] SSO 자격 증명으로 Sign in .
++
+SSO 자격 증명이 올바른 경우:
+
++
+.. ID 공급자(IdP)는 StorageGRID 에 인증 응답을 제공합니다.
+.. StorageGRID 인증 응답을 검증합니다.
+.. 응답이 유효하고 StorageGRID 액세스 권한이 있는 페더레이션 그룹에 속한 경우 선택한 계정에 따라 Grid Manager 또는 Tenant Manager에 로그인됩니다.
++
+
+NOTE: 서비스 계정에 접근할 수 없는 경우에도 StorageGRID 액세스 권한이 있는 페더레이션 그룹에 속한 기존 사용자라면 로그인할 수 있습니다.
+
+
+
+. 선택적으로, 적절한 권한이 있는 경우 다른 관리 노드에 액세스하거나 그리드 관리자 또는 테넌트 관리자에 액세스합니다.
++
+SSO 자격 증명을 다시 입력할 필요가 없습니다.
+
+
+
+
+
+=== SSO가 활성화되면 로그아웃합니다.
+
+StorageGRID 에 SSO가 활성화된 경우, 로그아웃할 때의 동작은 로그인한 계정과 로그아웃한 계정에 따라 달라집니다.
+
+.단계
+. 사용자 인터페이스의 오른쪽 상단 모서리에 있는 *로그아웃* 링크를 찾으세요.
+. *로그아웃*을 선택하세요.
++
+StorageGRID Sign in 페이지가 나타납니다.  *최근 계정* 드롭다운이 업데이트되어 *그리드 관리자* 또는 테넌트 이름이 포함되어 향후 이러한 사용자 인터페이스에 더 빠르게 액세스할 수 있습니다.
+
++
+[cols="1a,1a,1a"]
+|===
+| ...에 로그인한 경우 | 그리고 당신은 ...에서 로그아웃합니다. | ...에서 로그아웃되었습니다. 
+
+
+ a| 
+하나 이상의 관리 노드에 있는 Grid Manager
+ a| 
+모든 관리 노드의 Grid Manager
+ a| 
+모든 관리 노드의 Grid Manager
+
+*참고:* SSO에 Azure를 사용하는 경우 모든 관리 노드에서 로그아웃하는 데 몇 분이 걸릴 수 있습니다.
+
+
+
+ a| 
+하나 이상의 관리 노드에 있는 테넌트 관리자
+ a| 
+모든 관리 노드의 테넌트 관리자
+ a| 
+모든 관리 노드의 테넌트 관리자
+
+
+
+ a| 
+Grid Manager와 Tenant Manager 모두
+ a| 
+그리드 관리자
+ a| 
+그리드 관리자만 해당.  SSO에서 로그아웃하려면 테넌트 관리자에서도 로그아웃해야 합니다.
+
+
+
+ a| 
+세입자 관리자
+ a| 
+세입자 관리자만 해당됩니다.  SSO에서 로그아웃하려면 Grid Manager에서도 로그아웃해야 합니다.
+
+|===
+
+
+
+NOTE: 이 표는 단일 브라우저 세션을 사용하는 경우 로그아웃하면 어떤 일이 발생하는지 요약한 것입니다.  여러 브라우저 세션에서 StorageGRID 에 로그인한 경우 모든 브라우저 세션에서 별도로 로그아웃해야 합니다.

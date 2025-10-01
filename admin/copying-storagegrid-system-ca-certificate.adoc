@@ -1,0 +1,56 @@
+---
+permalink: admin/copying-storagegrid-system-ca-certificate.html 
+sidebar: sidebar 
+keywords: grid ca certificate, copy certificate 
+summary: 'StorageGRID 내부 트래픽을 보호하기 위해 내부 인증 기관(CA)을 사용합니다.  귀하가 자신의 인증서를 업로드하더라도 이 인증서는 변경되지 않습니다.' 
+---
+= Grid CA 인증서를 복사하세요
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 내부 트래픽을 보호하기 위해 내부 인증 기관(CA)을 사용합니다.  귀하가 자신의 인증서를 업로드하더라도 이 인증서는 변경되지 않습니다.
+
+.시작하기 전에
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:admin-group-permissions.html["특정 액세스 권한"] .
+
+
+.이 작업에 관하여
+사용자 지정 서버 인증서가 구성된 경우 클라이언트 애플리케이션은 사용자 지정 서버 인증서를 사용하여 서버를 확인해야 합니다.  StorageGRID 시스템에서 CA 인증서를 복사해서는 안 됩니다.
+
+.단계
+. *구성* > *보안* > *인증서*를 선택한 다음 *그리드 CA* 탭을 선택합니다.
+. *인증서 PEM* 섹션에서 인증서를 다운로드하거나 복사하세요.
++
+[role="tabbed-block"]
+====
+.인증서 파일 다운로드
+--
+인증서를 다운로드하세요 `.pem` 파일.
+
+.. *인증서 다운로드*를 선택하세요.
+.. 인증서 파일 이름과 다운로드 위치를 지정하세요.  파일을 확장자로 저장하세요 `.pem` .
++
+예:  `storagegrid_certificate.pem`
+
+
+
+--
+.PEM 인증서 사본
+--
+인증서 텍스트를 복사하여 다른 곳에 붙여넣으세요.
+
+.. *인증서 PEM 복사*를 선택하세요.
+.. 복사한 인증서를 텍스트 편집기에 붙여넣습니다.
+.. 텍스트 파일을 확장자로 저장하세요 `.pem` .
++
+예:  `storagegrid_certificate.pem`
+
+
+
+--
+====
+

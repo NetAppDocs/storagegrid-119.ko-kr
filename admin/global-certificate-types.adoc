@@ -1,0 +1,19 @@
+---
+permalink: admin/global-certificate-types.html 
+sidebar: sidebar 
+keywords: rsa, ecdsa, custom certificate encryption 
+summary: 'StorageGRID 시스템은 RSA 또는 ECDSA(타원 곡선 디지털 서명 알고리즘)로 암호화된 서버 인증서를 지원합니다.' 
+---
+= 지원되는 서버 인증서 유형
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 시스템은 RSA 또는 ECDSA(타원 곡선 디지털 서명 알고리즘)로 암호화된 사용자 정의 인증서를 지원합니다.
+
+
+TIP: 보안 정책에 대한 암호 유형은 서버 인증서 유형과 일치해야 합니다.  예를 들어, RSA 암호에는 RSA 인증서가 필요하고, ECDSA 암호에는 ECDSA 인증서가 필요합니다. 보다 link:using-storagegrid-security-certificates.html["보안 인증서 관리"] .  서버 인증서와 호환되지 않는 사용자 지정 보안 정책을 구성하는 경우 다음을 수행할 수 있습니다.link:manage-tls-ssh-policy.html#temporarily-revert-to-default-security-policy["일시적으로 기본 보안 정책으로 되돌리기"] .
+
+StorageGRID 클라이언트 연결을 보호하는 방법에 대한 자세한 내용은 다음을 참조하세요.link:security-for-clients.html["S3 클라이언트 보안"] .

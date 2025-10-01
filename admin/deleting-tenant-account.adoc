@@ -1,0 +1,37 @@
+---
+permalink: admin/deleting-tenant-account.html 
+sidebar: sidebar 
+keywords: tenant, delete, remove tenant 
+summary: 테넌트의 시스템 액세스 권한을 영구적으로 제거하려면 테넌트 계정을 삭제할 수 있습니다. 
+---
+= 테넌트 계정 삭제
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+테넌트의 시스템 액세스 권한을 영구적으로 제거하려면 테넌트 계정을 삭제할 수 있습니다.
+
+.시작하기 전에
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:admin-group-permissions.html["특정 액세스 권한"] .
+* 테넌트 계정과 연결된 모든 S3 버킷과 객체를 제거했습니다.
+* 세입자가 그리드 연합 연결을 사용하도록 허용된 경우 다음 사항을 검토했습니다.link:grid-federation-manage-tenants.html["그리드 페더레이션 연결 사용 권한이 있는 테넌트 삭제"] .
+
+
+.단계
+. *임차인*을 선택하세요.
+. 삭제하려는 테넌트 계정을 찾으세요.
++
+검색창을 사용하여 이름이나 세입자 ID로 세입자를 검색하세요.
+
+. 여러 테넌트를 삭제하려면 확인란을 선택하고 *작업* > *삭제*를 선택합니다.
+. 단일 테넌트를 삭제하려면 다음 중 하나를 수행하세요.
++
+** 체크박스를 선택하고 *작업* > *삭제*를 선택합니다.
+** 테넌트 이름을 선택하여 세부 정보 페이지를 표시한 다음 *작업* > *삭제*를 선택합니다.
+
+
+. *예*를 선택하세요.
+

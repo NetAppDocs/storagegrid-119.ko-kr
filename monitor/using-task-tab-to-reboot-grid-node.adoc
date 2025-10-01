@@ -1,0 +1,21 @@
+---
+permalink: monitor/using-task-tab-to-reboot-grid-node.html 
+sidebar: sidebar 
+keywords: Tasks tab, rename node, reboot node, maintenance mode 
+summary: 모든 노드에 대해 작업 탭이 표시됩니다. 이 탭을 사용하면 노드의 이름을 바꾸거나 재부팅할 수 있으며, 어플라이언스 노드를 유지 관리 모드로 전환할 수 있습니다. 
+---
+= 작업 탭을 사용하세요
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+모든 노드에 대해 작업 탭이 표시됩니다. 이 탭을 사용하면 노드의 이름을 바꾸거나 재부팅할 수 있으며, 어플라이언스 노드를 유지 관리 모드로 전환할 수 있습니다.
+
+이 탭의 각 옵션에 대한 전체 요구 사항과 지침은 다음을 참조하세요.
+
+* link:../maintain/rename-grid-site-node-overview.html["그리드, 사이트 및 노드 이름 바꾸기"]
+* link:../maintain/rebooting-grid-node-from-grid-manager.html["그리드 노드 재부팅"]
+* https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/placing-appliance-into-maintenance-mode.html["기기를 유지 관리 모드로 전환하세요"^]
+

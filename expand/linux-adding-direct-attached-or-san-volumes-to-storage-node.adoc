@@ -1,0 +1,186 @@
+---
+permalink: expand/linux-adding-direct-attached-or-san-volumes-to-storage-node.html 
+sidebar: sidebar 
+keywords: expansion, Linux, add storage volumes 
+summary: 스토리지 노드에 48개 미만의 스토리지 볼륨이 포함된 경우 새 블록 스토리지 장치를 추가하고 Linux 호스트에서 볼 수 있도록 한 다음 스토리지 노드에 사용되는 StorageGRID 구성 파일에 새 블록 장치 매핑을 추가하여 용량을 늘릴 수 있습니다. 
+---
+= Linux: 스토리지 노드에 직접 연결 또는 SAN 볼륨 추가
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+스토리지 노드에 48개 미만의 스토리지 볼륨이 포함된 경우 새 블록 스토리지 장치를 추가하고 Linux 호스트에서 볼 수 있도록 한 다음 스토리지 노드에 사용되는 StorageGRID 구성 파일에 새 블록 장치 매핑을 추가하여 용량을 늘릴 수 있습니다.
+
+.시작하기 전에
+* Linux 플랫폼에 StorageGRID 설치하는 방법에 대한 지침을 확인할 수 있습니다.
++
+** link:../rhel/index.html["Red Hat Enterprise Linux에 StorageGRID 설치"]
+** link:../ubuntu/index.html["Ubuntu 또는 Debian에 StorageGRID 설치"]
+
+
+* 당신은 가지고있다 `Passwords.txt` 파일.
+* 당신은 가지고있다link:../admin/admin-group-permissions.html["특정 액세스 권한"] .
+
+
+
+CAUTION: 소프트웨어 업그레이드, 복구 절차 또는 다른 확장 절차가 활성화되어 있는 동안에는 스토리지 노드에 스토리지 볼륨을 추가하려고 하지 마세요.
+
+.이 작업에 관하여
+스토리지 볼륨을 추가하면 잠시 동안 스토리지 노드를 사용할 수 없습니다.  클라이언트 기반 그리드 서비스에 영향을 주지 않으려면 한 번에 하나의 스토리지 노드에서 이 절차를 수행해야 합니다.
+
+.단계
+. 새로운 저장 하드웨어를 설치합니다.
++
+자세한 내용은 하드웨어 공급업체에서 제공하는 설명서를 참조하세요.
+
+. 원하는 크기의 새로운 블록 스토리지 볼륨을 만듭니다.
++
+** 새로운 드라이브를 연결하고 필요에 따라 RAID 컨트롤러 구성을 업데이트하거나 공유 스토리지 어레이에 새로운 SAN LUN을 할당하고 Linux 호스트가 이에 액세스할 수 있도록 허용합니다.
+** 기존 스토리지 노드의 스토리지 볼륨에 사용한 것과 동일한 영구적 명명 체계를 사용합니다.
+** StorageGRID 노드 마이그레이션 기능을 사용하는 경우 이 스토리지 노드의 마이그레이션 대상인 다른 Linux 호스트에서 새 볼륨을 볼 수 있도록 설정합니다.  자세한 내용은 Linux 플랫폼에 StorageGRID 설치하는 방법에 대한 지침을 참조하세요.
+
+
+. 스토리지 노드를 지원하는 Linux 호스트에 root 또는 sudo 권한이 있는 계정으로 로그인합니다.
+. 새로운 스토리지 볼륨이 Linux 호스트에 표시되는지 확인하세요.
++
+장치를 다시 스캔해야 할 수도 있습니다.
+
+. 다음 명령을 실행하여 스토리지 노드를 일시적으로 비활성화합니다.
++
+`sudo storagegrid node stop <node-name>`
+
+. vim이나 pico와 같은 텍스트 편집기를 사용하여 다음에서 찾을 수 있는 스토리지 노드에 대한 노드 구성 파일을 편집합니다. `/etc/storagegrid/nodes/<node-name>.conf` .
+. 기존 개체 스토리지 블록 장치 매핑이 포함된 노드 구성 파일 섹션을 찾습니다.
++
+예를 들어, `BLOCK_DEVICE_RANGEDB_00` 에게 `BLOCK_DEVICE_RANGEDB_03` 기존의 개체 스토리지 블록 장치 매핑입니다.
+
++
+[listing, subs="specialcharacters,quotes"]
+----
+NODE_TYPE = VM_Storage_Node
+ADMIN_IP = 10.1.0.2
+BLOCK_DEVICE_VAR_LOCAL = /dev/mapper/sgws-sn1-var-local
+*BLOCK_DEVICE_RANGEDB_00 = /dev/mapper/sgws-sn1-rangedb-0*
+*BLOCK_DEVICE_RANGEDB_01 = /dev/mapper/sgws-sn1-rangedb-1*
+*BLOCK_DEVICE_RANGEDB_02 = /dev/mapper/sgws-sn1-rangedb-2*
+*BLOCK_DEVICE_RANGEDB_03 = /dev/mapper/sgws-sn1-rangedb-3*
+GRID_NETWORK_TARGET = bond0.1001
+ADMIN_NETWORK_TARGET = bond0.1002
+CLIENT_NETWORK_TARGET = bond0.1003
+GRID_NETWORK_IP = 10.1.0.3
+GRID_NETWORK_MASK = 255.255.255.0
+GRID_NETWORK_GATEWAY = 10.1.0.1
+----
+. 이 스토리지 노드에 대해 추가한 블록 스토리지 볼륨에 해당하는 새로운 개체 스토리지 블록 장치 매핑을 추가합니다.
++
+다음부터 시작하세요 `BLOCK_DEVICE_RANGEDB_nn` .  틈을 두지 마세요.
+
++
+** 위의 예를 기준으로 시작하세요 `BLOCK_DEVICE_RANGEDB_04` .
+** 아래 예에서는 4개의 새로운 블록 스토리지 볼륨이 노드에 추가되었습니다. `BLOCK_DEVICE_RANGEDB_04` 에게 `BLOCK_DEVICE_RANGEDB_07` .
+
+
++
+[listing, subs="specialcharacters,quotes"]
+----
+NODE_TYPE = VM_Storage_Node
+ADMIN_IP = 10.1.0.2
+BLOCK_DEVICE_VAR_LOCAL = /dev/mapper/sgws-sn1-var-local
+BLOCK_DEVICE_RANGEDB_00 = /dev/mapper/sgws-sn1-rangedb-0
+BLOCK_DEVICE_RANGEDB_01 = /dev/mapper/sgws-sn1-rangedb-1
+BLOCK_DEVICE_RANGEDB_02 = /dev/mapper/sgws-sn1-rangedb-2
+BLOCK_DEVICE_RANGEDB_03 = /dev/mapper/sgws-sn1-rangedb-3
+*BLOCK_DEVICE_RANGEDB_04 = /dev/mapper/sgws-sn1-rangedb-4*
+*BLOCK_DEVICE_RANGEDB_05 = /dev/mapper/sgws-sn1-rangedb-5*
+*BLOCK_DEVICE_RANGEDB_06 = /dev/mapper/sgws-sn1-rangedb-6*
+*BLOCK_DEVICE_RANGEDB_07 = /dev/mapper/sgws-sn1-rangedb-7*
+GRID_NETWORK_TARGET = bond0.1001
+ADMIN_NETWORK_TARGET = bond0.1002
+CLIENT_NETWORK_TARGET = bond0.1003
+GRID_NETWORK_IP = 10.1.0.3
+GRID_NETWORK_MASK = 255.255.255.0
+GRID_NETWORK_GATEWAY = 10.1.0.1
+----
+. 스토리지 노드의 노드 구성 파일에 대한 변경 사항을 검증하려면 다음 명령을 실행하세요.
++
+`sudo storagegrid node validate <node-name>`
+
++
+다음 단계로 넘어가기 전에 오류나 경고를 해결하세요.
+
++
+[NOTE]
+====
+다음과 유사한 오류가 관찰되면 노드 구성 파일이 다음에서 사용하는 블록 장치를 매핑하려고 시도하고 있음을 의미합니다. `<node-name>` ~을 위한 `<PURPOSE>` 주어진 것에 `<path-name>` Linux 파일 시스템에는 있지만 해당 위치에 유효한 블록 장치 특수 파일(또는 블록 장치 특수 파일에 대한 소프트 링크)이 없습니다.
+
+[listing]
+----
+Checking configuration file for node <node-name>…
+ERROR: BLOCK_DEVICE_<PURPOSE> = <path-name>
+<path-name> is not a valid block device
+----
+올바른 내용을 입력했는지 확인하세요 `<path-name>` .
+
+====
+. 다음 명령을 실행하여 새로운 블록 장치 매핑이 적용된 노드를 다시 시작합니다.
++
+`sudo storagegrid node start <node-name>`
+
+. 다음에 나열된 비밀번호를 사용하여 관리자로 스토리지 노드에 로그인합니다. `Passwords.txt` 파일.
+. 서비스가 올바르게 시작되는지 확인하세요.
++
+.. 서버의 모든 서비스 상태 목록을 봅니다. +
+`sudo storagegrid-status`
++
+상태는 자동으로 업데이트됩니다.
+
+.. 모든 서비스가 실행 중이거나 검증될 때까지 기다리세요.
+.. 상태 화면을 종료합니다.
++
+`Ctrl+C`
+
+
+
+. 스토리지 노드에서 사용할 새 스토리지를 구성합니다.
++
+.. 새로운 저장소 볼륨을 구성합니다.
++
+`sudo add_rangedbs.rb`
+
++
+이 스크립트는 새로운 저장 볼륨을 찾아 포맷하라는 메시지를 표시합니다.
+
+.. 저장 볼륨을 포맷하려면 *y*를 입력하세요.
+.. 볼륨이 이전에 포맷된 경우, 다시 포맷할지 여부를 결정합니다.
++
+*** *y*를 입력하여 다시 포맷하세요.
+*** *n*을 입력하면 재포맷을 건너뜁니다.
+
+
+
+
++
+그만큼 `setup_rangedbs.sh` 스크립트가 자동으로 실행됩니다.
+
+. 스토리지 노드의 스토리지 상태가 온라인인지 확인하세요.
++
+.. 다음을 사용하여 Grid Manager에 Sign in.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+.. *지원* > *도구* > *그리드 토폴로지*를 선택하세요.
+.. *_사이트_* > *_스토리지 노드_* > *LDR* > *스토리지*를 선택합니다.
+.. *구성* 탭을 선택한 다음 *기본* 탭을 선택합니다.
+.. *저장소 상태 - 원하는* 드롭다운 목록이 읽기 전용 또는 오프라인으로 설정된 경우 *온라인*을 선택합니다.
+.. *변경 사항 적용*을 클릭하세요.
+
+
+. 새로운 객체 저장소를 보려면:
++
+.. *노드* > *_사이트_* > *_스토리지 노드_* > *스토리지*를 선택합니다.
+.. 자세한 내용은 *개체 저장소* 표에서 확인하세요.
+
+
+
+
+.결과
+이제 스토리지 노드의 확장된 용량을 활용하여 객체 데이터를 저장할 수 있습니다.

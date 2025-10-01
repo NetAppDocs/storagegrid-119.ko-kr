@@ -1,0 +1,50 @@
+---
+permalink: expand/adding-storage-volumes-to-storage-nodes.html 
+sidebar: sidebar 
+keywords: storage volumes, expand, expansion, add, storage nodes, adding storage capacity 
+summary: 지원되는 최대 볼륨 수보다 적은 스토리지 노드의 저장 용량을 확장할 수 있습니다. 복제 또는 삭제 코드화된 복사본에 대한 ILM 요구 사항을 충족하려면 두 개 이상의 스토리지 노드에 스토리지 볼륨을 추가해야 할 수도 있습니다. 
+---
+= 스토리지 노드에 스토리지 볼륨 추가
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+지원되는 최대 볼륨 수보다 적은 스토리지 노드의 저장 용량을 확장할 수 있습니다. 복제 또는 삭제 코드화된 복사본에 대한 ILM 요구 사항을 충족하려면 두 개 이상의 스토리지 노드에 스토리지 볼륨을 추가해야 할 수도 있습니다.
+
+.시작하기 전에
+저장 볼륨을 추가하기 전에 다음을 검토하세요.link:guidelines-for-adding-object-capacity.html["객체 용량 추가를 위한 지침"] ILM 정책 요구 사항을 충족하기 위해 볼륨을 추가할 위치를 파악합니다.
+
+
+NOTE: 이 지침은 소프트웨어 기반 스토리지 노드에만 적용됩니다.  보다 https://docs.netapp.com/us-en/storagegrid-appliances/sg6000/adding-expansion-shelf-to-deployed-sg6060.html["배치된 SG6060에 확장 선반 추가"^] 또는 https://docs.netapp.com/us-en/storagegrid-appliances/sg6100/adding-expansion-shelf-to-deployed-sg6160.html["배치된 SG6160에 확장 선반 추가"^] 확장 선반을 설치하여 SG6060 또는 SG6160에 저장 용량을 추가하는 방법을 알아보세요.  다른 기기의 스토리지 노드는 확장할 수 없습니다.
+
+.이 작업에 관하여
+스토리지 노드의 기본 스토리지는 스토리지 볼륨으로 구분됩니다.  저장 볼륨은 StorageGRID 시스템에 의해 포맷되고 객체를 저장하기 위해 마운트되는 블록 기반 저장 장치입니다.  각 스토리지 노드는 최대 48개의 스토리지 볼륨을 지원할 수 있으며, 이를 Grid Manager에서는 _객체 저장소_라고 합니다.
+
+
+NOTE: 개체 메타데이터는 항상 개체 저장소 0에 저장됩니다.
+
+각 개체 저장소는 해당 ID에 해당하는 볼륨에 마운트됩니다.  예를 들어, ID가 0000인 객체 저장소는 다음과 같습니다. `/var/local/rangedb/0` 마운트 지점.
+
+새로운 스토리지 볼륨을 추가하기 전에 Grid Manager를 사용하여 각 스토리지 노드의 현재 개체 저장소와 해당 마운트 지점을 확인하세요.  저장 볼륨을 추가할 때 이 정보를 사용할 수 있습니다.
+
+.단계
+. *노드* > *_사이트_* > *_스토리지 노드_* > *스토리지*를 선택합니다.
+. 아래로 스크롤하여 각 볼륨과 개체 저장소에 사용 가능한 저장 용량을 확인하세요.
++
+어플라이언스 스토리지 노드의 경우, 각 디스크의 WWID(Worldwide Name)는 SANtricity OS(어플라이언스의 스토리지 컨트롤러에 연결된 관리 소프트웨어)에서 표준 볼륨 속성을 볼 때 나타나는 볼륨 WWID(World-Wide Identifier)와 일치합니다.
+
++
+볼륨 마운트 지점과 관련된 디스크 읽기 및 쓰기 통계를 해석하는 데 도움이 되도록 디스크 장치 표의 *이름* 열에 표시된 이름의 첫 번째 부분(즉, _sdc_, _sdd_, _sde_ 등)이 볼륨 표의 *장치* 열에 표시된 값과 일치합니다.
+
++
+image::../media/nodes_page_storage_tables_vol_expansion.png[노드 페이지 스토리지 테이블]
+
+. 스토리지 노드에 새로운 스토리지 볼륨을 추가하려면 플랫폼에 대한 지침을 따르세요.
++
+** link:vmware-adding-storage-volumes-to-storage-node.html["VMware: 스토리지 노드에 스토리지 볼륨 추가"]
+** link:linux-adding-direct-attached-or-san-volumes-to-storage-node.html["Linux: 스토리지 노드에 직접 연결 또는 SAN 볼륨 추가"]
+
+
+

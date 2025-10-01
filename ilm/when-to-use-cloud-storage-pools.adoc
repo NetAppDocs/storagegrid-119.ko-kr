@@ -1,0 +1,60 @@
+---
+permalink: ilm/when-to-use-cloud-storage-pools.html 
+sidebar: sidebar 
+keywords: use cloud storage pool, benefits of cloud storage pools 
+summary: 클라우드 스토리지 풀을 사용하면 데이터를 외부 위치로 백업하거나 계층화할 수 있습니다.  또한, 여러 개의 클라우드에 데이터를 백업하거나 계층화할 수 있습니다. 
+---
+= 클라우드 스토리지 풀을 사용하는 경우
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+클라우드 스토리지 풀을 사용하면 데이터를 외부 위치로 백업하거나 계층화할 수 있습니다.  또한, 여러 개의 클라우드에 데이터를 백업하거나 계층화할 수 있습니다.
+
+
+
+== StorageGRID 데이터를 외부 위치로 백업
+
+Cloud Storage Pool을 사용하면 StorageGRID 객체를 외부 위치에 백업할 수 있습니다.
+
+StorageGRID 의 복사본에 액세스할 수 없는 경우 Cloud Storage Pool의 개체 데이터를 사용하여 클라이언트 요청을 처리할 수 있습니다.  하지만 Cloud Storage 풀의 백업 객체 사본에 액세스하려면 S3 RestoreObject 요청을 실행해야 할 수도 있습니다.
+
+Cloud Storage Pool의 개체 데이터는 스토리지 볼륨이나 스토리지 노드 오류로 인해 StorageGRID 에서 손실된 데이터를 복구하는 데에도 사용할 수 있습니다.  객체의 유일한 남은 사본이 Cloud Storage Pool에 있는 경우 StorageGRID 객체를 일시적으로 복원하고 복구된 Storage Node에 새 사본을 만듭니다.
+
+백업 솔루션을 구현하려면:
+
+. 단일 클라우드 스토리지 풀을 만듭니다.
+. 스토리지 노드에 개체 복사본(복제된 복사본 또는 삭제 코딩된 복사본)을 동시에 저장하고 클라우드 스토리지 풀에 단일 개체 복사본을 저장하는 ILM 규칙을 구성합니다.
+. ILM 정책에 규칙을 추가합니다.  그런 다음 정책을 시뮬레이션하고 활성화합니다.
+
+
+
+
+== StorageGRID 에서 외부 위치로 계층 데이터 전송
+
+Cloud Storage Pool을 사용하면 StorageGRID 시스템 외부에 객체를 저장할 수 있습니다.  예를 들어, 보관해야 할 객체가 매우 많지만 해당 객체에 액세스할 일이 거의 없거나 전혀 없을 것으로 예상한다고 가정해 보겠습니다.  Cloud Storage Pool을 사용하면 객체를 비용이 덜 드는 스토리지로 계층화하고 StorageGRID 의 공간을 확보할 수 있습니다.
+
+계층화 솔루션을 구현하려면:
+
+. 단일 클라우드 스토리지 풀을 만듭니다.
+. 거의 사용되지 않는 객체를 스토리지 노드에서 클라우드 스토리지 풀로 이동하는 ILM 규칙을 구성합니다.
+. ILM 정책에 규칙을 추가합니다.  그런 다음 정책을 시뮬레이션하고 활성화합니다.
+
+
+
+
+== 여러 클라우드 엔드포인트 유지
+
+두 개 이상의 클라우드에 개체 데이터를 계층화하거나 백업하려는 경우 여러 개의 Cloud Storage Pool 엔드포인트를 구성할 수 있습니다.  ILM 규칙의 필터를 사용하면 각 클라우드 스토리지 풀에 어떤 객체를 저장할지 지정할 수 있습니다.  예를 들어, 일부 테넌트 또는 버킷의 객체를 Amazon S3 Glacier에 저장하고 다른 테넌트 또는 버킷의 객체를 Azure Blob Storage에 저장할 수 있습니다.  또는 Amazon S3 Glacier와 Azure Blob 스토리지 간에 데이터를 이동할 수도 있습니다.
+
+
+NOTE: 여러 개의 Cloud Storage Pool 엔드포인트를 사용하는 경우, 한 번에 하나의 Cloud Storage Pool에만 객체를 저장할 수 있다는 점을 명심하세요.
+
+여러 클라우드 엔드포인트를 구현하려면:
+
+. 최대 10개의 클라우드 스토리지 풀을 생성하세요.
+. 각 클라우드 스토리지 풀에서 적절한 시간에 적절한 개체 데이터를 저장하도록 ILM 규칙을 구성합니다.  예를 들어, 버킷 A의 객체를 Cloud Storage 풀 A에 저장하고, 버킷 B의 객체를 Cloud Storage 풀 B에 저장합니다. 또는 일정 기간 동안 Cloud Storage 풀 A에 객체를 저장한 다음 Cloud Storage 풀 B로 이동합니다.
+. ILM 정책에 규칙을 추가하세요.  그런 다음 정책을 시뮬레이션하고 활성화합니다.
+

@@ -1,0 +1,99 @@
+---
+permalink: fabricpool/creating-ha-group-for-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricPool, high availability group, HA group, create, creating, virtual IP, VIP, active interface, backup interface 
+summary: 'FabricPool 과 함께 사용하도록 StorageGRID 구성할 때 선택적으로 하나 이상의 고가용성(HA) 그룹을 만들 수 있습니다.  HA 그룹은 각각 StorageGRID Load Balancer 서비스를 포함하는 노드의 집합입니다.  HA 그룹에는 게이트웨이 노드, 관리 노드 또는 둘 다 포함될 수 있습니다.' 
+---
+= FabricPool 에 대한 고가용성(HA) 그룹 생성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+FabricPool 과 함께 사용하도록 StorageGRID 구성할 때 선택적으로 하나 이상의 고가용성(HA) 그룹을 만들 수 있습니다.  HA 그룹은 각각 StorageGRID Load Balancer 서비스를 포함하는 노드의 집합입니다.  HA 그룹에는 게이트웨이 노드, 관리 노드 또는 둘 다 포함될 수 있습니다.
+
+HA 그룹을 사용하면 FabricPool 데이터 연결을 계속 사용할 수 있도록 유지할 수 있습니다.  HA 그룹은 가상 IP 주소(VIP)를 사용하여 로드 밸런서 서비스에 대한 고가용성 액세스를 제공합니다.  HA 그룹의 활성 인터페이스에 장애가 발생하면 백업 인터페이스가 FabricPool 작업에 거의 영향을 미치지 않고 작업 부하를 관리할 수 있습니다.
+
+이 작업에 대한 자세한 내용은 다음을 참조하세요.link:../admin/managing-high-availability-groups.html["고가용성 그룹 관리"] .  FabricPool 설정 마법사를 사용하여 이 작업을 완료하려면 다음으로 이동하세요.link:use-fabricpool-setup-wizard-steps.html["FabricPool 설정 마법사에 액세스하여 완료합니다."] .
+
+.시작하기 전에
+* 당신은 검토했습니다link:best-practices-for-high-availability-groups.html["고가용성 그룹을 위한 모범 사례"] .
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:../admin/admin-group-permissions.html["루트 액세스 권한"] .
+* VLAN을 사용할 계획이라면 VLAN 인터페이스를 생성해야 합니다. 보다 link:../admin/configure-vlan-interfaces.html["VLAN 인터페이스 구성"] .
+
+
+.단계
+. *구성* > *네트워크* > *고가용성 그룹*을 선택합니다.
+. *만들기*를 선택하세요.
+. *세부정보 입력* 단계에서는 다음 필드를 작성하세요.
++
+[cols="1a,2a"]
+|===
+| 필드 | 설명 
+
+
+ a| 
+HA 그룹 이름
+ a| 
+이 HA 그룹에 대한 고유한 표시 이름입니다.
+
+
+
+ a| 
+설명(선택 사항)
+ a| 
+이 HA 그룹에 대한 설명입니다.
+
+|===
+. *인터페이스 추가* 단계에서는 이 HA 그룹에서 사용할 노드 인터페이스를 선택합니다.
++
+열 머리글을 사용하여 행을 정렬하거나 검색어를 입력하여 인터페이스를 더 빠르게 찾으세요.
+
++
+하나 이상의 노드를 선택할 수 있지만, 각 노드에 대해 하나의 인터페이스만 선택할 수 있습니다.
+
+. *인터페이스 우선순위 지정* 단계에서는 이 HA 그룹에 대한 기본 인터페이스와 백업 인터페이스를 결정합니다.
++
+행을 끌어서 *우선순위* 열의 값을 변경합니다.
+
++
+목록의 첫 번째 인터페이스는 기본 인터페이스입니다.  장애가 발생하지 않는 한 기본 인터페이스가 활성 인터페이스입니다.
+
++
+HA 그룹에 두 개 이상의 인터페이스가 포함되어 있고 활성 인터페이스에 장애가 발생하면 가상 IP(VIP) 주소는 우선순위에 따라 첫 번째 백업 인터페이스로 이동합니다.  해당 인터페이스에 장애가 발생하면 VIP 주소는 다음 백업 인터페이스로 이동하고, 이런 식으로 계속됩니다.  장애가 해결되면 VIP 주소는 사용 가능한 가장 높은 우선순위의 인터페이스로 다시 이동합니다.
+
+. *IP 주소 입력* 단계에서는 다음 필드를 완료하세요.
++
+[cols="1a,2a"]
+|===
+| 필드 | 설명 
+
+
+ a| 
+서브넷 CIDR
+ a| 
+CIDR 표기법으로 나타낸 VIP 서브넷 주소는 IPv4 주소 뒤에 슬래시와 서브넷 길이(0-32)를 붙인 것입니다.
+
+네트워크 주소에는 호스트 비트가 설정되어서는 안 됩니다. 예를 들어,  `192.16.0.0/22` .
+
+
+
+ a| 
+게이트웨이 IP 주소(선택 사항)
+ a| 
+선택 과목.  StorageGRID 액세스하는 데 사용되는 ONTAP IP 주소가 StorageGRID VIP 주소와 동일한 서브넷에 있지 않으면 StorageGRID VIP 로컬 게이트웨이 IP 주소를 입력합니다.  로컬 게이트웨이 IP 주소는 VIP 서브넷 내에 있어야 합니다.
+
+
+
+ a| 
+가상 IP 주소
+ a| 
+HA 그룹의 활성 인터페이스에 대해 최소 1개, 최대 10개의 VIP 주소를 입력하세요.  모든 VIP 주소는 VIP 서브넷 내에 있어야 합니다.
+
+최소한 하나의 주소는 IPv4여야 합니다.  선택적으로 추가 IPv4 및 IPv6 주소를 지정할 수 있습니다.
+
+|===
+. *HA 그룹 만들기*를 선택한 다음 *마침*을 선택합니다.
+

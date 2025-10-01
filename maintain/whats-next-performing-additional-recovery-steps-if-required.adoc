@@ -1,0 +1,78 @@
+---
+permalink: maintain/whats-next-performing-additional-recovery-steps-if-required.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, corrective action, additional recovery 
+summary: 대체 호스트에서 StorageGRID 노드를 실행하기 위해 수행한 특정 작업에 따라 각 노드에 대해 추가 복구 단계를 수행해야 할 수도 있습니다. 
+---
+= 다음 단계: 필요한 경우 추가 복구 단계 수행
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+대체 호스트에서 StorageGRID 노드를 실행하기 위해 수행한 특정 작업에 따라 각 노드에 대해 추가 복구 단계를 수행해야 할 수도 있습니다.
+
+Linux 호스트를 교체하거나 실패한 그리드 노드를 새 호스트로 복원하는 동안 어떠한 시정 조치도 취할 필요가 없었다면 노드 복구가 완료된 것입니다.
+
+
+
+== 시정 조치 및 다음 단계
+
+노드 교체 중에 다음과 같은 시정 조치 중 하나를 취해야 할 수도 있습니다.
+
+* 당신은 사용해야했습니다 `--force` 노드를 가져오기 위한 플래그입니다.
+* 어떤 것에 대해서든 `<PURPOSE>` ,의 가치 `BLOCK_DEVICE_<PURPOSE>` 구성 파일 변수가 호스트 장애 발생 전과 동일한 데이터를 포함하지 않는 블록 장치를 참조합니다.
+* 당신이 발행했습니다 `storagegrid node force-recovery _node-name_` 노드에 대한.
+* 새로운 블록 장치를 추가했습니다.
+
+
+이러한 시정 조치를 *어느 하나*라도 취했다면 추가 복구 단계를 수행해야 합니다.
+
+[cols="2a,1a"]
+|===
+| 복구 유형 | 다음 단계 
+
+
+ a| 
+기본 관리 노드
+ a| 
+link:configuring-replacement-primary-admin-node.html["교체용 기본 관리 노드 구성"]
+
+
+
+ a| 
+기본이 아닌 관리 노드
+ a| 
+link:selecting-start-recovery-to-configure-non-primary-admin-node.html["비기본 관리 노드를 구성하려면 복구 시작을 선택하세요."]
+
+
+
+ a| 
+게이트웨이 노드
+ a| 
+link:selecting-start-recovery-to-configure-gateway-node.html["게이트웨이 노드를 구성하려면 복구 시작을 선택하세요."]
+
+
+
+ a| 
+저장 노드(소프트웨어 기반):
+
+* 만약 당신이 사용해야 한다면 `--force` 노드를 가져오기 위한 플래그이거나, 당신이 발행한 것입니다. `storagegrid node force-recovery _node-name_`
+* 전체 노드를 다시 설치해야 하거나 /var/local을 복원해야 하는 경우
+
+ a| 
+link:selecting-start-recovery-to-configure-storage-node.html["스토리지 노드를 구성하려면 복구 시작을 선택하세요."]
+
+
+
+ a| 
+저장 노드(소프트웨어 기반):
+
+* 새로운 블록 장치를 추가한 경우.
+* 만약, 어떤 경우에 `<PURPOSE>` ,의 가치 `BLOCK_DEVICE_<PURPOSE>` 구성 파일 변수가 호스트 장애 발생 전과 동일한 데이터를 포함하지 않는 블록 장치를 참조합니다.
+
+ a| 
+link:recovering-from-storage-volume-failure-where-system-drive-is-intact.html["시스템 드라이브가 손상되지 않은 스토리지 볼륨 오류에서 복구"]
+
+|===

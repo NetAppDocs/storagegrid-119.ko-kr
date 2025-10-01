@@ -1,0 +1,87 @@
+---
+permalink: tenant/configuring-cross-origin-resource-sharing-cors.html 
+sidebar: sidebar 
+keywords: how to configure cross-origin resource sharing, cors 
+summary: '다른 도메인의 웹 애플리케이션에서 해당 버킷과 해당 버킷의 객체에 액세스할 수 있도록 하려면 S3 버킷에 대한 교차 출처 리소스 공유(CORS)를 구성할 수 있습니다.' 
+---
+= CORS(교차 출처 리소스 공유) 구성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+다른 도메인의 웹 애플리케이션에서 S3 버킷과 해당 버킷의 객체에 액세스할 수 있도록 하려면 해당 버킷에 대한 CORS(교차 출처 리소스 공유)를 구성할 수 있습니다.
+
+.시작하기 전에
+* 귀하는 다음을 사용하여 테넌트 관리자에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* GET CORS 구성 요청의 경우, 귀하는 다음 권한이 있는 사용자 그룹에 속합니다.link:tenant-management-permissions.html["모든 버킷 관리 또는 모든 버킷 보기 권한"] . 이러한 권한은 그룹 또는 버킷 정책의 권한 설정을 재정의합니다.
+* PUT CORS 구성 요청의 경우 다음 권한이 있는 사용자 그룹에 속합니다.link:tenant-management-permissions.html["모든 버킷 권한 관리"] .  이 권한은 그룹 또는 버킷 정책의 권한 설정을 재정의합니다.
+* 그만큼link:tenant-management-permissions.html["루트 액세스 권한"] 모든 CORS 구성 요청에 대한 액세스를 제공합니다.
+
+
+.이 작업에 관하여
+CORS(교차 출처 리소스 공유)는 한 도메인의 클라이언트 웹 애플리케이션이 다른 도메인의 리소스에 액세스할 수 있도록 하는 보안 메커니즘입니다.  예를 들어, 다음과 같은 S3 버킷을 사용한다고 가정합니다. `Images` 그래픽을 저장합니다.  CORS를 구성하여 `Images` 버킷을 사용하면 해당 버킷에 있는 이미지가 웹사이트에 표시되도록 허용할 수 있습니다. `+http://www.example.com+` .
+
+
+
+== 버킷에 CORS 활성화
+
+.단계
+. 텍스트 편집기를 사용하여 필요한 XML을 만듭니다.  이 예에서는 S3 버킷에 대해 CORS를 활성화하는 데 사용되는 XML을 보여줍니다.  구체적으로:
++
+** 모든 도메인이 버킷에 GET 요청을 보낼 수 있도록 허용합니다.
+** 허용만 가능 `+http://www.example.com+` GET, POST, DELETE 요청을 보낼 도메인
+** 모든 요청 헤더가 허용됩니다
++
+[listing]
+----
+<CORSConfiguration
+    xmlns="http://s3.amazonaws.com/doc/2020-10-22/">
+    <CORSRule>
+        <AllowedOrigin>*</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+    <CORSRule>
+        <AllowedOrigin>http://www.example.com</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedMethod>POST</AllowedMethod>
+        <AllowedMethod>DELETE</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+</CORSConfiguration>
+----
++
+CORS 구성 XML에 대한 자세한 내용은 다음을 참조하세요. http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html["Amazon Web Services(AWS) 설명서: Amazon Simple Storage Service 사용자 가이드"^] .
+
+
+
+. 대시보드에서 *버킷 보기*를 선택하거나 *스토리지(S3)* > *버킷*을 선택하세요.
+. 표에서 버킷 이름을 선택합니다.
++
+버킷 세부 정보 페이지가 나타납니다.
+
+. *버킷 액세스* 탭에서 *교차 출처 리소스 공유(CORS)* 아코디언을 선택합니다.
+. *CORS 활성화* 확인란을 선택합니다.
+. CORS 구성 XML을 텍스트 상자에 붙여넣습니다.
+. *변경 사항 저장*을 선택하세요.
+
+
+
+
+== CORS 설정 수정
+
+.단계
+. 텍스트 상자에서 CORS 구성 XML을 업데이트하거나, *지우기*를 선택하여 다시 시작합니다.
+. *변경 사항 저장*을 선택하세요.
+
+
+
+
+== CORS 설정 비활성화
+
+.단계
+. *CORS 사용* 체크박스를 선택 취소합니다.
+. *변경 사항 저장*을 선택하세요.
+

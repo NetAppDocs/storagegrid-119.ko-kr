@@ -1,0 +1,122 @@
+---
+permalink: fabricpool/configure-ontap.html 
+sidebar: sidebar 
+keywords: fabricPool, system manager, ONTAP CLI, add cloud tier 
+summary: 필요한 StorageGRID 정보를 얻은 후 ONTAP 으로 이동하여 StorageGRID 클라우드 계층으로 추가할 수 있습니다. 
+---
+= ONTAP 시스템 관리자 구성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+필요한 StorageGRID 정보를 얻은 후 ONTAP 으로 이동하여 StorageGRID 클라우드 계층으로 추가할 수 있습니다.
+
+.시작하기 전에
+* FabricPool 설정 마법사를 완료한 경우 `ONTAP_FabricPool_settings___bucketname__.txt` 다운로드한 파일입니다.
+* StorageGRID 수동으로 구성한 경우 StorageGRID 에 사용하는 정규화된 도메인 이름(FQDN) 또는 StorageGRID HA 그룹의 가상 IP(VIP) 주소, 로드 밸런서 엔드포인트의 포트 번호, 로드 밸런서 인증서, 테넌트 계정의 루트 사용자에 대한 액세스 키 ID 및 비밀 키, ONTAP 해당 테넌트에서 사용할 버킷의 이름이 있습니다.
+
+
+
+
+== ONTAP 시스템 관리자에 액세스하세요
+
+이 지침에서는 ONTAP System Manager를 사용하여 StorageGRID 클라우드 계층으로 추가하는 방법을 설명합니다.  ONTAP CLI를 사용하여 동일한 구성을 완료할 수 있습니다.  지침은 여기를 참조하세요. https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPool 에 대한 ONTAP 설명서"^] .
+
+.단계
+. StorageGRID 로 계층화하려는 ONTAP 클러스터에 대한 System Manager에 액세스합니다.
+. 클러스터의 관리자로 Sign in .
+. *저장소* > *계층* > *클라우드 계층 추가*로 이동합니다.
+. 객체 저장소 공급자 목록에서 * StorageGRID*를 선택합니다.
+
+
+
+
+== StorageGRID 값을 입력하세요
+
+보다 https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPool 에 대한 ONTAP 설명서"^] 자세한 내용은.
+
+.단계
+. 다음을 사용하여 클라우드 계층 추가 양식을 완료하세요. `ONTAP_FabricPool_settings___bucketname__.txt` 파일이나 수동으로 얻은 값.
++
+[cols="1a,3a"]
+|===
+| 필드 | 설명 
+
+
+ a| 
+이름
+ a| 
+이 클라우드 계층에 대한 고유한 이름을 입력하세요.  기본값을 그대로 사용해도 됩니다.
+
+
+
+ a| 
+URL 스타일
+ a| 
+만약 당신이라면link:../admin/configuring-s3-api-endpoint-domain-names.html["구성된 S3 엔드포인트 도메인 이름"] , *가상 호스팅 스타일 URL*을 선택하세요.
+
+ONTAP 의 기본값은 *경로 스타일 URL*이지만 StorageGRID 의 경우 가상 호스팅 스타일 요청을 사용하는 것이 좋습니다.  *서버 이름(FQDN)* 필드에 도메인 이름 대신 IP 주소를 제공하는 경우 *경로 스타일 URL*을 사용해야 합니다.
+
+
+
+ a| 
+서버 이름(FQDN)
+ a| 
+StorageGRID 에 사용하는 정규화된 도메인 이름(FQDN) 또는 StorageGRID HA 그룹의 가상 IP(VIP) 주소를 입력하세요. 예를 들어,  `s3.storagegrid.__company__.com` .
+
+다음 사항에 유의하세요.
+
+** 여기에 지정하는 IP 주소 또는 도메인 이름은 StorageGRID 로드 밸런서 엔드포인트에 대해 업로드하거나 생성한 인증서와 일치해야 합니다.
+** 도메인 이름을 제공하는 경우 DNS 레코드는 StorageGRID 에 연결하는 데 사용할 각 IP 주소에 매핑되어야 합니다. 보다 link:configure-dns-server.html["DNS 서버 구성"] .
+
+
+
+
+ a| 
+SSL
+ a| 
+활성화됨(기본값).
+
+
+
+ a| 
+개체 저장소 인증서
+ a| 
+다음을 포함하여 StorageGRID 로드 밸런서 엔드포인트에 사용 중인 인증서 PEM을 붙여넣습니다.
+`-----BEGIN CERTIFICATE-----` 그리고 `-----END CERTIFICATE-----` .
+
+*참고:* 중간 CA가 StorageGRID 인증서를 발급한 경우 중간 CA 인증서를 제공해야 합니다.  StorageGRID 인증서가 루트 CA에서 직접 발급된 경우 루트 CA 인증서를 제공해야 합니다.
+
+
+
+ a| 
+포트
+ a| 
+StorageGRID 로드 밸런서 엔드포인트에서 사용하는 포트를 입력하세요.  ONTAP StorageGRID 에 연결할 때 이 포트를 사용합니다. 예를 들어, 10433.
+
+
+
+ a| 
+액세스 키와 비밀 키
+ a| 
+StorageGRID 테넌트 계정의 루트 사용자에 대한 액세스 키 ID와 비밀 액세스 키를 입력합니다.
+
+*팁*: 나중에 StorageGRID 에서 새로운 액세스 키와 비밀 액세스 키를 생성하는 경우 StorageGRID 에서 이전 값을 삭제하기 전에 ONTAP 에 새로운 키를 입력하세요.  그렇지 않으면 ONTAP StorageGRID 에 대한 액세스 권한을 일시적으로 잃을 수 있습니다.
+
+
+
+ a| 
+컨테이너 이름
+ a| 
+이 ONTAP 계층에서 사용하기 위해 생성한 StorageGRID 버킷의 이름을 입력하세요.
+
+|===
+. ONTAP 에서 최종 FabricPool 구성을 완료합니다.
++
+.. 클라우드 계층에 하나 이상의 집계를 연결합니다.
+.. 선택적으로 볼륨 계층화 정책을 생성합니다.
+
+
+

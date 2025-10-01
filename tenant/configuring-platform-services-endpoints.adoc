@@ -1,0 +1,53 @@
+---
+permalink: tenant/configuring-platform-services-endpoints.html 
+sidebar: sidebar 
+keywords: how to configure platform services endpoint 
+summary: 버킷에 대한 플랫폼 서비스를 구성하려면 먼저 적어도 하나의 엔드포인트를 플랫폼 서비스의 대상으로 구성해야 합니다. 
+---
+= 플랫폼 서비스 엔드포인트 구성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+버킷에 대한 플랫폼 서비스를 구성하려면 먼저 적어도 하나의 엔드포인트를 플랫폼 서비스의 대상으로 구성해야 합니다.
+
+플랫폼 서비스에 대한 액세스는 StorageGRID 관리자에 의해 테넌트별로 활성화됩니다.  플랫폼 서비스 엔드포인트를 만들거나 사용하려면 스토리지 노드가 외부 엔드포인트 리소스에 액세스할 수 있도록 네트워킹이 구성된 그리드에서 엔드포인트 관리 또는 루트 액세스 권한이 있는 테넌트 사용자여야 합니다.  단일 테넌트의 경우 최대 500개의 플랫폼 서비스 엔드포인트를 구성할 수 있습니다.  자세한 내용은 StorageGRID 관리자에게 문의하세요.
+
+
+
+== 플랫폼 서비스 엔드포인트란 무엇인가요?
+
+플랫폼 서비스 엔드포인트는 StorageGRID 외부 대상에 액세스하는 데 필요한 정보를 지정합니다.
+
+예를 들어, StorageGRID 버킷에서 Amazon S3 버킷으로 객체를 복제하려는 경우 StorageGRID Amazon의 대상 버킷에 액세스하는 데 필요한 정보와 자격 증명을 포함하는 플랫폼 서비스 엔드포인트를 만듭니다.
+
+각 유형의 플랫폼 서비스에는 자체 엔드포인트가 필요하므로 사용하려는 각 플랫폼 서비스에 대해 최소한 하나의 엔드포인트를 구성해야 합니다.  플랫폼 서비스 엔드포인트를 정의한 후에는 서비스를 활성화하는 데 사용되는 구성 XML에서 엔드포인트의 URN을 대상으로 사용합니다.
+
+두 개 이상의 소스 버킷에 대해 동일한 엔드포인트를 대상으로 사용할 수 있습니다.  예를 들어, 여러 개의 소스 버킷을 구성하여 동일한 검색 통합 엔드포인트로 개체 메타데이터를 전송하면 여러 버킷에서 검색을 수행할 수 있습니다.  또한 소스 버킷을 구성하여 두 개 이상의 엔드포인트를 대상으로 사용할 수 있습니다. 이를 통해 객체 생성에 대한 알림을 하나의 Amazon Simple Notification Service(Amazon SNS) 주제로 보내고 객체 삭제에 대한 알림을 두 번째 Amazon SNS 주제로 보내는 등의 작업을 수행할 수 있습니다.
+
+
+
+== CloudMirror 복제를 위한 엔드포인트
+
+StorageGRID S3 버킷을 나타내는 복제 엔드포인트를 지원합니다.  이러한 버킷은 Amazon Web Services, 동일하거나 원격 StorageGRID 배포 또는 다른 서비스에 호스팅될 수 있습니다.
+
+
+
+== 알림에 대한 엔드포인트
+
+StorageGRID Amazon SNS 및 Kafka 엔드포인트를 지원합니다. SQS(Simple Queue Service) 또는 AWS Lambda 엔드포인트는 지원되지 않습니다.
+
+Kafka 엔드포인트의 경우 Mutual TLS가 지원되지 않습니다. 결과적으로, 만약 당신이 가지고 있다면 `ssl.client.auth` 로 설정 `required` Kafka 브로커 구성에서 Kafka 엔드포인트 구성 문제가 발생할 수 있습니다.
+
+
+
+== 검색 통합 서비스의 엔드포인트
+
+StorageGRID Elasticsearch 클러스터를 나타내는 검색 통합 엔드포인트를 지원합니다.  이러한 Elasticsearch 클러스터는 로컬 데이터 센터에 있을 수도 있고 AWS 클라우드나 다른 곳에 호스팅될 수도 있습니다.
+
+검색 통합 엔드포인트는 특정 Elasticsearch 인덱스 및 유형을 참조합니다.  StorageGRID 에서 엔드포인트를 생성하기 전에 Elasticsearch에서 인덱스를 생성해야 합니다. 그렇지 않으면 엔드포인트 생성이 실패합니다.  엔드포인트를 만들기 전에 유형을 만들 필요는 없습니다.  StorageGRID 엔드포인트에 개체 메타데이터를 전송할 때 필요한 경우 유형을 생성합니다.
+
+.관련 정보
+link:../admin/index.html["StorageGRID 관리"]

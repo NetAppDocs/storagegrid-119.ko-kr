@@ -1,0 +1,64 @@
+---
+permalink: audit/bror-bucket-read-only-request.html 
+sidebar: sidebar 
+keywords: bror, bucket read only request, empty bucket, audit message, 
+summary: LDR 서비스는 버킷이 읽기 전용 모드로 들어가거나 읽기 전용 모드에서 나올 때 이 감사 메시지를 생성합니다.  예를 들어, 버킷은 비워지는 동안 읽기 전용 모드로 전환됩니다. 
+---
+= BROR: 버킷 읽기 전용 요청
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+LDR 서비스는 버킷이 읽기 전용 모드로 들어가거나 읽기 전용 모드에서 나올 때 이 감사 메시지를 생성합니다.  예를 들어, 모든 객체가 삭제되는 동안 버킷은 읽기 전용 모드로 전환됩니다.
+
+[cols="1a,1a,4a"]
+|===
+| 암호 | 필드 | 설명 
+
+
+ a| 
+BKHD
+ a| 
+버킷 UUID
+ a| 
+버킷 ID.
+
+
+
+ a| 
+브로브
+ a| 
+버킷 읽기 전용 요청 값
+ a| 
+버킷이 읽기 전용으로 만들어지는지, 아니면 읽기 전용 상태를 벗어나는지를 나타냅니다(1 = 읽기 전용, 0 = 읽기 전용 아님).
+
+
+
+ a| 
+브라더스
+ a| 
+버킷 읽기 전용 이유
+ a| 
+버킷이 읽기 전용으로 만들어지거나 읽기 전용 상태를 벗어나는 이유입니다.  예를 들어, emptyBucket.
+
+
+
+ a| 
+S3AI
+ a| 
+S3 테넌트 계정 ID
+ a| 
+요청을 보낸 테넌트 계정의 ID입니다.  비어 있는 값은 익명 액세스를 나타냅니다.
+
+
+
+ a| 
+S3BK
+ a| 
+S3 버킷
+ a| 
+S3 버킷 이름.
+
+|===

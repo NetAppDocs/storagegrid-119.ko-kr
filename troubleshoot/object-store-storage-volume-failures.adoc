@@ -1,0 +1,28 @@
+---
+permalink: troubleshoot/object-store-storage-volume-failures.html 
+sidebar: sidebar 
+keywords: how to confirm object location, object metadata lookup 
+summary: 스토리지 노드의 기본 스토리지는 객체 저장소로 구분됩니다.  객체 저장소는 저장 볼륨이라고도 합니다. 
+---
+= 개체 저장소(저장 볼륨) 오류
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+스토리지 노드의 기본 스토리지는 객체 저장소로 구분됩니다.  객체 저장소는 저장 볼륨이라고도 합니다.
+
+각 스토리지 노드에 대한 객체 저장소 정보를 볼 수 있습니다. 객체 저장소는 *NODES* > *_Storage Node_* > *Storage* 페이지 하단에 표시됩니다.
+
+image::../media/nodes_page_storage_nodes_storage_tables.png[노드 페이지 저장소 노드 저장소 테이블]
+
+더 보기link:../monitor/viewing-grid-topology-tree.html["각 스토리지 노드에 대한 세부 정보"] , 다음 단계를 따르세요.
+
+. *지원* > *도구* > *그리드 토폴로지*를 선택하세요.
+. *_사이트_* > *_스토리지 노드_* > *LDR* > *스토리지* > *개요* > *기본*을 선택합니다.
+
+
+image::../media/storage_node_object_stores.png[스토리지 노드 객체 저장소]
+
+실패의 특성에 따라 저장 볼륨의 오류가 반영될 수 있습니다.link:../monitor/alerts-reference.html["저장 볼륨 알림"] .  스토리지 볼륨에 오류가 발생하면 오류가 발생한 스토리지 볼륨을 복구하여 스토리지 노드를 최대한 빨리 모든 기능으로 복원해야 합니다.  필요한 경우 *구성* 탭으로 이동하여link:../maintain/checking-storage-state-after-recovering-storage-volumes.html["저장 노드를 읽기 전용 상태로 전환"] 이를 통해 StorageGRID 시스템은 서버를 완전히 복구할 준비를 하는 동안 데이터를 검색하는 데 사용할 수 있습니다.

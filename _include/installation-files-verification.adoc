@@ -1,0 +1,55 @@
+= 
+:allow-uri-read: 
+
+
+. 검증 패키지에서 아티팩트를 추출합니다.
++
+`tar -xf StorageGRID_11.9.0_Code_Signature_Verification_Package.tar.gz`
+
+. 다음 아티팩트가 추출되었는지 확인하세요.
++
+** 잎 인증서: `Leaf-Cert.pem`
+** 인증서 체인: `CA-Int-Cert.pem`
+** 타임스탬프 응답 체인: `TS-Cert.pem`
+** 체크섬 파일: `sha256sum`
+** 체크섬 서명: `sha256sum.sig`
+** 타임스탬프 응답 파일: `sha256sum.sig.tsr`
+
+
+. 체인을 사용하여 리프 인증서가 유효한지 확인합니다.
++
+*예*: `openssl verify -CAfile CA-Int-Cert.pem Leaf-Cert.pem`
+
++
+*예상 출력*: `Leaf-Cert.pem: OK`
+
+. 만료된 리프 인증서로 인해 _2_ 단계가 실패한 경우 다음을 사용하십시오. `tsr` 검증할 파일입니다.
++
+*예*: `openssl ts -CAfile CA-Int-Cert.pem -untrusted TS-Cert.pem -verify -data sha256sum.sig -in sha256sum.sig.tsr`
+
++
+*예상 출력에는 다음이 포함됩니다*: `Verification: OK`
+
+. 리프 인증서에서 공개 키 파일을 만듭니다.
++
+*예*: `openssl x509 -pubkey -noout -in Leaf-Cert.pem > Leaf-Cert.pub`
+
++
+*예상 출력*: _없음_
+
+. 공개 키를 사용하여 확인하십시오. `sha256sum` 파일을 상대로 `sha256sum.sig` .
++
+*예*: `openssl dgst -sha256 -verify Leaf-Cert.pub -signature sha256sum.sig sha256sum`
+
++
+*예상 출력*: `Verified OK`
+
+. 확인하다 `sha256sum` 새로 생성된 체크섬과 파일 내용을 비교합니다.
++
+*예*: `sha256sum -c sha256sum`
+
++
+*예상 출력*: `_<filename>_: OK` +
+`_<filename>_` 는 다운로드한 보관 파일의 이름입니다.
+
+

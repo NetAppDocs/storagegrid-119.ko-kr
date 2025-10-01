@@ -1,0 +1,154 @@
+---
+permalink: fabricpool/using-storagegrid-ilm-with-fabricpool-data.html 
+sidebar: sidebar 
+keywords: FabricPool, requirements, ILM, information lifecycle management, ILM rule, ILM rules, ILM policy, erasure coding, replication, cloud storage pool, glacier 
+summary: 이 간단한 정책 예를 바탕으로 귀하만의 ILM 규칙과 정책을 구축할 수 있습니다. 
+---
+= FabricPool 데이터에 대한 ILM 구성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 간단한 정책 예를 바탕으로 귀하만의 ILM 규칙과 정책을 구축할 수 있습니다.
+
+이 예에서는 콜로라도주 덴버에 있는 단일 데이터 센터에 4개의 스토리지 노드가 있는 StorageGRID 시스템에 대한 ILM 규칙과 ILM 정책을 설계한다고 가정합니다.  이 예에서 FabricPool 데이터는 다음과 같은 버킷을 사용합니다. `fabricpool-bucket` .
+
+
+CAUTION: 다음 ILM 규칙과 정책은 단지 예시일 뿐입니다.  ILM 규칙을 구성하는 방법은 여러 가지가 있습니다.  새로운 정책을 활성화하기 전에 시뮬레이션하여 콘텐츠 손실을 방지하기 위해 의도한 대로 작동하는지 확인하세요.  자세한 내용은 다음을 참조하세요.link:../ilm/index.html["ILM을 사용하여 객체 관리"] .
+
+
+CAUTION: 데이터 손실을 방지하려면 FabricPool 클라우드 계층 데이터를 만료하거나 삭제하는 ILM 규칙을 사용하지 마세요.  FabricPool 객체가 StorageGRID ILM에 의해 삭제되지 않도록 보존 기간을 *영구*로 설정합니다.
+
+.시작하기 전에
+* 당신은 검토했습니다link:best-practices-ilm.html["FabricPool 데이터와 함께 ILM을 사용하기 위한 모범 사례"] .
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:../admin/admin-group-permissions.html["ILM 또는 루트 액세스 권한"] .
+* 이전 StorageGRID 버전에서 StorageGRID 11.9로 업그레이드한 경우 사용할 스토리지 풀을 구성했습니다. 일반적으로 데이터를 저장하는 데 사용할 각 StorageGRID 사이트에 대해 스토리지 풀을 만들어야 합니다.
++
+
+NOTE: 처음에 StorageGRID 11.7 또는 11.8을 설치한 경우에는 이 필수 조건이 적용되지 않습니다.  이러한 버전 중 하나를 처음 설치하면 각 사이트에 대한 스토리지 풀이 자동으로 생성됩니다.
+
+
+
+.단계
+. 데이터에만 적용되는 ILM 규칙을 만듭니다. `fabricpool-bucket` . 이 예제 규칙은 삭제 코드가 적용된 사본을 만듭니다.
++
+[cols="1a,2a"]
+|===
+| 규칙 정의 | 예시 값 
+
+
+ a| 
+규칙 이름
+ a| 
+FabricPool 데이터에 대한 2 + 1 삭제 코딩
+
+
+
+ a| 
+버킷 이름
+ a| 
+`fabricpool-bucket`
+
+FabricPool 테넌트 계정을 필터링할 수도 있습니다.
+
+
+
+ a| 
+고급 필터
+ a| 
+개체 크기가 0.2MB보다 큽니다.
+
+*참고:* FabricPool 4MB 객체만 쓸 수 있지만, 이 규칙은 삭제 코딩을 사용하므로 객체 크기 필터를 추가해야 합니다.
+
+
+
+ a| 
+참조 시간
+ a| 
+섭취 시간
+
+
+
+ a| 
+기간 및 배치
+ a| 
+Day 0 매장부터 영원히
+
+덴버에서 2+1 EC 방식을 사용하여 삭제 코딩을 통해 객체를 저장하고 해당 객체를 StorageGRID 에 영구적으로 보관합니다.
+
+
+CAUTION: 데이터 손실을 방지하려면 FabricPool 클라우드 계층 데이터를 만료하거나 삭제하는 ILM 규칙을 사용하지 마세요.
+
+
+
+ a| 
+섭취 동작
+ a| 
+균형 잡힌
+
+|===
+. 첫 번째 규칙과 일치하지 않는 모든 개체의 복제본 두 개를 생성하는 기본 ILM 규칙을 만듭니다.  기본 필터(테넌트 계정 또는 버킷 이름)나 고급 필터를 선택하지 마세요.
++
+[cols="1a,2a"]
+|===
+| 규칙 정의 | 예시 값 
+
+
+ a| 
+규칙 이름
+ a| 
+두 개의 복제된 사본
+
+
+
+ a| 
+버킷 이름
+ a| 
+_없음_
+
+
+
+ a| 
+고급 필터
+ a| 
+_없음_
+
+
+
+ a| 
+참조 시간
+ a| 
+섭취 시간
+
+
+
+ a| 
+기간 및 배치
+ a| 
+Day 0 매장부터 영원히
+
+덴버에 2개의 사본을 복제하여 객체를 저장합니다.
+
+
+
+ a| 
+섭취 동작
+ a| 
+균형 잡힌
+
+|===
+. ILM 정책을 만들고 두 가지 규칙을 선택합니다.  복제 규칙은 어떠한 필터도 사용하지 않으므로 정책의 기본(마지막) 규칙이 될 수 있습니다.
+. 테스트 객체를 그리드에 수집합니다.
+. 테스트 객체로 정책을 시뮬레이션하여 동작을 확인합니다.
+. 정책을 활성화합니다.
+
+
+이 정책이 활성화되면 StorageGRID 다음과 같이 개체 데이터를 배치합니다.
+
+* FabricPool 에서 계층화된 데이터 `fabricpool-bucket` 2+1 삭제 코딩 방식을 사용하여 삭제 코딩됩니다.  두 개의 데이터 조각과 하나의 패리티 조각이 세 개의 서로 다른 스토리지 노드에 배치됩니다.
+* 다른 모든 버킷의 모든 객체는 복제됩니다.  두 개의 사본이 생성되어 두 개의 서로 다른 스토리지 노드에 배치됩니다.
+* 사본은 StorageGRID 에 영구적으로 보관됩니다.  StorageGRID ILM은 이러한 객체를 삭제하지 않습니다.
+

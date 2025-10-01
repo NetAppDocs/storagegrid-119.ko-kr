@@ -1,0 +1,49 @@
+---
+permalink: vmware/index.html 
+sidebar: sidebar 
+keywords: vmware 
+summary: VMware StorageGRID 노드를 설치하려면 다음의 고급 단계를 따르세요. 
+---
+= VMware에 StorageGRID 설치하기 위한 빠른 시작
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+VMware StorageGRID 노드를 설치하려면 다음의 고급 단계를 따르세요.
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["하나"]준비
+[role="quick-margin-list"]
+* 에 대해 알아보세요link:../primer/storagegrid-architecture-and-network-topology.html["StorageGRID 아키텍처 및 네트워크 토폴로지"] .
+* 의 세부 사항에 대해 알아보세요link:../network/index.html["StorageGRID 네트워킹"] .
+* 수집하고 준비하세요link:required-materials.html["필수 정보 및 자료"] .
+* 설치 및 구성link:software-requirements.html["VMware vSphere Hypervisor, vCenter 및 ESX 호스트"] .
+* 필요한 것을 준비하세요link:cpu-and-ram-requirements.html["CPU와 RAM"] .
+* 제공하다link:storage-and-performance-requirements.html["저장 및 성능 요구 사항"] .
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["둘"]전개
+[role="quick-margin-para"]
+그리드 노드를 배포합니다.  그리드 노드를 배포하면 StorageGRID 시스템의 일부로 생성되고 하나 이상의 네트워크에 연결됩니다.
+
+[role="quick-margin-list"]
+* VMware vSphere Web Client, .vmdk 파일 및 .ovf 파일 템플릿 세트를 사용하여link:collecting-information-about-your-deployment-environment.html["소프트웨어 기반 노드를 가상 머신(VM)으로 배포합니다."] 1단계에서 준비한 서버에서.
+* StorageGRID 어플라이언스 노드를 배포하려면 다음을 따르세요. https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["하드웨어 설치를 위한 빠른 시작"^] .
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["삼"]구성
+[role="quick-margin-para"]
+모든 노드가 배포되면 Grid Manager를 사용하여link:navigating-to-grid-manager.html["그리드를 구성하고 설치를 완료합니다."] .
+
+
+
+== 설치 자동화
+
+시간을 절약하고 일관성을 유지하기 위해 그리드 노드의 배포 및 구성과 StorageGRID 시스템의 구성을 자동화할 수 있습니다.
+
+* link:automating-grid-node-deployment-in-vmware-vsphere.html#automate-grid-node-deployment["VMware vSphere를 사용하여 그리드 노드 배포 자동화"] .
+* 그리드 노드를 배포한 후link:automating-grid-node-deployment-in-vmware-vsphere.html#automate-the-configuration-of-storagegrid["StorageGRID 시스템 구성을 자동화합니다"] 설치 아카이브에 제공된 Python 구성 스크립트를 사용합니다.
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/automating-appliance-installation-and-configuration.html["어플라이언스 그리드 노드의 설치 및 구성을 자동화합니다."^]
+* StorageGRID 배포의 고급 개발자라면 다음을 사용하여 그리드 노드 설치를 자동화하세요.link:overview-of-installation-rest-api.html["REST API 설치"] .
+

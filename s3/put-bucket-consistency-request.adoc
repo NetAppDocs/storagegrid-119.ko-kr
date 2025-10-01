@@ -1,0 +1,80 @@
+---
+permalink: s3/put-bucket-consistency-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, PUT bucket consistency request 
+summary: PUT 버킷 일관성 요청을 사용하면 버킷에서 수행되는 작업에 적용할 일관성을 지정할 수 있습니다. 
+---
+= PUT 버킷 일관성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+PUT 버킷 일관성 요청을 사용하면 버킷에서 수행되는 작업에 적용할 일관성을 지정할 수 있습니다.
+
+기본 일관성은 새로 생성된 객체에 대해 읽기 후 쓰기를 보장하도록 설정됩니다.
+
+.시작하기 전에
+이 작업을 완료하려면 s3:PutBucketConsistency 권한이 있거나 계정 루트여야 합니다.
+
+
+
+== 요구
+
+그만큼 `x-ntap-sg-consistency` 매개변수에는 다음 값 중 하나가 포함되어야 합니다.
+
+[cols="1a,2a"]
+|===
+| 일관성 | 설명 
+
+
+ a| 
+모두
+ a| 
+모든 노드는 즉시 데이터를 수신하며, 수신하지 못하면 요청이 실패합니다.
+
+
+
+ a| 
+강력한 글로벌
+ a| 
+모든 사이트의 모든 클라이언트 요청에 대해 읽기-쓰기 일관성을 보장합니다.
+
+
+
+ a| 
+강력한 사이트
+ a| 
+사이트 내의 모든 클라이언트 요청에 대해 읽기-쓰기 일관성을 보장합니다.
+
+
+
+ a| 
+새로 쓰기 후 읽기
+ a| 
+(기본값) 새 개체에 대한 읽기-쓰기 일관성을 제공하고 개체 업데이트에 대한 이벤트적 일관성을 제공합니다.  높은 가용성과 데이터 보호를 보장합니다.  대부분의 경우에 권장됩니다.
+
+
+
+ a| 
+사용 가능
+ a| 
+새 객체와 객체 업데이트 모두에 대해 최종 일관성을 제공합니다.  S3 버킷의 경우 필요한 경우에만 사용합니다(예: 거의 읽히지 않는 로그 값이 포함된 버킷이나 존재하지 않는 키에 대한 HEAD 또는 GET 작업).  S3 FabricPool 버킷에서는 지원되지 않습니다.
+
+|===
+*참고:* 일반적으로 "새로 쓰기 후 읽기" 일관성을 사용해야 합니다.  요청이 제대로 작동하지 않는 경우 가능하다면 애플리케이션 클라이언트 동작을 변경하세요.  또는 각 API 요청에 대한 일관성을 지정하도록 클라이언트를 구성합니다.  버킷 수준에서 일관성을 설정하는 것은 마지막 수단으로만 사용하세요.
+
+
+
+== 요청 예시
+
+[listing, subs="specialcharacters,quotes"]
+----
+PUT /bucket?x-ntap-sg-consistency=strong-global HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+.관련 정보
+link:consistency-controls.html["일관성 값"]

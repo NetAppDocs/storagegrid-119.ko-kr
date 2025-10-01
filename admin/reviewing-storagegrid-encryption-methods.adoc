@@ -1,0 +1,146 @@
+---
+permalink: admin/reviewing-storagegrid-encryption-methods.html 
+sidebar: sidebar 
+keywords: encryption, encrypting data, best practices 
+summary: StorageGRID 데이터 암호화를 위한 여러 가지 옵션을 제공합니다.  귀하의 데이터 보호 요구 사항을 충족하는 방법을 확인하려면 사용 가능한 방법을 검토해야 합니다. 
+---
+= StorageGRID 암호화 방법 검토
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 데이터 암호화를 위한 여러 가지 옵션을 제공합니다.  귀하의 데이터 보호 요구 사항을 충족하는 방법을 확인하려면 사용 가능한 방법을 검토해야 합니다.
+
+이 표는 StorageGRID 에서 사용할 수 있는 암호화 방법에 대한 간략한 요약을 제공합니다.
+
+[cols="1a,1a,1a"]
+|===
+| 암호화 옵션 | 작동 원리 | 적용 대상 
+
+
+ a| 
+Grid Manager의 키 관리 서버(KMS)
+ a| 
+너link:kms-configuring.html["키 관리 서버 구성"] StorageGRID 사이트 및 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-enabling-node-encryption.html["어플라이언스에 대한 노드 암호화를 활성화합니다."^] .  그런 다음 어플라이언스 노드는 KMS에 연결하여 키 암호화 키(KEK)를 요청합니다.  이 키는 각 볼륨의 데이터 암호화 키(DEK)를 암호화하고 해독합니다.
+ a| 
+설치 중에 *노드 암호화*가 활성화된 어플라이언스 노드입니다.  모든 기기의 데이터는 물리적 손실이나 데이터 센터에서의 제거로부터 보호됩니다.
+
+*참고*: KMS를 사용하여 암호화 키를 관리하는 기능은 스토리지 노드와 서비스 어플라이언스에서만 지원됩니다.
+
+
+
+ a| 
+StorageGRID Appliance 설치 프로그램의 드라이브 암호화 페이지
+ a| 
+어플라이언스에 하드웨어 암호화를 지원하는 드라이브가 포함되어 있는 경우 설치 중에 드라이브 암호를 설정할 수 있습니다.  드라이브 암호를 설정하면 암호를 알지 못하는 한 시스템에서 제거된 드라이브에서 유효한 데이터를 복구하는 것이 불가능합니다.  설치를 시작하기 전에 *하드웨어 구성* > *드라이브 암호화*로 이동하여 노드의 모든 StorageGRID 관리형 자체 암호화 드라이브에 적용되는 드라이브 암호를 설정합니다.
+ a| 
+자체 암호화 드라이브가 포함된 기기.  보안 드라이브에 저장된 모든 데이터는 데이터 센터에서 물리적으로 손실되거나 제거되는 것을 방지합니다.
+
+드라이브 암호화는 SANtricity 관리 드라이브에는 적용되지 않습니다.  자체 암호화 드라이브와 SANtricity 컨트롤러가 있는 스토리지 어플라이언스가 있는 경우 SANtricity 에서 드라이브 보안을 활성화할 수 있습니다.
+
+
+
+ a| 
+SANtricity System Manager에서 보안 강화
+ a| 
+StorageGRID 어플라이언스에 대해 드라이브 보안 기능이 활성화된 경우 다음을 사용할 수 있습니다. https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["SANtricity 시스템 관리자"^] 보안 키를 생성하고 관리합니다.  보안 드라이브의 데이터에 접근하려면 키가 필요합니다.
+ a| 
+FDE(전체 디스크 암호화) 드라이브나 자체 암호화 드라이브가 있는 스토리지 어플라이언스입니다.  보안 드라이브에 저장된 모든 데이터는 데이터 센터에서 물리적으로 손실되거나 제거되는 것을 방지합니다.  일부 저장 장치나 서비스 장치에서는 사용할 수 없습니다.
+
+
+
+ a| 
+저장된 객체 암호화
+ a| 
+당신은 활성화합니다link:changing-network-options-object-encryption.html["저장된 객체 암호화"] 그리드 관리자의 옵션.  이 기능을 활성화하면 버킷 수준이나 객체 수준에서 암호화되지 않은 모든 새 객체는 수집 중에 암호화됩니다.
+ a| 
+새로 수집된 S3 객체 데이터.
+
+기존에 저장된 객체는 암호화되지 않습니다.  개체 메타데이터와 기타 민감한 데이터는 암호화되지 않습니다.
+
+
+
+ a| 
+S3 버킷 암호화
+ a| 
+버킷의 암호화를 활성화하려면 PutBucketEncryption 요청을 실행합니다.  객체 수준에서 암호화되지 않은 모든 새 객체는 수집 중에 암호화됩니다.
+ a| 
+새로 수집된 S3 객체 데이터만 해당.
+
+버킷에 대한 암호화를 지정해야 합니다.  기존 버킷 객체는 암호화되지 않습니다.  개체 메타데이터와 기타 민감한 데이터는 암호화되지 않습니다.
+
+link:../s3/operations-on-buckets.html["버킷 작업"]
+
+
+
+ a| 
+S3 객체 서버 측 암호화(SSE)
+ a| 
+객체를 저장하고 포함하기 위해 S3 요청을 발행합니다. `x-amz-server-side-encryption` 요청 헤더.
+ a| 
+새로 수집된 S3 객체 데이터만 해당.
+
+개체에 대한 암호화를 지정해야 합니다.  개체 메타데이터와 기타 민감한 데이터는 암호화되지 않습니다.
+
+StorageGRID 키를 관리합니다.
+
+link:../s3/using-server-side-encryption.html["서버 측 암호화를 사용하세요"]
+
+
+
+ a| 
+고객 제공 키를 사용한 S3 개체 서버 측 암호화(SSE-C)
+ a| 
+객체를 저장하기 위해 S3 요청을 발행하고 세 개의 요청 헤더를 포함합니다.
+
+* `x-amz-server-side-encryption-customer-algorithm`
+* `x-amz-server-side-encryption-customer-key`
+* `x-amz-server-side-encryption-customer-key-MD5`
+
+ a| 
+새로 수집된 S3 객체 데이터만 해당.
+
+개체에 대한 암호화를 지정해야 합니다.  개체 메타데이터와 기타 민감한 데이터는 암호화되지 않습니다.
+
+키는 StorageGRID 외부에서 관리됩니다.
+
+link:../s3/using-server-side-encryption.html["서버 측 암호화를 사용하세요"]
+
+
+
+ a| 
+외부 볼륨 또는 데이터 저장소 암호화
+ a| 
+배포 플랫폼에서 지원하는 경우 StorageGRID 외부의 암호화 방법을 사용하여 전체 볼륨이나 데이터 저장소를 암호화할 수 있습니다.
+ a| 
+모든 볼륨이나 데이터 저장소가 암호화된다고 가정할 때 모든 개체 데이터, 메타데이터 및 시스템 구성 데이터입니다.
+
+외부 암호화 방식은 암호화 알고리즘과 키에 대한 보다 엄격한 제어를 제공합니다.  나열된 다른 방법과 결합할 수 있습니다.
+
+
+
+ a| 
+StorageGRID 외부의 개체 암호화
+ a| 
+StorageGRID 외부의 암호화 방법을 사용하여 개체 데이터와 메타데이터를 StorageGRID 에 수집하기 전에 암호화합니다.
+ a| 
+개체 데이터 및 메타데이터만(시스템 구성 데이터는 암호화되지 않음).
+
+외부 암호화 방식은 암호화 알고리즘과 키에 대한 보다 엄격한 제어를 제공합니다.  나열된 다른 방법과 결합할 수 있습니다.
+
+https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html["Amazon Simple Storage Service - 사용자 가이드: 클라이언트 측 암호화를 사용하여 데이터 보호"^]
+
+|===
+
+
+== 여러 암호화 방법을 사용하세요
+
+요구 사항에 따라 한 번에 두 개 이상의 암호화 방법을 사용할 수 있습니다. 예를 들어:
+
+* KMS를 사용하여 어플라이언스 노드를 보호할 수 있으며, SANtricity System Manager의 드라이브 보안 기능을 사용하여 동일한 어플라이언스 내의 자체 암호화 드라이브에 있는 데이터를 "이중 암호화"할 수도 있습니다.
+* KMS를 사용하여 어플라이언스 노드의 데이터를 보호할 수 있으며, 저장된 개체 암호화 옵션을 사용하여 수집 시 모든 개체를 암호화할 수도 있습니다.
+
+
+개체의 일부만 암호화가 필요한 경우 대신 버킷이나 개별 개체 수준에서 암호화를 제어하는 것을 고려하세요.  여러 수준의 암호화를 활성화하면 성능 비용이 추가로 발생합니다.

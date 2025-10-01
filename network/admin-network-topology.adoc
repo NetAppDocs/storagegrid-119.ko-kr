@@ -1,0 +1,24 @@
+---
+permalink: network/admin-network-topology.html 
+sidebar: sidebar 
+keywords: admin network topology, using admin network 
+summary: 관리자 네트워크를 갖는 것은 선택 사항입니다.  관리 네트워크와 그리드 네트워크를 사용할 수 있는 한 가지 방법은 각 노드에 대해 라우팅 가능한 그리드 네트워크와 제한된 관리 네트워크를 구성하는 것입니다. 
+---
+= 관리자 네트워크 토폴로지
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+관리자 네트워크를 갖는 것은 선택 사항입니다.  관리 네트워크와 그리드 네트워크를 사용할 수 있는 한 가지 방법은 각 노드에 대해 라우팅 가능한 그리드 네트워크와 제한된 관리 네트워크를 구성하는 것입니다.
+
+관리 네트워크를 구성할 때 각 그리드 노드의 eth1 인터페이스에 대한 호스트 IP 주소, 서브넷 마스크, 게이트웨이 IP 주소를 설정합니다.
+
+관리 네트워크는 각 노드마다 고유할 수 있으며 여러 개의 서브넷으로 구성될 수 있습니다.  각 노드는 AESL(Admin External Subnet List)로 구성될 수 있습니다.  AESL은 각 노드의 관리 네트워크를 통해 도달 가능한 서브넷을 나열합니다.  AESL에는 NTP, DNS, KMS, LDAP 등 그리드가 관리 네트워크를 통해 액세스할 수 있는 모든 서비스의 서브넷도 포함되어야 합니다.  AESL의 각 서브넷에는 정적 경로가 적용됩니다.
+
+이 예에서 그리드 네트워크는 S3 클라이언트 요청 및 객체 관리와 관련된 트래픽에 사용되고, 관리 네트워크는 관리 기능에 사용됩니다.
+
+image::../media/grid_admin_networks.png[그리드 관리 네트워크]
+
+image::../media/grid_admin_networks_ips.png[그리드 관리 네트워크 IP]

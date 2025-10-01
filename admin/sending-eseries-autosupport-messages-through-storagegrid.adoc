@@ -1,0 +1,88 @@
+---
+permalink: admin/sending-eseries-autosupport-messages-through-storagegrid.html 
+sidebar: sidebar 
+keywords: eseries, santricity, system manager, asup, autosupport, technical support, appliance 
+summary: 스토리지 어플라이언스 관리 포트가 아닌 StorageGRID 관리 노드를 통해 E-Series SANtricity System Manager AutoSupport 패키지를 기술 지원팀에 보낼 수 있습니다. 
+---
+= StorageGRID 통해 E-Series AutoSupport 패키지를 보내세요
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+스토리지 어플라이언스 관리 포트가 아닌 StorageGRID 관리 노드를 통해 E-Series SANtricity System Manager AutoSupport 패키지를 기술 지원팀에 보낼 수 있습니다.
+
+보다 https://docs.netapp.com/us-en/e-series-santricity/sm-support/autosupport-feature-overview.html["E-시리즈 하드웨어 AutoSupport"^] E-Series 어플라이언스와 함께 AutoSupport 사용하는 방법에 대한 자세한 내용은 다음을 참조하세요.
+
+.시작하기 전에
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:admin-group-permissions.html["스토리지 어플라이언스 관리자 또는 루트 액세스 권한"] .
+* SANtricity AutoSupport 구성했습니다.
++
+** SG6000 및 SG5700 가전제품의 경우 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["SANtricity System Manager에서 AutoSupport 구성"^]
+
+
+
+
+
+NOTE: Grid Manager를 사용하여 SANtricity System Manager에 액세스하려면 SANtricity 펌웨어 8.70 이상이 있어야 합니다.
+
+.이 작업에 관하여
+E-시리즈 AutoSupport 패키지에는 스토리지 하드웨어에 대한 세부 정보가 포함되어 있으며 StorageGRID 시스템에서 전송하는 다른 AutoSupport 패키지보다 더 구체적입니다.
+
+SANtricity System Manager에서 특수 프록시 서버 주소를 구성하여 어플라이언스의 관리 포트를 사용하지 않고도 StorageGRID 관리 노드를 통해 AutoSupport 패키지를 전송할 수 있습니다.  이런 방식으로 전송된 AutoSupport 패키지는 다음에서 전송됩니다.link:../primer/what-admin-node-is.html["선호하는 발신자 관리 노드"] , 그리고 그들은 어떤 것을 사용합니까?link:../admin/configuring-admin-proxy-settings.html["관리자 프록시 설정"] Grid Manager에서 구성된 사항입니다.
+
+
+NOTE: 이 절차는 E-Series AutoSupport 패키지에 대한 StorageGRID 프록시 서버를 구성하는 데에만 적용됩니다.  E-Series AutoSupport 구성에 대한 추가 세부 사항은 다음을 참조하세요. https://docs.netapp.com/us-en/e-series-family/index.html["NetApp E-Series 및 SANtricity 설명서"^] .
+
+.단계
+. 그리드 관리자에서 *노드*를 선택합니다.
+. 왼쪽의 노드 목록에서 구성하려는 스토리지 어플라이언스 노드를 선택합니다.
+. * SANtricity 시스템 관리자*를 선택합니다.
++
+SANtricity 시스템 관리자 홈페이지가 나타납니다.
+
++
+image::../media/autosupport_santricity_home_page.png[AutoSupport SANtricity 홈페이지]
+
+. *지원* > *지원 센터* > * AutoSupport*을 선택하세요.
++
+AutoSupport 작업 페이지가 나타납니다.
+
++
+image::../media/autosupport_santricity_operations.png[AutoSupport SANtricity AutoSupport 작업]
+
+. * AutoSupport 제공 방법 구성*을 선택하세요.
++
+AutoSupport 전달 방법 구성 페이지가 나타납니다.
+
++
+image::../media/autosupport_configure_delivery_santricity.png[AutoSupport AutoSupport 제공 방법 SANtricity 구성]
+
+. 배송 방법으로 *HTTPS*를 선택하세요.
++
+
+NOTE: HTTPS를 활성화하는 인증서가 미리 설치되어 있습니다.
+
+. *프록시 서버를 통해*를 선택하세요.
+. 입력하다 `tunnel-host` *호스트 주소*에 대해.
++
+`tunnel-host`E-Series AutoSupport 패키지를 보내기 위해 관리 노드를 사용하는 특수 주소입니다.
+
+. 입력하다 `10225` *포트 번호*에 대한 것입니다.
++
+`10225`는 어플라이언스의 E-Series 컨트롤러에서 AutoSupport 패키지를 수신하는 StorageGRID 프록시 서버의 포트 번호입니다.
+
+. *테스트 구성*을 선택하여 AutoSupport 프록시 서버의 라우팅과 구성을 테스트합니다.
++
+올바르면 녹색 배너에 " AutoSupport 구성이 검증되었습니다."라는 메시지가 나타납니다.
+
++
+테스트에 실패하면 빨간색 배너에 오류 메시지가 나타납니다.  StorageGRID DNS 설정 및 네트워킹을 확인하고 다음을 확인하세요.link:../primer/what-admin-node-is.html["선호하는 발신자 관리 노드"] NetApp 지원 사이트에 연결하여 다시 테스트를 시도해 보세요.
+
+. *저장*을 선택하세요.
++
+구성이 저장되고 "AutoSupport 전달 방법이 구성되었습니다."라는 확인 메시지가 나타납니다.
+
+

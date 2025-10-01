@@ -1,0 +1,83 @@
+---
+permalink: monitor/information-you-should-monitor-regularly.html 
+sidebar: sidebar 
+keywords: when to monitor, what to monitor 
+summary: 오류가 발생하거나 그리드의 일부를 사용할 수 없는 경우에도 StorageGRID 시스템은 계속 작동할 수 있지만 그리드의 효율성이나 가용성에 영향을 미치기 전에 잠재적인 문제를 모니터링하고 해결해야 합니다. 
+---
+= 무엇을 언제 모니터링해야 하나요?
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+오류가 발생하거나 그리드의 일부를 사용할 수 없는 경우에도 StorageGRID 시스템은 계속 작동할 수 있지만 그리드의 효율성이나 가용성에 영향을 미치기 전에 잠재적인 문제를 모니터링하고 해결해야 합니다.
+
+.시작하기 전에
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:../admin/admin-group-permissions.html["특정 액세스 권한"] .
+
+
+.모니터링 작업에 관하여
+바쁜 시스템은 엄청난 양의 정보를 생성합니다.  다음 목록은 지속적으로 모니터링해야 할 가장 중요한 정보에 대한 지침을 제공합니다.
+
+[cols="1a,1a"]
+|===
+| 무엇을 모니터링해야 하나요? | 빈도 
+
+
+ a| 
+link:monitoring-system-health.html["시스템 상태"]
+ a| 
+일일
+
+
+
+ a| 
+속도link:monitoring-storage-capacity.html["스토리지 노드 객체 및 메타데이터 용량"] 소비되고 있다
+ a| 
+주간
+
+
+
+ a| 
+link:monitoring-information-lifecycle-management.html["정보 수명 주기 관리 작업"]
+ a| 
+주간
+
+
+
+ a| 
+link:monitoring-network-connections-and-performance.html["네트워킹 및 시스템 리소스"]
+ a| 
+주간
+
+
+
+ a| 
+link:monitoring-tenant-activity.html["세입자 활동"]
+ a| 
+주간
+
+
+
+ a| 
+link:monitoring-object-ingest-and-retrieval-rates.html["S3 클라이언트 작업"]
+ a| 
+주간
+
+
+
+ a| 
+link:monitoring-load-balancing-operations.html["부하 분산 작업"]
+ a| 
+초기 구성 후 및 모든 구성 변경 후
+
+
+
+ a| 
+link:grid-federation-monitor-connections.html["그리드 연합 연결"]
+ a| 
+주간
+
+|===

@@ -1,0 +1,25 @@
+---
+permalink: monitor/viewing-ilm-tab.html 
+sidebar: sidebar 
+keywords: ilm tab 
+summary: 'ILM 탭은 정보 수명 주기 관리(ILM) 작업에 대한 정보를 제공합니다.' 
+---
+= ILM 탭 보기
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ILM 탭은 정보 수명 주기 관리(ILM) 작업에 대한 정보를 제공합니다.
+
+ILM 탭은 각 스토리지 노드, 각 사이트 및 전체 그리드에 대해 표시됩니다.  각 사이트와 그리드의 ILM 탭에는 시간 경과에 따른 ILM 대기열 그래프가 표시됩니다.  그리드의 경우, 이 탭은 모든 객체에 대한 전체 ILM 스캔을 완료하는 데 걸리는 예상 시간도 제공합니다.
+
+스토리지 노드의 경우 ILM 탭은 삭제된 개체에 대한 ILM 평가 및 백그라운드 검증에 대한 세부 정보를 제공합니다.
+
+image::../media/nodes_page_ilm_tab.png[노드 페이지 ILM 탭]
+
+.관련 정보
+* link:monitoring-information-lifecycle-management.html["정보 수명 주기 관리 모니터링"]
+* link:../admin/index.html["StorageGRID 관리"]
+

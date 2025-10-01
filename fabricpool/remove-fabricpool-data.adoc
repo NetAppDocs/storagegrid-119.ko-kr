@@ -1,0 +1,53 @@
+---
+permalink: fabricpool/remove-fabricpool-data.html 
+sidebar: sidebar 
+keywords: fabricPool, ontap, remove data from storagegrid 
+summary: 현재 StorageGRID 에 저장된 FabricPool 데이터를 제거해야 하는 경우 다음 단계를 따르세요. 
+---
+= StorageGRID 에서 FabricPool 데이터 제거
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+현재 StorageGRID 에 저장된 FabricPool 데이터를 제거해야 하는 경우 ONTAP 사용하여 FabricPool 볼륨의 모든 데이터를 검색하고 성능 계층으로 승격해야 합니다.
+
+.시작하기 전에
+* 귀하는 지침과 고려 사항을 검토했습니다. https://docs.netapp.com/us-en/ontap/fabricpool/promote-data-performance-tier-task.html["데이터를 성능 계층으로 승격"^] .
+* ONTAP 9.8 이상을 사용하고 있습니다.
+* 당신은 사용 중입니다link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 귀하는 FabricPool 테넌트 계정에 대한 StorageGRID 사용자 그룹에 속해 있습니다.link:../tenant/tenant-management-permissions.html["모든 버킷 또는 루트 액세스 권한 관리"] .
+
+
+.이 작업에 관하여
+이 지침에서는 StorageGRID 에서 FabricPool 로 데이터를 다시 이동하는 방법을 설명합니다.  ONTAP 및 StorageGRID Tenant Manager를 사용하여 이 절차를 수행합니다.
+
+.단계
+. ONTAP 에서 다음을 발행합니다. `volume modify` 명령.
++
+세트 `tiering-policy` 에게 `none` 새로운 계층화를 중지하고 설정하려면 `cloud-retrieval-policy` 에게 `promote` 이전에 StorageGRID 에 계층화된 모든 데이터를 반환합니다.
+
++
+보다 https://docs.netapp.com/us-en/ontap/fabricpool/promote-all-data-performance-tier-task.html["FabricPool 볼륨의 모든 데이터를 성능 계층으로 승격합니다."^] .
+
+. 작업이 완료될 때까지 기다리세요.
++
+당신은 사용할 수 있습니다 `volume object-store` 명령으로 `tiering` 옵션 https://docs.netapp.com/us-en/ontap/fabricpool/check-status-performance-tier-promotion-task.html["성과 등급 승격 상태 확인"^] .
+
+. 프로모션 작업이 완료되면 FabricPool 테넌트 계정에 대해 StorageGRID Tenant Manager에 로그인합니다.
+. 대시보드에서 *버킷 보기*를 선택하거나 *스토리지(S3)* > *버킷*을 선택하세요.
+. FabricPool 버킷이 비어 있는지 확인하세요.
+. 버킷이 비어 있으면,link:../tenant/deleting-s3-bucket.html["버킷을 삭제하다"] .
+
+
+.당신이 완료한 후
+버킷을 삭제하면 FabricPool 에서 StorageGRID 로의 계층화를 더 이상 계속할 수 없습니다.  그러나 로컬 계층이 여전히 StorageGRID 클라우드 계층에 연결되어 있기 때문에 ONTAP System Manager는 버킷에 액세스할 수 없다는 오류 메시지를 반환합니다.
+
+이러한 오류 메시지를 방지하려면 다음 중 하나를 수행하세요.
+
+* FabricPool Mirror를 사용하여 다른 클라우드 계층을 집계에 연결합니다.
+* FabricPool 집계에서 FabricPool 아닌 집계로 데이터를 이동한 다음 사용하지 않는 집계를 삭제합니다.
+
+
+를 참조하십시오 https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPool 에 대한 ONTAP 설명서"^] 지침을 보려면.

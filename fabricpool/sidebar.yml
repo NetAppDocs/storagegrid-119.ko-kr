@@ -1,0 +1,45 @@
+---
+section: fabricpool
+title: FabricPool 에 대한 StorageGRID 구성
+entries:
+- title: 빠른 시작
+  pdf-filename: FabricPool 에 대한 StorageGRID 구성
+  url: "/fabricpool/index.html"
+- title: StorageGRID 클라우드 계층으로 연결하는 데 필요한 정보
+  url: "/fabricpool/information-needed-to-attach-storagegrid-as-cloud-tier.html"
+- title: FabricPool 설정 마법사 사용
+  entries:
+  - title: 고려 사항 및 요구 사항
+    url: "/fabricpool/use-fabricpool-setup-wizard.html"
+  - title: 마법사에 액세스하고 완료하세요
+    url: "/fabricpool/use-fabricpool-setup-wizard-steps.html"
+- title: StorageGRID 수동으로 구성하세요
+  entries:
+  - title: HA 그룹 생성
+    url: "/fabricpool/creating-ha-group-for-fabricpool.html"
+  - title: 로드 밸런서 엔드포인트 생성
+    url: "/fabricpool/creating-load-balancer-endpoint-for-fabricpool.html"
+  - title: 테넌트 계정 생성
+    url: "/fabricpool/creating-tenant-account-for-fabricpool.html"
+  - title: S3 버킷을 생성하고 액세스 키를 얻습니다.
+    url: "/fabricpool/creating-s3-bucket-and-access-key.html"
+  - title: FabricPool 데이터에 대한 ILM 구성
+    url: "/fabricpool/using-storagegrid-ilm-with-fabricpool-data.html"
+  - title: 트래픽 분류 정책 생성
+    url: "/fabricpool/creating-traffic-classification-policy-for-fabricpool.html"
+- title: ONTAP 시스템 관리자 구성
+  url: "/fabricpool/configure-ontap.html"
+- title: DNS 서버 구성
+  url: "/fabricpool/configure-dns-server.html"
+- title: FabricPool 위한 StorageGRID 모범 사례
+  entries:
+  - title: HA 그룹을 위한 모범 사례
+    url: "/fabricpool/best-practices-for-high-availability-groups.html"
+  - title: FabricPool 의 부하 분산을 위한 모범 사례
+    url: "/fabricpool/best-practices-for-load-balancing.html"
+  - title: ILM을 위한 모범 사례
+    url: "/fabricpool/best-practices-ilm.html"
+  - title: 기타 모범 사례
+    url: "/fabricpool/other-best-practices-for-storagegrid-and-fabricpool.html"
+- title: StorageGRID 에서 FabricPool 데이터 제거
+  url: "/fabricpool/remove-fabricpool-data.html"

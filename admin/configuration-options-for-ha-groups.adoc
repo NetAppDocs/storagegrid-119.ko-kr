@@ -1,0 +1,66 @@
+---
+permalink: admin/configuration-options-for-ha-groups.html 
+sidebar: sidebar 
+keywords: ha groups, best practices, high availability group options 
+summary: 다음 다이어그램은 HA 그룹을 구성하는 다양한 방법의 예를 보여줍니다.  각 옵션에는 장점과 단점이 있습니다. 
+---
+= HA 그룹에 대한 구성 옵션
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+다음 다이어그램은 HA 그룹을 구성하는 다양한 방법의 예를 보여줍니다.  각 옵션에는 장점과 단점이 있습니다.
+
+다이어그램에서 파란색은 HA 그룹의 기본 인터페이스를 나타내고 노란색은 HA 그룹의 백업 인터페이스를 나타냅니다.
+
+image::../media/high_availability_examples.png[HA 예시]
+
+이 표는 다이어그램에 표시된 각 HA 구성의 이점을 요약한 것입니다.
+
+[cols="1a,2a,2a"]
+|===
+| 구성 | 장점 | 단점 
+
+
+ a| 
+액티브 백업 HA
+ a| 
+* 외부 종속성 없이 StorageGRID 에서 관리됩니다.
+* 빠른 장애 조치.
+
+ a| 
+* HA 그룹에서는 하나의 노드만 활성화됩니다.  HA 그룹당 최소한 하나의 노드가 유휴 상태가 됩니다.
+
+
+
+
+ a| 
+DNS 라운드 로빈
+ a| 
+* 총 처리량이 증가했습니다.
+* 유휴 호스트가 없습니다.
+
+ a| 
+* 클라이언트 동작에 따라 장애 조치가 느릴 수 있습니다.
+* StorageGRID 외부의 하드웨어 구성이 필요합니다.
+* 고객이 시행하는 상태 점검이 필요합니다.
+
+
+
+
+ a| 
+액티브-액티브 HA
+ a| 
+* 트래픽은 여러 HA 그룹에 분산됩니다.
+* HA 그룹 수에 따라 확장되는 높은 집계 처리량.
+* 빠른 장애 조치.
+
+ a| 
+* 구성이 더 복잡합니다.
+* StorageGRID 외부의 하드웨어 구성이 필요합니다.
+* 고객이 시행하는 상태 점검이 필요합니다.
+
+
+|===

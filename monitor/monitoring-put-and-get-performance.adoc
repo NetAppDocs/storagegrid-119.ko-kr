@@ -1,0 +1,30 @@
+---
+permalink: monitor/monitoring-put-and-get-performance.html 
+sidebar: sidebar 
+keywords: put, get, performance 
+summary: 개체 저장 및 검색과 같은 특정 작업의 성능을 모니터링하여 추가 조사가 필요할 수 있는 변경 사항을 식별할 수 있습니다. 
+---
+= PUT 및 GET 성능 모니터링
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+개체 저장 및 검색과 같은 특정 작업의 성능을 모니터링하여 추가 조사가 필요할 수 있는 변경 사항을 식별할 수 있습니다.
+
+.이 작업에 관하여
+PUT 및 GET 성능을 모니터링하려면 워크스테이션에서 직접 S3 명령을 실행하거나 오픈 소스 S3tester 애플리케이션을 사용할 수 있습니다.  이러한 방법을 사용하면 클라이언트 애플리케이션 문제나 외부 네트워크 문제 등 StorageGRID 외부 요인에 관계없이 성능을 평가할 수 있습니다.
+
+PUT 및 GET 작업 테스트를 수행할 때 다음 지침을 사용하세요.
+
+* 일반적으로 그리드에 가져오는 객체와 비슷한 객체 크기를 사용하세요.
+* 로컬 및 원격 사이트 모두에 대한 작업을 수행합니다.
+
+
+메시지link:../audit/index.html["감사 로그"] 특정 작업을 실행하는 데 필요한 총 시간을 나타냅니다.  예를 들어, S3 GET 요청에 대한 총 처리 시간을 확인하려면 SGET 감사 메시지의 TIME 속성 값을 검토하면 됩니다.  다음 S3 작업에 대한 감사 메시지에서 TIME 속성을 찾을 수도 있습니다: DELETE, GET, HEAD, Metadata Updated, POST, PUT
+
+결과를 분석할 때는 요청을 충족하는 데 필요한 평균 시간과 달성할 수 있는 전체 처리량을 살펴보세요.  정기적으로 동일한 테스트를 반복하고 결과를 기록하면 조사가 필요한 추세를 파악할 수 있습니다.
+
+* 당신은 할 수 있습니다 https://github.com/s3tester["github에서 S3tester를 다운로드하세요"^] .
+

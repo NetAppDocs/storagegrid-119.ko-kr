@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: storagegrid-enable.html 
+keywords: storagegrid, how to enable, third-party solutions, tools, applications, examples 
+summary: StorageGRID 환경에서 애플리케이션을 테스트하고 활성화하는 방법을 알아보세요. 
+---
+= 사용자 환경에서 StorageGRID 활성화하는 방법
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+로 가다 https://docs.netapp.com/us-en/storagegrid-enable/index.html["StorageGRID 활성화하는 방법"^] StorageGRID 환경에서 애플리케이션을 테스트하고 활성화하는 방법을 알아보세요.

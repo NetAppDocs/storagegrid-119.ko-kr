@@ -1,0 +1,69 @@
+---
+indexpage:
+  title: StorageGRID 시스템 구성 및 관리
+  summary: 새로운 StorageGRID 시스템에 대해 수행해야 하는 구성 작업은 그리드를 사용하는 방법에 따라 달라집니다.  최소한 시스템
+    액세스를 설정하고, FabricPool 및 S3 마법사를 사용하고, 다양한 저장소 및 보안 설정을 관리합니다.
+  keywords: configure, sign in, manage admin groups, manage admin users, use identity
+    federation, use ILM, create tenants, manage client connections, secure system,
+    harden system
+  lead: 새로운 StorageGRID 시스템에 대해 수행해야 하는 구성 작업은 그리드를 사용하는 방법에 따라 달라집니다.  최소한 시스템 액세스를
+    설정하고, FabricPool 및 S3 마법사를 사용하고, 다양한 저장소 및 보안 설정을 관리합니다.
+  tiles:
+  - title: 시작하기
+    links:
+    - title: 그리드 관리자에 Sign in
+      url: "../admin/signing-in-to-grid-manager.html"
+    - title: AutoSupport 구성
+      url: "../admin/configure-autosupport-grid-manager.html"
+    - title: 그리드 관리 API 사용
+      url: "../admin/using-grid-management-api.html"
+  - title: 관리자 그룹 및 사용자 관리
+    links:
+    - title: ID 페더레이션 사용
+      url: "../admin/using-identity-federation.html"
+    - title: 관리자 그룹 관리
+      url: "../admin/managing-admin-groups.html"
+    - title: 관리자 그룹 권한
+      url: "../admin/admin-group-permissions.html"
+    - title: 단일 로그인 구성
+      url: "../admin/configuring-sso.html"
+  - title: 그리드 연합을 사용하세요
+    links:
+    - title: 그리드 연합이란 무엇인가요?
+      url: "../admin/grid-federation-overview.html"
+    - title: CloudMirror와 크로스 그리드 복제 비교
+      url: "../admin/grid-federation-compare-cgr-to-cloudmirror.html"
+    - title: 그리드 연합 연결 생성
+      url: "../admin/grid-federation-create-connection.html"
+    - title: 허가된 세입자 관리
+      url: "../admin/grid-federation-manage-tenants.html"
+  - title: 클라이언트 연결 및 테넌트 관리
+    links:
+    - title: S3 엔드포인트 도메인 이름 구성
+      url: "../admin/configuring-s3-api-endpoint-domain-names.html"
+    - title: S3 설정 마법사 사용
+      url: "../admin/use-s3-setup-wizard.html"
+    - title: FabricPool 설정 마법사 사용
+      url: "../fabricpool/use-fabricpool-setup-wizard.html"
+    - title: 테넌트 생성
+      url: "../admin/creating-tenant-account.html"
+  - title: 정보 수명 주기 관리(ILM)를 활용하세요
+    links:
+    - title: ILM 수명주기에 대해 알아보세요
+      url: "../ilm/how-ilm-operates-throughout-objects-life.html"
+    - title: ILM 규칙 관리
+      url: "../ilm/what-ilm-rule-is.html"
+    - title: ILM 정책 관리
+      url: "../ilm/creating-ilm-policy.html"
+    - title: ILM 예시
+      url: "../ilm/example-1-ilm-rules-and-policy-for-object-storage.html"
+  - title: 시스템 보안
+    links:
+    - title: 시스템 강화가 중요한 이유
+      url: "../harden/index.html"
+    - title: 암호화 방법 검토
+      url: "../admin/reviewing-storagegrid-encryption-methods.html"
+    - title: 보안 인증서 관리
+      url: "../admin/using-storagegrid-security-certificates.html"
+    - title: TLS 및 SSH 정책 관리
+      url: "../admin/manage-tls-ssh-policy.html"

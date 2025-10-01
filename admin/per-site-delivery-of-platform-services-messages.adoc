@@ -1,0 +1,24 @@
+---
+permalink: admin/per-site-delivery-of-platform-services-messages.html 
+sidebar: sidebar 
+keywords: platform services message delivery 
+summary: 모든 플랫폼 서비스 운영은 사이트별로 수행됩니다. 
+---
+= 플랫폼 서비스 메시지의 사이트별 전달
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+모든 플랫폼 서비스 운영은 사이트별로 수행됩니다.
+
+즉, 테넌트가 클라이언트를 사용하여 데이터 센터 사이트 1의 게이트웨이 노드에 연결하여 객체에 대한 S3 API 생성 작업을 수행하는 경우 해당 작업에 대한 알림이 트리거되어 데이터 센터 사이트 1에서 전송됩니다.
+
+image::../media/notification_multiple_sites.gif[사이트 1의 개체에 대한 작업이 사이트 1에서 알림을 트리거하는 것을 보여주는 다이어그램]
+
+이후 클라이언트가 데이터 센터 사이트 2에서 동일한 객체에 대해 S3 API 삭제 작업을 수행하면 삭제 작업에 대한 알림이 트리거되어 데이터 센터 사이트 2에서 전송됩니다.
+
+image::../media/notifications_site_2.gif[사이트 2의 개체에 대한 작업이 사이트 2에서 알림을 트리거하는 것을 보여주는 다이어그램]
+
+각 사이트의 네트워킹이 플랫폼 서비스 메시지가 목적지에 전달될 수 있도록 구성되어 있는지 확인하세요.

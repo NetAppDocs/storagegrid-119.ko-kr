@@ -1,0 +1,50 @@
+---
+permalink: vmware/cpu-and-ram-requirements.html 
+sidebar: sidebar 
+keywords: cpu, ram, cpu cores 
+summary: StorageGRID 소프트웨어를 설치하기 전에 하드웨어를 확인하고 구성하여 StorageGRID 시스템을 지원할 준비가 되었는지 확인하세요. 
+---
+= CPU 및 RAM 요구 사항
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID 소프트웨어를 설치하기 전에 하드웨어를 확인하고 구성하여 StorageGRID 시스템을 지원할 준비가 되었는지 확인하세요.
+
+각 StorageGRID 노드에는 다음과 같은 최소 리소스가 필요합니다.
+
+* CPU 코어: 노드당 8개
+* RAM: 사용 가능한 총 RAM과 시스템에서 실행되는 StorageGRID 아닌 소프트웨어의 양에 따라 다름
++
+** 일반적으로 노드당 최소 24GB, 전체 시스템 RAM보다 2~16GB 적음
+** 각 테넌트에 대해 최소 64GB가 필요하며, 여기에는 약 5,000개의 버킷이 포함됩니다.
+
+
+
+
+소프트웨어 기반 메타데이터 전용 노드 리소스는 기존 스토리지 노드 리소스와 일치해야 합니다. 예를 들어:
+
+* 기존 StorageGRID 사이트에서 SG6000 또는 SG6100 어플라이언스를 사용하는 경우 소프트웨어 기반 메타데이터 전용 노드는 다음 최소 요구 사항을 충족해야 합니다.
++
+** 128GB 램
+** 8코어 CPU
+** Cassandra 데이터베이스(rangedb/0)용 8TB SSD 또는 동급 스토리지
+
+
+* 기존 StorageGRID 사이트가 24GB RAM, 8코어 CPU, 3TB 또는 4TB의 메타데이터 스토리지를 갖춘 가상 스토리지 노드를 사용하는 경우, 소프트웨어 기반 메타데이터 전용 노드는 비슷한 리소스(24GB RAM, 8코어 CPU, 4TB의 메타데이터 스토리지(rangedb/0))를 사용해야 합니다.
+
+
+새로운 StorageGRID 사이트를 추가할 때, 새로운 사이트의 총 메타데이터 용량은 최소한 기존 StorageGRID 사이트와 일치해야 하며, 새로운 사이트 리소스는 기존 StorageGRID 사이트의 스토리지 노드와 일치해야 합니다.
+
+VMware는 가상 머신당 하나의 노드를 지원합니다.  StorageGRID 노드가 사용 가능한 물리적 RAM을 초과하지 않는지 확인하세요.  각 가상 머신은 StorageGRID 실행하는 데 전용되어야 합니다.
+
+
+CAUTION: 정기적으로 CPU와 메모리 사용량을 모니터링하여 이러한 리소스가 작업 부하를 계속 처리할 수 있도록 하세요.  예를 들어, 가상 스토리지 노드에 대한 RAM 및 CPU 할당을 두 배로 늘리면 StorageGRID 어플라이언스 노드에 제공되는 것과 유사한 리소스를 제공할 수 있습니다.  또한, 노드당 메타데이터 양이 500GB를 초과하는 경우 노드당 RAM을 48GB 이상으로 늘리는 것을 고려하세요.  개체 메타데이터 저장소 관리, 메타데이터 예약 공간 설정 증가, CPU 및 메모리 사용량 모니터링에 대한 자세한 내용은 다음 지침을 참조하세요.link:../admin/index.html["관리하다"] ,link:../monitor/index.html["모니터링"] , 그리고link:../upgrade/index.html["업그레이드"] StorageGRID.
+
+기본 물리적 호스트에서 하이퍼스레딩이 활성화된 경우 노드당 8개의 가상 코어(물리적 코어 4개)를 제공할 수 있습니다.  기본 물리적 호스트에서 하이퍼스레딩이 활성화되어 있지 않으면 노드당 8개의 물리적 코어를 제공해야 합니다.
+
+가상 머신을 호스트로 사용하고 VM의 크기와 개수를 제어할 수 있는 경우, 각 StorageGRID 노드에 대해 단일 VM을 사용하고 그에 따라 VM 크기를 조정해야 합니다.
+
+참조 link:storage-and-performance-requirements.html["저장 및 성능 요구 사항"] .

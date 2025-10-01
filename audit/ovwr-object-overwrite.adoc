@@ -1,0 +1,93 @@
+---
+permalink: audit/ovwr-object-overwrite.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, OVWR, Object Overwrite 
+summary: '이 메시지는 외부의 \(클라이언트 요청\) 작업으로 인해 한 개체가 다른 개체로 덮어쓰여질 때 생성됩니다.' 
+---
+= OVWR: 개체 덮어쓰기
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+이 메시지는 외부(클라이언트 요청) 작업으로 인해 한 개체가 다른 개체로 덮어쓰여질 때 생성됩니다.
+
+[cols="1a,1a,4a"]
+|===
+| 암호 | 필드 | 설명 
+
+
+ a| 
+CBID
+ a| 
+콘텐츠 블록 식별자(신규)
+ a| 
+새로운 객체의 CBID입니다.
+
+
+
+ a| 
+CSIZ
+ a| 
+이전 개체 크기
+ a| 
+덮어쓰여지는 객체의 크기(바이트)입니다.
+
+
+
+ a| 
+OCBD
+ a| 
+콘텐츠 블록 식별자(이전)
+ a| 
+이전 객체의 CBID입니다.
+
+
+
+ a| 
+UUID
+ a| 
+범용 고유 ID(신규)
+ a| 
+StorageGRID 시스템 내의 새 객체 식별자입니다.
+
+
+
+ a| 
+오이드
+ a| 
+Universally Unique ID(이전)
+ a| 
+StorageGRID 시스템 내의 이전 개체에 대한 식별자입니다.
+
+
+
+ a| 
+길
+ a| 
+S3 객체 경로
+ a| 
+이전 및 새 객체 모두에 사용된 S3 객체 경로
+
+
+
+ a| 
+RSLT
+ a| 
+결과 코드
+ a| 
+객체 덮어쓰기 트랜잭션의 결과입니다.  결과는 항상 다음과 같습니다.
+
+SUCS: 성공적
+
+
+
+ a| 
+SGRP
+ a| 
+사이트(그룹)
+ a| 
+해당 사이트가 있는 경우, 덮어쓴 개체는 덮어쓴 개체가 수집된 사이트가 아닌 지정된 사이트에서 삭제되었습니다.
+
+|===

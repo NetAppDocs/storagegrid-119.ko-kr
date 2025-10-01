@@ -1,0 +1,46 @@
+---
+permalink: ilm/index.html 
+sidebar: sidebar 
+keywords: information lifecycle management overview, about information lifecycle management, ilm overview, about ilm 
+summary: 'ILM 정책의 정보 수명 주기 관리(ILM) 규칙은 StorageGRID 개체 데이터의 사본을 생성하고 배포하는 방법과 시간이 지남에 따라 해당 사본을 관리하는 방법을 지시합니다.' 
+---
+= ILM을 사용하여 객체 관리
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ILM 정책의 정보 수명 주기 관리(ILM) 규칙은 StorageGRID 개체 데이터의 사본을 만들고 배포하는 방법과 시간이 지남에 따라 해당 사본을 관리하는 방법을 지시합니다.
+
+
+
+== 이 지침에 관하여
+
+ILM 규칙과 정책을 설계하고 구현하려면 신중한 계획이 필요합니다.  운영 요구 사항, StorageGRID 시스템의 토폴로지, 개체 보호 요구 사항, 사용 가능한 스토리지 유형을 이해해야 합니다.  그런 다음 다양한 유형의 객체를 어떻게 복사, 배포, 저장할지 결정해야 합니다.
+
+다음 지침을 사용하세요.
+
+* StorageGRID ILM에 대해 알아보세요.link:how-ilm-operates-throughout-objects-life.html["ILM이 객체의 수명 동안 작동하는 방식"] .
+* 구성 방법을 알아보세요link:what-storage-pool-is.html["저장 풀"] ,link:what-cloud-storage-pool-is.html["클라우드 스토리지 풀"] , 그리고link:what-ilm-rule-is.html["ILM 규칙"] .
+* 방법을 배우십시오link:creating-ilm-policy.html["ILM 정책을 생성, 시뮬레이션 및 활성화합니다."] 하나 이상의 사이트에서 개체 데이터를 보호합니다.
+* 방법을 배우십시오link:managing-objects-with-s3-object-lock.html["S3 객체 잠금으로 객체 관리"] 이는 특정 S3 버킷의 객체가 지정된 시간 동안 삭제되거나 덮어쓰여지지 않도록 보장하는 데 도움이 됩니다.
+
+
+
+
+== 자세히 알아보기
+
+자세한 내용을 알아보려면 다음 영상을 시청하세요.
+
+* https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9872d38f-80b3-4ad4-9f79-b1ff008760c7["비디오: ILM 규칙 개요"^] .
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=9872d38f-80b3-4ad4-9f79-b1ff008760c7]
+image::../media/video-screenshot-ilm-rules-118.png[비디오: ILM 규칙 개요]
+
+* https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e768d4da-da88-413c-bbaa-b1ff00874d10["비디오: ILM 정책 개요"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=e768d4da-da88-413c-bbaa-b1ff00874d10]
+image::../media/video-screenshot-ilm-policies-118.png[비디오: ILM 정책 개요]
+
+

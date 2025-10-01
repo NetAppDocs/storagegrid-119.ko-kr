@@ -1,0 +1,94 @@
+---
+permalink: admin/kms-overview-of-kms-and-appliance-configuration.html 
+sidebar: sidebar 
+keywords: kms, appliance configuration, node encryption 
+summary: '키 관리 서버(KMS)를 사용하여 어플라이언스 노드의 StorageGRID 데이터를 보호하려면 먼저 두 가지 구성 작업을 완료해야 합니다. 하나 이상의 KMS 서버를 설정하고 어플라이언스 노드에 대한 노드 암호화를 활성화해야 합니다.  이 두 가지 구성 작업이 완료되면 키 관리 프로세스가 자동으로 진행됩니다.' 
+---
+= KMS 및 어플라이언스 구성
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+어플라이언스 노드에서 StorageGRID 데이터를 보호하기 위해 키 관리 서버(KMS)를 사용하려면 먼저 두 가지 구성 작업을 완료해야 합니다. 즉, 하나 이상의 KMS 서버를 설정하고 어플라이언스 노드에 대한 노드 암호화를 활성화해야 합니다.  이 두 가지 구성 작업이 완료되면 키 관리 프로세스가 자동으로 진행됩니다.
+
+흐름도는 KMS를 사용하여 어플라이언스 노드에서 StorageGRID 데이터를 보호하는 방법에 대한 개략적인 단계를 보여줍니다.
+
+image::../media/kms_configuration_overview.png[다음 텍스트에 설명된 KMS 구성 워크플로]
+
+흐름도에서는 KMS 설정과 어플라이언스 설정이 병렬로 진행되는 것을 보여줍니다. 하지만 요구 사항에 따라 새 어플라이언스 노드에 대한 노드 암호화를 활성화하기 전이나 후에 키 관리 서버를 설정할 수 있습니다.
+
+
+
+== 키 관리 서버(KMS) 설정
+
+키 관리 서버를 설정하는 데는 다음과 같은 주요 단계가 포함됩니다.
+
+[cols="1a,1a"]
+|===
+| 단계 | 참조하다 
+
+
+ a| 
+KMS 소프트웨어에 액세스하여 각 KMS 또는 KMS 클러스터에 StorageGRID 용 클라이언트를 추가합니다.
+ a| 
+link:kms-configuring-storagegrid-as-client.html["KMS에서 StorageGRID 클라이언트로 구성합니다."]
+
+
+
+ a| 
+KMS에서 StorageGRID 클라이언트에 필요한 정보를 얻습니다.
+ a| 
+link:kms-configuring-storagegrid-as-client.html["KMS에서 StorageGRID 클라이언트로 구성합니다."]
+
+
+
+ a| 
+Grid Manager에 KMS를 추가하고, 단일 사이트나 기본 사이트 그룹에 할당하고, 필요한 인증서를 업로드하고, KMS 구성을 저장합니다.
+ a| 
+link:kms-adding.html["키 관리 서버(KMS) 추가"]
+
+|===
+
+
+== 기기 설정
+
+KMS 사용을 위한 어플라이언스 노드를 설정하는 데는 다음과 같은 주요 단계가 포함됩니다.
+
+. 어플라이언스 설치의 하드웨어 구성 단계에서 StorageGRID Appliance Installer를 사용하여 어플라이언스의 *노드 암호화* 설정을 활성화합니다.
++
+
+NOTE: 어플라이언스를 그리드에 추가한 후에는 *노드 암호화* 설정을 활성화할 수 없으며, 노드 암호화가 활성화되지 않은 어플라이언스에는 외부 키 관리를 사용할 수 없습니다.
+
+. StorageGRID Appliance 설치 프로그램을 실행합니다.  설치 중에 각 어플라이언스 볼륨에 다음과 같이 임의의 데이터 암호화 키(DEK)가 할당됩니다.
++
+** DEK는 각 볼륨의 데이터를 암호화하는 데 사용됩니다.  이러한 키는 어플라이언스 OS에서 Linux Unified Key Setup(LUKS) 디스크 암호화를 사용하여 생성되며 변경할 수 없습니다.
+** 각 개별 DEK는 마스터 키 암호화 키(KEK)로 암호화됩니다.  초기 KEK는 어플라이언스가 KMS에 연결할 수 있을 때까지 DEK를 암호화하는 임시 키입니다.
+
+
+. StorageGRID 에 어플라이언스 노드를 추가합니다.
+
+
+보다 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-enabling-node-encryption.html["노드 암호화 활성화"^] 자세한 내용은.
+
+
+
+== 키 관리 암호화 프로세스(자동으로 발생)
+
+키 관리 암호화에는 자동으로 수행되는 다음과 같은 고급 단계가 포함됩니다.
+
+. 노드 암호화가 활성화된 어플라이언스를 그리드에 설치하면 StorageGRID 새 노드가 포함된 사이트에 대한 KMS 구성이 있는지 확인합니다.
++
+** 사이트에 KMS가 이미 구성된 경우 어플라이언스는 KMS 구성을 수신합니다.
+** 사이트에 KMS가 아직 구성되지 않은 경우, 사이트에 KMS를 구성하고 어플라이언스가 KMS 구성을 수신할 때까지 어플라이언스의 데이터는 임시 KEK로 계속 암호화됩니다.
+
+
+. 어플라이언스는 KMS 구성을 사용하여 KMS에 연결하고 암호화 키를 요청합니다.
+. KMS는 암호화 키를 어플라이언스로 보냅니다.  KMS의 새 키는 임시 KEK를 대체하며 이제 어플라이언스 볼륨의 DEK를 암호화하고 암호 해독하는 데 사용됩니다.
++
+
+CAUTION: 암호화된 어플라이언스 노드가 구성된 KMS에 연결되기 전에 존재하는 모든 데이터는 임시 키로 암호화됩니다.  그러나 임시 키가 KMS 암호화 키로 교체될 때까지 어플라이언스 볼륨은 데이터 센터에서 제거되는 것이 보호되지 않은 것으로 간주되어서는 안 됩니다.
+
+. 기기의 전원이 켜지거나 재부팅되면 KMS에 다시 연결하여 키를 요청합니다.  휘발성 메모리에 저장된 키는 전원이 꺼지거나 재부팅되면 복구할 수 없습니다.
+

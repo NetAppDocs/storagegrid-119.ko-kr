@@ -1,0 +1,102 @@
+---
+permalink: admin/creating-enterprise-application-azure.html 
+sidebar: sidebar 
+keywords: enterprise application, azure ad, single sign on, sso 
+summary: Azure AD를 사용하여 시스템의 각 관리 노드에 대한 엔터프라이즈 애플리케이션을 만듭니다. 
+---
+= Azure AD에서 엔터프라이즈 애플리케이션 만들기
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Azure AD를 사용하여 시스템의 각 관리 노드에 대한 엔터프라이즈 애플리케이션을 만듭니다.
+
+.시작하기 전에
+* StorageGRID 에 대한 Single Sign-On 구성을 시작했으며 SSO 유형으로 *Azure*를 선택했습니다.
+* *샌드박스 모드*는 Grid Manager의 Single Sign-on 페이지에서 선택됩니다. 보다 link:../admin/using-sandbox-mode.html["샌드박스 모드 사용"] .
+* 시스템의 각 관리 노드에는 *엔터프라이즈 애플리케이션 이름*이 있습니다. StorageGRID Single Sign-on 페이지의 관리 노드 세부 정보 표에서 이러한 값을 복사할 수 있습니다.
++
+
+NOTE: StorageGRID 시스템의 각 관리 노드에 대해 엔터프라이즈 애플리케이션을 만들어야 합니다.  각 관리 노드에 엔터프라이즈 애플리케이션을 사용하면 사용자가 모든 관리 노드에 안전하게 로그인하고 로그아웃할 수 있습니다.
+
+* Azure Active Directory에서 엔터프라이즈 애플리케이션을 만든 경험이 있습니다.
+* 활성 구독이 있는 Azure 계정이 있습니다.
+* Azure 계정에는 글로벌 관리자, 클라우드 애플리케이션 관리자, 애플리케이션 관리자 또는 서비스 주체 소유자라는 역할 중 하나가 있습니다.
+
+
+
+
+== Azure AD에 액세스
+
+.단계
+. 에 로그인하세요 https://portal.azure.com["Azure 포털"^] .
+. 로 이동 https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade["Azure 액티브 디렉토리"^] .
+. 선택하다 https://portal.azure.com/#blade/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/Overview/menuId/["엔터프라이즈 애플리케이션"^] .
+
+
+
+
+== 엔터프라이즈 애플리케이션을 만들고 StorageGRID SSO 구성을 저장합니다.
+
+StorageGRID 에서 Azure의 SSO 구성을 저장하려면 Azure를 사용하여 각 관리 노드에 대한 엔터프라이즈 애플리케이션을 만들어야 합니다.  Azure에서 페더레이션 메타데이터 URL을 복사하여 StorageGRID Single Sign-on 페이지의 해당 *페더레이션 메타데이터 URL* 필드에 붙여넣습니다.
+
+.단계
+. 각 관리 노드에 대해 다음 단계를 반복합니다.
++
+.. Azure Enterprise 애플리케이션 창에서 *새 애플리케이션*을 선택합니다.
+.. *나만의 애플리케이션 만들기*를 선택하세요.
+.. 이름에는 StorageGRID Single Sign-on 페이지의 관리 노드 세부 정보 표에서 복사한 *엔터프라이즈 애플리케이션 이름*을 입력합니다.
+.. *갤러리에서 찾을 수 없는 다른 애플리케이션 통합(비갤러리)* 라디오 버튼을 선택된 상태로 둡니다.
+.. *만들기*를 선택하세요.
+.. *2. 시작하기* 링크를 선택하세요.  단일 로그인 설정* 상자를 선택하거나 왼쪽 여백에 있는 *단일 로그인* 링크를 선택하세요.
+.. *SAML* 상자를 선택하세요.
+.. *3단계 SAML 서명 인증서* 아래에서 찾을 수 있는 *앱 페더레이션 메타데이터 URL*을 복사합니다.
+.. StorageGRID Single Sign-on 페이지로 이동하여 사용한 *Enterprise 애플리케이션 이름*에 해당하는 URL을 *Federation metadata URL* 필드에 붙여넣습니다.
+
+
+. 각 관리 노드에 대한 페더레이션 메타데이터 URL을 붙여넣고 SSO 구성에 필요한 모든 변경을 마친 후 StorageGRID Single Sign-on 페이지에서 *저장*을 선택합니다.
+
+
+
+
+== 모든 관리 노드에 대한 SAML 메타데이터 다운로드
+
+SSO 구성이 저장된 후 StorageGRID 시스템의 각 관리 노드에 대한 SAML 메타데이터 파일을 다운로드할 수 있습니다.
+
+.단계
+. 각 관리 노드에 대해 이 단계를 반복합니다.
++
+.. 관리 노드에서 StorageGRID 에 Sign in .
+.. *구성* > *액세스 제어* > *단일 로그인*을 선택합니다.
+.. 해당 관리 노드의 SAML 메타데이터를 다운로드하려면 버튼을 선택하세요.
+.. Azure AD에 업로드할 파일을 저장합니다.
+
+
+
+
+
+
+== 각 엔터프라이즈 애플리케이션에 SAML 메타데이터 업로드
+
+각 StorageGRID 관리 노드에 대한 SAML 메타데이터 파일을 다운로드한 후 Azure AD에서 다음 단계를 수행합니다.
+
+.단계
+. Azure Portal로 돌아갑니다.
+. 각 엔터프라이즈 애플리케이션에 대해 이 단계를 반복합니다.
++
+
+NOTE: 이전에 목록에 추가한 애플리케이션을 보려면 Enterprise 애플리케이션 페이지를 새로 고쳐야 할 수도 있습니다.
+
++
+.. 엔터프라이즈 애플리케이션의 속성 페이지로 이동합니다.
+.. *할당 필요*를 *아니요*로 설정합니다(할당을 별도로 구성하려는 경우는 제외).
+.. Single Sign-On 페이지로 이동합니다.
+.. SAML 구성을 완료합니다.
+.. *메타데이터 파일 업로드* 버튼을 선택하고 해당 관리 노드에 대해 다운로드한 SAML 메타데이터 파일을 선택합니다.
+.. 파일이 로드되면 *저장*을 선택한 다음 *X*를 선택하여 창을 닫습니다.  SAML을 사용한 Single Sign-On 설정 페이지로 돌아갑니다.
+
+
+. 다음 단계를 따르세요link:../admin/using-sandbox-mode.html["샌드박스 모드 사용"] 각 애플리케이션을 테스트합니다.
+

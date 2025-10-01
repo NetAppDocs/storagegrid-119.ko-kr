@@ -1,0 +1,41 @@
+---
+permalink: maintain/preparing-appliance-for-reinstallation-platform-replacement-only.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, appliance, reinstallation appliance, reinstall appliance 
+summary: 서비스 어플라이언스에서 호스팅된 그리드 노드를 복구하는 경우 먼저 StorageGRID 소프트웨어를 다시 설치할 수 있도록 어플라이언스를 준비해야 합니다. 
+---
+= 재설치를 위한 기기 준비(플랫폼 교체만 해당)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+서비스 어플라이언스에서 호스팅된 그리드 노드를 복구하는 경우 먼저 StorageGRID 소프트웨어를 다시 설치할 수 있도록 어플라이언스를 준비해야 합니다.
+
+서비스 어플라이언스에서 호스팅된 실패한 노드를 교체하는 경우에만 이 절차를 수행하세요.  실패한 노드가 원래 VMware나 Linux 호스트에 호스팅된 경우 이 단계를 따르지 마세요.
+
+.단계
+. 실패한 그리드 노드에 로그인하세요:
++
+.. 다음 명령을 입력하세요: `ssh admin@_grid_node_IP_`
+.. 나열된 비밀번호를 입력하세요 `Passwords.txt` 파일.
+.. 다음 명령을 입력하여 루트로 전환하세요. `su -`
+.. 나열된 비밀번호를 입력하세요 `Passwords.txt` 파일.
+
+
++
+루트로 로그인하면 프롬프트가 다음과 같이 변경됩니다. `$` 에게 `#` .
+
+. StorageGRID 소프트웨어 설치를 위해 어플라이언스를 준비합니다.  입력하다: `sgareinstall`
+. 계속할지 묻는 메시지가 나타나면 다음을 입력하세요. `y`
++
+어플라이언스가 재부팅되고 SSH 세션이 종료됩니다.  StorageGRID Appliance 설치 프로그램이 사용 가능해지는 데는 일반적으로 약 5분이 걸리지만, 경우에 따라 최대 30분까지 기다려야 할 수도 있습니다.
+
++
+서비스 어플라이언스가 재설정되어 그리드 노드의 데이터에 더 이상 액세스할 수 없습니다.  원래 설치 과정에서 구성된 IP 주소는 그대로 유지되어야 합니다. 그러나 설치 절차가 완료되면 이를 확인하는 것이 좋습니다.
+
++
+실행 후 `sgareinstall` 명령을 실행하면 StorageGRID 에서 제공한 모든 계정, 비밀번호, SSH 키가 제거되고 새로운 호스트 키가 생성됩니다.
+
+

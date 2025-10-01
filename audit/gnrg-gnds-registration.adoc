@@ -1,0 +1,79 @@
+---
+permalink: audit/gnrg-gnds-registration.html 
+sidebar: sidebar 
+keywords: storagegrid, audi, message, GNRG, GNDS Registration 
+summary: CMN 서비스는 서비스가 StorageGRID 시스템에서 자체 정보를 업데이트하거나 등록할 때 이 감사 메시지를 생성합니다. 
+---
+= GNRG: GNDS 등록
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+CMN 서비스는 서비스가 StorageGRID 시스템에서 자체 정보를 업데이트하거나 등록할 때 이 감사 메시지를 생성합니다.
+
+[cols="1a,1a,4a"]
+|===
+| 암호 | 필드 | 설명 
+
+
+ a| 
+RSLT
+ a| 
+결과
+ a| 
+업데이트 요청의 결과:
+
+* SUCS: 성공적
+* SUNV: 서비스 이용 불가
+* GERR: 기타 실패
+
+
+
+
+ a| 
+그니드
+ a| 
+노드 ID
+ a| 
+업데이트 요청을 시작한 서비스의 노드 ID입니다.
+
+
+
+ a| 
+GNTP
+ a| 
+장치 유형
+ a| 
+그리드 노드의 장치 유형(예: LDR 서비스의 경우 BLDR)
+
+
+
+ a| 
+GNDV
+ a| 
+장치 모델 버전
+ a| 
+DMDL 번들에서 그리드 노드의 장치 모델 버전을 식별하는 문자열입니다.
+
+
+
+ a| 
+GNGP
+ a| 
+그룹
+ a| 
+그리드 노드가 속한 그룹(링크 비용 및 서비스 쿼리 순위의 맥락에서).
+
+
+
+ a| 
+GNIA
+ a| 
+IP 주소
+ a| 
+그리드 노드의 IP 주소.
+
+|===
+이 메시지는 그리드 노드가 그리드 노드 번들에서 항목을 업데이트할 때마다 생성됩니다.

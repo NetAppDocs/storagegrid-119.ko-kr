@@ -1,0 +1,79 @@
+---
+permalink: maintain/linux-adding-trunk-or-access-interfaces-to-node.html 
+sidebar: sidebar 
+keywords: add extra interface to node, trunk interface, access interface 
+summary: Linux 노드를 설치한 후에 추가 트렁크나 액세스 인터페이스를 추가할 수 있습니다.  추가한 인터페이스는 VLAN 인터페이스 페이지와 HA 그룹 페이지에 표시됩니다. 
+---
+= Linux: 노드에 트렁크 또는 액세스 인터페이스 추가
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Linux 노드를 설치한 후에 추가 트렁크나 액세스 인터페이스를 추가할 수 있습니다.  추가한 인터페이스는 VLAN 인터페이스 페이지와 HA 그룹 페이지에 표시됩니다.
+
+.시작하기 전에
+* Linux 플랫폼에 StorageGRID 설치하는 방법에 대한 지침을 확인할 수 있습니다.
++
+** link:../rhel/index.html["Red Hat Enterprise Linux에 StorageGRID 설치"]
+** link:../ubuntu/index.html["Ubuntu 또는 Debian에 StorageGRID 설치"]
+
+
+* 당신은 가지고있다 `Passwords.txt` 파일.
+* 당신은 가지고있다link:../admin/admin-group-permissions.html["특정 액세스 권한"] .
+
+
+
+CAUTION: 소프트웨어 업그레이드, 복구 절차 또는 확장 절차가 활성화되어 있는 동안에는 노드에 인터페이스를 추가하지 마세요.
+
+.이 작업에 관하여
+Linux 노드를 설치한 후 다음 단계를 사용하여 하나 이상의 추가 인터페이스를 노드에 추가합니다.  예를 들어, 관리 노드나 게이트웨이 노드에 트렁크 인터페이스를 추가하여 VLAN 인터페이스를 사용하여 서로 다른 애플리케이션이나 테넌트에 속하는 트래픽을 분리할 수 있습니다.  또는 고가용성(HA) 그룹에서 사용할 액세스 인터페이스를 추가할 수도 있습니다.
+
+트렁크 인터페이스를 추가하는 경우 StorageGRID 에서 VLAN 인터페이스를 구성해야 합니다.  액세스 인터페이스를 추가하면 HA 그룹에 인터페이스를 직접 추가할 수 있으며 VLAN 인터페이스를 구성할 필요가 없습니다.
+
+인터페이스를 추가하면 잠시 동안 노드를 사용할 수 없습니다.  이 절차는 한 번에 한 노드에서 수행해야 합니다.
+
+.단계
+. 노드를 호스팅하는 Linux 서버에 로그인합니다.
+. vim이나 pico와 같은 텍스트 편집기를 사용하여 노드 구성 파일을 편집합니다.
++
+`/etc/storagegrid/nodes/_node-name_.conf`
+
+. 노드에 추가하려는 각 인터페이스의 이름과 설명(선택 사항)을 지정하기 위해 파일에 항목을 추가합니다.  이 형식을 사용하세요.
++
+`INTERFACE_TARGET_nnnn=_value_`
+
++
+_nnnn_의 경우 각각에 대해 고유한 번호를 지정하십시오. `INTERFACE_TARGET` 추가하려는 항목입니다.
+
++
+_value_에는 베어 메탈 호스트의 물리적 인터페이스 이름을 지정합니다.  그런 다음 선택적으로 쉼표를 추가하고 VLAN 인터페이스 페이지와 HA 그룹 페이지에 표시되는 인터페이스에 대한 설명을 제공합니다.
+
++
+예를 들어:
+
++
+`INTERFACE_TARGET_0001=ens256, Trunk`
+
++
+
+NOTE: 다른 네트워크 매개변수를 지정하지 마세요. 그렇지 않으면 검증 오류가 발생합니다.
+
+. 다음 명령을 실행하여 노드 구성 파일의 변경 사항을 검증합니다.
++
+`sudo storagegrid node validate _node-name_`
+
++
+다음 단계로 넘어가기 전에 오류나 경고를 해결하세요.
+
+. 다음 명령을 실행하여 노드 구성을 업데이트합니다.
++
+`sudo storagegrid node reload _node-name_`
+
+
+
+.당신이 완료한 후
+* 하나 이상의 트렁크 인터페이스를 추가한 경우 다음으로 이동하세요.link:../admin/configure-vlan-interfaces.html["VLAN 인터페이스 구성"] 각각의 새로운 부모 인터페이스에 대해 하나 이상의 VLAN 인터페이스를 구성합니다.
+* 하나 이상의 액세스 인터페이스를 추가한 경우 다음으로 이동하세요.link:../admin/configure-high-availability-group.html["고가용성 그룹 구성"] HA 그룹에 새로운 인터페이스를 직접 추가합니다.
+

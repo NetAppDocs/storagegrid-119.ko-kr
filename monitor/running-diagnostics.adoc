@@ -1,0 +1,85 @@
+---
+permalink: monitor/running-diagnostics.html 
+sidebar: sidebar 
+keywords: how to run diagnostics 
+summary: 문제를 해결할 때 기술 지원팀과 협력하여 StorageGRID 시스템에 대한 진단을 실행하고 결과를 검토할 수 있습니다. 
+---
+= 진단 실행
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+문제를 해결할 때 기술 지원팀과 협력하여 StorageGRID 시스템에 대한 진단을 실행하고 결과를 검토할 수 있습니다.
+
+* link:reviewing-support-metrics.html["지원 지표 검토"]
+* link:commonly-used-prometheus-metrics.html["일반적으로 사용되는 Prometheus 메트릭"]
+
+
+.시작하기 전에
+* 다음을 사용하여 Grid Manager에 로그인했습니다.link:../admin/web-browser-requirements.html["지원되는 웹 브라우저"] .
+* 당신은 가지고있다link:../admin/admin-group-permissions.html["특정 액세스 권한"] .
+
+
+.이 작업에 관하여
+진단 페이지는 그리드의 현재 상태에 대한 일련의 진단 검사를 수행합니다.  각 진단 검사는 다음 세 가지 상태 중 하나를 가질 수 있습니다.
+
+* image:../media/icon_alert_green_checkmark.png["아이콘 경고 녹색 확인 표시"]*정상*: 모든 값이 정상 범위 내에 있습니다.
+* image:../media/icon_alert_yellow_minor.png["아이콘 경고 노란색 사소한"]*주의*: 하나 이상의 값이 정상 범위를 벗어났습니다.
+* image:../media/icon_alert_red_critical.png["아이콘 경고 빨간색 위험"]*주의*: 하나 이상의 값이 정상 범위를 크게 벗어났습니다.
+
+
+진단 상태는 현재 경고와 무관하며 전력망의 운영 문제를 나타내지 않을 수도 있습니다.  예를 들어, 경고가 발생하지 않았더라도 진단 검사에서 주의 상태가 표시될 수 있습니다.
+
+.단계
+. *지원* > *도구* > *진단*을 선택하세요.
++
+진단 페이지가 나타나고 각 진단 검사 결과가 나열됩니다.  결과는 심각도(주의, 주의, 정상)에 따라 정렬됩니다.  각 심각도에 따라 결과가 알파벳순으로 정렬됩니다.
+
++
+이 예에서 모든 진단은 정상 상태입니다.
+
++
+image::../media/support_diagnostics_page.png[지원 진단 페이지]
+
+. 특정 진단에 대해 자세히 알아보려면 행의 아무 곳이나 클릭하세요.
++
+진단 내용과 현재 결과에 대한 세부 정보가 나타납니다.  다음 세부 정보가 나열되어 있습니다.
+
++
+** *상태*: 이 진단의 현재 상태: 정상, 주의 또는 주의.
+** *Prometheus 쿼리*: 진단에 사용되는 경우 상태 값을 생성하는 데 사용된 Prometheus 표현식입니다.  (Prometheus 표현식은 모든 진단에 사용되는 것은 아닙니다.)
+** *임계값*: 진단에 사용 가능한 경우, 각 비정상 진단 상태에 대해 시스템에서 정의한 임계값입니다.  (임계값은 모든 진단에 사용되는 것은 아닙니다.)
++
+
+NOTE: 이러한 임계값은 변경할 수 없습니다.
+
+** *상태 값*: StorageGRID 시스템 전체의 진단 상태와 값을 보여주는 표입니다. 이 예에서는 StorageGRID 시스템의 모든 노드에 대한 현재 CPU 사용률이 표시됩니다. 모든 노드 값이 주의 및 주의 임계값보다 낮으므로 진단의 전반적인 상태는 정상입니다.
+
+
++
+image::../media/support_diagnostics_cpu_utilization.png[지원 진단 CPU 사용률]
+
+. *선택 사항*: 이 진단과 관련된 Grafana 차트를 보려면 *Grafana 대시보드* 링크를 클릭하세요.
++
+이 링크는 모든 진단에 표시되지 않습니다.
+
++
+관련된 Grafana 대시보드가 나타납니다. 이 예에서는 노드 대시보드가 나타나 이 노드의 시간 경과에 따른 CPU 사용률과 노드의 다른 Grafana 차트를 보여줍니다.
+
++
+
+NOTE: *지원* > *도구* > *측정항목* 페이지의 Grafana 섹션에서 미리 구성된 Grafana 대시보드에 액세스할 수도 있습니다.
+
++
+image::../media/grafana_dashboard_nodes.png[Grafana 대시보드 노드]
+
+. *선택 사항*: 시간 경과에 따른 Prometheus 표현식 차트를 보려면 *Prometheus에서 보기*를 클릭하세요.
++
+진단에 사용된 표현식의 Prometheus 그래프가 나타납니다.
+
++
+image::../media/support_diagnostics_prometheus_png.png[지원 진단 Prometheus 페이지]
+
+
