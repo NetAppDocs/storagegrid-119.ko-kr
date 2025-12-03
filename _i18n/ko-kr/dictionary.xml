@@ -22096,4 +22096,6 @@
   <block id="84356a318e373152abb8356cb6571110" category="paragraph">로 가다<block ref="7a14d844a19b1e8c58704b344e72aa26" category="inline-link-rx"></block> Grid Manager를 사용하여 NetApp 콘솔에서 StorageGRID 시스템을 관리하는 방법과 NetApp 콘솔의 데이터 서비스를 사용하여 백업, 데이터 계층화 등을 수행하는 방법을 알아보세요.</block>
   <block id="2195baefa590a61e53973f0a7802c6a6" category="paragraph">관리 노드와 게이트웨이 노드에 가상 LAN(VLAN) 인터페이스를 만들고 HA 그룹과 로드 밸런서 엔드포인트에서 이를 사용하여 보안, 유연성, 성능을 위해 트래픽을 분리하고 분할할 수 있습니다. HA 그룹에서 선택된 노드는 VLAN 인터페이스를 사용하여 최대 10개의 가상 IP 주소를 공유할 수 있으므로 노드가 다운되면 다른 노드가 가상 IP 주소와의 트래픽을 인계받습니다.</block>
   <block id="98e1d466d5f37e58e2ae4e3c58299a51" category="paragraph">*참고*: 이 포트를 구성하는 것은 선택 사항입니다.</block>
+  <block id="399e9e69e1b1799310140b5328eed180" category="summary">분실물 경보가 울리면 즉시 조사해야 합니다. 영향을 받은 객체에 대한 정보를 수집하고 기술 지원팀에 문의하세요.</block>
+  <block id="f2c4673c5ae939756c3d43f049c774fc" category="summary">낮은 개체 데이터 저장 공간 알림은 각 저장 노드에서 개체 데이터를 저장하는 데 사용할 수 있는 공간의 양을 모니터링합니다.</block>
 </blocks>
