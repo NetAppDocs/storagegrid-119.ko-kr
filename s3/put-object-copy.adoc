@@ -101,6 +101,14 @@ StorageGRID 사용자 정의 메타데이터의 키 이름이나 값에 포함�
 * `Content-Encoding`
 * `Content-Language`
 * `Expires`
+* `If-Match`
++
+ `If-Match header`은(는) 승인되었지만 작동하지 않습니다.
+
+* `If-None-Match`
++
+ `If-None-Match header`은(는) 승인되었지만 작동하지 않습니다.
+
 * `x-amz-checksum-algorithm`
 +
 객체를 복사할 때 소스 객체에 체크섬이 있으면 StorageGRID 해당 체크섬 값을 새 객체에 복사하지 않습니다.  이 동작은 사용하려고 하든 안 하든 적용됩니다. `x-amz-checksum-algorithm` 객체 요청에서.
