@@ -23,6 +23,7 @@ S3 테넌트 계정이 두 StorageGRID 시스템 간의 그리드 페더레이�
 
 
 
+[[create-a-permitted-tenant]]
 == 허가된 세입자를 만드세요
 
 새 테넌트 계정이나 기존 테넌트 계정이 계정 복제 및 그리드 간 복제를 위해 그리드 페더레이션 연결을 사용할 수 있도록 허용하려면 일반 지침을 따르십시오.link:creating-tenant-account.html["새로운 S3 테넌트 생성"] 또는link:editing-tenant-account.html["테넌트 계정 편집"] 다음 사항에 유의하세요.
@@ -47,6 +48,7 @@ TIP: 로컬 루트 사용자가 대상 그리드의 복제된 테넌트에 로�
 
 
 
+[[view-a-permitted-tenant]]
 == 허가된 세입자 보기
 
 그리드 페더레이션 연결을 사용할 수 있는 테넌트에 대한 세부 정보를 볼 수 있습니다.
@@ -65,6 +67,7 @@ image::../media/grid-federation-tenant-detail.png[테넌트 세부 정보 페이
 
 
 
+[[edit-a-permitted-tenant]]
 == 허용된 세입자 편집
 
 *그리드 페더레이션 연결 사용* 권한이 있는 테넌트를 편집해야 하는 경우 일반 지침을 따르세요.link:editing-tenant-account.html["테넌트 계정 편집"] 다음 사항에 유의하세요.
@@ -76,6 +79,7 @@ image::../media/grid-federation-tenant-detail.png[테넌트 세부 정보 페이
 
 
 
+[[delete-a-permitted-tenant]]
 == 허용된 세입자 삭제
 
 *그리드 페더레이션 연결 사용* 권한이 있는 테넌트를 제거해야 하는 경우 일반 지침을 따르세요.link:deleting-tenant-account.html["테넌트 계정 삭제"] 다음 사항에 유의하세요.
@@ -92,6 +96,7 @@ image::../media/grid-federation-tenant-detail.png[테넌트 세부 정보 페이
 
 
 
+[[remove-grid-federation-connection-permissionremove-use-grid-federation-connection-permission]]
 == [[remove-grid-federation-connection-permission]]그리드 페더레이션 연결 사용 권한 제거
 
 테넌트가 그리드 페더레이션 연결을 사용하지 못하도록 하려면 *그리드 페더레이션 연결 사용* 권한을 제거해야 합니다.
@@ -115,6 +120,7 @@ NOTE: *그리드 페더레이션 연결 사용* 권한을 다시 활성화하면
 
 
 
+[[disable-replication-for-tenant-buckets]]
 === 테넌트 버킷에 대한 복제 비활성화
 
 첫 번째 단계로 모든 테넌트 버킷에 대해 크로스 그리드 복제를 비활성화합니다.
@@ -133,6 +139,7 @@ TIP: 테넌트 버킷에 크로스 그리드 복제가 활성화된 경우 *그�
 
 
 
+[[remove-permission-for-tenant]]
 === 세입자에 대한 허가 제거
 
 테넌트 버킷에 대한 크로스 그리드 복제가 비활성화된 후에는 테넌트의 그리드 페더레이션 연결 사용 권한을 제거할 수 있습니다.
@@ -184,6 +191,7 @@ image::../media/grid-federation-remove-permission-error.png[테넌트가 버킷�
 
 
 
+[[forceremovepermissionremove-the-permission-by-force]]
 == [[force_remove_permission]]강제로 권한을 제거합니다.
 
 필요한 경우 테넌트 버킷에 크로스 그리드 복제가 활성화되어 있어도 그리드 페더레이션 연결을 사용하는 테넌트의 권한을 강제로 제거할 수 있습니다.

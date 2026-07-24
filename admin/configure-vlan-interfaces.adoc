@@ -15,6 +15,7 @@ summary: '관리 노드와 게이트웨이 노드에 가상 LAN (VLAN) 인터페
 
 
 
+[[considerations-for-vlan-interfaces]]
 == VLAN 인터페이스에 대한 고려 사항
 
 * VLAN ID를 입력하고 하나 이상의 노드에서 부모 인터페이스를 선택하여 VLAN 인터페이스를 만듭니다.
@@ -35,6 +36,7 @@ summary: '관리 노드와 게이트웨이 노드에 가상 LAN (VLAN) 인터페
 
 
 
+[[create-a-vlan-interface]]
 == VLAN 인터페이스 생성
 
 .시작하기 전에
@@ -51,6 +53,7 @@ Grid Manager를 사용하면 클라이언트가 특정 VLAN의 StorageGRID 에 �
 
 
 
+[[access-the-wizard]]
 === 마법사에 접속하세요
 
 .단계
@@ -60,6 +63,7 @@ Grid Manager를 사용하면 클라이언트가 특정 VLAN의 StorageGRID 에 �
 
 
 
+[[enter-details-for-the-vlan-interfaces]]
 === VLAN 인터페이스에 대한 세부 정보를 입력하세요
 
 .단계
@@ -73,6 +77,7 @@ VLAN ID는 고유할 필요가 없습니다.  예를 들어, 한 사이트에서
 
 
 
+[[choose-parent-interfaces]]
 === 부모 인터페이스 선택
 
 이 표에는 그리드의 각 사이트에 있는 모든 관리 노드와 게이트웨이 노드에 사용 가능한 인터페이스가 나열되어 있습니다.  관리 네트워크(eth1) 인터페이스는 부모 인터페이스로 사용할 수 없으므로 표시되지 않습니다.
@@ -90,6 +95,7 @@ image::../media/vlan-create-parent-interfaces.png[VLAN 생성 마법사 부모 �
 
 
 
+[[confirm-the-settings]]
 === 설정을 확인하세요
 
 .단계
@@ -106,6 +112,7 @@ image::../media/vlan-create-parent-interfaces.png[VLAN 생성 마법사 부모 �
 
 
 
+[[edit-a-vlan-interface]]
 == VLAN 인터페이스 편집
 
 VLAN 인터페이스를 편집할 때 다음과 같은 유형의 변경을 할 수 있습니다.
@@ -139,6 +146,7 @@ VLAN이 HA 그룹에서 사용되는 경우 VLAN ID를 업데이트할 수 없�
 
 
 
+[[remove-a-vlan-interface]]
 == VLAN 인터페이스 제거
 
 하나 이상의 VLAN 인터페이스를 제거할 수 있습니다.

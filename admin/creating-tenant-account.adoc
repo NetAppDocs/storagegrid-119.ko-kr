@@ -39,6 +39,7 @@ TIP: 테넌트를 생성하기 전에 두 그리드 모두에 이 관리자 그�
 
 
 
+[[access-the-wizard]]
 == 마법사에 접속하세요
 
 .단계
@@ -48,6 +49,7 @@ TIP: 테넌트를 생성하기 전에 두 그리드 모두에 이 관리자 그�
 
 
 
+[[enter-details]]
 == 세부 정보를 입력하세요
 
 .단계
@@ -94,6 +96,7 @@ TIP: 테넌트를 생성하기 전에 두 그리드 모두에 이 관리자 그�
 
 
 
+[[admin-tenant-select-permissionsselect-permissions]]
 == [[admin-tenant-select-permissions]]권한 선택
 
 .단계
@@ -165,6 +168,7 @@ S3 객체 잠금
 
 
 
+[[define-root-access-and-create-tenant]]
 == 루트 액세스를 정의하고 테넌트를 생성합니다.
 
 .단계
@@ -223,12 +227,14 @@ TIP: 로컬 루트 사용자는 비밀번호가 변경될 때까지 대상 그�
 
 
 
+[[sign-in-to-tenant-optional]]
 == 테넌트에 Sign in (선택 사항)
 
 필요에 따라 지금 새 테넌트에 로그인하여 구성을 완료할 수도 있고, 나중에 테넌트에 로그인할 수도 있습니다.  로그인 단계는 기본 포트(443)를 사용하여 Grid Manager에 로그인했는지 아니면 제한된 포트를 사용하여 로그인했는지에 따라 달라집니다. 보다 link:controlling-access-through-firewalls.html["외부 방화벽에서 접근 제어"] .
 
 
 
+[[sign-in-now]]
 === 지금 Sign in
 
 [cols="1a,3a"]
@@ -280,6 +286,7 @@ TIP: 로컬 루트 사용자는 비밀번호가 변경될 때까지 대상 그�
 |===
 
 
+[[sign-in-later]]
 === 나중에 Sign in
 
 [cols="1a,3a"]
@@ -323,6 +330,7 @@ TIP: 로컬 루트 사용자는 비밀번호가 변경될 때까지 대상 그�
 |===
 
 
+[[configure-the-tenant]]
 == 테넌트 구성
 
 지침을 따르세요link:../tenant/index.html["세입자 계정 사용"] 테넌트 그룹 및 사용자, S3 액세스 키, 버킷, 플랫폼 서비스, 계정 복제 및 크로스 그리드 복제를 관리합니다.

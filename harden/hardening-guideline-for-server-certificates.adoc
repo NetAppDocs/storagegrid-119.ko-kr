@@ -15,6 +15,7 @@ summary: 설치 중에 생성된 기본 인증서를 교체하고 TLS 및 SSH �
 
 
 
+[[hardening-guidelines-for-certificates]]
 == 인증서 강화 지침
 
 설치 중에 생성된 기본 인증서를 사용자 정의 인증서로 바꿔야 합니다.
@@ -44,6 +45,7 @@ NOTE: StorageGRID 로드 밸런서 엔드포인트에 사용되는 인증서를 
 
 
 
+[[hardening-guidelines-for-tls-and-ssh-policy]]
 == TLS 및 SSH 정책에 대한 강화 지침
 
 보안 정책을 선택하여 클라이언트 애플리케이션과의 보안 TLS 연결 및 내부 StorageGRID 서비스에 대한 보안 SSH 연결을 설정하는 데 사용되는 프로토콜과 암호를 결정할 수 있습니다.

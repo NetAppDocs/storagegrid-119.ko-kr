@@ -31,6 +31,7 @@ StorageGRID StorageGRID 어플라이언스와 전체 StorageGRID 시스템(이�
 
 
 
+[[automate-the-installation-and-configuration-of-the-storagegrid-host-service]]
 == StorageGRID 호스트 서비스의 설치 및 구성을 자동화합니다.
 
 Ansible, Puppet, Chef, Fabric 또는 SaltStack과 같은 표준 오케스트레이션 프레임워크를 사용하여 StorageGRID 호스트 서비스 설치를 자동화할 수 있습니다.
@@ -46,6 +47,7 @@ NOTE: 예제 플레이북에는 StorageGRID 호스트 서비스를 시작하기 
 
 
 
+[[example-ansible-role-and-playbook]]
 === Ansible 역할 및 플레이북 예시
 
 예제 Ansible 역할 및 플레이북은 설치 아카이브와 함께 제공됩니다. `/extras` 접는 사람.  Ansible 플레이북은 다음 방법을 보여줍니다. `storagegrid` 역할은 호스트를 준비하고 대상 서버에 StorageGRID 설치합니다.  필요에 따라 역할이나 플레이북을 사용자 정의할 수 있습니다.
@@ -58,6 +60,7 @@ NOTE: 예제 플레이북에는 StorageGRID 호스트 서비스를 시작하기 
 
 
 
+[[automate-the-configuration-of-storagegrid]]
 == StorageGRID 구성 자동화
 
 그리드 노드를 배포한 후 StorageGRID 시스템 구성을 자동화할 수 있습니다.

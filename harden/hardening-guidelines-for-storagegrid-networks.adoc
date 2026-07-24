@@ -17,6 +17,7 @@ StorageGRID 네트워크에 대한 자세한 내용은 다음을 참조하세요
 
 
 
+[[guidelines-for-grid-network]]
 == 그리드 네트워크 지침
 
 모든 내부 StorageGRID 트래픽에 대해 그리드 네트워크를 구성해야 합니다.  모든 그리드 노드는 그리드 네트워크에 있으며, 다른 모든 노드와 통신할 수 있어야 합니다.
@@ -31,6 +32,7 @@ StorageGRID 네트워크에 대한 자세한 내용은 다음을 참조하세요
 
 
 
+[[guidelines-for-admin-network]]
 == 관리자 네트워크 지침
 
 관리 네트워크는 일반적으로 관리 작업(Grid Manager 또는 SSH를 사용하는 신뢰할 수 있는 직원)과 LDAP, DNS, NTP, KMS(또는 KMIP 서버)와 같은 다른 신뢰할 수 있는 서비스와의 통신에 사용됩니다.  하지만 StorageGRID 내부적으로 이러한 사용을 강제하지 않습니다.
@@ -43,6 +45,7 @@ StorageGRID 네트워크에 대한 자세한 내용은 다음을 참조하세요
 
 
 
+[[guidelines-for-client-network]]
 == 클라이언트 네트워크 지침
 
 클라이언트 네트워크는 일반적으로 테넌트와 CloudMirror 복제 서비스나 다른 플랫폼 서비스와 같은 외부 서비스와의 통신에 사용됩니다.  하지만 StorageGRID 내부적으로 이러한 사용을 강제하지 않습니다.

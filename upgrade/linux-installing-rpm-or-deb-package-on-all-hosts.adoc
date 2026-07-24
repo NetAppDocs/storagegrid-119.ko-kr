@@ -15,6 +15,7 @@ Linux 호스트에 StorageGRID 노드가 배포된 경우 업그레이드를 시
 
 
 
+[[download-upgrade-linux-and-hotfix-files]]
 == 업그레이드, Linux 및 핫픽스 파일 다운로드
 
 Grid Manager에서 StorageGRID 업그레이드를 수행하면 첫 번째 단계로 업그레이드 아카이브와 필요한 핫픽스를 다운로드하라는 메시지가 표시됩니다.  하지만 Linux 호스트를 업그레이드하기 위해 파일을 다운로드해야 하는 경우, 필요한 모든 파일을 미리 다운로드하면 시간을 절약할 수 있습니다.
@@ -61,6 +62,7 @@ StorageGRID 소프트웨어 버전의 형식은 11._x.y_입니다.  StorageGRID 
 
 
 
+[[install-archive-on-all-linux-hosts]]
 == 모든 Linux 호스트에 아카이브 설치
 
 StorageGRID 소프트웨어를 업그레이드하기 전에 다음 단계를 수행하세요.
@@ -83,6 +85,7 @@ StorageGRID 소프트웨어를 업그레이드하기 전에 다음 단계를 수
 
 
 
+[[remove-installation-archives-for-previous-versions]]
 == 이전 버전의 설치 아카이브 제거
 
 Linux 호스트의 공간을 확보하려면 더 이상 필요하지 않은 이전 버전의 StorageGRID 설치 아카이브를 제거하면 됩니다.

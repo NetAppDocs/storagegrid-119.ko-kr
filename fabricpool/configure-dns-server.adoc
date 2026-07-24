@@ -17,6 +17,7 @@ summary: 고가용성 그룹, 로드 밸런서 엔드포인트, S3 도메인 이
 
 
 
+[[dns-entries-for-storagegrid-server-name]]
 == StorageGRID 서버 이름에 대한 DNS 항목
 
 StorageGRID 서버 이름(정규화된 도메인 이름)을 사용할 각 StorageGRID IP 주소에 연결하기 위해 DNS 항목을 추가합니다.  DNS에 입력하는 IP 주소는 부하 분산 노드의 HA 그룹을 사용하는지 여부에 따라 달라집니다.
@@ -28,6 +29,7 @@ StorageGRID 서버 이름(정규화된 도메인 이름)을 사용할 각 Storag
 
 
 
+[[dns-entries-for-virtual-hosted-style-requests]]
 == 가상 호스팅 스타일 요청에 대한 DNS 항목
 
 정의한 경우link:../admin/configuring-s3-api-endpoint-domain-names.html["S3 엔드포인트 도메인 이름"] 가상 호스팅 스타일 요청을 사용하고, 와일드카드 이름을 포함하여 모든 필수 S3 엔드포인트 도메인 이름에 대한 DNS 항목을 추가합니다.

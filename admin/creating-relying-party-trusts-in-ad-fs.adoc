@@ -31,6 +31,7 @@ NOTE: StorageGRID 시스템의 각 관리 노드에 대해 신뢰 당사자 트�
 
 
 
+[[create-a-relying-party-trust-using-windows-powershell]]
 == Windows PowerShell을 사용하여 신뢰 당사자 신뢰 만들기
 
 Windows PowerShell을 사용하면 하나 이상의 신뢰 당사자 트러스트를 빠르게 만들 수 있습니다.
@@ -93,6 +94,7 @@ AD FS 관리 도구가 나타납니다.
 
 
 
+[[create-a-relying-party-trust-by-importing-federation-metadata]]
 == 페더레이션 메타데이터를 가져와서 신뢰 당사자 트러스트를 만듭니다.
 
 각 관리 노드의 SAML 메타데이터에 액세스하여 각 신뢰 당사자 신뢰에 대한 값을 가져올 수 있습니다.
@@ -144,6 +146,7 @@ NOTE: 표시 이름을 입력할 때는 Grid Manager의 Single Sign-on 페이지
 
 
 
+[[create-a-relying-party-trust-manually]]
 == 수동으로 신뢰 당사자 신뢰 생성
 
 의존하는 부분 트러스트에 대한 데이터를 가져오지 않기로 선택한 경우 값을 수동으로 입력할 수 있습니다.

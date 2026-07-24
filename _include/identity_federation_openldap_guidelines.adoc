@@ -9,12 +9,14 @@ CAUTION: ActiveDirectory 또는 Azure가 아닌 ID 소스의 경우 StorageGRID 
 
 
 
+[[memberof-and-refint-overlays]]
 === 오버레이의 멤버 및 재정의
 
 memberof 및 refint 오버레이를 활성화해야 합니다.  자세한 내용은 역방향 그룹 멤버십 유지 관리에 대한 지침을 참조하세요.http://www.openldap.org/doc/admin24/index.html["OpenLDAP 문서: 버전 2.4 관리자 가이드"^] .
 
 
 
+[[indexing]]
 === 인덱싱
 
 지정된 인덱스 키워드를 사용하여 다음 OpenLDAP 속성을 구성해야 합니다.

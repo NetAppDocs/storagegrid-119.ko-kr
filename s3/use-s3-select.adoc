@@ -22,6 +22,7 @@ S3 Select가 활성화된 테넌트 계정만 SelectObjectContent 쿼리를 실�
 
 
 
+[[clauses]]
 == 조항
 
 * SELECT 목록
@@ -32,6 +33,7 @@ S3 Select가 활성화된 테넌트 계정만 SelectObjectContent 쿼리를 실�
 
 
 
+[[data-types]]
 == 데이터 유형
 
 * 부울
@@ -44,10 +46,12 @@ S3 Select가 활성화된 테넌트 계정만 SelectObjectContent 쿼리를 실�
 
 
 
+[[operators]]
 == 운영자
 
 
 
+[[logical-operators]]
 === 논리 연산자
 
 * 그리고
@@ -57,6 +61,7 @@ S3 Select가 활성화된 테넌트 계정만 SelectObjectContent 쿼리를 실�
 
 
 
+[[comparison-operators]]
 === 비교 연산자
 
 * <
@@ -73,6 +78,7 @@ S3 Select가 활성화된 테넌트 계정만 SelectObjectContent 쿼리를 실�
 
 
 
+[[pattern-matching-operators]]
 === 패턴 매칭 연산자
 
 * 좋다
@@ -82,6 +88,7 @@ S3 Select가 활성화된 테넌트 계정만 SelectObjectContent 쿼리를 실�
 
 
 
+[[unitary-operators]]
 === 단위 연산자
 
 * NULL입니다
@@ -90,6 +97,7 @@ S3 Select가 활성화된 테넌트 계정만 SelectObjectContent 쿼리를 실�
 
 
 
+[[math-operators]]
 === 수학 연산자
 
 * +
@@ -103,6 +111,7 @@ StorageGRID Amazon S3 Select 연산자 우선순위를 따릅니다.
 
 
 
+[[aggregate-functions]]
 == 집계 함수
 
 * 평균()
@@ -114,6 +123,7 @@ StorageGRID Amazon S3 Select 연산자 우선순위를 따릅니다.
 
 
 
+[[conditional-functions]]
 == 조건 함수
 
 * 사례
@@ -123,6 +133,7 @@ StorageGRID Amazon S3 Select 연산자 우선순위를 따릅니다.
 
 
 
+[[conversion-functions]]
 == 변환 함수
 
 * CAST(지원되는 데이터 유형의 경우)
@@ -130,6 +141,7 @@ StorageGRID Amazon S3 Select 연산자 우선순위를 따릅니다.
 
 
 
+[[date-functions]]
 == 날짜 함수
 
 * 날짜 추가
@@ -142,6 +154,7 @@ StorageGRID Amazon S3 Select 연산자 우선순위를 따릅니다.
 
 
 
+[[string-functions]]
 == 문자열 함수
 
 * 문자 길이, 문자 길이

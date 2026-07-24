@@ -24,6 +24,7 @@ NOTE: Swift 클라이언트 애플리케이션에 대한 지원이 더 이상 �
 
 
 
+[[access-the-create-group-wizard]]
 == 그룹 만들기 마법사에 액세스하세요
 
 .단계
@@ -35,6 +36,7 @@ NOTE: Swift 클라이언트 애플리케이션에 대한 지원이 더 이상 �
 
 
 
+[[choose-a-group-type]]
 == 그룹 유형을 선택하세요
 
 로컬 그룹을 만들거나 페더레이션 그룹을 가져올 수 있습니다.
@@ -55,6 +57,7 @@ StorageGRID 시스템에서 SSO(Single Sign-On)가 활성화된 경우 로컬 �
 
 
 
+[[manage-group-permissions]]
 == 그룹 권한 관리
 
 그룹 권한은 사용자가 테넌트 관리자 및 테넌트 관리 API에서 수행할 수 있는 작업을 제어합니다.
@@ -76,6 +79,7 @@ NOTE: 사용자가 여러 그룹에 속해 있고 그룹 중 하나가 읽기 �
 
 
 
+[[set-swift-group-policy]]
 == Swift 그룹 정책 설정
 
 Swift 사용자는 Swift REST API에 인증하여 컨테이너를 생성하고 객체를 수집하려면 관리자 권한이 필요합니다.
@@ -86,6 +90,7 @@ Swift 사용자는 Swift REST API에 인증하여 컨테이너를 생성하고 �
 
 
 
+[[add-users-local-groups-only]]
 == 사용자 추가(로컬 그룹만 해당)
 
 사용자를 추가하지 않고 그룹을 저장할 수도 있고, 이미 존재하는 로컬 사용자를 추가할 수도 있습니다.

@@ -17,6 +17,7 @@ S3 API 관련 감사 메시지를 찾아 감사 로그에서 클라이언트 수
 
 
 
+[[s3-ingest-audit-messages]]
 == S3 수집 감사 메시지
 
 [cols="1a,1a,2a,1a,2a"]
@@ -51,6 +52,7 @@ link:orlm-object-rules-met.html["ORLM: 객체 규칙 충족"]
 |===
 
 
+[[swift-ingest-audit-messages]]
 == Swift 수집 감사 메시지
 
 [cols="1a,1a,2a,1a,2a"]
@@ -85,6 +87,7 @@ link:orlm-object-rules-met.html["ORLM: 객체 규칙 충족"]
 |===
 
 
+[[example-s3-object-ingest]]
 == 예: S3 객체 수집
 
 아래의 감사 메시지 시리즈는 S3 클라이언트가 객체를 스토리지 노드(LDR 서비스)로 수집할 때 생성되어 감사 로그에 저장되는 감사 메시지의 예입니다.
@@ -98,6 +101,7 @@ NOTE: 아래 예시에는 거래 중에 생성된 모든 감사 메시지가 나
 
 
 
+[[sput-s3-put]]
 === SPUT: S3 PUT
 
 SPUT 메시지는 특정 버킷에 객체를 생성하기 위해 S3 PUT 트랜잭션이 실행되었음을 나타내기 위해 생성됩니다.
@@ -108,6 +112,7 @@ SPUT 메시지는 특정 버킷에 객체를 생성하기 위해 S3 PUT 트랜�
 ----
 
 
+[[orlm-object-rules-met]]
 === ORLM: 객체 규칙 충족
 
 ORLM 메시지는 이 개체에 대한 ILM 정책이 충족되었음을 나타냅니다.  메시지에는 개체의 CBID와 적용된 ILM 규칙의 이름이 포함됩니다.

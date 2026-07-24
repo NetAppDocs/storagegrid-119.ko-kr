@@ -25,6 +25,7 @@ CAUTION: 다음 ILM 규칙과 정책은 단지 예시일 뿐입니다.  ILM 규�
 
 
 
+[[ilm-rule-1-for-example-5-strict-ingest-to-guarantee-paris-data-center]]
 == ILM 규칙 1(예시 5): 파리 데이터 센터를 보장하기 위한 엄격한 수집
 
 이 예시 ILM 규칙은 엄격한 수집 동작을 사용하여 파리에 있는 테넌트가 지역이 eu-west-3 지역(파리)으로 설정된 S3 버킷에 저장한 객체가 미국 데이터 센터에 저장되지 않도록 보장합니다.
@@ -88,6 +89,7 @@ image::../media/ilm_rule_1_example_5_strict_ingest.png[ILM 규칙 1 예제 5 엄
 
 
 
+[[ilm-rule-2-for-example-5-balanced-ingest-for-other-objects]]
 == 예시 5에 대한 ILM 규칙 2: 다른 개체에 대한 균형 잡힌 수집
 
 이 예제 ILM 규칙은 균형 잡힌 수집 동작을 사용하여 첫 번째 규칙과 일치하지 않는 모든 개체에 대해 최적의 ILM 효율성을 제공합니다.  이 규칙에 일치하는 모든 객체의 사본 두 개가 미국 데이터 센터와 파리 데이터 센터에 저장됩니다.  규칙을 즉시 충족할 수 없는 경우, 임시 사본은 이용 가능한 모든 위치에 보관됩니다.
@@ -149,6 +151,7 @@ Day 0에서는 두 개의 복제된 사본을 두 개의 데이터 센터에 영
 |===
 
 
+[[ilm-policy-for-example-5-combining-ingest-behaviors]]
 == ILM 정책 예시 5: 수집 동작 결합
 
 예시 ILM 정책에는 서로 다른 수집 동작을 갖는 두 가지 규칙이 포함되어 있습니다.

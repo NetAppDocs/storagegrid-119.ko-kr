@@ -17,6 +17,7 @@ GET 버킷 마지막 액세스 시간 요청을 사용하면 개별 버킷에 �
 
 
 
+[[request-example]]
 == 요청 예시
 
 [listing, subs="specialcharacters,quotes"]
@@ -28,6 +29,7 @@ Host: _host_
 ----
 
 
+[[response-example]]
 == 응답 예시
 
 이 예에서는 버킷에 대한 마지막 액세스 시간 업데이트가 활성화되어 있음을 보여줍니다.

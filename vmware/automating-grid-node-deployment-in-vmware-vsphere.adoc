@@ -15,6 +15,7 @@ VMware OVF 도구를 사용하면 그리드 노드 배포를 자동화할 수 �
 
 
 
+[[automate-grid-node-deployment]]
 == 그리드 노드 배포 자동화
 
 VMware OVF 도구를 사용하여 그리드 노드 배포를 자동화합니다.
@@ -81,6 +82,7 @@ Open Virtualization Format 템플릿 파일(`.ovf` ) 및 매니페스트 파일(
 |===
 
 
+[[define-the-configuration-file-for-your-deployment]]
 === 배포에 대한 구성 파일을 정의하세요
 
 StorageGRID 에 대한 가상 그리드 노드를 배포하는 데 필요한 정보는 구성 파일에서 지정됩니다. `deploy-vsphere-ovftool.sh` 배시 스크립트.  예제 구성 파일을 수정하면 파일을 처음부터 만들 필요가 없습니다.
@@ -97,6 +99,7 @@ StorageGRID 에 대한 가상 그리드 노드를 배포하는 데 필요한 정
 
 
 
+[[configuration-file-settings]]
 === 구성 파일 설정
 
 그만큼 `deploy-vsphere-ovftool.ini` 구성 파일에는 가상 그리드 노드를 배포하는 데 필요한 설정이 포함되어 있습니다.
@@ -514,6 +517,7 @@ NOTE: 관리자 노드의 경우 INSTANCES는 항상 2와 같아야 합니다.
 
 
 
+[[run-the-bash-script]]
 == Bash 스크립트 실행
 
 당신은 사용할 수 있습니다 `deploy-vsphere-ovftool.sh` VMware vSphere에서 StorageGRID 노드의 배포를 자동화하기 위해 수정한 Bash 스크립트와 deploy-vsphere-ovftool.ini 구성 파일입니다.
@@ -581,6 +585,7 @@ Deployment Summary
 ----
 
 
+[[automate-the-configuration-of-storagegrid]]
 == StorageGRID 구성 자동화
 
 그리드 노드를 배포한 후 StorageGRID 시스템 구성을 자동화할 수 있습니다.

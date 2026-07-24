@@ -23,6 +23,7 @@ StorageGRID 두 가지 유형의 보안 인증서를 사용합니다.
 
 StorageGRID 일부 연결(예: 로드 밸런서 엔드포인트)에 대한 서버 역할을 하거나 다른 연결(예: CloudMirror 복제 서비스)에 대한 클라이언트 역할을 합니다.
 
+[[gridca_details]]
 *기본 Grid CA 인증서*
 
 StorageGRID 시스템 설치 중에 내부 Grid CA 인증서를 생성하는 내장 인증 기관(CA)이 포함되어 있습니다. Grid CA 인증서는 기본적으로 내부 StorageGRID 트래픽을 보호하는 데 사용됩니다. 외부 인증 기관(CA)은 조직의 정보 보안 정책을 완벽하게 준수하는 맞춤형 인증서를 발급할 수 있습니다.  비운영 환경에서는 Grid CA 인증서를 사용할 수 있지만, 운영 환경에서는 외부 인증 기관에서 서명한 사용자 지정 인증서를 사용하는 것이 가장 좋습니다.  인증서가 없는 보안되지 않은 연결도 지원되지만 권장되지는 않습니다.
@@ -39,6 +40,7 @@ NOTE: StorageGRID 에는 모든 그리드에서 동일한 운영 체제 CA 인�
 
 
 
+[[access-security-certificates]]
 == 보안 인증서 접근
 
 각 인증서의 구성 워크플로에 대한 링크와 함께 모든 StorageGRID 인증서에 대한 정보를 단일 위치에서 액세스할 수 있습니다.
@@ -193,12 +195,15 @@ NOTE: 다른 인증서에 대한 정보는 다음 권한이 있는 경우에만 
 
 
 
+[[security-certificate-details]]
 == 보안 인증서 세부 정보
 
 각 유형의 보안 인증서는 아래에 설명되어 있으며, 구현 지침에 대한 링크도 함께 제공됩니다.
 
 
 
+[[management-interface-certificate]]
+[[adminclientcert_details]]
 === 관리 인터페이스 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -222,6 +227,7 @@ link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html[
 |===
 
 
+[[s3-api-certificate]]
 === S3 API 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -241,12 +247,14 @@ link:configuring-custom-server-certificate-for-storage-node.html["S3 API 인증�
 |===
 
 
+[[grid-ca-certificate]]
 === 그리드 CA 인증서
 
 를 참조하십시오<<gridca_details,기본 Grid CA 인증서 설명>> .
 
 
 
+[[administrator-client-certificate]]
 === 관리자 클라이언트 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -270,6 +278,7 @@ link:configuring-administrator-client-certificates.html["클라이언트 인증�
 |===
 
 
+[[load-balancer-endpoint-certificate]]
 === 로드 밸런서 엔드포인트 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -295,6 +304,7 @@ link:configuring-administrator-client-certificates.html["클라이언트 인증�
 |===
 
 
+[[cloud-storage-pool-endpoint-certificate]]
 === Cloud Storage Pool 엔드포인트 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -314,6 +324,7 @@ link:../ilm/creating-cloud-storage-pool.html["클라우드 스토리지 풀 만�
 |===
 
 
+[[email-alert-notification-certificate]]
 === 이메일 알림 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -337,6 +348,7 @@ link:../monitor/email-alert-notifications.html["알림에 대한 이메일 알�
 |===
 
 
+[[external-syslog-server-certificate]]
 === 외부 syslog 서버 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -358,6 +370,7 @@ link:../monitor/configure-audit-messages.html#use-external-syslog-server["외부
 |===
 
 
+[[grid-federation-certificategrid-federation-connection-certificate]]
 === [[grid-federation-certificate]]그리드 페더레이션 연결 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -379,6 +392,7 @@ link:../monitor/configure-audit-messages.html#use-external-syslog-server["외부
 |===
 
 
+[[identity-federation-certificate]]
 === ID 페더레이션 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -398,6 +412,7 @@ link:using-identity-federation.html["ID 페더레이션 사용"]
 |===
 
 
+[[key-management-server-kms-certificate]]
 === 키 관리 서버(KMS) 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -417,6 +432,7 @@ link:kms-adding.html["키 관리 서버(KMS) 추가"]
 |===
 
 
+[[platform-services-endpoint-certificate]]
 === 플랫폼 서비스 엔드포인트 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -438,6 +454,7 @@ link:../tenant/editing-platform-services-endpoint.html["플랫폼 서비스 엔�
 |===
 
 
+[[single-sign-on-sso-certificate]]
 === Single Sign-On(SSO) 인증서
 
 [cols="1a,1a,1a,1a"]
@@ -457,10 +474,12 @@ link:configuring-sso.html["단일 로그인 구성"]
 |===
 
 
+[[certificate-examples]]
 == 인증서 예시
 
 
 
+[[example-1-load-balancer-service]]
 === 예 1: 로드 밸런서 서비스
 
 이 예에서 StorageGRID 서버 역할을 합니다.
@@ -475,6 +494,7 @@ link:configuring-sso.html["단일 로그인 구성"]
 
 
 
+[[example-2-external-key-management-server-kms]]
 === 예 2: 외부 키 관리 서버(KMS)
 
 이 예에서 StorageGRID 클라이언트 역할을 합니다.

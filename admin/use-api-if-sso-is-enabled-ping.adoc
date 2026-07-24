@@ -15,6 +15,7 @@ summary: 'SSO(Single Sign-On)를 구성하고 활성화했으며 PingFederate를
 
 
 
+[[sign-in-to-the-api-if-single-sign-on-is-enabled]]
 == Single Sign-On이 활성화된 경우 API에 Sign in.
 
 이 지침은 PingFederate를 SSO ID 공급자로 사용하는 경우에 적용됩니다.
@@ -204,6 +205,7 @@ export MYTOKEN="56eb07bf-21f6-40b7-af0b-5c6cacfb25e7"
 
 
 
+[[sign-out-of-the-api-if-single-sign-on-is-enabled]]
 == Single Sign-On이 활성화된 경우 API에서 로그아웃합니다.
 
 SSO(Single Sign-On)가 활성화된 경우 Grid Management API 또는 Tenant Management API에서 로그아웃하려면 일련의 API 요청을 발행해야 합니다.  이 지침은 PingFederate를 SSO ID 공급자로 사용하는 경우에 적용됩니다.

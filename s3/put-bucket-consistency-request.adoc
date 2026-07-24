@@ -20,6 +20,7 @@ PUT 버킷 일관성 요청을 사용하면 버킷에서 수행되는 작업에 
 
 
 
+[[request]]
 == 요구
 
 그만큼 `x-ntap-sg-consistency` 매개변수에는 다음 값 중 하나가 포함되어야 합니다.
@@ -67,6 +68,7 @@ PUT 버킷 일관성 요청을 사용하면 버킷에서 수행되는 작업에 
 
 
 
+[[request-example]]
 == 요청 예시
 
 [listing, subs="specialcharacters,quotes"]

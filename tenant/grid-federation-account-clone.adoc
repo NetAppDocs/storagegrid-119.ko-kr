@@ -19,6 +19,7 @@ summary: '테넌트가 그리드 페더레이션 연결을 사용하도록 생�
 
 
 
+[[tenant-workflow-for-account-clone]]
 == 계정 복제를 위한 테넌트 워크플로
 
 테넌트 계정에 *그리드 페더레이션 연결 사용* 권한이 있는 경우 워크플로 다이어그램을 검토하여 그룹, 사용자 및 S3 액세스 키를 복제하기 위해 수행할 단계를 확인하세요.
@@ -57,12 +58,14 @@ image::../media/grid-federation-account-clone-workflow-tm.png[계정 복제를 �
 
 
 
+[[how-are-groups-users-and-s3-access-keys-cloned]]
 == 그룹, 사용자 및 S3 액세스 키는 어떻게 복제되나요?
 
 테넌트 소스 그리드와 테넌트 대상 그리드 간에 그룹, 사용자 및 S3 액세스 키가 복제되는 방식을 이해하려면 이 섹션을 검토하세요.
 
 
 
+[[local-groups-created-on-source-grid-are-cloned]]
 === 소스 그리드에서 생성된 로컬 그룹이 복제됩니다.
 
 테넌트 계정이 생성되어 대상 그리드에 복제되면 StorageGRID 테넌트의 소스 그리드에 추가한 모든 로컬 그룹을 테넌트의 대상 그리드에 자동으로 복제합니다.
@@ -76,6 +79,7 @@ NOTE: 소스 그리드에서 로컬 그룹을 생성할 때 선택한 사용자�
 
 
 
+[[local-users-created-on-source-grid-are-cloned]]
 === 소스 그리드에서 생성된 로컬 사용자는 복제됩니다.
 
 소스 그리드에 새로운 로컬 사용자를 생성하면 StorageGRID 자동으로 해당 사용자를 대상 그리드에 복제합니다. 원래 사용자와 복제본 모두 동일한 전체 이름, 사용자 이름 및 *액세스 거부* 설정을 갖습니다. 두 사용자는 모두 같은 그룹에 속합니다. 지침은 다음을 참조하세요.link:managing-local-users.html["로컬 사용자 관리"] .
@@ -86,6 +90,7 @@ image::../media/grid-federation-local-user-clone.png[로컬 사용자가 소스 
 
 
 
+[[federated-groups-created-on-source-grid-are-cloned]]
 === 소스 그리드에서 생성된 페더레이션 그룹이 복제됩니다.
 
 계정 복제를 사용하기 위한 요구 사항을 가정합니다.link:../admin/grid-federation-what-is-account-clone.html#account-clone-sso["단일 로그인"] 그리고link:../admin/grid-federation-what-is-account-clone.html#account-clone-identity-federation["ID 연합"] 조건이 충족되면 소스 그리드의 테넌트에 대해 생성(가져오기)한 페더레이션 그룹이 대상 그리드의 테넌트에 자동으로 복제됩니다.
@@ -98,6 +103,7 @@ image::../media/grid-federation-federated-group-clone.png[연합 그룹이 소�
 
 
 
+[[s3-access-keys-can-be-manually-cloned]]
 === S3 액세스 키는 수동으로 복제될 수 있습니다.
 
 StorageGRID 각 그리드에 다른 키를 두어 보안을 강화하기 때문에 S3 액세스 키를 자동으로 복제하지 않습니다.
@@ -115,6 +121,7 @@ NOTE: 페더레이션 사용자에 대한 S3 액세스 키를 복제하면 사�
 
 
 
+[[groups-and-users-added-to-destination-grid-arent-cloned]]
 === 대상 그리드에 추가된 그룹 및 사용자는 복제되지 않습니다.
 
 복제는 테넌트의 소스 그리드에서 테넌트의 대상 그리드로만 발생합니다.  테넌트의 대상 그리드에서 그룹 및 사용자를 만들거나 가져오는 경우 StorageGRID 이러한 항목을 테넌트의 소스 그리드로 다시 복제하지 않습니다.
@@ -123,6 +130,7 @@ image::../media/grid-federation-account-not-cloned.png[대상 그리드의 세�
 
 
 
+[[edited-or-deleted-groups-users-and-access-keys-arent-cloned]]
 === 편집 또는 삭제된 그룹, 사용자 및 액세스 키는 복제되지 않습니다.
 
 복제는 새로운 그룹과 사용자를 생성할 때만 발생합니다.

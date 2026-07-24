@@ -55,6 +55,7 @@ StorageGRID (서비스 공급자)와 SSO ID 공급자가 사용자 인증 요청
 
 
 
+[[access-sandbox-mode]]
 == 샌드박스 모드에 접속하세요
 
 .단계
@@ -77,6 +78,7 @@ ID 공급자 섹션이 나타납니다.
 
 
 
+[[enter-identity-provider-details]]
 == ID 공급자 세부 정보를 입력하세요
 
 .단계
@@ -223,6 +225,7 @@ image::../media/save_button_green_checkmark.gif[녹색 체크 표시가 있는 �
 
 
 
+[[configure-relying-party-trusts-enterprise-applications-or-sp-connections]]
 == 신뢰 당사자 트러스트, 엔터프라이즈 애플리케이션 또는 SP 연결 구성
 
 구성이 저장되면 샌드박스 모드 확인 알림이 나타납니다.  이 알림에서는 샌드박스 모드가 활성화되었음을 확인하고 개요 지침을 제공합니다.
@@ -285,6 +288,7 @@ StorageGRID 필요한 만큼 샌드박스 모드를 유지할 수 있습니다. 
 ====
 
 
+[[test-sso-connections]]
 == SSO 연결 테스트
 
 StorageGRID 시스템 전체에 대해 단일 로그인 사용을 강제로 적용하기 전에 각 관리 노드에 대해 단일 로그인 및 단일 로그아웃이 올바르게 구성되었는지 확인해야 합니다.
@@ -366,6 +370,7 @@ image::../media/sso_sandbox_mode_sign_in_success.gif[SSO 인증 및 로그아웃
 ====
 
 
+[[enable-single-sign-on]]
 == 단일 로그인 활성화
 
 각 관리 노드에 SSO를 사용하여 로그인할 수 있음을 확인한 후 전체 StorageGRID 시스템에 대해 SSO를 활성화할 수 있습니다.

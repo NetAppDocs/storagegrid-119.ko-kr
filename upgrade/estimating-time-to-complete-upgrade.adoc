@@ -121,6 +121,7 @@ StorageGRID 11.8에서 11.9로 업그레이드하는 데 Cassandra 데이터베�
 
 
 
+[[example-estimated-time-to-upgrade-to-storagegrid-11-9]]
 == 예: StorageGRID 11.9으로 업그레이드하는 데 걸리는 예상 시간
 
 시스템에 14개의 그리드 노드가 있고 그 중 8개가 Linux 노드라고 가정해 보겠습니다.

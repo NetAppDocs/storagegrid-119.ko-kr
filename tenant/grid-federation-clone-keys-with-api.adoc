@@ -27,6 +27,7 @@ NOTE: 페더레이션 사용자에 대한 S3 액세스 키를 복제하면 사�
 
 
 
+[[clone-your-own-access-keys]]
 == 자신의 액세스 키를 복제하세요
 
 두 그리드에서 동일한 버킷에 액세스해야 하는 경우 고유한 액세스 키를 복제할 수 있습니다.
@@ -56,6 +57,7 @@ image::../media/grid-federation-clone-access-key.png[테넌트 관리자 API가 
 
 
 
+[[clone-another-users-access-keys]]
 == 다른 사용자의 액세스 키 복제
 
 두 그리드 모두에서 동일한 버킷에 액세스해야 하는 경우 다른 사용자의 액세스 키를 복제할 수 있습니다.

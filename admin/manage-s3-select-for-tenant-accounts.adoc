@@ -17,22 +17,26 @@ S3 Select는 검색을 위해 데이터베이스와 관련 리소스를 배포�
 
 
 
+[[what-is-s3-select]]
 == S3 Select란 무엇인가요?
 
 S3 Select를 사용하면 S3 클라이언트가 SelectObjectContent 요청을 사용하여 객체에서 필요한 데이터만 필터링하고 검색할 수 있습니다.  S3 Select의 StorageGRID 구현에는 S3 Select 명령과 기능의 하위 집합이 포함되어 있습니다.
 
 
 
+[[considerations-and-requirements-for-using-s3-select]]
 == S3 Select 사용 시 고려 사항 및 요구 사항
 
 
 
+[[grid-administration-requirements]]
 === 그리드 관리 요구 사항
 
 그리드 관리자는 테넌트에게 S3 Select 권한을 부여해야 합니다.  *S3 선택 허용*을 선택하세요.link:creating-tenant-account.html["테넌트 생성"] 또는link:editing-tenant-account.html["테넌트 편집"] .
 
 
 
+[[object-format-requirements]]
 === 객체 형식 요구 사항
 
 쿼리하려는 개체는 다음 형식 중 하나여야 합니다.
@@ -51,6 +55,7 @@ S3 Select를 사용하면 S3 클라이언트가 SelectObjectContent 요청을 �
 
 
 
+[[endpoint-requirements]]
 === 엔드포인트 요구 사항
 
 SelectObjectContent 요청은 다음으로 전송되어야 합니다.link:configuring-load-balancer-endpoints.html["StorageGRID 로드 밸런서 엔드포인트"] .
@@ -64,6 +69,7 @@ SelectObjectContent 요청은 다음으로 전송되어야 합니다.link:config
 
 
 
+[[general-considerations]]
 === 일반적인 고려 사항
 
 쿼리를 스토리지 노드로 직접 전송할 수 없습니다.

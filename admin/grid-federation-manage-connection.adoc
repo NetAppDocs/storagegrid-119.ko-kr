@@ -20,6 +20,7 @@ StorageGRID 시스템 간의 그리드 페더레이션 연결을 관리하는 �
 
 
 
+[[editgridfedconnectionedit-a-grid-federation-connection]]
 == [[edit_grid_fed_connection]]그리드 페더레이션 연결 편집
 
 연결에 있는 두 그리드 중 하나의 기본 관리 노드에 로그인하여 그리드 연합 연결을 편집할 수 있습니다.  첫 번째 그리드를 변경한 후에는 새로운 확인 파일을 다운로드하여 다른 그리드에 업로드해야 합니다.
@@ -29,6 +30,7 @@ NOTE: 연결이 편집되는 동안 계정 복제 또는 크로스 그리드 복
 
 
 
+[[start-editing-the-connection]]
 === 연결 편집을 시작합니다
 
 .단계
@@ -85,6 +87,7 @@ NOTE: 연결 편집을 시작할 때 연결 상태가 *연결됨*이 아닌 경�
 
 
 
+[[finish-editing-the-connection]]
 === 연결 편집을 완료합니다
 
 다른 그리드에 확인 파일을 업로드하여 연결 편집을 완료합니다.
@@ -107,6 +110,7 @@ NOTE: 연결 편집을 시작할 때 연결 상태가 *연결됨*이 아닌 경�
 
 
 
+[[testgridfedconnectiontest-a-grid-federation-connection]]
 == [[test_grid_fed_connection]]그리드 페더레이션 연결 테스트
 
 .단계
@@ -177,6 +181,7 @@ NOTE: 연결 편집을 시작할 때 연결 상태가 *연결됨*이 아닌 경�
 
 
 
+[[rotategridfedcertificatesrotate-connection-certificates]]
 == [[rotate_grid_fed_certificates]]연결 인증서 순환
 
 각 그리드 연합 연결은 4개의 자동 생성된 SSL 인증서를 사용하여 연결을 보호합니다.  각 그리드의 두 인증서가 만료일이 가까워지면 *그리드 연합 인증서 만료* 알림이 표시되어 인증서를 교체하도록 알려줍니다.
@@ -201,6 +206,7 @@ CAUTION: 연결의 양쪽 끝에 있는 인증서가 만료되면 연결이 중�
 
 
 
+[[removegridfedconnectionremove-a-grid-federation-connection]]
 == [[remove_grid_fed_connection]]그리드 페더레이션 연결 제거
 
 연결 내의 두 그리드에서 그리드 페더레이션 연결을 제거할 수 있습니다.  그림에서 볼 수 있듯이 두 그리드 모두에서 전제 조건 단계를 수행하여 두 그리드 모두의 테넌트가 연결을 사용하지 않는지 확인해야 합니다.
@@ -215,6 +221,7 @@ image::../media/grid-federation-remove-connection.png[그리드 페더레이션 
 
 
 
+[[disable-replication-for-all-tenant-buckets]]
 === 모든 테넌트 버킷에 대한 복제 비활성화
 
 .단계
@@ -231,6 +238,7 @@ TIP: 테넌트 버킷에 크로스 그리드 복제가 활성화된 경우 *그�
 
 
 
+[[remove-permission-for-each-tenant]]
 === 각 세입자에 대한 권한 제거
 
 모든 테넌트 버킷에 대해 크로스 그리드 복제가 비활성화된 후 두 그리드의 모든 테넌트에서 *그리드 페더레이션 권한 사용*을 제거합니다.
@@ -244,6 +252,7 @@ TIP: 테넌트 버킷에 크로스 그리드 복제가 활성화된 경우 *그�
 
 
 
+[[remove-connection]]
 === 연결 제거
 
 .단계
@@ -263,6 +272,7 @@ TIP: 테넌트 버킷에 크로스 그리드 복제가 활성화된 경우 *그�
 
 
 
+[[force-removegridfedconnectionremove-a-grid-federation-connection-by-force]]
 == [[force-remove_grid_fed_connection]]그리드 페더레이션 연결을 강제로 제거합니다.
 
 필요한 경우 *연결됨* 상태가 아닌 연결을 강제로 제거할 수 있습니다.

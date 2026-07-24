@@ -21,6 +21,7 @@ image::../media/grid_topology_tree.gif[그리드 토폴로지 트리의 일부]
 
 
 
+[[storagegrid-attributes]]
 == StorageGRID 속성
 
 속성은 StorageGRID 시스템의 여러 기능에 대한 값과 상태를 보고합니다.  속성 값은 각 그리드 노드, 각 사이트 및 전체 그리드에 대해 사용할 수 있습니다.
@@ -34,6 +35,7 @@ StorageGRID 속성은 Grid Manager의 여러 위치에서 사용됩니다.
 
 
 
+[[attribute-values]]
 === 속성 값
 
 속성은 최선의 노력을 기준으로 보고되며 대략적으로 정확합니다.  서비스 충돌이나 그리드 노드의 오류 및 재구축 등의 일부 상황에서는 속성 업데이트가 손실될 수 있습니다.

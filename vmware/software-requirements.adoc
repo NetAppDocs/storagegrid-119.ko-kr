@@ -15,6 +15,7 @@ summary: 가상 머신을 사용하면 모든 유형의 StorageGRID 노드를 �
 
 
 
+[[vmware-vsphere-hypervisor]]
 == VMware vSphere 하이퍼바이저
 
 준비된 물리적 서버에 VMware vSphere Hypervisor를 설치해야 합니다.  VMware 소프트웨어를 설치하기 전에 하드웨어를 올바르게 구성해야 합니다(펌웨어 버전 및 BIOS 설정 포함).
@@ -29,6 +30,7 @@ link:../network/index.html["네트워킹 가이드라인"]
 
 
 
+[[esx-host-configuration-requirements]]
 == ESX 호스트 구성 요구 사항
 
 
@@ -36,6 +38,7 @@ CAUTION: 각 ESX 호스트에서 네트워크 시간 프로토콜(NTP)을 올바
 
 
 
+[[vmware-configuration-requirements]]
 == VMware 구성 요구 사항
 
 StorageGRID 노드를 배포하기 전에 VMware vSphere 및 vCenter를 설치하고 구성해야 합니다.

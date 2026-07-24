@@ -17,6 +17,7 @@ S3 테넌트 계정에 대해 플랫폼 서비스를 활성화하는 경우 테�
 
 
 
+[[cloudmirror-replication]]
 == CloudMirror 복제
 
 StorageGRID CloudMirror 복제 서비스는 StorageGRID 버킷의 특정 객체를 지정된 외부 대상으로 미러링하는 데 사용됩니다.
@@ -31,6 +32,7 @@ NOTE: 소스 버킷에 S3 개체 잠금이 활성화된 경우 CloudMirror 복�
 
 
 
+[[notifications]]
 == 알림
 
 버킷별 이벤트 알림은 특정 객체에 대해 수행된 특정 작업에 대한 알림을 지정된 외부 Kafka 클러스터 또는 Amazon Simple Notification Service로 보내는 데 사용됩니다.
@@ -42,6 +44,7 @@ NOTE: S3 객체 잠금이 활성화된 버킷에서 이벤트 알림을 구성�
 
 
 
+[[search-integration-service]]
 == 검색 통합 서비스
 
 검색 통합 서비스는 S3 객체 메타데이터를 지정된 Elasticsearch 인덱스로 전송하는 데 사용되며, 해당 인덱스에서 외부 서비스를 사용하여 메타데이터를 검색하거나 분석할 수 있습니다.
@@ -55,6 +58,7 @@ NOTE: S3 객체 잠금이 활성화된 버킷에서 Elasticsearch 통합을 구�
 
 
 
+[[recommendations-for-using-platform-services]]
 == 플랫폼 서비스 이용에 대한 권장 사항
 
 플랫폼 서비스를 사용하기 전에 다음 권장 사항을 숙지하시기 바랍니다.

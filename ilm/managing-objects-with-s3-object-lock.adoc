@@ -15,6 +15,7 @@ summary: 그리드 관리자는 StorageGRID 시스템에 대해 S3 개체 잠금
 
 
 
+[[what-is-s3-object-lock]]
 == S3 객체 잠금이란 무엇인가요?
 
 StorageGRID S3 객체 잠금 기능은 Amazon Simple Storage Service(Amazon S3)의 S3 객체 잠금과 동일한 객체 보호 솔루션입니다.
@@ -31,6 +32,7 @@ StorageGRID 시스템에 대해 글로벌 S3 개체 잠금 설정이 활성화�
 
 
 
+[[retention-modes]]
 === 보존 모드
 
 StorageGRID S3 객체 잠금 기능은 객체에 다양한 수준의 보호를 적용하기 위해 두 가지 보존 모드를 지원합니다.  이러한 모드는 Amazon S3 보존 모드와 동일합니다.
@@ -53,6 +55,7 @@ StorageGRID S3 객체 잠금 기능은 객체에 다양한 수준의 보호를 �
 
 
 
+[[retention-settings-for-object-versions]]
 === 객체 버전에 대한 보존 설정
 
 S3 객체 잠금이 활성화된 버킷을 생성한 경우 사용자는 S3 클라이언트 애플리케이션을 사용하여 버킷에 추가된 각 객체에 대해 다음과 같은 보존 설정을 선택적으로 지정할 수 있습니다.
@@ -71,6 +74,7 @@ NOTE: 객체가 법적 보존 상태에 있는 경우, 보존 모드에 관계�
 
 
 
+[[default-retention-setting-for-buckets]]
 === 버킷에 대한 기본 보존 설정
 
 S3 객체 잠금이 활성화된 버킷이 생성된 경우 사용자는 선택적으로 버킷에 대해 다음과 같은 기본 설정을 지정할 수 있습니다.
@@ -85,6 +89,7 @@ S3 객체 잠금이 활성화된 버킷이 생성된 경우 사용자는 선택�
 
 
 
+[[comparing-s3-object-lock-to-legacy-compliance]]
 == S3 객체 잠금과 레거시 규정 준수 비교
 
 S3 객체 잠금은 이전 StorageGRID 버전에서 사용 가능했던 규정 준수 기능을 대체합니다.  S3 객체 잠금 기능은 Amazon S3 요구 사항을 준수하므로 이제는 "레거시 규정 준수"라고 하는 독점적인 StorageGRID 규정 준수 기능이 더 이상 사용되지 않습니다.

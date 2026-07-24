@@ -20,6 +20,7 @@ summary: 모든 그리드 페더레이션 연결에 대한 기본 정보, 특정
 
 
 
+[[view-all-connections]]
 == 모든 연결 보기
 
 그리드 페더레이션 페이지는 모든 그리드 페더레이션 연결과 그리드 페더레이션 연결을 사용할 수 있는 모든 테넌트 계정에 대한 기본 정보를 보여줍니다.
@@ -59,6 +60,7 @@ image::../media/grid-federation-permitted-tenants-tab.png[그리드 연합 허�
 
 
 
+[[view-specific-connectionview-a-specific-connection]]
 == [[view-specific-connection]]특정 연결 보기
 
 특정 그리드 연합 연결에 대한 세부 정보를 볼 수 있습니다.
@@ -102,6 +104,7 @@ image::../media/grid-federation-certificates-tab.png[그리드 페더레이션 �
 
 
 
+[[review-cross-grid-replication-metrics]]
 == 크로스 그리드 복제 지표 검토
 
 Grafana의 Cross-Grid Replication 대시보드를 사용하면 그리드에서 Cross-Grid 복제 작업에 대한 Prometheus 메트릭을 볼 수 있습니다.

@@ -28,12 +28,14 @@ PingFederate를 사용하여 시스템의 각 관리 노드에 대한 서비스 
 
 
 
+[[complete-prerequisites-in-pingfederate]]
 == PingFederate의 전제 조건 완료
 
 StorageGRID 에 사용할 SP 연결을 생성하기 전에 PingFederate에서 필수 작업을 완료해야 합니다.  SP 연결을 구성할 때 이러한 필수 구성 요소의 정보를 사용합니다.
 
 
 
+[[create-data-storedata-store]]
 === 데이터 저장소[[data-store]]를 생성합니다.
 
 아직 만들지 않았다면 PingFederate를 AD FS LDAP 서버에 연결할 데이터 저장소를 만듭니다.  사용했던 값을 사용하세요link:../admin/using-identity-federation.html["ID 페더레이션 구성"] StorageGRID 에서.
@@ -45,6 +47,7 @@ StorageGRID 에 사용할 SP 연결을 생성하기 전에 PingFederate에서 �
 
 
 
+[[create-password-credential-validatorpassword-validator]]
 === 비밀번호 자격 증명 검증기[[password-validator]]를 생성합니다.
 
 아직 만들지 않았다면 비밀번호 자격 증명 검증 도구를 만드세요.
@@ -58,6 +61,7 @@ StorageGRID 에 사용할 SP 연결을 생성하기 전에 PingFederate에서 �
 
 
 
+[[create-idp-adapter-instanceadapter-instance]]
 === IdP 어댑터 인스턴스[[어댑터-인스턴스]]를 생성합니다.
 
 아직 만들지 않았다면 IdP 어댑터 인스턴스를 만드세요.
@@ -74,6 +78,7 @@ StorageGRID 에 사용할 SP 연결을 생성하기 전에 PingFederate에서 �
 
 
 
+[[create-or-import-signing-certificatesigning-certificate]]
 === 서명 인증서[[signing-certate]]를 생성하거나 가져옵니다.
 
 아직 서명 인증서를 만들거나 가져오지 않았다면 만드세요.
@@ -85,6 +90,7 @@ StorageGRID 에 사용할 SP 연결을 생성하기 전에 PingFederate에서 �
 
 
 
+[[create-an-sp-connection-in-pingfederate]]
 == PingFederate에서 SP 연결 만들기
 
 PingFederate에서 SP 연결을 만들면 StorageGRID 에서 다운로드한 SAML 메타데이터를 관리 노드로 가져옵니다.  메타데이터 파일에는 필요한 특정 값이 많이 포함되어 있습니다.
@@ -94,6 +100,7 @@ TIP: StorageGRID 시스템의 각 관리 노드에 대해 SP 연결을 만들어
 
 
 
+[[choose-sp-connection-type]]
 === SP 연결 유형을 선택하세요
 
 .단계
@@ -105,6 +112,7 @@ TIP: StorageGRID 시스템의 각 관리 노드에 대해 SP 연결을 만들어
 
 
 
+[[import-sp-metadata]]
 === SP 메타데이터 가져오기
 
 .단계
@@ -119,6 +127,7 @@ TIP: StorageGRID 시스템의 각 관리 노드에 대해 SP 연결을 만들어
 
 
 
+[[configure-idp-browser-sso]]
 === IdP 브라우저 SSO 구성
 
 .단계
@@ -137,6 +146,7 @@ TIP: StorageGRID 시스템의 각 관리 노드에 대해 SP 연결을 만들어
 
 
 
+[[map-adapter-instance]]
 === 맵 어댑터 인스턴스
 
 .단계
@@ -163,6 +173,7 @@ TIP: StorageGRID 시스템의 각 관리 노드에 대해 SP 연결을 만들어
 
 
 
+[[configure-protocol-settings]]
 === 프로토콜 설정 구성
 
 .단계
@@ -178,6 +189,7 @@ TIP: StorageGRID 시스템의 각 관리 노드에 대해 SP 연결을 만들어
 
 
 
+[[configure-credentials]]
 === 자격 증명 구성
 
 .단계
@@ -195,6 +207,7 @@ TIP: StorageGRID 시스템의 각 관리 노드에 대해 SP 연결을 만들어
 
 
 
+[[create-additional-sp-connections]]
 === 추가 SP 연결 생성
 
 그리드의 각 관리 노드에 필요한 SP 연결을 생성하려면 첫 번째 SP 연결을 복사하면 됩니다.  각 사본에 대해 새로운 메타데이터를 업로드합니다.

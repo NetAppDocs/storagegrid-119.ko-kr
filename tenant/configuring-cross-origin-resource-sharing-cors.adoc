@@ -25,6 +25,7 @@ CORS(교차 출처 리소스 공유)는 한 도메인의 클라이언트 웹 애
 
 
 
+[[enable-cors-for-a-bucket]]
 == 버킷에 CORS 활성화
 
 .단계
@@ -70,6 +71,7 @@ CORS 구성 XML에 대한 자세한 내용은 다음을 참조하세요. http://
 
 
 
+[[modify-cors-setting]]
 == CORS 설정 수정
 
 .단계
@@ -79,6 +81,7 @@ CORS 구성 XML에 대한 자세한 내용은 다음을 참조하세요. http://
 
 
 
+[[disable-cors-setting]]
 == CORS 설정 비활성화
 
 .단계

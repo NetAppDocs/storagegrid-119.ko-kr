@@ -82,6 +82,7 @@ NOTE: 볼륨 복원은 객체 사본이 저장된 리소스의 가용성에 따�
 
 
 
+[[enable-auto-restore-modeenable-automatic-restore-mode]]
 == [[enable-auto-restore-mode]]자동 복구 모드 활성화
 
 자동 복원 모드를 활성화하면 볼륨을 복원할 준비가 되면 볼륨 복원이 자동으로 시작됩니다.
@@ -108,6 +109,7 @@ NOTE: 볼륨 복원은 객체 사본이 저장된 리소스의 가용성에 따�
 
 
 
+[[manually-restoremanually-restore-failed-volume-or-node]]
 == [[manually-restore]]실패한 볼륨 또는 노드를 수동으로 복원합니다.
 
 실패한 볼륨이나 노드를 복원하려면 다음 단계를 따르세요.
@@ -137,6 +139,7 @@ NOTE: 볼륨 복원은 객체 사본이 저장된 리소스의 가용성에 따�
 
 
 
+[[view-restoration-progressview-restoration-progress]]
 == [[view-restoration-progress]]복원 진행 상황 보기
 
 *복원 진행률* 탭은 볼륨 복원 프로세스의 상태와 복원 중인 노드의 볼륨에 대한 정보를 보여줍니다.
@@ -166,6 +169,7 @@ NOTE: 복제된 데이터 복원은 복제된 사본이 저장된 리소스의 �
 
 
 
+[[view-restoration-historyview-restoration-history]]
 == [[view-restoration-history]]복원 내역 보기
 
 *복원 내역* 탭은 성공적으로 완료된 모든 볼륨 복원에 대한 정보를 표시합니다.

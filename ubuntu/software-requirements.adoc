@@ -24,6 +24,7 @@ NOTE: 소프트웨어 전용 배포를 위한 컨테이너 엔진으로 Docker�
 
 
 
+[[python-versions-tested]]
 == 테스트된 Python 버전
 
 * 3.5.2-2
@@ -41,6 +42,7 @@ NOTE: 소프트웨어 전용 배포를 위한 컨테이너 엔진으로 Docker�
 
 
 
+[[podman-versions-tested]]
 == 테스트된 Podman 버전
 
 * 3.2.3-0
@@ -54,6 +56,7 @@ NOTE: 소프트웨어 전용 배포를 위한 컨테이너 엔진으로 Docker�
 
 
 
+[[docker-versions-tested]]
 == 테스트된 Docker 버전
 
 

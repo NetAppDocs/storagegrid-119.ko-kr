@@ -33,6 +33,7 @@ NOTE: 그리드 전체 일관성에 대한 변경 사항은 설정이 변경된 
 
 
 
+[[consistency-values]]
 == 일관성 값
 
 일관성은 StorageGRID 객체를 추적하는 데 사용하는 메타데이터가 노드 간에 분산되는 방식에 영향을 미치므로 클라이언트 요청에 대한 객체의 가용성에도 영향을 미칩니다.
@@ -48,6 +49,7 @@ NOTE: 그리드 전체 일관성에 대한 변경 사항은 설정이 변경된 
 
 
 
+[[use-read-after-new-write-and-available-consistency]]
 == "새로 쓰기 후 읽기" 및 "사용 가능" 일관성을 사용하세요.
 
 HEAD 또는 GET 작업에서 "새로 쓰기 후 읽기" 일관성을 사용하는 경우 StorageGRID 다음과 같이 여러 단계로 조회를 수행합니다.
@@ -62,6 +64,7 @@ Amazon S3와 유사한 일관성 보장이 필요하지 않은 경우 일관성�
 
 
 
+[[api-operation-consistency-controlspecify-consistency-for-api-operation]]
 == [[api-operation-consistency-control]]API 작업에 대한 일관성을 지정합니다.
 
 개별 API 작업에 대한 일관성을 설정하려면 해당 작업에 대해 일관성 값이 지원되어야 하며 요청 헤더에서 일관성을 지정해야 합니다.  이 예제에서는 GetObject 작업에 대한 일관성을 "Strong-site"로 설정합니다.
@@ -79,6 +82,7 @@ NOTE: PutObject 작업과 GetObject 작업 모두에 동일한 일관성을 사�
 
 
 
+[[bucket-consistency-controlspecify-consistency-for-bucket]]
 == [[bucket-consistency-control]]버킷의 일관성을 지정합니다.
 
 버킷의 일관성을 설정하려면 StorageGRID 사용할 수 있습니다.link:put-bucket-consistency-request.html["PUT 버킷 일관성"] 요구.  아니면 할 수 있습니다link:../tenant/manage-bucket-consistency.html#change-bucket-consistency["버킷의 일관성을 변경하다"] 세입자 관리자로부터.
@@ -92,6 +96,7 @@ NOTE: PutObject 작업과 GetObject 작업 모두에 동일한 일관성을 사�
 
 
 
+[[how-consistency-controls-and-ilm-rules-interacthow-consistency-and-ilm-rules-interact-to-affect-data-protection]]
 == [[how-consistency-controls-and-ILM-rules-interact]]일관성과 ILM 규칙이 상호 작용하여 데이터 보호에 영향을 미치는 방식
 
 일관성 선택과 ILM 규칙은 모두 객체가 보호되는 방식에 영향을 미칩니다.  이러한 설정은 상호 작용할 수 있습니다.
@@ -107,6 +112,7 @@ NOTE: PutObject 작업과 GetObject 작업 모두에 동일한 일관성을 사�
 
 
 
+[[example-of-how-the-consistency-and-ilm-rule-can-interact]]
 == 일관성 및 ILM 규칙이 상호 작용하는 방법의 예
 
 다음 ILM 규칙과 일관성을 갖춘 2개 사이트 그리드가 있다고 가정해 보겠습니다.

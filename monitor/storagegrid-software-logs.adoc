@@ -18,6 +18,7 @@ NOTE: 로그를 외부 syslog 서버로 보내거나 감사 정보의 대상을 
 
 
 
+[[general-storagegrid-logs]]
 == 일반 StorageGRID 로그
 
 [cols="3a,3a,2a"]
@@ -49,6 +50,7 @@ NOTE: 로그를 외부 syslog 서버로 보내거나 감사 정보의 대상을 
 |===
 
 
+[[cipher-related-logs]]
 == 암호 관련 로그
 
 [cols="3a,3a,2a"]
@@ -85,6 +87,7 @@ TLS 및 SSH 정책 구성과 관련된 로그가 포함되어 있습니다.
 |===
 
 
+[[grid-federation-logs]]
 == 그리드 페더레이션 로그
 
 [cols="3a,3a,2a"]
@@ -100,6 +103,7 @@ TLS 및 SSH 정책 구성과 관련된 로그가 포함되어 있습니다.
 |===
 
 
+[[nms-logs]]
 == NMS 로그
 
 [cols="3a,3a,2a"]
@@ -136,6 +140,7 @@ Management API에서 내부 StorageGRID 서비스로 나가는 연결에 대한 
 |===
 
 
+[[server-manager-logs]]
 == 서버 관리자 로그
 
 [cols="3a,3a,2a"]
@@ -165,6 +170,7 @@ Management API에서 내부 StorageGRID 서비스로 나가는 연결에 대한 
 |===
 
 
+[[storagegrid-services-logs]]
 == StorageGRID 서비스 로그
 
 [cols="3a,3a,2a"]

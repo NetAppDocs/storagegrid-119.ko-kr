@@ -15,6 +15,7 @@ StorageGRID 와 함께 사용할 S3 REST API를 구현할 때 다음 권장 사�
 
 
 
+[[recommendations-for-heads-to-non-existent-objects]]
 == 존재하지 않는 객체에 대한 HEAD 권장 사항
 
 응용 프로그램이 실제로 존재하지 않을 것으로 예상되는 경로에 객체가 있는지 정기적으로 확인하는 경우 "사용 가능"을 사용해야 합니다.link:consistency-controls.html["일관성"] . 예를 들어, 애플리케이션이 PUT하기 전에 위치를 HEAD하는 경우 "사용 가능" 일관성을 사용해야 합니다.
@@ -25,6 +26,7 @@ StorageGRID 와 함께 사용할 S3 REST API를 구현할 때 다음 권장 사�
 
 
 
+[[recommendations-for-object-keys]]
 == 객체 키에 대한 권장 사항
 
 버킷이 처음 생성된 시점을 기준으로 개체 키 이름에 대한 다음 권장 사항을 따르세요.
@@ -51,6 +53,7 @@ TIP: 이에 대한 예외는 짧은 시간 후에 모든 객체를 지속적으�
 
 
 
+[[recommendations-for-range-reads]]
 == "범위 읽기"에 대한 권장 사항
 
 만약link:../admin/configuring-stored-object-compression.html["저장된 객체를 압축하는 글로벌 옵션"] 이 활성화된 경우 S3 클라이언트 애플리케이션은 반환할 바이트 범위를 지정하는 GetObject 작업을 수행하지 않아야 합니다.  이러한 "범위 읽기" 작업은 StorageGRID 요청된 바이트에 액세스하기 위해 객체를 효과적으로 압축 해제해야 하기 때문에 비효율적입니다.  매우 큰 객체에서 작은 범위의 바이트를 요청하는 GetObject 작업은 특히 비효율적입니다. 예를 들어, 50GB 압축 객체에서 10MB 범위를 읽는 것은 비효율적입니다.

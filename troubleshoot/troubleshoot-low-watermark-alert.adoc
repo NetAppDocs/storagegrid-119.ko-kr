@@ -23,6 +23,7 @@ StorageGRID 11.6 이상으로 업그레이드하면 다음 중 하나가 해당�
 
 
 
+[[understand-the-alert]]
 == 경고를 이해하세요
 
 스토리지 볼륨 워터마크에 사용자 지정 값을 사용하는 경우 하나 이상의 스토리지 노드에 대해 *낮은 읽기 전용 워터마크 재정의* 경고가 트리거될 수 있습니다.
@@ -66,6 +67,7 @@ StorageGRID 11.6 이상으로 업그레이드하면 다음 중 하나가 해당�
 
 
 
+[[resolve-the-alert]]
 == 경고를 해결하세요
 
 하나 이상의 *읽기 전용 워터마크 무시* 경고가 발생한 경우 다음 단계를 따르세요.  현재 사용자 지정 워터마크 설정을 사용하고 있고 알림이 발생하지 않은 경우에도 최적화된 설정을 사용하려는 경우에도 이 지침을 사용할 수 있습니다.
@@ -81,6 +83,7 @@ StorageGRID 11.6 이상으로 업그레이드하면 다음 중 하나가 해당�
 
 
 
+[[assess-object-data-usage-for-entire-grid]]
 === 전체 그리드에 대한 객체 데이터 사용량 평가
 
 .단계
@@ -100,6 +103,7 @@ image::../media/nodes_page_object_data_used_with_alert.png[3개의 SN에 사용�
 
 
 
+[[view-optimized-watermarksview-optimized-storage-watermarks]]
 === [[view-optimized-watermarks]]최적화된 저장 워터마크 보기
 
 StorageGRID 두 가지 Prometheus 메트릭을 사용하여 스토리지 볼륨 소프트 읽기 전용 워터마크에 대해 계산한 최적화된 값을 보여줍니다.  그리드에서 각 스토리지 노드에 대한 최소 및 최대 최적화 값을 볼 수 있습니다.
@@ -126,6 +130,7 @@ StorageGRID 두 가지 Prometheus 메트릭을 사용하여 스토리지 볼륨 
 
 
 
+[[determine-optimized-watermarksdetermine-if-you-can-use-optimized-watermarks]]
 === [[determine-optimized-watermarks]]최적화된 워터마크를 사용할 수 있는지 확인하세요
 
 .단계
@@ -150,6 +155,7 @@ NOTE: 모든 스토리지 노드의 모든 스토리지 볼륨에 동일한 사�
 
 
 
+[[use-optimized-watermarksuse-optimized-watermarks]]
 === [[use-optimized-watermarks]]최적화된 워터마크 사용
 
 .단계

@@ -15,6 +15,7 @@ Cloud Storage Pool을 사용하여 StorageGRID 시스템 외부로 객체를 이
 
 
 
+[[general-considerations]]
 == 일반적인 고려 사항
 
 * 일반적으로 Amazon S3 Glacier나 Azure Blob 스토리지와 같은 클라우드 보관 스토리지는 객체 데이터를 저장하는 데 비용이 저렴합니다.  하지만 클라우드 보관 스토리지에서 데이터를 검색하는 데 드는 비용은 상대적으로 높습니다.  전반적인 비용을 가장 낮추려면 클라우드 스토리지 풀의 객체에 언제, 얼마나 자주 액세스할지 고려해야 합니다.  클라우드 스토리지 풀은 자주 액세스하지 않을 것으로 예상되는 콘텐츠에만 사용하는 것이 좋습니다.
@@ -32,6 +33,7 @@ Cloud Storage Pool을 사용하여 StorageGRID 시스템 외부로 객체를 이
 
 
 
+[[considerations-for-the-ports-used-for-cloud-storage-pools]]
 == 클라우드 스토리지 풀에 사용되는 포트에 대한 고려 사항
 
 ILM 규칙이 지정된 클라우드 스토리지 풀에서 객체를 이동할 수 있도록 하려면 시스템의 스토리지 노드가 포함된 네트워크를 구성해야 합니다.  다음 포트가 Cloud Storage Pool과 통신할 수 있는지 확인해야 합니다.
@@ -48,6 +50,7 @@ ILM 규칙이 지정된 클라우드 스토리지 풀에서 객체를 이동할 
 
 
 
+[[considerations-for-costs]]
 == 비용에 대한 고려 사항
 
 클라우드 스토리지 풀을 사용하여 클라우드의 스토리지에 액세스하려면 클라우드에 대한 네트워크 연결이 필요합니다.  Cloud Storage Pool을 사용하여 StorageGRID 와 클라우드 간에 이동할 것으로 예상되는 데이터 양에 따라 클라우드에 액세스하고 적절하게 프로비저닝하는 데 사용할 네트워크 인프라 비용을 고려해야 합니다.
@@ -65,6 +68,7 @@ NOTE: 객체가 Cloud Storage Pool에서 StorageGRID 로 다시 이동되면 Sto
 
 
 
+[[s3-permissions-required-for-the-cloud-storage-pool-bucket]]
 == S3: Cloud Storage Pool 버킷에 필요한 권한
 
 Cloud Storage Pool에 사용되는 외부 S3 버킷에 대한 정책은 StorageGRID 에 버킷으로 객체를 이동하고, 객체 상태를 가져오고, 필요할 때 Glacier 스토리지에서 객체를 복원하는 등의 작업을 수행할 수 있는 권한을 부여해야 합니다.  이상적으로 StorageGRID 버킷에 대한 전체 제어 액세스 권한을 가져야 합니다.(`s3:*` ); 그러나 이것이 불가능한 경우 버킷 정책은 StorageGRID 에 다음과 같은 S3 권한을 부여해야 합니다.
@@ -81,6 +85,7 @@ Cloud Storage Pool에 사용되는 외부 S3 버킷에 대한 정책은 StorageG
 
 
 
+[[s3-considerations-for-the-external-buckets-lifecycle]]
 == S3: 외부 버킷의 수명 주기에 대한 고려 사항
 
 Cloud Storage Pool에 지정된 StorageGRID 와 외부 S3 버킷 간의 객체 이동은 ILM 규칙과 StorageGRID 의 활성 ILM 정책에 의해 제어됩니다.  이와 대조적으로, Cloud Storage Pool에 지정된 외부 S3 버킷에서 Amazon S3 Glacier 또는 S3 Glacier Deep Archive(또는 Glacier 스토리지 클래스를 구현하는 스토리지 솔루션)로 객체를 전환하는 작업은 해당 버킷의 수명 주기 구성에 의해 제어됩니다.
@@ -114,12 +119,14 @@ Cloud Storage Pool의 객체를 Amazon S3 Glacier가 아닌 S3 Glacier Deep Arch
 
 
 
+[[azure-considerations-for-access-tier]]
 == Azure: 액세스 계층에 대한 고려 사항
 
 Azure 스토리지 계정을 구성할 때 기본 액세스 계층을 핫 또는 쿨로 설정할 수 있습니다.  Cloud Storage 풀과 함께 사용할 스토리지 계정을 만들 때는 기본 계층으로 Hot 계층을 사용해야 합니다.  StorageGRID 객체를 Cloud Storage Pool로 옮길 때 즉시 계층을 Archive로 설정하지만, 기본 설정을 Hot으로 사용하면 30일 최소 기간이 지나기 전에 Cool 계층에서 제거된 객체에 대해 조기 삭제 수수료가 청구되지 않습니다.
 
 
 
+[[azure-lifecycle-management-not-supported]]
 == Azure: 수명 주기 관리가 지원되지 않습니다.
 
 Cloud Storage Pool과 함께 사용되는 컨테이너에 대해 Azure Blob 저장소 수명 주기 관리를 사용하지 마세요.  라이프사이클 작업이 Cloud Storage Pool 작업을 방해할 수 있습니다.

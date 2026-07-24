@@ -38,6 +38,7 @@ VMware StorageGRID 노드를 설치하려면 다음의 고급 단계를 따르�
 
 
 
+[[automate-the-installation]]
 == 설치 자동화
 
 시간을 절약하고 일관성을 유지하기 위해 그리드 노드의 배포 및 구성과 StorageGRID 시스템의 구성을 자동화할 수 있습니다.

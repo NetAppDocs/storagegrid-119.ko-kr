@@ -15,20 +15,24 @@ summary: 이번 StorageGRID 릴리스에서는 다음과 같은 기능이 도입
 
 
 
+[[scalability]]
 == 확장성
 
 
 
+[[data-only-storage-nodes]]
 === 데이터 전용 스토리지 노드
 
 더욱 세분화된 확장을 허용하려면 이제 다음을 설치할 수 있습니다.link:../primer/what-storage-node-is.html#types-of-storage-nodes["데이터 전용 스토리지 노드"] .  메타데이터 처리가 중요하지 않은 경우 인프라를 비용 효율적으로 최적화할 수 있습니다.  이러한 유연성은 다양한 업무량과 성장 패턴을 수용하는 데 도움이 됩니다.
 
 
 
+[[cloud-storage-pool-enhancements]]
 == 클라우드 스토리지 풀 개선 사항
 
 
 
+[[iam-roles-anywhere]]
 === 어디서나 IAM 역할
 
 StorageGRID 이제 다음을 사용하여 단기 자격 증명을 지원합니다.link:../ilm/creating-cloud-storage-pool.html["Amazon S3의 클라우드 스토리지 풀에 대한 IAM 역할"] .
@@ -37,22 +41,26 @@ StorageGRID 이제 다음을 사용하여 단기 자격 증명을 지원합니�
 
 
 
+[[s3-object-lock-buckets]]
 === S3 객체 잠금 버킷
 
 이제 할 수 있습니다link:../ilm/creating-cloud-storage-pool.html["Amazon S3 엔드포인트를 사용하여 클라우드 스토리지 풀 구성"] .  S3 객체 잠금은 객체의 실수 또는 악의적인 삭제를 방지하는 데 도움이 됩니다.  StorageGRID 에서 Amazon S3로 데이터를 계층화하는 경우 두 시스템 모두에서 객체 잠금을 활성화하면 데이터 수명 주기 전반에 걸쳐 데이터 보호가 강화됩니다.
 
 
 
+[[multi-tenancy]]
 == 멀티 테넌시
 
 
 
+[[bucket-limits]]
 === 버킷 한도
 
 에 의해link:../tenant/creating-s3-bucket.html["S3 버킷에 대한 제한 설정"] , 세입자가 수용 인원을 독점하는 것을 방지할 수 있습니다.  게다가 통제되지 않은 성장은 예상치 못한 비용을 초래할 수도 있습니다.  정의된 한도를 통해 세입자 보관 비용을 더 정확하게 추산할 수 있습니다.
 
 
 
+[[5000-buckets-per-tenant]]
 === 세입자당 5,000개의 버킷
 
 확장성을 강화하기 위해 StorageGRID 이제 최대 다음을 지원합니다.link:../s3/operations-on-buckets.html["테넌트당 5,000개의 S3 버킷"] .  각 그리드에는 최대 100,000개의 버킷이 있을 수 있습니다.
@@ -61,6 +69,7 @@ StorageGRID 이제 다음을 사용하여 단기 자격 증명을 지원합니�
 
 
 
+[[s3-object-lock-improvements]]
 == S3 객체 잠금 개선
 
 테넌트별 구성 기능은 유연성과 데이터 보안의 적절한 균형을 제공합니다.  이제 테넌트별 보존 설정을 다음과 같이 구성할 수 있습니다.
@@ -78,10 +87,12 @@ StorageGRID 이제 다음을 사용하여 단기 자격 증명을 지원합니�
 
 
 
+[[s3-compatibility]]
 == S3 호환성
 
 
 
+[[x-amz-checksum-sha256-checksum]]
 === x-amz-checksum-sha256 체크섬
 
 * S3 REST API는 이제 link:../s3/operations-on-objects.html에 대한 지원을 제공합니다.[`x-amz-checksum-sha256` 체크섬].
@@ -90,6 +101,7 @@ StorageGRID 이제 다음을 사용하여 단기 자격 증명을 지원합니�
 
 
 
+[[changes-to-s3-protocol-support]]
 === S3 프로토콜 지원 변경 사항
 
 * Amazon S3에 대한 Mountpoint 지원이 추가되어 애플리케이션이 로컬 파일 시스템인 것처럼 S3 버킷에 직접 연결할 수 있습니다.  이제 StorageGRID 더 많은 애플리케이션과 사용 사례에 사용할 수 있습니다.
@@ -98,22 +110,26 @@ StorageGRID 이제 다음을 사용하여 단기 자격 증명을 지원합니�
 
 
 
+[[maintenance-and-supportability]]
 == 유지 관리 및 지원
 
 
 
+[[autosupport]]
 === AutoSupport
 
 link:../admin/what-is-autosupport.html["AutoSupport"]이제 기존 기기에 대한 하드웨어 오류 사례를 자동으로 생성합니다.
 
 
 
+[[expanded-node-clone-operations]]
 === 확장된 노드 복제 작업
 
 노드 복제의 유용성이 확장되어 더 큰 저장 노드를 지원할 수 있게 되었습니다.
 
 
 
+[[improved-ilm-handling-of-expired-delete-markers]]
 === 만료된 삭제 마커에 대한 ILM 처리 개선
 
 이제 일 단위 기간을 지정한 ILM 수집 시간 규칙은 만료된 개체 삭제 마커도 제거합니다.  삭제 마커는 일정 기간이 지나고 현재 삭제 마커가 만료된 경우에만 제거됩니다(현재가 아닌 버전은 없습니다).
@@ -122,18 +138,21 @@ link:../admin/what-is-autosupport.html["AutoSupport"]이제 기존 기기에 대
 
 
 
+[[improved-node-decommissioning]]
 === 개선된 노드 해체
 
 StorageGRID 차세대 하드웨어로의 원활하고 효율적인 전환을 제공하기 위해link:../maintain/grid-node-decommissioning.html["노드 해체"] 개선되었습니다.
 
 
 
+[[syslog-for-load-balancer-endpoints]]
 === 로드 밸런서 엔드포인트에 대한 Syslog
 
 로드 밸런서 엔드포인트 액세스 로그에는 HTTP 상태 코드와 같은 문제 해결 정보가 포함되어 있습니다.  StorageGRID 이제 다음을 지원합니다.link:../monitor/configure-audit-messages.html["이러한 로그를 외부 syslog 서버로 내보내기"] .  이러한 개선을 통해 기존 모니터링 및 경고 시스템과의 통합과 로그 관리의 효율성이 향상되었습니다.
 
 
 
+[[additional-enhancements-for-maintenance-and-supportability]]
 === 유지 관리 및 지원에 대한 추가 개선 사항
 
 * 메트릭 UI 업데이트
@@ -143,32 +162,38 @@ StorageGRID 차세대 하드웨어로의 원활하고 효율적인 전환을 제
 
 
 
+[[security]]
 == 보안
 
 
 
+[[ssh-access-keys-rotation]]
 === SSH 액세스 키 순환
 
 이제 그리드 관리자는 다음을 수행할 수 있습니다.link:../admin/change-ssh-access-passwords.html["SSH 키 업데이트 및 회전"] .  SSH 키를 순환하는 기능은 보안 모범 사례이자 사전 방어 메커니즘입니다.
 
 
 
+[[alerts-for-root-logins]]
 === 루트 로그인에 대한 알림
 
 알 수 없는 엔터티가 루트로 Grid Manager에 로그인하는 경우link:../monitor/alerts-reference.html["경고가 발생합니다"] .  루트 SSH 로그인을 모니터링하는 것은 인프라를 보호하기 위한 사전 예방적 조치입니다.
 
 
 
+[[grid-manager-enhancements]]
 == 그리드 관리자 개선 사항
 
 
 
+[[erasure-coding-profiles-page-moved]]
 === 삭제 코딩 프로필 페이지가 이동되었습니다.
 
 삭제 코딩 프로필 페이지는 이제 *구성* > *시스템* > *삭제 코딩*에 있습니다.  ILM 메뉴에 있었습니다.
 
 
 
+[[search-enhancements]]
 === 검색 향상
 
 그만큼link:../primer/exploring-grid-manager.html#search-field["그리드 관리자의 검색 필드"] 이제 더 나은 매칭 로직이 포함되어 일반적인 약어와 페이지 내 특정 설정의 이름을 검색하여 페이지를 찾을 수 있습니다.  노드, 사용자, 테넌트 계정 등 더 많은 유형의 항목을 검색할 수도 있습니다.

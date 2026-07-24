@@ -17,6 +17,7 @@ S3 API 관련 감사 메시지를 찾아 감사 로그에서 객체 삭제 트�
 
 
 
+[[s3-delete-audit-messages]]
 == S3 감사 메시지 삭제
 
 [cols="1a,1a,2a,1a,2a"]
@@ -38,6 +39,7 @@ link:sdel-s3-delete.html["SDEL: S3 삭제"]
 |===
 
 
+[[swift-delete-audit-messages]]
 == Swift 삭제 감사 메시지
 
 [cols="1a,1a,2a,1a,2a"]
@@ -59,6 +61,7 @@ link:wdel-swift-delete.html["WDEL: 신속한 삭제"]
 |===
 
 
+[[example-s3-object-deletion]]
 == 예: S3 객체 삭제
 
 S3 클라이언트가 스토리지 노드(LDR 서비스)에서 객체를 삭제하면 감사 메시지가 생성되어 감사 로그에 저장됩니다.
@@ -68,6 +71,7 @@ NOTE: 아래 예에는 삭제 트랜잭션 중에 생성된 모든 감사 메시
 
 
 
+[[sdel-s3-delete]]
 === SDEL: S3 삭제
 
 객체 삭제는 클라이언트가 LDR 서비스에 DeleteObject 요청을 보낼 때 시작됩니다.  메시지에는 객체를 삭제할 버킷과 객체를 식별하는 데 사용되는 객체의 S3 키가 포함되어 있습니다.

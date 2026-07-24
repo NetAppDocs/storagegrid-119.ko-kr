@@ -44,6 +44,7 @@ image::../media/events_report.gif[이벤트 페이지]
 
 
 
+[[create-custom-syslog-events]]
 == 사용자 정의 syslog 이벤트 만들기
 
 사용자 정의 이벤트를 사용하면 syslog 서버에 기록된 모든 커널, 데몬, 오류 및 중요 수준 사용자 이벤트를 추적할 수 있습니다.  사용자 정의 이벤트는 시스템 로그 메시지(따라서 네트워크 보안 이벤트 및 하드웨어 오류) 발생을 모니터링하는 데 유용할 수 있습니다.
@@ -83,6 +84,7 @@ image::../media/custom_events_count.png[SSM > 이벤트 > 개요 페이지]
 
 
 
+[[reset-the-count-of-custom-events-to-zero]]
 == 사용자 정의 이벤트 수를 0으로 재설정합니다.
 
 사용자 정의 이벤트에 대해서만 카운터를 재설정하려면 지원 메뉴의 그리드 토폴로지 페이지를 사용해야 합니다.

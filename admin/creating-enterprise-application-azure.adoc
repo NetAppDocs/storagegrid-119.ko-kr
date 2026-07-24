@@ -28,6 +28,7 @@ NOTE: StorageGRID 시스템의 각 관리 노드에 대해 엔터프라이즈 �
 
 
 
+[[access-azure-ad]]
 == Azure AD에 액세스
 
 .단계
@@ -38,6 +39,7 @@ NOTE: StorageGRID 시스템의 각 관리 노드에 대해 엔터프라이즈 �
 
 
 
+[[create-enterprise-applications-and-save-storagegrid-sso-configuration]]
 == 엔터프라이즈 애플리케이션을 만들고 StorageGRID SSO 구성을 저장합니다.
 
 StorageGRID 에서 Azure의 SSO 구성을 저장하려면 Azure를 사용하여 각 관리 노드에 대한 엔터프라이즈 애플리케이션을 만들어야 합니다.  Azure에서 페더레이션 메타데이터 URL을 복사하여 StorageGRID Single Sign-on 페이지의 해당 *페더레이션 메타데이터 URL* 필드에 붙여넣습니다.
@@ -61,6 +63,7 @@ StorageGRID 에서 Azure의 SSO 구성을 저장하려면 Azure를 사용하여 
 
 
 
+[[download-saml-metadata-for-every-admin-node]]
 == 모든 관리 노드에 대한 SAML 메타데이터 다운로드
 
 SSO 구성이 저장된 후 StorageGRID 시스템의 각 관리 노드에 대한 SAML 메타데이터 파일을 다운로드할 수 있습니다.
@@ -78,6 +81,7 @@ SSO 구성이 저장된 후 StorageGRID 시스템의 각 관리 노드에 대한
 
 
 
+[[upload-saml-metadata-to-each-enterprise-application]]
 == 각 엔터프라이즈 애플리케이션에 SAML 메타데이터 업로드
 
 각 StorageGRID 관리 노드에 대한 SAML 메타데이터 파일을 다운로드한 후 Azure AD에서 다음 단계를 수행합니다.

@@ -17,18 +17,21 @@ summary: '지원되는 웹 브라우저의 주소창에 정규화된 도메인 �
 
 
 
+[[connect-to-ha-group]]
 === HA 그룹에 연결
 
 관리 노드가 고가용성(HA) 그룹에 포함된 경우 HA 그룹의 가상 IP 주소나 가상 IP 주소에 매핑되는 정규화된 도메인 이름을 사용하여 연결합니다.  기본 관리 노드를 그룹의 기본 인터페이스로 선택해야 합니다. 그러면 기본 관리 노드를 사용할 수 없는 경우를 제외하고 Grid Manager에 액세스할 때 기본 관리 노드에서 액세스할 수 있습니다. 보다 link:managing-high-availability-groups.html["고가용성 그룹 관리"] .
 
 
 
+[[use-sso]]
 === SSO 사용
 
 로그인 단계는 다음과 같이 약간 다릅니다.link:configuring-sso.html["Single Sign-On(SSO)이 구성되었습니다."] .
 
 
 
+[[sign-in-to-grid-manager-on-first-admin-node]]
 == 첫 번째 관리 노드에서 Grid Manager에 Sign in.
 
 .시작하기 전에
@@ -112,6 +115,7 @@ image::../media/grid_manager_dashboard.png[계기반]
 
 
 
+[[sign-into-another-admin-node]]
 == 다른 관리 노드에 로그인
 
 다른 관리 노드에 로그인하려면 다음 단계를 따르세요.

@@ -32,6 +32,7 @@ NOTE: 객체가 SSE 또는 SSE-C로 암호화된 경우 버킷 수준 또는 그
 
 
 
+[[use-sse]]
 == SSE를 사용하세요
 
 StorageGRID 에서 관리하는 고유 키로 객체를 암호화하려면 다음 요청 헤더를 사용합니다.
@@ -47,6 +48,7 @@ SSE 요청 헤더는 다음 개체 작업에서 지원됩니다.
 
 
 
+[[use-sse-c]]
 == SSE-C를 사용하세요
 
 관리하는 고유 키로 객체를 암호화하려면 세 가지 요청 헤더를 사용합니다.
@@ -89,6 +91,7 @@ SSE-C 요청 헤더는 다음 개체 작업에서 지원됩니다.
 
 
 
+[[considerations-for-using-server-side-encryption-with-customer-provided-keys-sse-c]]
 == 고객 제공 키(SSE-C)를 사용한 서버 측 암호화 사용 시 고려 사항
 
 SSE-C를 사용하기 전에 다음 사항을 고려하세요.

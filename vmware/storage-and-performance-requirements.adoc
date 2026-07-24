@@ -15,6 +15,7 @@ summary: 가상 머신에서 호스팅되는 StorageGRID 노드의 스토리지 
 
 
 
+[[performance-requirements]]
 == 성능 요구 사항
 
 OS 볼륨과 첫 번째 스토리지 볼륨의 성능은 시스템의 전반적인 성능에 상당한 영향을 미칩니다.  대기 시간, 초당 입출력 작업(IOPS), 처리량 측면에서 적절한 디스크 성능을 제공하는지 확인하세요.
@@ -23,6 +24,7 @@ OS 볼륨과 첫 번째 스토리지 볼륨의 성능은 시스템의 전반적�
 
 
 
+[[requirements-for-virtual-machines-that-use-netapp-ontap-storage]]
 == NetApp ONTAP 스토리지를 사용하는 가상 머신에 대한 요구 사항
 
 NetApp ONTAP 시스템에서 스토리지가 할당된 가상 머신으로 StorageGRID 노드를 배포하는 경우 볼륨에 FabricPool 계층화 정책이 활성화되어 있지 않음을 확인한 것입니다.  예를 들어, StorageGRID 노드가 VMware 호스트에서 가상 머신으로 실행되는 경우, 해당 노드의 데이터스토어를 지원하는 볼륨에 FabricPool 계층화 정책이 활성화되어 있지 않은지 확인하세요.  StorageGRID 노드와 함께 사용되는 볼륨에 대해 FabricPool 계층화를 비활성화하면 문제 해결 및 스토리지 작업이 간소화됩니다.
@@ -32,12 +34,14 @@ NOTE: StorageGRID 와 관련된 데이터를 StorageGRID 자체로 다시 계층
 
 
 
+[[number-of-virtual-machines-required]]
 == 필요한 가상 머신 수
 
 각 StorageGRID 사이트에는 최소 3개의 스토리지 노드가 필요합니다.
 
 
 
+[[storage-requirements-by-node-type]]
 == 노드 유형별 스토리지 요구 사항
 
 프로덕션 환경에서 StorageGRID 노드의 가상 머신은 노드 유형에 따라 다른 요구 사항을 충족해야 합니다.
@@ -102,6 +106,7 @@ NOTE: 구성된 감사 수준, S3 개체 키 이름과 같은 사용자 입력 �
 
 
 
+[[storage-requirements-for-storage-nodes]]
 == 스토리지 노드에 대한 스토리지 요구 사항
 
 소프트웨어 기반 스토리지 노드는 1~16개의 스토리지 볼륨을 가질 수 있으며, 3개 이상의 스토리지 볼륨을 권장합니다. 각 저장 볼륨은 4TB 이상이어야 합니다.

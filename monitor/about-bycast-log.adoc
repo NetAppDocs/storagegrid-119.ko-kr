@@ -19,6 +19,7 @@ summary: '/var/local/log/bycast.log 파일은 StorageGRID 소프트웨어의 기
 
 
 
+[[file-rotation-for-bycast-log]]
 == bycast.log에 대한 파일 회전
 
 때 `bycast.log` 파일이 1GB에 도달하면 기존 파일을 저장하고 새로운 로그 파일을 시작합니다.
@@ -39,6 +40,7 @@ link:collecting-log-files-and-system-data.html["로그 파일 및 시스템 데�
 
 
 
+[[messages-in-bycast-log]]
 == bycast.log의 메시지
 
 메시지 `bycast.log` ADE(비동기 분산 환경)에 의해 작성되었습니다.  ADE는 각 그리드 노드의 서비스에서 사용되는 런타임 환경입니다.
@@ -99,6 +101,7 @@ UTC 시스템 시간
 |===
 
 
+[[message-severities-in-bycast-log]]
 == bycast.log의 메시지 심각도
 
 메시지는 `bycast.log` 심각도 수준이 지정됩니다.
@@ -113,6 +116,7 @@ UTC 시스템 시간
 
 
 
+[[error-codes-in-bycast-log]]
 == 오류 코드 `bycast.log`
 
 대부분의 오류 메시지는 `bycast.log` 오류 코드가 포함되어 있습니다.

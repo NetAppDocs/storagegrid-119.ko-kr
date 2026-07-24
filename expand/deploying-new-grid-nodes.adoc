@@ -17,6 +17,7 @@ summary: 확장 시 새로운 그리드 노드를 배포하는 단계는 그리�
 
 
 
+[[vmware-deploy-grid-nodes]]
 == VMware: 그리드 노드 배포
 
 확장에 추가하려는 각 VMware 노드에 대해 VMware vSphere에 가상 머신을 배포해야 합니다.
@@ -31,6 +32,7 @@ summary: 확장 시 새로운 그리드 노드를 배포하는 단계는 그리�
 
 
 
+[[linux-deploy-grid-nodes]]
 == Linux: 그리드 노드 배포
 
 새로운 Linux 호스트나 기존 Linux 호스트에 그리드 노드를 배포할 수 있습니다.  그리드에 추가하려는 StorageGRID 노드의 CPU, RAM 및 스토리지 요구 사항을 지원하는 추가 Linux 호스트가 필요한 경우, 처음 호스트를 설치할 때와 같은 방식으로 호스트를 준비합니다.  그런 다음 설치 중에 그리드 노드를 배포한 것과 같은 방식으로 확장 노드를 배포합니다.
@@ -64,6 +66,7 @@ CAUTION: 실제 운영 환경에서는 하나의 물리적 호스트나 가상 �
 
 
 
+[[appliances-deploying-storage-gateway-or-non-primary-admin-nodes]]
 == 어플라이언스: 스토리지, 게이트웨이 또는 기본이 아닌 관리 노드 배포
 
 어플라이언스 노드에 StorageGRID 소프트웨어를 설치하려면 어플라이언스에 포함된 StorageGRID Appliance Installer를 사용합니다.  확장 시 각 스토리지 어플라이언스는 단일 스토리지 노드로 작동하고, 각 서비스 어플라이언스는 단일 게이트웨이 노드 또는 기본이 아닌 관리 노드로 작동합니다.  모든 기기는 그리드 네트워크, 관리 네트워크, 클라이언트 네트워크에 연결할 수 있습니다.

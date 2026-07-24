@@ -26,6 +26,7 @@ NOTE: 기본 관리 노드가 아닌 곳에서도 표시 이름을 추가하거�
 
 
 
+[[how-to-rename-grid-sites-or-nodes]]
 == 그리드, 사이트 또는 노드의 이름을 바꾸는 방법
 
 StorageGRID 시스템, 하나 이상의 사이트 또는 하나 이상의 노드의 이름을 바꿀 수 있습니다.
@@ -34,6 +35,7 @@ StorageGRID 시스템, 하나 이상의 사이트 또는 하나 이상의 노드
 
 
 
+[[select-items-to-rename]]
 === 이름을 바꿀 항목을 선택하세요
 
 시작하려면 이름을 바꾸려는 항목을 선택하세요.
@@ -97,6 +99,7 @@ StorageGRID 시스템, 하나 이상의 사이트 또는 하나 이상의 노드
 
 
 
+[[propose-new-names]]
 === 새로운 이름을 제안하세요
 
 *새 이름 제안* 단계에서는 각 항목에 대한 표시 이름을 개별적으로 입력하거나 항목의 이름을 대량으로 바꿀 수 있습니다.
@@ -165,6 +168,7 @@ image::../media/rename-bulk-rename-tool-after.png[대량 이름 바꾸기 도구
 ====
 
 
+[[download-recovery-packagedownload-the-recovery-package]]
 === [[download-recovery-package]]복구 패키지 다운로드
 
 항목 이름 변경이 끝나면 새로운 복구 패키지를 다운로드하여 저장하세요. 이름을 바꾼 항목의 새 표시 이름은 다음에 포함됩니다. `Passwords.txt` 파일.
@@ -186,6 +190,7 @@ CAUTION: 복구 패키지 파일은 StorageGRID 시스템에서 데이터를 얻
 
 
 
+[[revert-display-names-back-to-system-names]]
 == 표시 이름을 시스템 이름으로 되돌리기
 
 이름이 바뀐 그리드, 사이트 또는 노드를 원래 시스템 이름으로 되돌릴 수 있습니다.  항목을 해당 시스템 이름으로 되돌리면 Grid Manager 페이지와 기타 StorageGRID 위치에 해당 항목의 *표시 이름*이 더 이상 표시되지 않습니다.  해당 아이템의 시스템 이름만 표시됩니다.

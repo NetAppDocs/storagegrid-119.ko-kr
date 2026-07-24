@@ -19,6 +19,7 @@ summary: 이 참조에서는 그리드 관리자에 나타나는 기본 알림�
 
 
 
+[[appliance-alerts]]
 == 가전제품 알림
 
 [cols="1a,2a"]
@@ -356,6 +357,7 @@ StorageGRID 어플라이언스의 전원 공급 장치 B가 권장 작동 전압
 |===
 
 
+[[audit-and-syslog-alerts]]
 == 감사 및 시스템 로그 알림
 
 [cols="1a,2a"]
@@ -392,6 +394,7 @@ StorageGRID 어플라이언스의 전원 공급 장치 B가 권장 작동 전압
 |===
 
 
+[[bucket-alerts]]
 == 버킷 알림
 
 [cols="1a,2a"]
@@ -414,6 +417,7 @@ FabricPool 버킷에는 버전 관리나 S3 객체 잠금이 활성화되어 있
 |===
 
 
+[[cassandra-alerts]]
 == 카산드라 알림
 
 [cols="1a,2a"]
@@ -485,6 +489,7 @@ Cassandra가 테이블 손상을 감지했습니다.  Cassandra는 테이블 손
 |===
 
 
+[[cloud-storage-pool-alerts]]
 == 클라우드 스토리지 풀 알림
 
 [cols="1a,2a"]
@@ -507,6 +512,7 @@ IAM Roles Anywhere 최종 엔터티 인증서가 만료되려고 합니다.
 |===
 
 
+[[cross-grid-replication-alerts]]
 == 크로스 그리드 복제 알림
 
 [cols="1a,2a"]
@@ -529,6 +535,7 @@ IAM Roles Anywhere 최종 엔터티 인증서가 만료되려고 합니다.
 |===
 
 
+[[dhcp-alerts]]
 == DHCP 알림
 
 [cols="1a,2a"]
@@ -558,6 +565,7 @@ DHCP 서버를 사용할 수 없습니다.
 |===
 
 
+[[debug-and-trace-alerts]]
 == 디버그 및 추적 경고
 
 [cols="1a,2a"]
@@ -580,6 +588,7 @@ DHCP 서버를 사용할 수 없습니다.
 |===
 
 
+[[email-and-autosupport-alerts]]
 == 이메일 및 AutoSupport 알림
 
 [cols="1a,2a"]
@@ -623,6 +632,7 @@ SSH 또는 콘솔 로그인이 감지되었습니다.
 |===
 
 
+[[erasure-coding-ec-alerts]]
 == 삭제 코딩(EC) 알림
 
 [cols="1a,2a"]
@@ -659,6 +669,7 @@ EC 데이터 복구 작업이 중단되었습니다.
 |===
 
 
+[[expiration-of-certificates-alerts]]
 == 인증서 만료 알림
 
 [cols="1a,2a"]
@@ -723,6 +734,7 @@ S3 및 Swift에 대한 글로벌 서버 인증서가 만료되려고 합니다.
 |===
 
 
+[[grid-network-alerts]]
 == 그리드 네트워크 알림
 
 [cols="1a,2a"]
@@ -738,6 +750,7 @@ S3 및 Swift에 대한 글로벌 서버 인증서가 만료되려고 합니다.
 |===
 
 
+[[grid-federation-alerts]]
 == 그리드 연합 알림
 
 [cols="1a,2a"]
@@ -760,6 +773,7 @@ S3 및 Swift에 대한 글로벌 서버 인증서가 만료되려고 합니다.
 |===
 
 
+[[high-usage-or-high-latency-alerts]]
 == 사용량이 많거나 대기 시간이 긴 알림
 
 [cols="1a,2a"]
@@ -782,6 +796,7 @@ Cassandra 메타데이터 쿼리의 평균 시간이 너무 깁니다.
 |===
 
 
+[[identity-federation-alerts]]
 == ID 페더레이션 알림
 
 [cols="1a,2a"]
@@ -804,6 +819,7 @@ ID 소스에서 페더레이션 그룹과 사용자를 동기화할 수 없습�
 |===
 
 
+[[information-lifecycle-management-ilm-alerts]]
 == 정보 수명 주기 관리(ILM) 알림
 
 [cols="1a,2a"]
@@ -826,6 +842,7 @@ ILM 스캔 속도는 초당 100개 객체 미만으로 설정됩니다.
 |===
 
 
+[[key-management-server-kms-alerts]]
 == 키 관리 서버(KMS) 알림
 
 [cols="1a,2a"]
@@ -904,6 +921,7 @@ KMS 서버 연결 실패
 |===
 
 
+[[load-balancer-alerts]]
 == 로드 밸런서 알림
 
 [cols="1a,2a"]
@@ -919,6 +937,7 @@ KMS 서버 연결 실패
 |===
 
 
+[[local-clock-offset-alerts]]
 == 로컬 시계 오프셋 알림
 
 [cols="1a,2a"]
@@ -934,6 +953,7 @@ KMS 서버 연결 실패
 |===
 
 
+[[low-memory-or-low-space-alerts]]
 == 메모리 부족 또는 공간 부족 알림
 
 [cols="1a,2a"]
@@ -1019,6 +1039,7 @@ tmp 디렉토리 여유 공간 부족
 |===
 
 
+[[node-or-node-network-alerts]]
 == 노드 또는 노드 네트워크 알림
 
 [cols="1a,2a"]
@@ -1216,6 +1237,7 @@ TCP 연결 사용
 |===
 
 
+[[object-alerts]]
 == 객체 알림
 
 [cols="1a,2a"]
@@ -1259,6 +1281,7 @@ S3 PUT 객체 크기가 너무 큽니다.
 |===
 
 
+[[platform-services-alerts]]
 == 플랫폼 서비스 알림
 
 [cols="1a,2a"]
@@ -1281,6 +1304,7 @@ S3 PUT 객체 크기가 너무 큽니다.
 |===
 
 
+[[storage-volume-alerts]]
 == 저장 볼륨 알림
 
 [cols="1a,2a"]
@@ -1324,6 +1348,7 @@ S3 PUT 객체 크기가 너무 큽니다.
 |===
 
 
+[[storagegrid-services-alerts]]
 == StorageGRID 서비스 알림
 
 [cols="1a,2a"]
@@ -1367,6 +1392,7 @@ SSH 서비스 구성이 잘못되었습니다.  이제 이전 구성이 사용�
 |===
 
 
+[[tenant-alerts]]
 == 세입자 알림
 
 [cols="1a,2a"]

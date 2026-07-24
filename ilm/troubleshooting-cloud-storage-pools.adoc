@@ -15,6 +15,7 @@ summary: 클라우드 스토리지 풀을 만들거나, 편집하거나, 삭제�
 
 
 
+[[determine-if-an-error-has-occurred]]
 == 오류가 발생했는지 확인하세요
 
 StorageGRID 알려진 객체를 읽어 모든 Cloud Storage 풀에 대한 간단한 상태 점검을 수행합니다. `x-ntap-sgws-cloud-pool-uuid` 클라우드 스토리지 풀에 액세스할 수 있고 올바르게 작동하는지 확인합니다.  StorageGRID 엔드포인트에서 오류를 발견하면 각 스토리지 노드에서 1분마다 상태 검사를 수행합니다.  오류가 해결되면 상태 검사가 중지됩니다.  상태 검사에서 문제가 감지되면 스토리지 풀 페이지의 클라우드 스토리지 풀 표에 있는 마지막 오류 열에 메시지가 표시됩니다.
@@ -25,6 +26,7 @@ StorageGRID 알려진 객체를 읽어 모든 Cloud Storage 풀에 대한 간단
 
 
 
+[[check-if-an-error-has-been-resolved]]
 == 오류가 해결되었는지 확인하세요
 
 기본 문제를 해결한 후 오류가 해결되었는지 확인할 수 있습니다.  클라우드 스토리지 풀 페이지에서 엔드포인트를 선택하고 *오류 지우기*를 선택합니다.  확인 메시지는 StorageGRID Cloud Storage Pool에 대한 오류를 지웠음을 나타냅니다.
@@ -33,6 +35,7 @@ StorageGRID 알려진 객체를 읽어 모든 Cloud Storage 풀에 대한 간단
 
 
 
+[[error-health-check-failed-error-from-endpoint]]
 == 오류: 상태 검사에 실패했습니다.  엔드포인트에서 오류 발생
 
 Cloud Storage Pool에 대해 Amazon S3 버킷을 사용하기 시작한 후 해당 버킷에 대한 기본 보존 기간으로 S3 개체 잠금을 활성화하면 이 오류가 발생할 수 있습니다.  이 오류는 PUT 작업에 다음과 같은 페이로드 체크섬 값이 포함된 HTTP 헤더가 없는 경우 발생합니다. `Content-MD5` .  이 헤더 값은 S3 객체 잠금이 활성화된 버킷에 대한 PUT 작업을 위해 AWS에 필요합니다.
@@ -41,6 +44,7 @@ Cloud Storage Pool에 대해 Amazon S3 버킷을 사용하기 시작한 후 해�
 
 
 
+[[error-this-cloud-storage-pool-contains-unexpected-content]]
 == 오류: 이 클라우드 스토리지 풀에 예기치 않은 콘텐츠가 포함되어 있습니다.
 
 클라우드 스토리지 풀을 생성, 편집 또는 삭제하려고 할 때 이 오류가 발생할 수 있습니다.  이 오류는 버킷이나 컨테이너에 다음이 포함된 경우 발생합니다. `x-ntap-sgws-cloud-pool-uuid` 마커 파일이 있지만 해당 파일에는 예상 UUID가 포함된 메타데이터 필드가 없습니다.
@@ -60,6 +64,7 @@ Cloud Storage Pool에 대해 Amazon S3 버킷을 사용하기 시작한 후 해�
 
 
 
+[[error-could-not-create-or-update-cloud-storage-pool-error-from-endpoint]]
 == 오류: Cloud Storage Pool을 생성하거나 업데이트할 수 없습니다.  엔드포인트에서 오류 발생
 
 다음과 같은 상황에서 이 오류가 발생할 수 있습니다.
@@ -85,6 +90,7 @@ Cloud Storage Pool에 대해 Amazon S3 버킷을 사용하기 시작한 후 해�
 
 
 
+[[error-failed-to-parse-ca-certificate]]
 == 오류: CA 인증서 구문 분석에 실패했습니다.
 
 클라우드 스토리지 풀을 만들거나 편집하려고 할 때 이 오류가 발생할 수 있습니다.  이 오류는 Cloud Storage Pool을 구성할 때 입력한 인증서를 StorageGRID 구문 분석할 수 없는 경우 발생합니다.
@@ -93,6 +99,7 @@ Cloud Storage Pool에 대해 Amazon S3 버킷을 사용하기 시작한 후 해�
 
 
 
+[[error-a-cloud-storage-pool-with-this-id-was-not-found]]
 == 오류: 이 ID를 가진 클라우드 스토리지 풀을 찾을 수 없습니다.
 
 클라우드 스토리지 풀을 편집하거나 삭제하려고 할 때 이 오류가 발생할 수 있습니다.  이 오류는 엔드포인트가 404 응답을 반환하는 경우 발생하며, 이는 다음 중 하나를 의미할 수 있습니다.
@@ -110,6 +117,7 @@ Cloud Storage Pool에 대해 Amazon S3 버킷을 사용하기 시작한 후 해�
 
 
 
+[[error-could-not-check-the-content-of-the-cloud-storage-pool-error-from-endpoint]]
 == 오류: 클라우드 스토리지 풀의 내용을 확인할 수 없습니다.  엔드포인트에서 오류 발생
 
 클라우드 스토리지 풀을 삭제하려고 하면 이 오류가 발생할 수 있습니다.  이 오류는 어떤 종류의 연결 또는 구성 문제로 인해 StorageGRID Cloud Storage Pool 버킷의 내용을 읽지 못하고 있음을 나타냅니다.
@@ -118,6 +126,7 @@ Cloud Storage Pool에 대해 Amazon S3 버킷을 사용하기 시작한 후 해�
 
 
 
+[[error-objects-have-already-been-placed-in-this-bucket]]
 == 오류: 이 버킷에 이미 개체가 배치되었습니다.
 
 클라우드 스토리지 풀을 삭제하려고 하면 이 오류가 발생할 수 있습니다.  ILM에서 해당 풀로 이동한 데이터, Cloud Storage 풀을 구성하기 전에 버킷에 있던 데이터 또는 Cloud Storage 풀이 생성된 후 다른 소스에서 버킷에 넣은 데이터가 포함된 경우 Cloud Storage 풀을 삭제할 수 없습니다.
@@ -134,6 +143,7 @@ NOTE: ILM에 의해 클라우드 스토리지 풀에 배치된 객체를 수동�
 
 
 
+[[error-proxy-encountered-an-external-error-while-trying-to-reach-the-cloud-storage-pool]]
 == 오류: 프록시가 Cloud Storage Pool에 접근하는 동안 외부 오류가 발생했습니다.
 
 클라우드 스토리지 풀에 사용되는 외부 S3 엔드포인트와 스토리지 노드 간에 투명하지 않은 스토리지 프록시를 구성한 경우 이 오류가 발생할 수 있습니다.  이 오류는 외부 프록시 서버가 Cloud Storage Pool 엔드포인트에 도달할 수 없는 경우 발생합니다.  예를 들어, DNS 서버가 호스트 이름을 확인하지 못할 수도 있고 외부 네트워킹 문제가 있을 수도 있습니다.
@@ -146,6 +156,7 @@ NOTE: ILM에 의해 클라우드 스토리지 풀에 배치된 객체를 수동�
 
 
 
+[[error-x-509-certificate-is-out-of-validity-period]]
 == 오류: X.509 인증서의 유효 기간이 지났습니다.
 
 클라우드 스토리지 풀을 삭제하려고 하면 이 오류가 발생할 수 있습니다.  이 오류는 올바른 외부 클라우드 스토리지 풀의 유효성을 검사하기 위해 인증에 X.509 인증서가 필요하고 클라우드 스토리지 풀 구성이 삭제되기 전에 외부 풀이 비어 있는 경우 발생합니다.

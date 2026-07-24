@@ -18,6 +18,7 @@ NOTE: 이 지침에서 "Linux"는 Red Hat® Enterprise Linux®, Ubuntu® 또는 
 
 
 
+[[before-you-begin]]
 == 시작하기 전에
 
 * StorageGRID 시스템에 대한 광범위한 이해가 있습니다.
@@ -28,6 +29,7 @@ NOTE: 이 지침에서 "Linux"는 Red Hat® Enterprise Linux®, Ubuntu® 또는 
 
 
 
+[[maintenance-procedures-for-appliances]]
 == 가전제품 유지관리 절차
 
 하드웨어 절차에 대해서는 다음을 참조하세요. https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/index.html["StorageGRID 어플라이언스에 대한 유지 관리 지침"^] .

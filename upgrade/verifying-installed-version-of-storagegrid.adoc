@@ -42,6 +42,7 @@ StorageGRID 11.8._x.y_ 버전 번호:
 
 
 
+[[example-upgrade-pathexample-upgrade-to-storagegrid-11-9-from-version-11-6]]
 == [[example-upgrade-path]]예: 버전 11.6에서 StorageGRID 11.9으로 업그레이드
 
 다음 예에서는 StorageGRID 11.9 업그레이드를 준비하기 위해 StorageGRID 버전 11.6에서 버전 11.8로 업그레이드하는 단계를 보여줍니다.

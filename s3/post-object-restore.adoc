@@ -15,18 +15,21 @@ S3 RestoreObject 요청을 사용하면 Cloud Storage 풀에 저장된 객체를
 
 
 
+[[supported-request-type]]
 == 지원되는 요청 유형
 
 StorageGRID 객체를 복원하기 위한 RestoreObject 요청만 지원합니다.  지원하지 않습니다 `SELECT` 복원 유형.  선택 요청 반환 `XNotImplemented` .
 
 
 
+[[versioning]]
 == 버전 관리
 
 선택적으로 지정하세요 `versionId` 버전이 지정된 버킷에서 특정 버전의 객체를 복원합니다.  지정하지 않으면 `versionId` , 객체의 가장 최신 버전이 복원됩니다.
 
 
 
+[[behavior-of-restoreobject-on-cloud-storage-pool-objects]]
 == Cloud Storage Pool 객체의 RestoreObject 동작
 
 객체가 다음에 저장되어 있는 경우link:../ilm/what-cloud-storage-pool-is.html["클라우드 스토리지 풀"] RestoreObject 요청은 개체 상태에 따라 다음과 같은 동작을 합니다. 보다link:head-object.html["헤드오브젝트"] 자세한 내용은.

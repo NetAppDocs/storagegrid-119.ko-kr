@@ -20,6 +20,7 @@ NOTE: StorageGRID 11.9에서는 더 이상 사용되지 않는 테넌트 관리 
 
 
 
+[[new-api-for-bucket-capacity-limit]]
 == 버킷 용량 제한을 위한 새로운 API
 
 당신은 사용할 수 있습니다 `/org/containers/{bucketName}/quota-object-bytes` 버킷의 저장 용량 한도를 가져오고 설정하기 위한 GET/PUT 작업이 포함된 API입니다.

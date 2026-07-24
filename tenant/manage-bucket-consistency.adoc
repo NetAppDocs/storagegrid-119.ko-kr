@@ -20,12 +20,14 @@ summary: 일관성 값은 버킷 설정 변경의 가용성을 지정하는 데 
 
 
 
+[[bucket-consistency-guidelines]]
 == 버킷 일관성 지침
 
 버킷 일관성은 S3 버킷 내의 객체에 영향을 미치는 클라이언트 애플리케이션의 일관성을 확인하는 데 사용됩니다.  일반적으로 버킷에 대해 *새로 쓰기 후 읽기* 일관성을 사용해야 합니다.
 
 
 
+[[change-bucket-consistencychange-bucket-consistency]]
 == [[change-bucket-consistency]]버킷 일관성 변경
 
 *Read-after-new-write* 일관성이 클라이언트 애플리케이션의 요구 사항을 충족하지 못하는 경우 버킷 일관성을 설정하거나 다음을 사용하여 일관성을 변경할 수 있습니다. `Consistency-Control` 헤더.  그만큼 `Consistency-Control` 헤더는 버킷 일관성을 무시합니다.
@@ -54,6 +56,7 @@ NOTE: 버킷의 일관성을 변경하면 변경 후 수집된 객체만 수정�
 
 
 
+[[what-happens-when-you-change-bucket-settings]]
 == 버킷 설정을 변경하면 어떻게 되나요?
 
 버킷에는 버킷과 버킷 내 객체의 동작에 영향을 미치는 여러 가지 설정이 있습니다.

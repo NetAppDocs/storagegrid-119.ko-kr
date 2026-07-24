@@ -15,6 +15,7 @@ summary: 기존 규정 준수 기능을 사용하여 생성된 버킷을 관리�
 
 
 
+[[compliance-feature-deprecated]]
 == 규정 준수 기능이 더 이상 사용되지 않습니다.
 
 이전 StorageGRID 버전에서 사용 가능했던 StorageGRID 규정 준수 기능은 더 이상 사용되지 않으며 S3 개체 잠금으로 대체되었습니다.

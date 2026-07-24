@@ -15,6 +15,7 @@ summary: 감사 메시지는 StorageGRID 서비스에서 생성되어 텍스트 
 
 
 
+[[bucket-operations-tracked-in-the-audit-logs]]
 == 감사 로그에서 추적된 버킷 작업
 
 * 버킷 만들기
@@ -32,6 +33,7 @@ summary: 감사 메시지는 StorageGRID 서비스에서 생성되어 텍스트 
 
 
 
+[[object-operations-tracked-in-the-audit-logs]]
 == 감사 로그에서 추적된 개체 작업
 
 * CompleteMultipartUpload

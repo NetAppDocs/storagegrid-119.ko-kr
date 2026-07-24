@@ -15,6 +15,7 @@ StorageGRID Amazon Web Services(AWS) 정책 언어를 사용하여 S3 테넌트�
 
 
 
+[[access-policy-overview]]
 == 액세스 정책 개요
 
 StorageGRID 는 두 가지 종류의 액세스 정책을 지원합니다.
@@ -136,6 +137,7 @@ Principal 요소에서는 모든 사람에게 권한을 부여하는 익명 액�
 
 
 
+[[consistency-for-policies]]
 == 정책의 일관성
 
 기본적으로 그룹 정책을 업데이트하면 모든 내용이 일관성 있게 적용됩니다.  그룹 정책이 일관성을 갖게 되면 정책 캐싱으로 인해 변경 사항이 적용되는 데 15분이 더 걸릴 수 있습니다.  기본적으로 버킷 정책을 업데이트하면 일관성이 유지됩니다.
@@ -149,6 +151,7 @@ NOTE: 일시적인 상황을 해결하기 위해 일관성을 다른 값으로 �
 
 
 
+[[use-arn-in-policy-statements]]
 == 정책 설명에 ARN 사용
 
 정책 설명에서 ARN은 Principal 및 Resource 요소에 사용됩니다.
@@ -186,6 +189,7 @@ PutBucketPolicy 작업에 대한 HTTP 요청 본문은 charset=UTF-8로 인코�
 
 
 
+[[specify-resources-in-a-policy]]
 == 정책에서 리소스 지정
 
 정책 명령문에서 Resource 요소를 사용하여 권한을 허용하거나 거부할 버킷이나 객체를 지정할 수 있습니다.
@@ -208,6 +212,7 @@ PutBucketPolicy 작업에 대한 HTTP 요청 본문은 charset=UTF-8로 인코�
 
 
 
+[[specify-principals-in-a-policy]]
 == 정책에서 원칙 지정
 
 Principal 요소를 사용하여 정책 문에 따라 리소스에 대한 액세스가 허용되거나 거부되는 사용자, 그룹 또는 테넌트 계정을 식별합니다.
@@ -265,6 +270,7 @@ arn:aws:iam::27233906934684427525:user-uuid/de305d54-75b4-431b-adb2-eb6b9e546013
 
 
 
+[[specify-permissions-in-a-policy]]
 == 정책에서 권한 지정
 
 정책에서 Action 요소는 리소스에 대한 권한을 허용/거부하는 데 사용됩니다.  정책에서 지정할 수 있는 권한 집합이 있는데, 이는 "Action" 요소로 표시되고, 제외를 위해서는 "NotAction"으로 표시됩니다.  이러한 각 요소는 특정 S3 REST API 작업에 매핑됩니다.
@@ -279,6 +285,7 @@ NOTE: put을 사용하여 기존 값을 덮어쓰면 삭제가 수행됩니다.
 
 
 
+[[permissions-that-apply-to-buckets]]
 === 버킷에 적용되는 권한
 
 [cols="2a,2a,1a"]
@@ -617,6 +624,7 @@ PutBucketReplication
 |===
 
 
+[[permissions-that-apply-to-objects]]
 === 객체에 적용되는 권한
 
 [cols="2a,2a,1a"]
@@ -818,6 +826,7 @@ s3:객체 복원
 |===
 
 
+[[use-putoverwriteobject-permission]]
 == PutOverwriteObject 권한 사용
 
 s3:PutOverwriteObject 권한은 객체를 생성하거나 업데이트하는 작업에 적용되는 사용자 지정 StorageGRID 권한입니다.  이 권한 설정은 클라이언트가 개체의 데이터, 사용자 정의 메타데이터 또는 S3 개체 태그를 덮어쓸 수 있는지 여부를 결정합니다.
@@ -845,6 +854,7 @@ NOTE: 현재 S3 정책이 덮어쓰기를 허용하고 PutOverwriteObject 권한
 
 
 
+[[specify-conditions-in-a-policy]]
 == 정책에서 조건 지정
 
 조건은 정책이 언제 발효되는지를 정의합니다.  조건은 연산자와 키-값 쌍으로 구성됩니다.
@@ -870,6 +880,7 @@ Condition: {
 ----
 
 
+[[supported-condition-operators]]
 === 지원되는 조건 연산자
 
 조건 연산자는 다음과 같이 분류됩니다.
@@ -999,6 +1010,7 @@ IP주소가 아님
 |===
 
 
+[[supported-condition-keys]]
 === 지원되는 조건 키
 
 [cols="1a,1a,2a"]
@@ -1129,6 +1141,7 @@ s3:PutObjectVersionTagging
 |===
 
 
+[[specify-variables-in-a-policy]]
 == 정책에서 변수 지정
 
 정책에서 변수를 사용하면 정책 정보를 사용할 수 있을 때 해당 정보를 채울 수 있습니다.  정책 변수는 다음에서 사용할 수 있습니다. `Resource` 요소 및 문자열 비교 `Condition` 요소.
@@ -1205,6 +1218,7 @@ s3:PutObjectVersionTagging
 |===
 
 
+[[create-policies-requiring-special-handling]]
 == 특별한 처리가 필요한 정책을 만듭니다.
 
 때로는 정책에 따라 보안이나 지속적인 작업에 위험한 권한이 부여될 수 있습니다. 예를 들어 계정의 루트 사용자를 잠그는 경우가 있습니다.  StorageGRID S3 REST API 구현은 Amazon보다 정책 검증 시에는 제한이 적지만, 정책 평가 시에는 동일하게 엄격합니다.
@@ -1325,6 +1339,7 @@ s3:PutObjectVersionTagging
 |===
 
 
+[[write-once-read-many-worm-protection]]
 == WORM(Write-once-Read-Many) 보호
 
 데이터, 사용자 정의 개체 메타데이터 및 S3 개체 태그를 보호하기 위해 WORM(Write-Once-Read-Many) 버킷을 만들 수 있습니다.  WORM 버킷을 구성하여 새 객체를 생성하고 기존 콘텐츠를 덮어쓰거나 삭제하지 못하도록 할 수 있습니다.  여기에 설명된 방법 중 하나를 사용하세요.

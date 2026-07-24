@@ -38,6 +38,7 @@ Red Hat Enterprise Linux(RHEL) Linux StorageGRID 노드를 설치하려면 다�
 
 
 
+[[automate-the-installation]]
 == 설치 자동화
 
 시간을 절약하고 일관성을 유지하려면 StorageGRID 호스트 서비스 설치와 그리드 노드 구성을 자동화할 수 있습니다.

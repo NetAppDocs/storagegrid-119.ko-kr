@@ -17,6 +17,7 @@ MIB 파일에는 그리드의 노드에 대한 관리되는 리소스와 서비�
 
 
 
+[[access-mib-files]]
 == MIB 파일 접근
 
 MIB 파일에 액세스하려면 다음 단계를 따르세요.
@@ -59,6 +60,7 @@ TIP: 그만큼 `snmptranslate` 이 명령에는 MIB를 탐색하는 데 유용�
 
 
 
+[[mib-file-contents]]
 == MIB 파일 내용
 
 모든 객체는 StorageGRID OID에 있습니다.
@@ -74,6 +76,7 @@ NetApp StorageGRID 엔터티를 위한 MIB 모듈입니다.
 |===
 
 
+[[mib-objects]]
 == MIB 객체
 
 [cols="1a,1a,2a"]
@@ -117,6 +120,7 @@ StorageGRID 의 활성 알림 표입니다.
 |===
 
 
+[[notification-types-traps]]
 == 알림 유형(트랩)
 
 모든 알림에는 다음 변수가 varbind로 포함됩니다.

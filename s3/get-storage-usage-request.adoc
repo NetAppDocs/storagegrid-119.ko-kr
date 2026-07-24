@@ -21,6 +21,7 @@ GET 스토리지 사용량 요청은 계정에서 사용 중인 총 스토리지
 
 
 
+[[request-example]]
 == 요청 예시
 
 [listing, subs="specialcharacters,quotes"]
@@ -32,6 +33,7 @@ Host: _host_
 ----
 
 
+[[response-example]]
 == 응답 예시
 
 이 예에서는 두 개의 버킷에 4개의 객체와 12바이트의 데이터가 있는 계정을 보여줍니다.  각 버킷에는 두 개의 객체와 6바이트의 데이터가 들어 있습니다.
@@ -67,6 +69,7 @@ Content-Type: application/xml
 ----
 
 
+[[versioning]]
 == 버전 관리
 
 저장된 모든 객체 버전은 다음에 기여합니다. `ObjectCount` 그리고 `DataBytes` 응답의 값.  삭제 마커가 추가되지 않습니다. `ObjectCount` 총.

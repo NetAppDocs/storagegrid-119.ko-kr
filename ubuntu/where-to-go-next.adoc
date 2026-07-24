@@ -15,6 +15,7 @@ summary: 설치를 완료한 후 필요한 통합 및 구성 작업을 수행합
 
 
 
+[[required-tasks]]
 == 필수 작업
 
 * link:../admin/managing-tenants.html["테넌트 계정 생성"]StorageGRID 시스템에 객체를 저장하는 데 사용될 S3 클라이언트 프로토콜에 대한 정보입니다.
@@ -36,6 +37,7 @@ summary: 설치를 완료한 후 필요한 통합 및 구성 작업을 수행합
 
 
 
+[[optional-tasks]]
 == 선택 과제
 
 * link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["그리드 노드 IP 주소 업데이트"]배포를 계획하고 복구 패키지를 생성한 이후 변경된 경우

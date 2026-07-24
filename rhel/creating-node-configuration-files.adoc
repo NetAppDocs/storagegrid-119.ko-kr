@@ -15,6 +15,7 @@ summary: 노드 구성 파일은 StorageGRID 호스트 서비스가 노드를 �
 
 
 
+[[location-for-node-configuration-files]]
 == 노드 구성 파일의 위치
 
 각 StorageGRID 노드에 대한 구성 파일을 다음 위치에 두십시오. `/etc/storagegrid/nodes` 노드가 실행될 호스트의 디렉토리입니다.  예를 들어 HostA에서 하나의 관리 노드, 하나의 게이트웨이 노드 및 하나의 스토리지 노드를 실행하려는 경우 세 개의 노드 구성 파일을 배치해야 합니다. `/etc/storagegrid/nodes` HostA에서.
@@ -23,6 +24,7 @@ vim이나 nano와 같은 텍스트 편집기를 사용하여 각 호스트에 �
 
 
 
+[[naming-of-node-configuration-files]]
 == 노드 구성 파일 이름 지정
 
 구성 파일의 이름은 중요합니다.  형식은 다음과 같습니다 `node-name.conf` , 어디 `node-name` 는 노드에 지정하는 이름입니다.  이 이름은 StorageGRID 설치 프로그램에 나타나며 노드 마이그레이션과 같은 노드 유지 관리 작업에 사용됩니다.
@@ -47,6 +49,7 @@ vim이나 nano와 같은 텍스트 편집기를 사용하여 각 호스트에 �
 
 
 
+[[contents-of-a-node-configuration-file]]
 == 노드 구성 파일의 내용
 
 구성 파일에는 키/값 쌍이 들어 있으며, 한 줄에 키 하나와 값 하나가 들어 있습니다.  각 키/값 쌍에 대해 다음 규칙을 따르세요.
@@ -66,6 +69,7 @@ vim이나 nano와 같은 텍스트 편집기를 사용하여 각 호스트에 �
 
 
 
+[[admin-network-keys]]
 === 관리자 네트워크 키
 
 
@@ -318,6 +322,7 @@ NODE_TYPE = VM_Admin_Node인 경우 필요합니다.
 |===
 
 
+[[block-device-keys]]
 === 블록 장치 키
 
 
@@ -454,6 +459,7 @@ BLOCK_DEVICE_RANGEDB_015
 |===
 
 
+[[client-network-keys]]
 === 클라이언트 네트워크 키
 
 
@@ -661,6 +667,7 @@ MAC 클로닝에 대한 자세한 내용은 다음을 참조하세요.
 |===
 
 
+[[grid-network-keys]]
 === 그리드 네트워크 키
 
 
@@ -856,6 +863,7 @@ MAC 클로닝에 대한 자세한 내용은 다음을 참조하세요.
 |===
 
 
+[[installation-password-key-temporary]]
 === 설치 비밀번호 키(임시)
 
 
@@ -885,6 +893,7 @@ MAC 클로닝에 대한 자세한 내용은 다음을 참조하세요.
 |===
 
 
+[[interfaces-key]]
 === 인터페이스 키
 
 
@@ -912,6 +921,7 @@ _nnnn_의 경우, 추가하는 각 INTERFACE_TARGET 항목에 대해 고유한 �
 |===
 
 
+[[maximum-ram-key]]
 === 최대 RAM 키
 
 
@@ -943,6 +953,7 @@ _nnnn_의 경우, 추가하는 각 INTERFACE_TARGET 항목에 대해 고유한 �
 |===
 
 
+[[node-type-keys]]
 === 노드 유형 키
 
 
@@ -990,6 +1001,7 @@ _nnnn_의 경우, 추가하는 각 INTERFACE_TARGET 항목에 대해 고유한 �
 |===
 
 
+[[port-remap-keys]]
 === 포트 리맵 키
 
 

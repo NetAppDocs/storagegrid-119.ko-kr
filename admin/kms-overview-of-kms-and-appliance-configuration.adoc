@@ -21,6 +21,7 @@ image::../media/kms_configuration_overview.png[다음 텍스트에 설명된 KMS
 
 
 
+[[set-up-the-key-management-server-kms]]
 == 키 관리 서버(KMS) 설정
 
 키 관리 서버를 설정하는 데는 다음과 같은 주요 단계가 포함됩니다.
@@ -52,6 +53,7 @@ link:kms-adding.html["키 관리 서버(KMS) 추가"]
 |===
 
 
+[[set-up-the-appliance]]
 == 기기 설정
 
 KMS 사용을 위한 어플라이언스 노드를 설정하는 데는 다음과 같은 주요 단계가 포함됩니다.
@@ -74,6 +76,7 @@ NOTE: 어플라이언스를 그리드에 추가한 후에는 *노드 암호화* 
 
 
 
+[[key-management-encryption-process-occurs-automatically]]
 == 키 관리 암호화 프로세스(자동으로 발생)
 
 키 관리 암호화에는 자동으로 수행되는 다음과 같은 고급 단계가 포함됩니다.

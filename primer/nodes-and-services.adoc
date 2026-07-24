@@ -15,6 +15,7 @@ StorageGRID 시스템의 기본 구성 요소는 그리드 노드입니다.  노
 
 
 
+[[types-of-grid-nodes]]
 == 그리드 노드의 유형
 
 StorageGRID 시스템은 4가지 유형의 그리드 노드를 사용합니다.
@@ -43,12 +44,14 @@ StorageGRID 시스템은 4가지 유형의 그리드 노드를 사용합니다.
 
 
 
+[[hardware-and-software-nodes]]
 == 하드웨어 및 소프트웨어 노드
 
 StorageGRID 노드는 StorageGRID 어플라이언스 노드 또는 소프트웨어 기반 노드로 배포할 수 있습니다.
 
 
 
+[[storagegrid-appliance-nodes]]
 === StorageGRID 어플라이언스 노드
 
 StorageGRID 하드웨어 어플라이언스는 StorageGRID 시스템에서 사용하도록 특별히 설계되었습니다.  일부 기기는 저장 노드로 사용할 수 있습니다.  다른 어플라이언스는 관리 노드나 게이트웨이 노드로 사용될 수 있습니다.  어플라이언스 노드를 소프트웨어 기반 노드와 결합하거나 외부 하이퍼바이저, 스토리지 또는 컴퓨팅 하드웨어에 대한 종속성이 없는 완벽하게 설계된 모든 어플라이언스 그리드를 배포할 수 있습니다.
@@ -61,6 +64,7 @@ StorageGRID 하드웨어 어플라이언스는 StorageGRID 시스템에서 사�
 
 
 
+[[software-based-nodes]]
 === 소프트웨어 기반 노드
 
 소프트웨어 기반 그리드 노드는 VMware 가상 머신으로 배포되거나 Linux 호스트의 컨테이너 엔진 내에 배포될 수 있습니다.
@@ -76,6 +80,7 @@ StorageGRID 하드웨어 어플라이언스는 StorageGRID 시스템에서 사�
 
 
 
+[[storagegrid-services]]
 == StorageGRID 서비스
 
 다음은 StorageGRID 서비스의 전체 목록입니다.

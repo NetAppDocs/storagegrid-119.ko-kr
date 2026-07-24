@@ -20,6 +20,7 @@ summary: 모든 S3 클라이언트 활동은 StorageGRID 테넌트 계정과 연
 
 
 
+[[view-all-tenants]]
 == 모든 세입자 보기
 
 세입자 페이지는 현재 모든 세입자 계정에 대한 기본 정보를 표시합니다.
@@ -60,6 +61,7 @@ image::../media/tenant_accounts_example_csv.png[세입자 계정 예시 .csv]
 
 
 
+[[view-a-specific-tenant]]
 == 특정 세입자 보기
 
 특정 세입자에 대한 세부 정보를 볼 수 있습니다.
@@ -124,6 +126,7 @@ image::../media/tenant_bucket_details_csv.png[테넌트 버킷 세부 정보 CSV
 
 
 
+[[view-network-traffic]]
 == 네트워크 트래픽 보기
 
 테넌트에 대한 트래픽 분류 정책이 시행 중인 경우 해당 테넌트의 네트워크 트래픽을 검토하세요.
@@ -142,6 +145,7 @@ image::../media/tenant_bucket_details_csv.png[테넌트 버킷 세부 정보 CSV
 
 
 
+[[use-the-audit-log]]
 == 감사 로그를 사용하세요
 
 선택적으로 감사 로그를 사용하여 테넌트 활동을 보다 세부적으로 모니터링할 수 있습니다.
@@ -160,6 +164,7 @@ image::../media/tenant_bucket_details_csv.png[테넌트 버킷 세부 정보 CSV
 
 
 
+[[use-prometheus-metrics]]
 == Prometheus 메트릭 사용
 
 선택적으로 Prometheus 메트릭을 사용하여 테넌트 활동을 보고합니다.

@@ -15,6 +15,7 @@ StorageGRID 플랫폼 서비스 엔드포인트와 통신을 시도할 때 오�
 
 
 
+[[determine-if-error-has-occurred]]
 == 오류가 발생했는지 확인하세요
 
 지난 7일 동안 플랫폼 서비스 엔드포인트 오류가 발생한 경우 테넌트 관리자 대시보드에 알림 메시지가 표시됩니다.  오류에 대한 자세한 내용을 보려면 플랫폼 서비스 엔드포인트 페이지로 이동하세요.
@@ -30,6 +31,7 @@ image::../media/tenant_dashboard_endpoint_error.png[대시보드의 엔드포인
 
 
 
+[[check-if-error-is-still-current]]
 == 오류가 여전히 현재 상태인지 확인하세요
 
 일부 오류는 해결된 후에도 *마지막 오류* 열에 계속 표시될 수 있습니다.  오류가 현재 있는지 확인하거나 해결된 오류를 테이블에서 강제로 제거하려면 다음을 수행합니다.
@@ -46,6 +48,7 @@ image::../media/tenant_dashboard_endpoint_error.png[대시보드의 엔드포인
 
 
 
+[[resolve-endpoint-errors]]
 == 엔드포인트 오류 해결
 
 엔드포인트 세부 정보 페이지에서 *마지막 오류* 메시지를 사용하면 오류의 원인을 파악하는 데 도움이 됩니다.  일부 오류의 경우 문제를 해결하려면 엔드포인트를 편집해야 할 수도 있습니다.  예를 들어, StorageGRID 올바른 액세스 권한이 없거나 액세스 키가 만료되어 대상 S3 버킷에 액세스할 수 없는 경우 CloudMirroring 오류가 발생할 수 있습니다.  메시지는 "엔드포인트 자격 증명이나 대상 액세스를 업데이트해야 합니다."이고, 세부 정보는 "AccessDenied" 또는 "InvalidAccessKeyId"입니다.
@@ -61,6 +64,7 @@ image::../media/tenant_dashboard_endpoint_error.png[대시보드의 엔드포인
 
 
 
+[[endpoint-credentials-with-insufficient-permissions]]
 == 권한이 부족한 엔드포인트 자격 증명
 
 StorageGRID 플랫폼 서비스 엔드포인트를 검증할 때, 엔드포인트의 자격 증명을 사용하여 대상 리소스에 접속할 수 있는지 확인하고 기본 권한 검사를 수행합니다.  하지만 StorageGRID 특정 플랫폼 서비스 작업에 필요한 모든 권한을 검증하지 않습니다.  이러한 이유로 플랫폼 서비스를 사용하려고 할 때 오류(예: "403 Forbidden")가 발생하는 경우 엔드포인트의 자격 증명과 연결된 권한을 확인하세요.

@@ -17,6 +17,7 @@ S3에 대한 정보는 다음을 참조하세요.link:../s3/index.html["S3 REST 
 
 
 
+[[overview-of-platform-services]]
 == 플랫폼 서비스 개요
 
 StorageGRID 플랫폼 서비스를 사용하면 이벤트 알림과 S3 객체 및 객체 메타데이터의 사본을 외부 대상으로 보낼 수 있어 하이브리드 클라우드 전략을 구현하는 데 도움이 됩니다.
@@ -30,6 +31,7 @@ TIP: StorageGRID 관리자는 Grid Manager 또는 Grid Management API를 사용�
 
 
 
+[[how-platform-services-are-configured]]
 == 플랫폼 서비스 구성 방법
 
 플랫폼 서비스는 다음을 사용하여 구성하는 외부 엔드포인트와 통신합니다.link:configuring-platform-services-endpoints.html["세입자 관리자"] 또는link:understanding-tenant-management-api.html["테넌트 관리 API"] . 각 엔드포인트는 StorageGRID S3 버킷, Amazon Web Services 버킷, Amazon SNS 주제 또는 로컬, AWS 또는 다른 곳에서 호스팅되는 Elasticsearch 클러스터와 같은 외부 대상을 나타냅니다.
@@ -90,6 +92,7 @@ CloudMirror 복제
 |===
 
 
+[[considerations-for-using-platform-services]]
 == 플랫폼 서비스 이용 시 고려사항
 
 [cols="1a,3a"]
@@ -150,6 +153,7 @@ Kafka 엔드포인트 인증에는 다음과 같은 인증 유형이 사용됩�
 |===
 
 
+[[considerations-for-using-cloudmirror-replication-service]]
 == CloudMirror 복제 서비스 사용 시 고려 사항
 
 [cols="1a,3a"]
